@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhoneSpace — Storage Cleaner That Respects Your Privacy</title>
+<meta name="description" content="PhoneSpace is a privacy-focused iOS storage cleaner. Everything runs on-device. No data collection, no tracking, no analytics.">
+<style>
+:root {
+  --bg: #FAF6EE;
+  --surface: #FFFFFF;
+  --text: #1C1B19;
+  --text-secondary: #6B6863;
+  --accent: #B28A29;
+  --border: rgba(28, 27, 25, 0.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140F;
+    --surface: #1F1D17;
+    --text: #F4EFE3;
+    --text-secondary: #9C9890;
+    --accent: #D4A748;
+    --border: rgba(244, 239, 227, 0.12);
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Iowan Old Style', 'Charter', 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 48px 20px 64px;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+h1 {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.tagline {
+  font-size: 17px;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+section {
+  margin-bottom: 48px;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+p {
+  font-size: 16px;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+@media (max-width: 520px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.trust-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.trust-card h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: -0.1px;
+}
+.trust-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+.support-block {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  margin: 32px 0;
+}
+.support-block h2 {
+  margin-bottom: 12px;
+}
+.support-block p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+.email-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #FFFFFF;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  transition: opacity 0.15s ease;
+}
+.email-button:hover {
+  opacity: 0.85;
+}
+.links-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.links-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 0.5px solid var(--accent);
+  padding-bottom: 1px;
+}
+.links-row a:hover {
+  opacity: 0.7;
+}
+footer {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 0.5px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border);
+}
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+.feature-list li {
+  padding: 14px 0;
+  border-bottom: 0.5px solid var(--border);
+  font-size: 16px;
+}
+.feature-list li:last-child {
+  border-bottom: none;
+}
+.feature-list strong {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+.feature-list span {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">PHONESPACE</div>
+  <h1>A storage cleaner that respects your privacy.</h1>
+  <p class="tagline">Everything runs on your iPhone. Nothing is uploaded. No tracking, no accounts, no compromise.</p>
+</header>
+
+<section>
+  <h2>Built differently</h2>
+  <p>Most cleaner apps want your data. They scan your library in the cloud, sell your usage patterns to advertisers, and bury you under three-day trials that auto-bill weekly.</p>
+  <p>PhoneSpace is the opposite. One app, one job, done locally on your device.</p>
+</section>
+
+<section>
+  <h2>Privacy, for real</h2>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <h3>On-device only</h3>
+      <p>Photos, videos, and contacts never leave your iPhone. There's no server to send them to.</p>
+    </div>
+    <div class="trust-card">
+      <h3>No data collection</h3>
+      <p>Zero analytics, tracking SDKs, ad networks, or crash reporters phoning home.</p>
+    </div>
+    <div class="trust-card">
+      <h3>No accounts</h3>
+      <p>No signup, no email required, no password to manage. Download, open, use.</p>
+    </div>
+    <div class="trust-card">
+      <h3>Apple verified</h3>
+      <p>App Store privacy label confirms: "Data Not Collected." It's the truth, not marketing.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>What it does</h2>
+  <ul class="feature-list">
+    <li>
+      <strong>Photos</strong>
+      <span>Find duplicates, similar photos, screenshots, large files, blurry shots, and bursts.</span>
+    </li>
+    <li>
+      <strong>Videos</strong>
+      <span>Surface large videos. Compress them to reclaim gigabytes without obvious quality loss.</span>
+    </li>
+    <li>
+      <strong>Contacts</strong>
+      <span>Detect duplicates and incomplete entries. Smart Merge with review-before-apply. Back up to .vcf.</span>
+    </li>
+    <li>
+      <strong>Files</strong>
+      <span>Browse, organize, and clean your local files with Quick Look previews built in.</span>
+    </li>
+    <li>
+      <strong>Compress</strong>
+      <span>Reduce photo and video sizes with three quality presets. See savings before you commit.</span>
+    </li>
+    <li>
+      <strong>Convert</strong>
+      <span>HEIC ↔ JPG/PNG, video format conversion, and Live Photo extraction (still, MP4, or GIF).</span>
+    </li>
+  </ul>
+</section>
+
+<div class="support-block">
+  <h2>Get support</h2>
+  <p>Questions, feedback, or bug reports — we read every email.</p>
+  <a href="mailto:saudgpt@gmail.com" class="email-button">Email Support</a>
+  <div class="links-row">
+    <a href="terms.html">Terms of Use</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Saud Abdulla</p>
+  <p style="margin-top: 8px;">PhoneSpace is available on the <a href="#">App Store</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>
