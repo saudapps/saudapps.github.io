@@ -1,0 +1,307 @@
+/* SShift web design system — mirrors the SShift iOS app aesthetic */
+
+:root {
+    --bg: #F2F2F7;
+    --surface: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --card-border: rgba(0, 0, 0, 0.06);
+    --card-shadow: rgba(0, 0, 0, 0.07);
+    --text-primary: #1C1C1E;
+    --text-secondary: #6C6C70;
+    --text-tertiary: #9C9CA0;
+    --accent: #5856D6;
+    --accent-orange: #FF9500;
+    --separator: rgba(0, 0, 0, 0.08);
+
+    --tint-green: #34C759;
+    --tint-indigo: #5856D6;
+    --tint-orange: #FF9500;
+    --tint-blue: #007AFF;
+    --tint-gray: #8E8E93;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000000;
+        --surface: #1C1C1E;
+        --card-bg: #1C1C1E;
+        --card-border: rgba(255, 255, 255, 0.10);
+        --card-shadow: rgba(0, 0, 0, 0.30);
+        --text-primary: #F2F2F7;
+        --text-secondary: #9C9CA0;
+        --text-tertiary: #6C6C70;
+        --accent: #7B79E0;
+        --accent-orange: #FF9F0A;
+        --separator: rgba(255, 255, 255, 0.10);
+
+        --tint-green: #30D158;
+        --tint-indigo: #7B79E0;
+        --tint-orange: #FF9F0A;
+        --tint-blue: #0A84FF;
+        --tint-gray: #98989D;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Language toggle visibility */
+body.lang-en .ar-only { display: none; }
+body.lang-ar .en-only { display: none; }
+
+/* Layout */
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+}
+
+/* Language toggle button (top right) */
+.lang-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 0 0;
+}
+
+[dir="rtl"] .lang-bar {
+    justify-content: flex-start;
+}
+
+.lang-toggle {
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 1px 4px var(--card-shadow);
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 24px 0 8px;
+}
+
+.app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 22%;
+    box-shadow: 0 8px 24px var(--card-shadow);
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.app-icon.small {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 16px;
+}
+
+.hero-title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+.hero-subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+.hero-small {
+    text-align: center;
+    padding: 16px 0 4px;
+}
+
+.hero-small .hero-title {
+    font-size: 28px;
+}
+
+/* Section header — uppercase, like SettingsCard sections */
+.section-header {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    margin: 24px 16px 8px;
+}
+
+/* Card primitive */
+.card {
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    border-radius: 9px;
+    box-shadow: 0 2px 8px var(--card-shadow);
+    padding: 0;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+/* Row inside card */
+.row {
+    padding: 14px 16px;
+    border-bottom: 0.5px solid var(--separator);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+a.row {
+    cursor: pointer;
+}
+
+a.row:hover {
+    background: var(--separator);
+}
+
+/* Icon column */
+.row-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.row-icon svg {
+    width: 17px;
+    height: 17px;
+    display: block;
+}
+
+.tint-green  { background: var(--tint-green); }
+.tint-indigo { background: var(--tint-indigo); }
+.tint-orange { background: var(--tint-orange); }
+.tint-blue   { background: var(--tint-blue); }
+.tint-gray   { background: var(--tint-gray); }
+
+/* Row text */
+.row-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.row-title {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.row-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.row-chevron {
+    color: var(--text-tertiary);
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+[dir="rtl"] .row-chevron {
+    transform: scaleX(-1);
+}
+
+.row-value {
+    font-size: 15px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+/* Plain text block inside a card */
+.card-text {
+    padding: 16px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-primary);
+}
+
+/* Buttons */
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #FFFFFF;
+    border: 1px solid var(--accent);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-top: 32px;
+    line-height: 1.7;
+}
+
+.site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+    .hero-title { font-size: 30px; }
+    .app-icon { width: 104px; height: 104px; }
+}

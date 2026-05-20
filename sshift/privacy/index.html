@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SShift — Privacy Policy</title>
+<meta name="description" content="SShift privacy policy. We collect nothing. Your data stays on your device.">
+<link rel="icon" type="image/png" href="/512.png">
+<link rel="stylesheet" href="/assets/sshift-style.css">
+</head>
+<body class="lang-en">
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="lang en-only">
+<div class="container">
+
+    <div class="lang-bar">
+        <button class="lang-toggle" onclick="setLang('ar')">العربية</button>
+    </div>
+
+    <header class="hero-small">
+        <h1 class="hero-title">Privacy Policy</h1>
+        <p class="hero-subtitle">Effective May 21, 2026</p>
+    </header>
+
+    <div class="section-header">What we collect</div>
+    <div class="card">
+        <p class="card-text">Nothing. SShift does not collect, store, or transmit any personal information. There is no account, no signup, and no email required to use the app.</p>
+    </div>
+
+    <div class="section-header">Where your data lives</div>
+    <div class="card">
+        <p class="card-text">All your shifts, schedules, notes, and settings are stored on your device only. They never leave your iPhone.</p>
+    </div>
+
+    <div class="section-header">Notifications</div>
+    <div class="card">
+        <p class="card-text">Notifications are scheduled locally on your device by iOS. We do not use push notification servers or any third-party notification services.</p>
+    </div>
+
+    <div class="section-header">Analytics &amp; Tracking</div>
+    <div class="card">
+        <p class="card-text">None. We do not use analytics, tracking, advertising, or crash reporting services of any kind.</p>
+    </div>
+
+    <div class="section-header">Contact</div>
+    <div class="card">
+        <p class="card-text">Questions about privacy? Email <a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a>.</p>
+    </div>
+
+    <footer class="site-footer">
+        © 2026 Saud Apps · Last updated May 21, 2026
+    </footer>
+
+</div>
+</div>
+
+<!-- ===================== ARABIC ===================== -->
+<div class="lang ar-only" dir="rtl">
+<div class="container">
+
+    <div class="lang-bar">
+        <button class="lang-toggle" onclick="setLang('en')">English</button>
+    </div>
+
+    <header class="hero-small">
+        <h1 class="hero-title">سياسة الخصوصية</h1>
+        <p class="hero-subtitle">ساري ابتداءً من 21 مايو 2026</p>
+    </header>
+
+    <div class="section-header">ما الذي نجمعه</div>
+    <div class="card">
+        <p class="card-text">لا شيء. لا يجمع تطبيق SShift أو يخزّن أو يُرسل أي معلومات شخصية. لا يوجد حساب، ولا تسجيل، ولا بريد إلكتروني مطلوب لاستخدام التطبيق.</p>
+    </div>
+
+    <div class="section-header">أين تُحفظ بياناتك</div>
+    <div class="card">
+        <p class="card-text">كل بياناتك من نوبات، جداول، ملاحظات، وإعدادات تُخزّن على جهازك فقط. لا تغادر هاتفك أبداً.</p>
+    </div>
+
+    <div class="section-header">الإشعارات</div>
+    <div class="card">
+        <p class="card-text">تُجدول الإشعارات محلياً على جهازك عبر نظام iOS. لا نستخدم خوادم إشعارات أو أي خدمات إشعارات خارجية.</p>
+    </div>
+
+    <div class="section-header">التحليلات والتتبّع</div>
+    <div class="card">
+        <p class="card-text">لا شيء. لا نستخدم أي خدمات تحليلات، تتبّع، إعلانات، أو تقارير أعطال.</p>
+    </div>
+
+    <div class="section-header">التواصل</div>
+    <div class="card">
+        <p class="card-text">أسئلة عن الخصوصية؟ راسلنا على <a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a>.</p>
+    </div>
+
+    <footer class="site-footer">
+        © 2026 تطبيقات سعود · آخر تحديث 21 مايو 2026
+    </footer>
+
+</div>
+</div>
+
+<script>
+function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
+}
+(function () {
+    var saved;
+    try { saved = localStorage.getItem('saudapps-lang'); } catch (e) {}
+    if (saved === 'ar') setLang('ar');
+})();
+</script>
+
+</body>
+</html>

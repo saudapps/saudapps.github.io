@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saud Apps</title>
+<meta name="description" content="Independent iOS apps. Built with care.">
+<link rel="icon" type="image/png" href="/512.png">
+<style>
+:root {
+    --bg: #F2F2F7;
+    --card-bg: #FFFFFF;
+    --card-border: rgba(0, 0, 0, 0.06);
+    --card-shadow: rgba(0, 0, 0, 0.07);
+    --text-primary: #1C1C1E;
+    --text-secondary: #6C6C70;
+    --text-tertiary: #9C9CA0;
+    --accent: #007AFF;
+    --separator: rgba(0, 0, 0, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000000;
+        --card-bg: #1C1C1E;
+        --card-border: rgba(255, 255, 255, 0.10);
+        --card-shadow: rgba(0, 0, 0, 0.30);
+        --text-primary: #F2F2F7;
+        --text-secondary: #9C9CA0;
+        --text-tertiary: #6C6C70;
+        --accent: #0A84FF;
+        --separator: rgba(255, 255, 255, 0.10);
+    }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.5;
+}
+body.lang-en .ar-only { display: none; }
+body.lang-ar .en-only { display: none; }
+.container { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+.lang-bar { display: flex; justify-content: flex-end; padding: 4px 0 0; }
+[dir="rtl"] .lang-bar { justify-content: flex-start; }
+.lang-toggle {
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 1px 4px var(--card-shadow);
+}
+.hero { text-align: center; padding: 32px 0 12px; }
+.hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
+.hero p { font-size: 17px; color: var(--text-secondary); margin-top: 8px; }
+.section-header {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--text-secondary); margin: 24px 16px 8px;
+}
+.card {
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    border-radius: 9px;
+    box-shadow: 0 2px 8px var(--card-shadow);
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+.project {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 16px;
+    text-decoration: none;
+    color: inherit;
+}
+.project:hover { background: var(--separator); }
+.project-badge {
+    width: 60px; height: 60px; min-width: 60px;
+    border-radius: 22%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px var(--card-shadow);
+}
+.project-badge.phonespace {
+    background: #B28A29;
+    color: #FFFFFF;
+    font-size: 30px; font-weight: 700;
+}
+.project-badge img { width: 60px; height: 60px; border-radius: 22%; display: block; }
+.project-text { flex: 1; min-width: 0; }
+.project-title { font-size: 18px; font-weight: 600; }
+.project-desc { font-size: 14px; color: var(--text-secondary); margin-top: 3px; }
+.project-chevron { color: var(--text-tertiary); font-size: 20px; }
+[dir="rtl"] .project-chevron { transform: scaleX(-1); }
+.site-footer {
+    text-align: center; font-size: 13px; color: var(--text-tertiary);
+    margin-top: 32px; line-height: 1.8;
+}
+.site-footer a { color: var(--accent); text-decoration: none; }
+@media (max-width: 420px) { .hero h1 { font-size: 30px; } }
+</style>
+</head>
+<body class="lang-en">
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="lang en-only">
+<div class="container">
+
+    <div class="lang-bar">
+        <button class="lang-toggle" onclick="setLang('ar')">العربية</button>
+    </div>
+
+    <header class="hero">
+        <h1>Saud Apps</h1>
+        <p>Independent iOS apps. Built with care.</p>
+    </header>
+
+    <div class="section-header">Projects</div>
+
+    <div class="card">
+        <a class="project" href="/phonespace/">
+            <div class="project-badge phonespace">P</div>
+            <div class="project-text">
+                <div class="project-title">PhoneSpace</div>
+                <div class="project-desc">A storage cleaner that respects your privacy.</div>
+            </div>
+            <div class="project-chevron">&rsaquo;</div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a class="project" href="/sshift/">
+            <div class="project-badge"><img src="/512.png" alt="SShift app icon"></div>
+            <div class="project-text">
+                <div class="project-title">SShift — Shift Calendar</div>
+                <div class="project-desc">Plan shifts, rest &amp; leave.</div>
+            </div>
+            <div class="project-chevron">&rsaquo;</div>
+        </a>
+    </div>
+
+    <footer class="site-footer">
+        <div><a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a></div>
+        <div>© 2026 Saud Apps</div>
+    </footer>
+
+</div>
+</div>
+
+<!-- ===================== ARABIC ===================== -->
+<div class="lang ar-only" dir="rtl">
+<div class="container">
+
+    <div class="lang-bar">
+        <button class="lang-toggle" onclick="setLang('en')">English</button>
+    </div>
+
+    <header class="hero">
+        <h1>تطبيقات سعود</h1>
+        <p>تطبيقات iOS مستقلة. صُنعت بعناية.</p>
+    </header>
+
+    <div class="section-header">المشاريع</div>
+
+    <div class="card">
+        <a class="project" href="/phonespace/">
+            <div class="project-badge phonespace">P</div>
+            <div class="project-text">
+                <div class="project-title">PhoneSpace</div>
+                <div class="project-desc">منظّف تخزين يحترم خصوصيتك.</div>
+            </div>
+            <div class="project-chevron">&rsaquo;</div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a class="project" href="/sshift/">
+            <div class="project-badge"><img src="/512.png" alt="أيقونة تطبيق SShift"></div>
+            <div class="project-text">
+                <div class="project-title">SShift — تقويم المناوبات</div>
+                <div class="project-desc">خطط مناوباتك، الراحة والإجازات.</div>
+            </div>
+            <div class="project-chevron">&rsaquo;</div>
+        </a>
+    </div>
+
+    <footer class="site-footer">
+        <div><a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a></div>
+        <div>© 2026 تطبيقات سعود</div>
+    </footer>
+
+</div>
+</div>
+
+<script>
+function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
+}
+(function () {
+    var saved;
+    try { saved = localStorage.getItem('saudapps-lang'); } catch (e) {}
+    if (saved === 'ar') setLang('ar');
+})();
+</script>
+
+</body>
+</html>
