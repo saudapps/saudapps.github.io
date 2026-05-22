@@ -3,185 +3,411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PhoneSpace Terms of Use. The terms governing your use of the PhoneSpace iOS app.">
+<meta name="theme-color" content="#F2ECDC">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
 <title>Terms of Use — PhoneSpace</title>
 <style>
-:root {
-  --bg: #FAF6EE;
-  --surface: #FFFFFF;
-  --text: #1C1B19;
-  --text-secondary: #6B6863;
-  --accent: #B28A29;
-  --border: rgba(28, 27, 25, 0.12);
-}
-@media (prefers-color-scheme: dark) {
+  /* ─────────────────────────────────────────────────────────────
+     PhoneSpace — Terms. Same tokens as the PhoneSpace landing.
+     Quiet utility page: cream canvas, serif headlines, doc card.
+     ───────────────────────────────────────────────────────────── */
   :root {
-    --bg: #16140F;
-    --surface: #1F1D17;
-    --text: #F4EFE3;
-    --text-secondary: #9C9890;
-    --accent: #D4A748;
-    --border: rgba(244, 239, 227, 0.12);
+    --bg: #F2ECDC;
+    --bg-2: #EFE6D0;
+    --surface: #FBF6E8;
+    --hairline: rgba(60,52,40,0.10);
+    --hairline-strong: rgba(60,52,40,0.16);
+
+    --ink: #1A1714;
+    --ink-2: #2E2820;
+    --muted: #6E6358;
+    --muted-2: #8C8276;
+
+    --navy: #1E2F50;
+    --accent: #B28A29;
+    --accent-soft: rgba(178,138,41,0.12);
+
+    --radius-card: 20px;
+    --radius-pill: 999px;
+
+    --shadow-card: 0 1px 2px rgba(46,40,32,0.04), 0 10px 28px rgba(46,40,32,0.07);
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --font-serif: "New York", "Iowan Old Style", "Charter", "Georgia", "Times New Roman", serif;
   }
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Iowan Old Style', 'Charter', 'Georgia', serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  padding: 32px 20px 64px;
-  -webkit-font-smoothing: antialiased;
-}
-.container {
-  max-width: 680px;
-  margin: 0 auto;
-}
-header {
-  border-bottom: 0.5px solid var(--border);
-  padding-bottom: 24px;
-  margin-bottom: 32px;
-}
-.eyebrow {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.8px;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-h1 {
-  font-size: 32px;
-  font-weight: 500;
-  letter-spacing: -0.5px;
-  margin-bottom: 8px;
-}
-.meta {
-  font-size: 13px;
-  font-style: italic;
-  color: var(--text-secondary);
-}
-h2 {
-  font-size: 20px;
-  font-weight: 500;
-  margin-top: 36px;
-  margin-bottom: 12px;
-  letter-spacing: -0.2px;
-}
-p, li {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-ul, ol {
-  padding-left: 24px;
-  margin-bottom: 16px;
-}
-li { margin-bottom: 8px; }
-strong { font-weight: 500; }
-a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 0.5px solid var(--accent);
-}
-a:hover { opacity: 0.7; }
-.callout {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin: 20px 0;
-}
-.callout p:last-child { margin-bottom: 0; }
-footer {
-  margin-top: 64px;
-  padding-top: 24px;
-  border-top: 0.5px solid var(--border);
-  font-size: 13px;
-  color: var(--text-secondary);
-  text-align: center;
-}
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--accent); transition: opacity .15s ease; }
+  a:hover { opacity: 0.7; }
+
+  .wrap {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Top bar */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(242,236,220,0.78);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0;
+  }
+  .brand:hover { opacity: 1; }
+  .brand-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background-image: url("assets/icon.png");
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 0.5px rgba(60,52,40,0.10);
+  }
+  .top-link {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 0;
+  }
+  .top-link:hover { color: var(--ink); opacity: 1; }
+
+  /* Page head */
+  .page-head {
+    padding: 56px 0 28px;
+    border-bottom: 0.5px solid var(--hairline);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 640px) { .page-head { padding: 40px 0 20px; } }
+
+  .crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .crumb a { color: var(--muted); border-bottom: 0; }
+  .crumb a:hover { color: var(--ink); opacity: 1; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin: 0 0 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 1.5px;
+    background: var(--muted-2);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .meta {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Lede */
+  .lede {
+    font-size: 16.5px;
+    color: var(--ink-2);
+    margin: 0 0 28px;
+    line-height: 1.65;
+  }
+  .lede strong { font-weight: 600; color: var(--ink); }
+
+  /* Doc card */
+  .doc {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-card);
+    padding: 8px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  @media (max-width: 560px) { .doc { padding: 4px 22px; } }
+
+  .doc section {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .doc section:last-child { border-bottom: 0; }
+
+  .sec-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px; height: 28px;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  p, li {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 12px;
+  }
+  p:last-child, li:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  ul, ol { margin: 0 0 14px; padding-left: 0; list-style: none; }
+  ul li, ol li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+  }
+  ul li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.7em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--muted-2);
+  }
+
+  /* Auto-renewal callout */
+  .callout {
+    background: var(--bg-2);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--navy);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .callout p { margin: 0 0 10px; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Footer */
+  footer {
+    margin-top: 56px;
+    padding: 28px 0 56px;
+    border-top: 0.5px solid var(--hairline);
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer p { margin: 0 0 6px; }
+  footer a { color: var(--muted); border-bottom-color: var(--hairline-strong); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
 
-<header>
-  <div class="eyebrow">PHONESPACE</div>
-  <h1>Terms of Use</h1>
-  <p class="meta">Effective: [Launch date — to be set on App Store release]</p>
-</header>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="brand" aria-label="PhoneSpace home">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <span>PhoneSpace</span>
+      </a>
+      <a href="index.html" class="top-link">← Back to PhoneSpace</a>
+    </div>
+  </header>
 
-<p>These Terms of Use ("Terms") govern your use of <strong>PhoneSpace</strong> ("the App"), an iOS application provided by <strong>Saud Abdulla</strong> ("we", "us", "our"). By downloading, installing, or using the App, you agree to be bound by these Terms.</p>
+  <div class="wrap">
 
-<h2>1. License</h2>
-<p>We grant you a personal, non-transferable, non-exclusive, revocable license to use the App on iOS devices that you own or control, subject to the rules of the Apple App Store and these Terms.</p>
-<p>You may not copy, modify, distribute, sell, lease, reverse-engineer, or attempt to extract the source code of the App.</p>
+    <div class="page-head">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="index.html">PhoneSpace</a>
+        <span aria-hidden="true">›</span>
+        <span>Terms</span>
+      </nav>
+      <div class="eyebrow">PhoneSpace</div>
+      <h1>Terms of Use</h1>
+      <p class="meta">Effective: [Launch date — to be set on App Store release]</p>
+    </div>
 
-<h2>2. The Service</h2>
-<p>PhoneSpace is a privacy-focused, on-device storage management utility. It helps you clean and organize photos, videos, contacts, and files stored on your iOS device.</p>
-<p>All processing happens locally on your device. We do not upload, transmit, or store your personal content on any remote server.</p>
+    <p class="lede">These Terms of Use ("Terms") govern your use of <strong>PhoneSpace</strong> ("the App"), an iOS application provided by <strong>Saud Abdulla</strong> ("we", "us", "our"). By downloading, installing, or using the App, you agree to be bound by these Terms.</p>
 
-<h2>3. Free and Premium Tiers</h2>
-<p>The App offers a free tier with daily usage limits for certain features, and a Premium tier that removes these limits. Premium is available through:</p>
-<ul>
-  <li><strong>Auto-renewable subscriptions</strong> (Monthly or Yearly)</li>
-  <li><strong>Lifetime purchase</strong> (one-time payment)</li>
-  <li><strong>Cleanup Pack</strong> (a non-renewing 7-day pass)</li>
-</ul>
+    <article class="doc">
 
-<h2>4. Subscriptions and Auto-Renewal</h2>
-<div class="callout">
-<p><strong>Auto-renewal disclosure (required by Apple):</strong></p>
-<p>Subscription billing is handled by the Apple App Store. Payment will be charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period.</p>
-<p>You can manage subscriptions and turn off auto-renewal in your Apple ID account settings after purchase. Cancelling a subscription stops future renewals; it does not provide a refund for the current billing cycle.</p>
-</div>
+      <section>
+        <span class="sec-num">01</span>
+        <h2>License</h2>
+        <p>We grant you a personal, non-transferable, non-exclusive, revocable license to use the App on iOS devices that you own or control, subject to the rules of the Apple App Store and these Terms.</p>
+        <p>You may not copy, modify, distribute, sell, lease, reverse-engineer, or attempt to extract the source code of the App.</p>
+      </section>
 
-<h2>5. Free Trial</h2>
-<p>If a free trial is offered with a subscription, any unused portion of the free trial period is forfeited when you purchase a subscription, where applicable.</p>
+      <section>
+        <span class="sec-num">02</span>
+        <h2>The Service</h2>
+        <p>PhoneSpace is a privacy-focused, on-device storage management utility. It helps you clean and organize photos, videos, contacts, and files stored on your iOS device.</p>
+        <p>All processing happens locally on your device. We do not upload, transmit, or store your personal content on any remote server.</p>
+      </section>
 
-<h2>6. Cleanup Pack (Non-Renewing)</h2>
-<p>The Cleanup Pack is a one-time purchase that grants 7 days of unlimited access starting from the purchase date. It does not auto-renew. Purchasing additional Cleanup Packs while one is active extends the expiry by 7 days from the existing expiry date.</p>
+      <section>
+        <span class="sec-num">03</span>
+        <h2>Free and Premium Tiers</h2>
+        <p>The App offers a free tier with daily usage limits for certain features, and a Premium tier that removes these limits. Premium is available through:</p>
+        <ul>
+          <li><strong>Auto-renewable subscriptions</strong> (Monthly or Yearly)</li>
+          <li><strong>Lifetime purchase</strong> (one-time payment)</li>
+          <li><strong>Cleanup Pack</strong> (a non-renewing 7-day pass)</li>
+        </ul>
+      </section>
 
-<h2>7. Refunds</h2>
-<p>All purchases are processed by the Apple App Store. Refund requests are handled by Apple in accordance with their App Store policies. To request a refund, please contact Apple directly through your purchase history at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
-<p>We do not have the ability to issue refunds directly.</p>
+      <section>
+        <span class="sec-num">04</span>
+        <h2>Subscriptions and Auto-Renewal</h2>
+        <div class="callout">
+          <p><strong>Auto-renewal disclosure (required by Apple):</strong></p>
+          <p>Subscription billing is handled by the Apple App Store. Payment will be charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period.</p>
+          <p>You can manage subscriptions and turn off auto-renewal in your Apple ID account settings after purchase. Cancelling a subscription stops future renewals; it does not provide a refund for the current billing cycle.</p>
+        </div>
+      </section>
 
-<h2>8. Acceptable Use</h2>
-<p>You agree not to:</p>
-<ul>
-  <li>Use the App for any unlawful purpose</li>
-  <li>Attempt to bypass payment requirements or usage limits</li>
-  <li>Use the App to harm or harass any person</li>
-  <li>Interfere with the App's normal operation</li>
-</ul>
+      <section>
+        <span class="sec-num">05</span>
+        <h2>Free Trial</h2>
+        <p>If a free trial is offered with a subscription, any unused portion of the free trial period is forfeited when you purchase a subscription, where applicable.</p>
+      </section>
 
-<h2>9. Disclaimer of Warranties</h2>
-<p>The App is provided "as is" and "as available" without warranties of any kind, express or implied. We do not warrant that the App will be error-free, uninterrupted, or that it will meet your specific requirements.</p>
-<p><strong>Important:</strong> PhoneSpace performs delete and modify operations on your device's content. You are responsible for maintaining backups of your data. We are not liable for any loss of photos, videos, contacts, or files arising from use of the App.</p>
+      <section>
+        <span class="sec-num">06</span>
+        <h2>Cleanup Pack (Non-Renewing)</h2>
+        <p>The Cleanup Pack is a one-time purchase that grants 7 days of unlimited access starting from the purchase date. It does not auto-renew. Purchasing additional Cleanup Packs while one is active extends the expiry by 7 days from the existing expiry date.</p>
+      </section>
 
-<h2>10. Limitation of Liability</h2>
-<p>To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the App.</p>
-<p>Our total liability to you for any claim arising from these Terms or your use of the App shall not exceed the amount you paid for the App in the twelve months preceding the claim.</p>
+      <section>
+        <span class="sec-num">07</span>
+        <h2>Refunds</h2>
+        <p>All purchases are processed by the Apple App Store. Refund requests are handled by Apple in accordance with their App Store policies. To request a refund, please contact Apple directly through your purchase history at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+        <p>We do not have the ability to issue refunds directly.</p>
+      </section>
 
-<h2>11. Changes to the Terms</h2>
-<p>We may update these Terms from time to time. The updated Terms will be posted on this page with a new effective date. Continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+      <section>
+        <span class="sec-num">08</span>
+        <h2>Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use the App for any unlawful purpose</li>
+          <li>Attempt to bypass payment requirements or usage limits</li>
+          <li>Use the App to harm or harass any person</li>
+          <li>Interfere with the App's normal operation</li>
+        </ul>
+      </section>
 
-<h2>12. Termination</h2>
-<p>You may stop using the App at any time. We may suspend or terminate your access if you violate these Terms.</p>
+      <section>
+        <span class="sec-num">09</span>
+        <h2>Disclaimer of Warranties</h2>
+        <p>The App is provided "as is" and "as available" without warranties of any kind, express or implied. We do not warrant that the App will be error-free, uninterrupted, or that it will meet your specific requirements.</p>
+        <p><strong>Important:</strong> PhoneSpace performs delete and modify operations on your device's content. You are responsible for maintaining backups of your data. We are not liable for any loss of photos, videos, contacts, or files arising from use of the App.</p>
+      </section>
 
-<h2>13. Governing Law</h2>
-<p>These Terms are governed by the laws of the <strong>United Arab Emirates</strong>. Any disputes shall be resolved in the competent courts of the UAE.</p>
+      <section>
+        <span class="sec-num">10</span>
+        <h2>Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the App.</p>
+        <p>Our total liability to you for any claim arising from these Terms or your use of the App shall not exceed the amount you paid for the App in the twelve months preceding the claim.</p>
+      </section>
 
-<h2>14. Contact</h2>
-<p>For questions about these Terms, contact:</p>
-<p><a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a></p>
+      <section>
+        <span class="sec-num">11</span>
+        <h2>Changes to the Terms</h2>
+        <p>We may update these Terms from time to time. The updated Terms will be posted on this page with a new effective date. Continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+      </section>
 
-<footer>
-  <p>© 2026 Saud Abdulla · PhoneSpace</p>
-  <p><a href="privacy.html">Privacy Policy</a></p>
-</footer>
+      <section>
+        <span class="sec-num">12</span>
+        <h2>Termination</h2>
+        <p>You may stop using the App at any time. We may suspend or terminate your access if you violate these Terms.</p>
+      </section>
 
-</div>
+      <section>
+        <span class="sec-num">13</span>
+        <h2>Governing Law</h2>
+        <p>These Terms are governed by the laws of the <strong>United Arab Emirates</strong>. Any disputes shall be resolved in the competent courts of the UAE.</p>
+      </section>
+
+      <section>
+        <span class="sec-num">14</span>
+        <h2>Contact</h2>
+        <p>For questions about these Terms, contact:</p>
+        <p><a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a></p>
+      </section>
+
+    </article>
+
+    <footer>
+      <p>© 2026 Saud Abdulla · PhoneSpace</p>
+      <p><a href="privacy.html">Privacy Policy</a> · <a href="../">← Saud Apps</a></p>
+    </footer>
+
+  </div>
+
 </body>
 </html>

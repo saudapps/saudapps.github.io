@@ -3,192 +3,423 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PhoneSpace privacy policy. PhoneSpace runs entirely on your iPhone — no data collected, transmitted, or shared.">
+<meta name="theme-color" content="#F2ECDC">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
 <title>Privacy Policy — PhoneSpace</title>
 <style>
-:root {
-  --bg: #FAF6EE;
-  --surface: #FFFFFF;
-  --text: #1C1B19;
-  --text-secondary: #6B6863;
-  --accent: #B28A29;
-  --border: rgba(28, 27, 25, 0.12);
-}
-@media (prefers-color-scheme: dark) {
+  /* ─────────────────────────────────────────────────────────────
+     PhoneSpace — Privacy. Same tokens as the PhoneSpace landing.
+     Quiet utility page: cream canvas, serif headlines, doc card.
+     ───────────────────────────────────────────────────────────── */
   :root {
-    --bg: #16140F;
-    --surface: #1F1D17;
-    --text: #F4EFE3;
-    --text-secondary: #9C9890;
-    --accent: #D4A748;
-    --border: rgba(244, 239, 227, 0.12);
+    --bg: #F2ECDC;
+    --bg-2: #EFE6D0;
+    --surface: #FBF6E8;
+    --hairline: rgba(60,52,40,0.10);
+    --hairline-strong: rgba(60,52,40,0.16);
+
+    --ink: #1A1714;
+    --ink-2: #2E2820;
+    --muted: #6E6358;
+    --muted-2: #8C8276;
+
+    --navy: #1E2F50;
+    --accent: #B28A29;       /* gold from the icon rim (matches source) */
+    --accent-soft: rgba(178,138,41,0.12);
+
+    --radius-card: 20px;
+    --radius-pill: 999px;
+
+    --shadow-card: 0 1px 2px rgba(46,40,32,0.04), 0 10px 28px rgba(46,40,32,0.07);
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --font-serif: "New York", "Iowan Old Style", "Charter", "Georgia", "Times New Roman", serif;
   }
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Iowan Old Style', 'Charter', 'Georgia', serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  padding: 32px 20px 64px;
-  -webkit-font-smoothing: antialiased;
-}
-.container {
-  max-width: 680px;
-  margin: 0 auto;
-}
-header {
-  border-bottom: 0.5px solid var(--border);
-  padding-bottom: 24px;
-  margin-bottom: 32px;
-}
-.eyebrow {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.8px;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-h1 {
-  font-size: 32px;
-  font-weight: 500;
-  letter-spacing: -0.5px;
-  margin-bottom: 8px;
-}
-.meta {
-  font-size: 13px;
-  font-style: italic;
-  color: var(--text-secondary);
-}
-h2 {
-  font-size: 20px;
-  font-weight: 500;
-  margin-top: 36px;
-  margin-bottom: 12px;
-  letter-spacing: -0.2px;
-}
-p, li {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-ul, ol {
-  padding-left: 24px;
-  margin-bottom: 16px;
-}
-li { margin-bottom: 8px; }
-strong { font-weight: 500; }
-a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 0.5px solid var(--accent);
-}
-a:hover { opacity: 0.7; }
-.callout {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin: 20px 0;
-}
-.callout p:last-child { margin-bottom: 0; }
-.callout.accent {
-  border-left: 3px solid var(--accent);
-}
-footer {
-  margin-top: 64px;
-  padding-top: 24px;
-  border-top: 0.5px solid var(--border);
-  font-size: 13px;
-  color: var(--text-secondary);
-  text-align: center;
-}
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--accent); transition: opacity .15s ease; }
+  a:hover { opacity: 0.7; }
+
+  .wrap {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── Top bar (matches PhoneSpace landing) ───────────────── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(242,236,220,0.78);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0;
+  }
+  .brand:hover { opacity: 1; }
+  .brand-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    overflow: hidden;
+    background-image: url("assets/icon.png");
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 0.5px rgba(60,52,40,0.10);
+  }
+  .top-link {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 0;
+  }
+  .top-link:hover { color: var(--ink); opacity: 1; }
+  html[dir="rtl"] .top-link .chev { display: inline-block; transform: scaleX(-1); }
+
+  /* ── Page header ────────────────────────────────────────── */
+  .page-head {
+    padding: 56px 0 28px;
+    border-bottom: 0.5px solid var(--hairline);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 640px) { .page-head { padding: 40px 0 20px; } }
+
+  .crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .crumb a { color: var(--muted); border-bottom: 0; }
+  .crumb a:hover { color: var(--ink); opacity: 1; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin: 0 0 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 1.5px;
+    background: var(--muted-2);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .meta {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ── Short-version callout ──────────────────────────────── */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--accent);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 0 0 32px;
+    box-shadow: var(--shadow-card);
+  }
+  .callout p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+  .callout p + p { margin-top: 10px; }
+  .callout strong { font-weight: 600; color: var(--ink); }
+
+  /* ── Doc card ───────────────────────────────────────────── */
+  .lede {
+    font-size: 16.5px;
+    color: var(--ink-2);
+    margin: 0 0 28px;
+    line-height: 1.65;
+  }
+  .lede strong { font-weight: 600; color: var(--ink); }
+
+  .doc {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-card);
+    padding: 8px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  @media (max-width: 560px) { .doc { padding: 4px 22px; } }
+
+  .doc section {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .doc section:last-child { border-bottom: 0; }
+
+  .sec-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px; height: 28px;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 22px 0 8px;
+    color: var(--ink-2);
+  }
+  p, li {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 12px;
+  }
+  p:last-child, li:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--ink); }
+
+  ul, ol { padding-left: 22px; margin: 0 0 14px; }
+  ul { list-style: none; padding-left: 0; }
+  ul li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+  }
+  ul li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.7em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--muted-2);
+  }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  footer {
+    margin-top: 56px;
+    padding: 28px 0 56px;
+    border-top: 0.5px solid var(--hairline);
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer p { margin: 0 0 6px; }
+  footer a { color: var(--muted); border-bottom-color: var(--hairline-strong); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
 
-<header>
-  <div class="eyebrow">PHONESPACE</div>
-  <h1>Privacy Policy</h1>
-  <p class="meta">Effective: [Launch date — to be set on App Store release]</p>
-</header>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="brand" aria-label="PhoneSpace home">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <span>PhoneSpace</span>
+      </a>
+      <a href="index.html" class="top-link">← Back to PhoneSpace</a>
+    </div>
+  </header>
 
-<div class="callout accent">
-<p><strong>Short version:</strong> PhoneSpace runs entirely on your iPhone. We do not collect, transmit, store, or share any of your personal data. There is no server, no analytics, and no tracking.</p>
-</div>
+  <div class="wrap">
 
-<p>This Privacy Policy explains how <strong>PhoneSpace</strong> ("the App"), provided by <strong>Saud Abdulla</strong>, handles your information.</p>
+    <!-- Header -->
+    <div class="page-head">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="index.html">PhoneSpace</a>
+        <span aria-hidden="true">›</span>
+        <span>Privacy</span>
+      </nav>
+      <div class="eyebrow">PhoneSpace</div>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Effective: [Launch date — to be set on App Store release]</p>
+    </div>
 
-<h2>1. Data We Collect</h2>
-<p><strong>None.</strong></p>
-<p>PhoneSpace does not collect, store, or transmit any personal data, content, identifiers, or usage information to any server we control. All scanning, analysis, and processing happens locally on your device.</p>
-<p>Specifically, we do <strong>not</strong> collect:</p>
-<ul>
-  <li>Your photos, videos, contacts, or files</li>
-  <li>Your device identifiers (UDID, IDFA, IDFV)</li>
-  <li>Your location</li>
-  <li>Your usage patterns or analytics</li>
-  <li>Your IP address</li>
-  <li>Crash reports (beyond what Apple's standard system provides if you have opted in to share with developers via iOS Settings)</li>
-</ul>
+    <!-- Short version -->
+    <div class="callout">
+      <p><strong>Short version:</strong> PhoneSpace runs entirely on your iPhone. We do not collect, transmit, store, or share any of your personal data. There is no server, no analytics, and no tracking.</p>
+    </div>
 
-<h2>2. How the App Uses Your Device</h2>
-<p>The App requests permission to access certain parts of your device. These accesses are required for the App's core functionality and happen entirely on-device:</p>
+    <!-- Lede -->
+    <p class="lede">This Privacy Policy explains how <strong>PhoneSpace</strong> ("the App"), provided by <strong>Saud Abdulla</strong>, handles your information.</p>
 
-<h3 style="font-size: 16px; font-weight: 500; margin-top: 20px; margin-bottom: 8px;">Photos</h3>
-<p>Requested when you enter the Photos or Videos sections. Used to scan your library for duplicates, similar items, large files, screenshots, and other categories. The scanned metadata stays on your device. We never read, copy, or transmit your photos.</p>
+    <!-- Doc body -->
+    <article class="doc">
 
-<h3 style="font-size: 16px; font-weight: 500; margin-top: 20px; margin-bottom: 8px;">Contacts</h3>
-<p>Requested when you enter the Contacts section. Used to identify duplicates, incomplete entries, and to support backup-to-file operations. The processed data stays on your device. We never read, copy, or transmit your contacts to a server.</p>
+      <section>
+        <span class="sec-num">01</span>
+        <h2>Data We Collect</h2>
+        <p><strong>None.</strong></p>
+        <p>PhoneSpace does not collect, store, or transmit any personal data, content, identifiers, or usage information to any server we control. All scanning, analysis, and processing happens locally on your device.</p>
+        <p>Specifically, we do <strong>not</strong> collect:</p>
+        <ul>
+          <li>Your photos, videos, contacts, or files</li>
+          <li>Your device identifiers (UDID, IDFA, IDFV)</li>
+          <li>Your location</li>
+          <li>Your usage patterns or analytics</li>
+          <li>Your IP address</li>
+          <li>Crash reports (beyond what Apple's standard system provides if you have opted in to share with developers via iOS Settings)</li>
+        </ul>
+      </section>
 
-<h3 style="font-size: 16px; font-weight: 500; margin-top: 20px; margin-bottom: 8px;">Files (Local)</h3>
-<p>The Files browser only reads from the App's own sandboxed storage. It does not access your iCloud Drive or external storage providers without explicit user action.</p>
+      <section>
+        <span class="sec-num">02</span>
+        <h2>How the App Uses Your Device</h2>
+        <p>The App requests permission to access certain parts of your device. These accesses are required for the App's core functionality and happen entirely on-device:</p>
 
-<h2>3. On-Device Storage</h2>
-<p>The App stores certain data locally on your device to provide its features:</p>
-<ul>
-  <li><strong>Scan snapshots:</strong> Cached results from your last library scan, so the App doesn't need to re-scan on every launch. Stored in the App's private container.</li>
-  <li><strong>User preferences:</strong> Settings such as preset choices and dismissed notices, stored via iOS's standard preferences system.</li>
-  <li><strong>Usage counters:</strong> Daily counts for free-tier limits (e.g., "X of 10 compressions today"). Reset on calendar-day boundary. Local-only.</li>
-  <li><strong>Trash and backup files:</strong> When you delete items via the App, they may be moved to an internal trash for safe recovery before permanent deletion. Contact backups are saved to the App's local storage and shared via the iOS Share Sheet on request.</li>
-</ul>
-<p>All this data is stored within the App's sandboxed container and is removed when you delete the App.</p>
+        <h3>Photos</h3>
+        <p>Requested when you enter the Photos or Videos sections. Used to scan your library for duplicates, similar items, large files, screenshots, and other categories. The scanned metadata stays on your device. We never read, copy, or transmit your photos.</p>
 
-<h2>4. Purchases</h2>
-<p>When you make a purchase (subscription, Lifetime, or Cleanup Pack), the transaction is processed by Apple's App Store. We do not see, receive, or store your payment details (credit card information, billing address, Apple ID password, etc.).</p>
-<p>Apple provides us with anonymized transaction receipts so the App can verify your active entitlements. These receipts contain only product identifiers and transaction IDs — no personally identifiable information.</p>
+        <h3>Contacts</h3>
+        <p>Requested when you enter the Contacts section. Used to identify duplicates, incomplete entries, and to support backup-to-file operations. The processed data stays on your device. We never read, copy, or transmit your contacts to a server.</p>
 
-<h2>5. Third-Party Services</h2>
-<p>PhoneSpace does not integrate any third-party analytics, advertising, crash reporting, or tracking SDKs. The only external service involved is Apple's App Store / StoreKit, used solely to process purchases.</p>
+        <h3>Files (Local)</h3>
+        <p>The Files browser only reads from the App's own sandboxed storage. It does not access your iCloud Drive or external storage providers without explicit user action.</p>
+      </section>
 
-<h2>6. Children's Privacy</h2>
-<p>The App is intended for users aged 13 and older. We do not knowingly collect any data from anyone — including children — because we do not collect data at all.</p>
+      <section>
+        <span class="sec-num">03</span>
+        <h2>On-Device Storage</h2>
+        <p>The App stores certain data locally on your device to provide its features:</p>
+        <ul>
+          <li><strong>Scan snapshots:</strong> Cached results from your last library scan, so the App doesn't need to re-scan on every launch. Stored in the App's private container.</li>
+          <li><strong>User preferences:</strong> Settings such as preset choices and dismissed notices, stored via iOS's standard preferences system.</li>
+          <li><strong>Usage counters:</strong> Daily counts for free-tier limits (e.g., "X of 10 compressions today"). Reset on calendar-day boundary. Local-only.</li>
+          <li><strong>Trash and backup files:</strong> When you delete items via the App, they may be moved to an internal trash for safe recovery before permanent deletion. Contact backups are saved to the App's local storage and shared via the iOS Share Sheet on request.</li>
+        </ul>
+        <p>All this data is stored within the App's sandboxed container and is removed when you delete the App.</p>
+      </section>
 
-<h2>7. Data Security</h2>
-<p>Because all your content stays on your device, security depends primarily on the security of your iPhone (passcode, Face ID / Touch ID, automatic iOS encryption). We recommend keeping iOS updated and using a strong passcode.</p>
+      <section>
+        <span class="sec-num">04</span>
+        <h2>Purchases</h2>
+        <p>When you make a purchase (subscription, Lifetime, or Cleanup Pack), the transaction is processed by Apple's App Store. We do not see, receive, or store your payment details (credit card information, billing address, Apple ID password, etc.).</p>
+        <p>Apple provides us with anonymized transaction receipts so the App can verify your active entitlements. These receipts contain only product identifiers and transaction IDs — no personally identifiable information.</p>
+      </section>
 
-<h2>8. Your Rights</h2>
-<p>Since we do not collect or hold any data about you, there is nothing to request, export, correct, or delete on our side. You retain full control over your data on your device.</p>
-<p>You can revoke the App's permissions at any time via <strong>iOS Settings → Privacy & Security → Photos / Contacts → PhoneSpace</strong>.</p>
-<p>Deleting the App removes all data the App stores in its sandbox.</p>
+      <section>
+        <span class="sec-num">05</span>
+        <h2>Third-Party Services</h2>
+        <p>PhoneSpace does not integrate any third-party analytics, advertising, crash reporting, or tracking SDKs. The only external service involved is Apple's App Store / StoreKit, used solely to process purchases.</p>
+      </section>
 
-<h2>9. Changes to This Policy</h2>
-<p>We may update this Privacy Policy from time to time. The updated version will be posted here with a new effective date. Material changes will be communicated within the App where reasonably possible.</p>
+      <section>
+        <span class="sec-num">06</span>
+        <h2>Children's Privacy</h2>
+        <p>The App is intended for users aged 13 and older. We do not knowingly collect any data from anyone — including children — because we do not collect data at all.</p>
+      </section>
 
-<h2>10. Governing Law</h2>
-<p>This Privacy Policy is governed by the laws of the <strong>United Arab Emirates</strong>.</p>
+      <section>
+        <span class="sec-num">07</span>
+        <h2>Data Security</h2>
+        <p>Because all your content stays on your device, security depends primarily on the security of your iPhone (passcode, Face ID / Touch ID, automatic iOS encryption). We recommend keeping iOS updated and using a strong passcode.</p>
+      </section>
 
-<h2>11. Contact</h2>
-<p>For questions about this Privacy Policy or PhoneSpace's privacy practices:</p>
-<p><a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a></p>
+      <section>
+        <span class="sec-num">08</span>
+        <h2>Your Rights</h2>
+        <p>Since we do not collect or hold any data about you, there is nothing to request, export, correct, or delete on our side. You retain full control over your data on your device.</p>
+        <p>You can revoke the App's permissions at any time via <strong>iOS Settings → Privacy &amp; Security → Photos / Contacts → PhoneSpace</strong>.</p>
+        <p>Deleting the App removes all data the App stores in its sandbox.</p>
+      </section>
 
-<footer>
-  <p>© 2026 Saud Abdulla · PhoneSpace</p>
-  <p><a href="terms.html">Terms of Use</a></p>
-</footer>
+      <section>
+        <span class="sec-num">09</span>
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. The updated version will be posted here with a new effective date. Material changes will be communicated within the App where reasonably possible.</p>
+      </section>
 
-</div>
+      <section>
+        <span class="sec-num">10</span>
+        <h2>Governing Law</h2>
+        <p>This Privacy Policy is governed by the laws of the <strong>United Arab Emirates</strong>.</p>
+      </section>
+
+      <section>
+        <span class="sec-num">11</span>
+        <h2>Contact</h2>
+        <p>For questions about this Privacy Policy or PhoneSpace's privacy practices:</p>
+        <p><a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a></p>
+      </section>
+
+    </article>
+
+    <footer>
+      <p>© 2026 Saud Abdulla · PhoneSpace</p>
+      <p><a href="terms.html">Terms of Use</a> · <a href="../">← Saud Apps</a></p>
+    </footer>
+
+  </div>
+
 </body>
 </html>
