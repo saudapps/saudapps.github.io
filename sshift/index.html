@@ -1,225 +1,907 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SShift — Shift Calendar</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Plan shifts, rest & leave. A native iOS shift calendar — bilingual, private, offline.">
-<link rel="icon" type="image/png" href="/512.png">
-<link rel="stylesheet" href="/assets/sshift-style.css">
+<meta name="theme-color" content="#0E2A5A">
+<title>SShift — Shift Calendar</title>
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     SShift landing — design tokens
+     Lifted from the app icon (navy) + in-app category palette.
+     ───────────────────────────────────────────────────────────── */
+  :root {
+    --navy-1: #0E2A5A;
+    --navy-2: #0A1F44;
+    --navy-deep: #061533;
+
+    --bg: #F5F5F7;          /* Apple marketing canvas */
+    --surface: #FFFFFF;
+    --surface-2: #FAFAFA;
+    --hairline: rgba(60,60,67,0.12);
+    --hairline-strong: rgba(60,60,67,0.18);
+
+    --ink: #0A0A0A;
+    --ink-2: #1D1D1F;
+    --muted: #6E6E73;
+    --muted-2: #86868B;
+
+    --blue: #0066FF;          /* primary action */
+    --blue-soft: #E6F0FF;
+
+    /* in-app category accents (match the calendar screen) */
+    --work: #34C759;
+    --rest: #8E8E93;
+    --training: #5AC8C0;
+    --lcl: #5B7BFF;
+    --annual: #FF9F0A;
+    --force: #AF52DE;
+
+    --radius-card: 22px;
+    --radius-tile: 16px;
+    --radius-pill: 999px;
+
+    --shadow-card: 0 1px 2px rgba(16,24,40,0.04), 0 8px 24px rgba(16,24,40,0.06);
+    --shadow-device: 0 30px 80px -20px rgba(6,21,51,0.55), 0 10px 30px -10px rgba(6,21,51,0.35);
+
+    --space: 16px;
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
+  }
+
+  /* ── Reset ───────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  html[dir="rtl"] body { font-family: var(--font-ar); }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ── Localized strings ───────────────────────────────────── */
+  [data-en], [data-ar] { display: none; }
+  html[lang="en"] [data-en] { display: inline; }
+  html[lang="ar"] [data-ar] { display: inline; }
+  html[lang="en"] [data-en-block] { display: block; }
+  html[lang="ar"] [data-ar-block] { display: block; }
+
+  /* Variant typography defaults for Arabic — slightly tighter line-height */
+  html[lang="ar"] { line-height: 1.55; }
+
+  /* ── Layout container ────────────────────────────────────── */
+  .wrap {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── Top bar ─────────────────────────────────────────────── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(245,245,247,0.78);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .brand-mark {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background-image: url("assets/icon.png");
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
+  }
+  .lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .lang-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: background .15s ease, color .15s ease;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  /* ── Hero ────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #15397A 0%, var(--navy-1) 45%, var(--navy-2) 75%, var(--navy-deep) 100%);
+    color: #fff;
+    padding: 56px 0 0;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero::before {
+    /* soft halo behind the device */
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10%;
+    width: 720px;
+    height: 720px;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(120,170,255,0.18), rgba(120,170,255,0) 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hero-inner {
+    text-align: center;
+  }
+  .hero-icon {
+    width: 96px; height: 96px;
+    border-radius: 22px; /* iOS squircle approximation */
+    overflow: hidden;
+    margin: 0 auto 22px;
+    box-shadow:
+      0 1px 1px rgba(255,255,255,0.18) inset,
+      0 20px 40px -10px rgba(0,0,0,0.45),
+      0 4px 10px rgba(0,0,0,0.35);
+  }
+  .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    margin: 0 0 14px;
+  }
+  html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.15; }
+
+  .hero-tag {
+    font-size: clamp(17px, 2.1vw, 21px);
+    color: rgba(255,255,255,0.78);
+    margin: 0 auto 28px;
+    max-width: 32ch;
+    line-height: 1.4;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+    transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: #fff;
+    color: #0A0A0A;
+  }
+  .btn-primary:hover { background: #F0F0F2; }
+  .btn-ghost {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    border-color: rgba(255,255,255,0.22);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+  .btn .ic {
+    width: 18px; height: 18px;
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
+  /* hero device */
+  .hero-device-wrap {
+    position: relative;
+    padding-bottom: 80px;
+  }
+  .device {
+    --device-w: 280px;
+    width: var(--device-w);
+    aspect-ratio: 9 / 19.5;
+    margin: 0 auto;
+    background: #0a0a0a;
+    border-radius: 44px;
+    padding: 7px;
+    box-shadow: var(--shadow-device), inset 0 0 0 1.5px rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .device::before {
+    /* dynamic island */
+    content: "";
+    position: absolute;
+    top: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: 92px; height: 26px;
+    background: #000;
+    border-radius: 999px;
+    z-index: 3;
+  }
+  .device-screen {
+    width: 100%; height: 100%;
+    border-radius: 37px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+  }
+  .device-screen img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* ── Section base ────────────────────────────────────────── */
+  section { padding: 72px 0; }
+  @media (max-width: 640px) { section { padding: 56px 0; } }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin: 0 0 12px;
+  }
+  html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; }
+
+  .section-title {
+    font-size: clamp(28px, 4.2vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  html[lang="ar"] .section-title { letter-spacing: 0; line-height: 1.25; }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 17px;
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ── Screens row ─────────────────────────────────────────── */
+  .screens-section {
+    background: var(--bg);
+  }
+  .screens-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 40px;
+    align-items: end;
+  }
+  .screens-row .device { --device-w: 100%; max-width: 260px; }
+  .screen-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .screen-card .device {
+    box-shadow:
+      0 1px 1px rgba(255,255,255,0.15) inset,
+      0 20px 50px -20px rgba(6,21,51,0.35),
+      0 8px 18px -10px rgba(6,21,51,0.25);
+  }
+  .screen-label {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  @media (max-width: 760px) {
+    .screens-row {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 0 20px 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .screen-card { flex: 0 0 220px; scroll-snap-align: center; }
+    .screens-row .device { --device-w: 220px; }
+  }
+
+  /* ── Features grid ───────────────────────────────────────── */
+  .features {
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+  }
+  .features-head {
+    text-align: left;
+    max-width: 720px;
+    margin: 0 0 32px;
+  }
+  html[dir="rtl"] .features-head { text-align: right; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  @media (min-width: 760px) {
+    .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  }
+
+  .feature {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-card);
+    padding: 22px 20px;
+    box-shadow: var(--shadow-card);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .feature:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(16,24,40,0.05), 0 16px 36px rgba(16,24,40,0.08);
+  }
+  .feature-chips {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .chip {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--rest);
+    display: inline-block;
+  }
+  .chip.work { background: var(--work); }
+  .chip.rest { background: var(--rest); }
+  .chip.training { background: var(--training); }
+  .chip.lcl { background: var(--lcl); }
+  .chip.annual { background: var(--annual); }
+  .chip.force { background: var(--force); }
+  .chip.blue { background: var(--blue); }
+
+  .feature-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: #fff;
+    flex: 0 0 auto;
+  }
+  .feature-icon svg { width: 20px; height: 20px; }
+  .bg-work     { background: var(--work); }
+  .bg-rest     { background: var(--rest); }
+  .bg-blue     { background: var(--blue); }
+  .bg-purple   { background: var(--force); }
+  .bg-orange   { background: var(--annual); }
+  .bg-teal     { background: var(--training); }
+  .bg-ink      { background: var(--ink); }
+
+  .feature h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--ink-2);
+  }
+  html[lang="ar"] .feature h3 { letter-spacing: 0; }
+  .feature p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  /* ── Privacy band ────────────────────────────────────────── */
+  .privacy {
+    padding-top: 0;
+  }
+  .privacy-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 26px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: center;
+    box-shadow: var(--shadow-card);
+  }
+  .privacy-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: var(--blue-soft);
+    color: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  .privacy-icon svg { width: 28px; height: 28px; }
+  .privacy h2 {
+    font-size: 22px;
+    margin: 0 0 4px;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+  html[lang="ar"] .privacy h2 { letter-spacing: 0; }
+  .privacy p { margin: 0; color: var(--muted); font-size: 15px; }
+  @media (max-width: 560px) {
+    .privacy-card { grid-template-columns: 1fr; }
+  }
+
+  /* ── Built for iOS strip ─────────────────────────────────── */
+  .native-strip {
+    background: var(--bg);
+    padding-top: 32px;
+  }
+  .native-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 640px) {
+    .native-row { grid-template-columns: 1fr; }
+  }
+  .native-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+  }
+  .native-item .ic-tile {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+    flex: 0 0 auto;
+  }
+  .native-item .ic-tile svg { width: 18px; height: 18px; }
+  .native-item .label { font-weight: 600; font-size: 15px; color: var(--ink-2); }
+  .native-item .sub { display: block; color: var(--muted); font-size: 13px; font-weight: 400; }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  footer {
+    background: var(--bg);
+    padding: 56px 0 40px;
+    border-top: 1px solid var(--hairline);
+    margin-top: 24px;
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-brand .brand-mark { width: 36px; height: 36px; border-radius: 9px; }
+  .footer-brand .title { font-weight: 600; font-size: 16px; }
+  .footer-brand .sub { color: var(--muted); font-size: 13px; }
+
+  .footer-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .footer-links a {
+    padding: 10px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    font-size: 14px;
+    color: var(--ink-2);
+    font-weight: 500;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .footer-links a:hover { background: #fff; border-color: var(--hairline-strong); }
+
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: var(--muted-2);
+    font-size: 13px;
+    padding-top: 22px;
+    border-top: 1px solid var(--hairline);
+  }
+  .footer-meta a { color: var(--muted); }
+
+  /* ── RTL: chevron flip in inline link arrows ─────────────── */
+  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
+
+  /* ── Misc reduced motion ─────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+</style>
 </head>
-<body class="lang-en">
+<body>
 
-<!-- ===================== ENGLISH ===================== -->
-<div class="lang en-only">
-<div class="container">
-
-    <div class="lang-bar">
-        <button class="lang-toggle" onclick="setLang('ar')">العربية</button>
+  <!-- ────────────────── Top bar ────────────────── -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#" class="brand" aria-label="SShift home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>SShift</span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      </div>
     </div>
+  </header>
 
-    <header class="hero">
-        <img class="app-icon" src="/512.png" alt="SShift app icon">
-        <h1 class="hero-title">SShift — Shift Calendar</h1>
-        <p class="hero-subtitle">Plan shifts, rest &amp; leave.</p>
-        <div class="btn-row">
-            <a class="btn-primary" href="https://apps.apple.com/us/app/sshift/id6751362215" target="_blank" rel="noopener">View on App Store</a>
-            <a class="btn-secondary" href="/support/">Support</a>
-        </div>
-    </header>
-
-    <div class="section-header">Features</div>
-    <div class="card">
-        <div class="row">
-            <div class="row-icon tint-green">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">Work, Rest, Training, Leave</div>
-                <div class="row-subtitle">Track every shift type with localized names and colors.</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-icon tint-indigo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">Bilingual &amp; RTL</div>
-                <div class="row-subtitle">Full Arabic and English with right-to-left layout that just works.</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-icon tint-orange">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6"/><path d="M10.5 20a2 2 0 0 0 3 0"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">Smart Notifications</div>
-                <div class="row-subtitle">Reminders for upcoming shifts, training, and leave — your choice.</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-icon tint-blue">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">Printable PDF</div>
-                <div class="row-subtitle">Export your schedule as a clean, fixed-light PDF in either language.</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-icon tint-gray">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">Privacy First</div>
-                <div class="row-subtitle">Everything stays on your device. No accounts. No tracking.</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-header">Made for iOS</div>
-    <div class="card">
-        <div class="row"><div class="row-text"><div class="row-title">Native SwiftUI app, designed to feel at home on iOS.</div></div></div>
-        <div class="row"><div class="row-text"><div class="row-title">Light and Dark Mode — automatic.</div></div></div>
-        <div class="row"><div class="row-text"><div class="row-title">Works offline. No internet required.</div></div></div>
-    </div>
-
-    <div class="section-header">Developer</div>
-    <div class="card">
-        <a class="row" href="mailto:saudgpt@gmail.com">
-            <div class="row-text">
-                <div class="row-title">Developed by Saud</div>
-                <div class="row-subtitle">saudgpt@gmail.com</div>
-            </div>
+  <!-- ────────────────── Hero ────────────────── -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-icon">
+        <img src="assets/icon.png" alt="SShift app icon">
+      </div>
+      <h1>
+        <span data-en>SShift — Shift Calendar</span>
+        <span data-ar>SShift — تقويم المناوبات</span>
+      </h1>
+      <p class="hero-tag">
+        <span data-en>Plan shifts, rest &amp; leave. Quietly capable. Lives on your iPhone.</span>
+        <span data-ar>خطّط مناوباتك، الراحة والإجازات. بهدوء وكفاءة، على جهازك مباشرة.</span>
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/sshift/id6751362215">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
+          <span data-en>Download on the App Store</span>
+          <span data-ar>التحميل من App Store</span>
         </a>
-        <a class="row" href="/sshift/privacy/">
-            <div class="row-text"><div class="row-title">Privacy Policy</div></div>
-            <div class="row-chevron">&rsaquo;</div>
+        <a class="btn btn-ghost" href="https://saudapps.github.io/support/">
+          <span data-en>Support</span>
+          <span data-ar>الدعم</span>
         </a>
-        <a class="row" href="/support/">
-            <div class="row-text"><div class="row-title">Support</div></div>
-            <div class="row-chevron">&rsaquo;</div>
-        </a>
+      </div>
+
+      <div class="hero-device-wrap">
+        <div class="device" aria-hidden="true">
+          <div class="device-screen">
+            <img src="assets/screen-calendar.jpg" alt="SShift calendar screen">
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <footer class="site-footer">
-        © 2026 Saud Apps · SShift v4.1
-    </footer>
+  <!-- ────────────────── Three screens ────────────────── -->
+  <section class="screens-section">
+    <div class="wrap">
+      <span class="eyebrow">
+        <span data-en>A closer look</span>
+        <span data-ar>نظرة أقرب</span>
+      </span>
+      <h2 class="section-title">
+        <span data-en>Calendar, Dashboard, Settings.</span>
+        <span data-ar>التقويم، اللوحة، الإعدادات.</span>
+      </h2>
+      <p class="section-sub">
+        <span data-en>Three screens. One job — keeping your shift schedule clear, in your language, on your device.</span>
+        <span data-ar>ثلاث شاشات. مهمّة واحدة — جدول مناوباتك واضحاً، بلغتك، على جهازك.</span>
+      </p>
 
-</div>
-</div>
-
-<!-- ===================== ARABIC ===================== -->
-<div class="lang ar-only" dir="rtl">
-<div class="container">
-
-    <div class="lang-bar">
-        <button class="lang-toggle" onclick="setLang('en')">English</button>
+      <div class="screens-row">
+        <div class="screen-card">
+          <div class="device"><div class="device-screen"><img src="assets/screen-calendar.jpg" alt=""></div></div>
+          <span class="screen-label">
+            <span data-en>Calendar</span><span data-ar>التقويم</span>
+          </span>
+        </div>
+        <div class="screen-card">
+          <div class="device"><div class="device-screen"><img src="assets/screen-dashboard.jpg" alt=""></div></div>
+          <span class="screen-label">
+            <span data-en>Dashboard</span><span data-ar>اللوحة</span>
+          </span>
+        </div>
+        <div class="screen-card">
+          <div class="device"><div class="device-screen"><img src="assets/screen-settings.jpg" alt=""></div></div>
+          <span class="screen-label">
+            <span data-en>Settings</span><span data-ar>الإعدادات</span>
+          </span>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <header class="hero">
-        <img class="app-icon" src="/512.png" alt="أيقونة تطبيق SShift">
-        <h1 class="hero-title">SShift — تقويم المناوبات</h1>
-        <p class="hero-subtitle">خطط مناوباتك، الراحة والإجازات.</p>
-        <div class="btn-row">
-            <a class="btn-primary" href="https://apps.apple.com/us/app/sshift/id6751362215" target="_blank" rel="noopener">عرض في App Store</a>
-            <a class="btn-secondary" href="/support/">الدعم</a>
-        </div>
-    </header>
+  <!-- ────────────────── Features ────────────────── -->
+  <section class="features">
+    <div class="wrap">
+      <div class="features-head">
+        <span class="eyebrow">
+          <span data-en>Features</span><span data-ar>المميزات</span>
+        </span>
+        <h2 class="section-title">
+          <span data-en>Built for how shift work actually feels.</span>
+          <span data-ar>مصمَّم ليناسب واقع نظام المناوبات.</span>
+        </h2>
+      </div>
 
-    <div class="section-header">المميزات</div>
-    <div class="card">
-        <div class="row">
-            <div class="row-icon tint-green">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">عمل، راحة، تدريب، إجازة</div>
-                <div class="row-subtitle">تتبّع كل نوع مناوبة بأسماء وألوان مترجمة.</div>
-            </div>
+      <div class="feature-grid">
+
+        <!-- Shift types -->
+        <div class="feature">
+          <div class="feature-chips">
+            <span class="chip work"></span>
+            <span class="chip rest"></span>
+            <span class="chip training"></span>
+            <span class="chip annual"></span>
+          </div>
+          <h3>
+            <span data-en>Work, Rest, Training, Leave</span>
+            <span data-ar>عمل، راحة، تدريب، إجازة</span>
+          </h3>
+          <p>
+            <span data-en>Track every shift type with localized names and colors that stay consistent across the app.</span>
+            <span data-ar>تتبّع كل نوع مناوبة بأسماء وألوان مترجمة ومتّسقة في كل الشاشات.</span>
+          </p>
         </div>
-        <div class="row">
-            <div class="row-icon tint-indigo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">ثنائي اللغة ودعم RTL</div>
-                <div class="row-subtitle">عربية وإنجليزية كاملة مع تخطيط من اليمين لليسار يعمل بسلاسة.</div>
-            </div>
+
+        <!-- Bilingual -->
+        <div class="feature">
+          <div class="feature-icon bg-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
+          </div>
+          <h3>
+            <span data-en>Bilingual &amp; RTL</span>
+            <span data-ar>ثنائي اللغة ودعم RTL</span>
+          </h3>
+          <p>
+            <span data-en>Full Arabic and English with right-to-left layout that just works — not a translated afterthought.</span>
+            <span data-ar>عربية وإنجليزية كاملتان مع تخطيط RTL يعمل بسلاسة — وليس مجرّد ترجمة.</span>
+          </p>
         </div>
-        <div class="row">
-            <div class="row-icon tint-orange">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6"/><path d="M10.5 20a2 2 0 0 0 3 0"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">إشعارات ذكية</div>
-                <div class="row-subtitle">تذكيرات للمناوبات والتدريب والإجازات القادمة — حسب اختيارك.</div>
-            </div>
+
+        <!-- Notifications -->
+        <div class="feature">
+          <div class="feature-icon bg-orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+          </div>
+          <h3>
+            <span data-en>Smart notifications</span>
+            <span data-ar>إشعارات ذكية</span>
+          </h3>
+          <p>
+            <span data-en>Reminders for upcoming shifts, training and leave — pick which types and how far ahead.</span>
+            <span data-ar>تذكيرات للمناوبات والتدريب والإجازات — اختر النوع ووقت التذكير.</span>
+          </p>
         </div>
-        <div class="row">
-            <div class="row-icon tint-blue">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">تصدير PDF للطباعة</div>
-                <div class="row-subtitle">صدّر جدولك كملف PDF نظيف بإضاءة ثابتة بأي من اللغتين.</div>
-            </div>
+
+        <!-- PDF -->
+        <div class="feature">
+          <div class="feature-icon bg-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/></svg>
+          </div>
+          <h3>
+            <span data-en>Printable PDF</span>
+            <span data-ar>تصدير PDF للطباعة</span>
+          </h3>
+          <p>
+            <span data-en>Export your schedule as a clean, fixed-light PDF in either language. Hand it to anyone.</span>
+            <span data-ar>صدّر جدولك كملف PDF نظيف بإضاءة ثابتة بأي من اللغتين. جاهز للمشاركة.</span>
+          </p>
         </div>
-        <div class="row">
-            <div class="row-icon tint-gray">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-            </div>
-            <div class="row-text">
-                <div class="row-title">الخصوصية أولاً</div>
-                <div class="row-subtitle">كل شيء يبقى على جهازك. لا حسابات. لا تتبّع.</div>
-            </div>
+
+        <!-- Privacy -->
+        <div class="feature">
+          <div class="feature-icon bg-ink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>
+            <span data-en>Privacy first</span>
+            <span data-ar>الخصوصية أوّلاً</span>
+          </h3>
+          <p>
+            <span data-en>Everything stays on your device. No accounts. No tracking. No cloud you have to trust.</span>
+            <span data-ar>كل شيء يبقى على جهازك. لا حسابات، ولا تتبّع، ولا حاجة للوثوق بسحابة.</span>
+          </p>
         </div>
+
+        <!-- iOS Native -->
+        <div class="feature">
+          <div class="feature-icon bg-teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 19h2"/></svg>
+          </div>
+          <h3>
+            <span data-en>Made for iOS</span>
+            <span data-ar>مصمَّم لـ iOS</span>
+          </h3>
+          <p>
+            <span data-en>Native SwiftUI, with the gestures and details you expect from a first-party app.</span>
+            <span data-ar>تطبيق SwiftUI أصلي، بالحركات والتفاصيل المتوقَّعة من تطبيق iOS أصلي.</span>
+          </p>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <div class="section-header">مصمّم لـ iOS</div>
-    <div class="card">
-        <div class="row"><div class="row-text"><div class="row-title">تطبيق SwiftUI أصلي، مصمّم ليبدو منسجماً مع iOS.</div></div></div>
-        <div class="row"><div class="row-text"><div class="row-title">الوضع الفاتح والداكن — تلقائياً.</div></div></div>
-        <div class="row"><div class="row-text"><div class="row-title">يعمل دون اتصال. لا حاجة للإنترنت.</div></div></div>
+  <!-- ────────────────── Privacy band ────────────────── -->
+  <section class="privacy">
+    <div class="wrap">
+      <div class="privacy-card">
+        <div class="privacy-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </div>
+        <div>
+          <h2>
+            <span data-en>Your schedule never leaves your iPhone.</span>
+            <span data-ar>جدولك لا يغادر جهازك.</span>
+          </h2>
+          <p>
+            <span data-en>SShift has no servers, no analytics, and no sign-in. The app simply does its job — on your device, offline.</span>
+            <span data-ar>لا خوادم ولا تحليلات ولا تسجيل دخول. التطبيق يقوم بمهمّته على جهازك فقط، دون اتصال.</span>
+          </p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="section-header">المطوّر</div>
-    <div class="card">
-        <a class="row" href="mailto:saudgpt@gmail.com">
-            <div class="row-text">
-                <div class="row-title">تطوير سعود</div>
-                <div class="row-subtitle">saudgpt@gmail.com</div>
+  <!-- ────────────────── Built for iOS strip ────────────────── -->
+  <section class="native-strip">
+    <div class="wrap">
+      <div class="native-row">
+        <div class="native-item">
+          <span class="ic-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </span>
+          <div>
+            <span class="label"><span data-en>Light &amp; Dark</span><span data-ar>فاتح وداكن</span></span>
+            <span class="sub"><span data-en>Follows your system, automatically.</span><span data-ar>يتبع نظامك تلقائياً.</span></span>
+          </div>
+        </div>
+        <div class="native-item">
+          <span class="ic-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M3 12a9 9 0 0 0 18 0"/><path d="M2 12h20"/><line x1="4" y1="4" x2="20" y2="20"/></svg>
+          </span>
+          <div>
+            <span class="label"><span data-en>Works offline</span><span data-ar>يعمل دون اتصال</span></span>
+            <span class="sub"><span data-en>No internet required, ever.</span><span data-ar>دون حاجة للإنترنت، أبداً.</span></span>
+          </div>
+        </div>
+        <div class="native-item">
+          <span class="ic-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <div>
+            <span class="label"><span data-en>Native SwiftUI</span><span data-ar>SwiftUI أصلي</span></span>
+            <span class="sub"><span data-en>Designed to feel at home on iOS.</span><span data-ar>مصمَّم ليبدو منسجماً مع iOS.</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────── Footer ────────────────── -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="title">SShift</div>
+            <div class="sub">
+              <span data-en>Developed by Saud Abdulla</span>
+              <span data-ar>تطوير سعود عبدالله</span>
             </div>
-        </a>
-        <a class="row" href="/sshift/privacy/">
-            <div class="row-text"><div class="row-title">سياسة الخصوصية</div></div>
-            <div class="row-chevron">&rsaquo;</div>
-        </a>
-        <a class="row" href="/support/">
-            <div class="row-text"><div class="row-title">الدعم</div></div>
-            <div class="row-chevron">&rsaquo;</div>
-        </a>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="mailto:saudgpt@gmail.com">saudgpt@gmail.com</a>
+          <a href="https://apps.apple.com/us/app/sshift/id6751362215">
+            <span data-en>App Store</span><span data-ar>App Store</span>
+          </a>
+          <a href="https://saudapps.github.io/support/">
+            <span data-en>Support <span class="chev">›</span></span>
+            <span data-ar>الدعم <span class="chev">›</span></span>
+          </a>
+          <a href="https://saudapps.github.io/sshift/privacy/">
+            <span data-en>Privacy <span class="chev">›</span></span>
+            <span data-ar>الخصوصية <span class="chev">›</span></span>
+          </a>
+        </nav>
+      </div>
+      <div class="footer-meta">
+        <span>
+          <span data-en>© 2026 Saud Apps · SShift v4.1</span>
+          <span data-ar>© 2026 تطبيقات سعود · SShift v4.1</span>
+        </span>
+        <span>
+          <span data-en>Made on iOS, for iOS.</span>
+          <span data-ar>صُنع على iOS، لـ iOS.</span>
+        </span>
+      </div>
     </div>
+  </footer>
 
-    <footer class="site-footer">
-        © 2026 تطبيقات سعود · SShift v4.1
-    </footer>
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const btns = document.querySelectorAll('[data-lang-btn]');
+      function setLang(lang) {
+        html.setAttribute('lang', lang);
+        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
+        try { localStorage.setItem('sshift-lang', lang); } catch (e) {}
+      }
+      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
 
-</div>
-</div>
-
-<script>
-function setLang(lang) {
-    document.body.className = 'lang-' + lang;
-    document.documentElement.lang = lang;
-    try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
-}
-(function () {
-    var saved;
-    try { saved = localStorage.getItem('saudapps-lang'); } catch (e) {}
-    if (saved === 'ar') setLang('ar');
-})();
-</script>
-
+      // initial: localStorage > browser hint > default en
+      let initial = 'en';
+      try {
+        const saved = localStorage.getItem('sshift-lang');
+        if (saved === 'en' || saved === 'ar') initial = saved;
+        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
+      } catch (e) {}
+      setLang(initial);
+    })();
+  </script>
 </body>
 </html>
