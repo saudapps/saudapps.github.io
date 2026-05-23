@@ -1,7 +1,78 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-05-23T17:41:29.083Z",
   "apps": {
-    "sshift":     { "appStoreId": "6751362215", "versions": [] },
-    "phonespace": { "appStoreId": "6765632161", "versions": [] }
+    "sshift": {
+      "appStoreId": "6751362215",
+      "versions": [
+        {
+          "version": "4.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-05-21T05:31:46-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        },
+        {
+          "version": "4.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-05-11T02:40:12-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        },
+        {
+          "version": "3.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-04-16T01:31:04-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        },
+        {
+          "version": "3.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-03-25T00:33:33-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        },
+        {
+          "version": "2.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2025-09-09T14:51:25-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        },
+        {
+          "version": "1.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2025-08-21T12:57:32-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        }
+      ]
+    },
+    "phonespace": {
+      "appStoreId": "6765632161",
+      "versions": [
+        {
+          "version": "1.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-05-01T02:48:07-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        }
+      ]
+    }
   }
 }
