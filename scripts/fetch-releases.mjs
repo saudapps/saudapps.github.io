@@ -91,12 +91,19 @@ async function fetchVersions(internalAppId, token) {
     const en = pickLocale(locs, ['en-US', 'en-GB', 'en-AU', 'en-CA']);
     const ar = pickLocale(locs, ['ar-SA']);
 
+    // Fallback: if no English variant was found but ANY locale has content,
+    // use the first non-empty one. This handles single-locale apps where
+    // notes are written under whatever primary language is set.
+    const fallback = (!en?.whatsNew)
+      ? locs.find(l => l.whatsNew && l.whatsNew.trim())
+      : null;
+
     return {
       version: attr.versionString,
       state: attr.appStoreState,
       releasedAt: attr.earliestReleaseDate || attr.createdDate,
       whatsNew: {
-        en: en?.whatsNew || '',
+        en: en?.whatsNew || fallback?.whatsNew || '',
         ar: ar?.whatsNew || '',
       },
     };
