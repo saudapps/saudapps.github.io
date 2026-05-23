@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-23T21:02:10.380Z",
+  "updatedAt": "2026-05-23T21:07:29.987Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -9,7 +9,7 @@
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-05-21T05:31:46-07:00",
           "whatsNew": {
-            "en": "",
+            "en": "Version 4.1\n\n- New \"Same day\" reminder option — get notified on the day of your shift.\n\n- Per-leave-type notifications — choose exactly which leave types should remind you.\n\n- Clearer Notifications settings — improved permission guidance when iOS notifications are off.\n\n- Smarter notification handling — old reminders are now cleaned up after clearing or restoring schedule data.\n\n- Better first-run experience — new users now see a clear Set Up Schedule card when no schedule exists.\n\n- Improved Backup and Restore feedback — failed backup or restore actions now show a clear message.\n\n- Updated About page with the SShift app logo.\n\nThank you for using SShift.",
             "ar": ""
           }
         },
@@ -18,7 +18,7 @@
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-05-11T02:40:12-07:00",
           "whatsNew": {
-            "en": "",
+            "en": "Improved Arabic language and right-to-left layout support across the app.\nRedesigned PDF export with a clean, always-light printable design.\nNew per-leave-type breakdown on the Dashboard.\nLocalization polish, release prep, and stability improvements.",
             "ar": ""
           }
         },
@@ -27,7 +27,7 @@
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-04-16T01:31:04-07:00",
           "whatsNew": {
-            "en": "",
+            "en": "This update includes a refreshed app icon and launch experience, improved dashboard card layout, cleaner Settings icons and spacing, better bottom navigation consistency, plus bug fixes, stability improvements, and overall UI polish.",
             "ar": ""
           }
         },
@@ -36,7 +36,7 @@
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-03-25T00:33:33-07:00",
           "whatsNew": {
-            "en": "",
+            "en": "Version 3.0 brings a major refresh to SShift with a cleaner interface, improved calendar editing, a redesigned dashboard, better settings organization, Arabic support, and a more polished overall experience.\n\nWhat’s new:\n• Redesigned dashboard with cleaner stats and upcoming summaries\n• Improved settings layout and better visual organization\n• Better About page with a clearer feature overview\n• Improved calendar editing for empty days and leave selection\n• Better in-app language support for English and Arabic\n• Updated visuals across key screens for a cleaner experience\n• Improved launch experience and overall polish\n• Stability improvements and general fixes",
             "ar": ""
           }
         },
@@ -45,7 +45,7 @@
           "state": "READY_FOR_SALE",
           "releasedAt": "2025-09-09T14:51:25-07:00",
           "whatsNew": {
-            "en": "",
+            "en": "Welcome to SShift 2.0 — a cleaner UI, a clearer calendar, smarter notes, and faster performance. Simpler, smoother, better.\n",
             "ar": ""
           }
         },
