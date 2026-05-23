@@ -596,6 +596,107 @@
 
   html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
 
+  /* ── What's New section ──────────────────────────────────── */
+  .releases {
+    padding: 56px 0;
+    background: var(--bg);
+  }
+  .releases-head { margin-bottom: 24px; }
+  .releases-head .eyebrow {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .releases-head h2 {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+  }
+  html[lang="ar"] .releases-head h2 { letter-spacing: 0; }
+
+  .release {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-card);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .release + .release { margin-top: 14px; }
+
+  .release-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .release-version {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  html[lang="ar"] .release-version { letter-spacing: 0; }
+  .release-date { color: var(--muted); font-size: 14px; }
+
+  .release-notes { color: var(--ink-2); font-size: 15px; line-height: 1.55; margin: 0; }
+  .release-notes.muted { color: var(--muted); }
+  ul.release-notes,
+  .release-notes ul { padding-inline-start: 20px; margin: 0; }
+  .release-notes li + li { margin-top: 4px; }
+  .release-notes p { margin: 0 0 8px; }
+  .release-notes p:last-child { margin-bottom: 0; }
+
+  .release-history { margin-top: 14px; }
+  .release-history > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    transition: background .15s ease;
+  }
+  .release-history > summary::-webkit-details-marker { display: none; }
+  .release-history > summary::before {
+    content: "›";
+    display: inline-block;
+    transform: rotate(90deg);
+    transition: transform .2s ease;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .release-history[open] > summary::before { transform: rotate(-90deg); }
+  .release-history > summary:hover { background: var(--surface-2); }
+  html[dir="rtl"] .release-history > summary::before { transform: rotate(-90deg); }
+  html[dir="rtl"] .release-history[open] > summary::before { transform: rotate(90deg); }
+
+  .release-history-list { margin-top: 14px; }
+  .release-history-list .release { padding: 20px 24px; }
+  .release-history-list .release + .release { margin-top: 12px; }
+  .release-history-list .release-version { font-size: 17px; }
+
+  @media (max-width: 640px) {
+    .releases { padding: 40px 0; }
+    .releases-head h2 { font-size: 26px; }
+    .release { padding: 20px 22px; }
+    .release-history-list .release { padding: 18px 20px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
@@ -774,6 +875,23 @@
     </div>
   </section>
 
+  <!-- ────────────────── What's New ────────────────── -->
+  <section class="releases">
+    <div class="wrap">
+      <div class="releases-head">
+        <p class="eyebrow">
+          <span data-en>RELEASE HISTORY</span>
+          <span data-ar>سجل التحديثات</span>
+        </p>
+        <h2>
+          <span data-en>What's New</span>
+          <span data-ar>ما الجديد</span>
+        </h2>
+      </div>
+      <div data-releases="phonespace"></div>
+    </div>
+  </section>
+
   <!-- ────────────────── Privacy ────────────────── -->
   <section class="privacy">
     <div class="wrap">
@@ -867,5 +985,6 @@
       setLang(initial);
     })();
   </script>
+  <script src="../releases-loader.js" defer></script>
 </body>
 </html>
