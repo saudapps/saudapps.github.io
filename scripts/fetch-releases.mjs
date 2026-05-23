@@ -60,48 +60,49 @@ async function resolveAppId(appStoreId, token) {
 }
 
 async function fetchVersions(internalAppId, token) {
-  // Get all versions in descending order. App Store Connect returns
-  // appStoreVersions, including version string, state, release date, and
-  // a relationship to localizations (where release notes live).
+  // Get all versions in descending order
   const url = `/apps/${internalAppId}/appStoreVersions`
     + `?limit=200`
-    + `&fields[appStoreVersions]=versionString,appStoreState,createdDate,releaseType,earliestReleaseDate`
-    + `&include=appStoreVersionLocalizations`
-    + `&fields[appStoreVersionLocalizations]=locale,whatsNew`;
+    + `&fields[appStoreVersions]=versionString,appStoreState,createdDate,releaseType,earliestReleaseDate`;
   const data = await asc(url, token);
 
-  // DEBUG: log what the API actually returned
   console.log(`\n  → ${data.data.length} version(s) found`);
-  console.log(`  → ${(data.included || []).length} localization(s) found`);
 
-  // Build a map of localization id → {locale, whatsNew}
-  const locMap = new Map();
-  for (const inc of (data.included || [])) {
-    if (inc.type === 'appStoreVersionLocalizations') {
-      const locale = inc.attributes?.locale;
-      const whatsNew = inc.attributes?.whatsNew || '';
-      const preview = whatsNew ? `"${whatsNew.slice(0, 60).replace(/\n/g, ' ')}..."` : '(empty)';
-      console.log(`    ◦ Locale ${locale}: ${preview}`);
-      locMap.set(inc.id, {
-        locale,
-        whatsNew,
-      });
-    }
-  }
-
-  // For each version, gather its localizations and pick en + ar variants
-  const versions = data.data.map(v => {
+  // For each version, fetch its localizations separately.
+  // This is the most reliable way to get whatsNew text per version.
+  const versions = await Promise.all(data.data.map(async v => {
     const attr = v.attributes || {};
-    const locRels = v.relationships?.appStoreVersionLocalizations?.data || [];
-    const locs = locRels.map(r => locMap.get(r.id)).filter(Boolean);
+    const versionId = v.id;
+
+    // Fetch localizations for this specific version
+    let locs = [];
+    try {
+      const locUrl = `/appStoreVersions/${versionId}/appStoreVersionLocalizations`
+        + `?fields[appStoreVersionLocalizations]=locale,whatsNew`
+        + `&limit=200`;
+      const locData = await asc(locUrl, token);
+      locs = (locData.data || []).map(l => ({
+        locale: l.attributes?.locale,
+        whatsNew: l.attributes?.whatsNew || '',
+      }));
+
+      // DEBUG: log per-version
+      console.log(`  ◦ v${attr.versionString} (${attr.appStoreState}): ${locs.length} locale(s)`);
+      for (const loc of locs) {
+        const preview = loc.whatsNew
+          ? `"${loc.whatsNew.slice(0, 50).replace(/\n/g, ' ')}..."`
+          : '(empty)';
+        console.log(`      ${loc.locale}: ${preview}`);
+      }
+    } catch (err) {
+      console.log(`  ◦ v${attr.versionString}: error fetching localizations — ${err.message}`);
+    }
 
     // Choose preferred locales
     const en = pickLocale(locs, ['en-US', 'en-GB', 'en-AU', 'en-CA']);
     const ar = pickLocale(locs, ['ar-SA']);
 
-    // Fallback: if no English variant was found but ANY locale has content,
-    // use the first non-empty one. This handles single-locale apps where
-    // notes are written under whatever primary language is set.
+    // Fallback: any non-empty locale if no English variant is available
     const fallback = (!en?.whatsNew)
       ? locs.find(l => l.whatsNew && l.whatsNew.trim())
       : null;
@@ -115,7 +116,7 @@ async function fetchVersions(internalAppId, token) {
         ar: ar?.whatsNew || '',
       },
     };
-  });
+  }));
 
   // Keep only versions actually released to users (not pending review)
   // READY_FOR_SALE = currently live. Older versions remain READY_FOR_SALE
