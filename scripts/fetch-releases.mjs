@@ -70,13 +70,21 @@ async function fetchVersions(internalAppId, token) {
     + `&fields[appStoreVersionLocalizations]=locale,whatsNew`;
   const data = await asc(url, token);
 
+  // DEBUG: log what the API actually returned
+  console.log(`\n  → ${data.data.length} version(s) found`);
+  console.log(`  → ${(data.included || []).length} localization(s) found`);
+
   // Build a map of localization id → {locale, whatsNew}
   const locMap = new Map();
   for (const inc of (data.included || [])) {
     if (inc.type === 'appStoreVersionLocalizations') {
+      const locale = inc.attributes?.locale;
+      const whatsNew = inc.attributes?.whatsNew || '';
+      const preview = whatsNew ? `"${whatsNew.slice(0, 60).replace(/\n/g, ' ')}..."` : '(empty)';
+      console.log(`    ◦ Locale ${locale}: ${preview}`);
       locMap.set(inc.id, {
-        locale: inc.attributes?.locale,
-        whatsNew: inc.attributes?.whatsNew || '',
+        locale,
+        whatsNew,
       });
     }
   }
