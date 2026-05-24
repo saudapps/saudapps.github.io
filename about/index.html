@@ -3,36 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Saud Apps legal hub. Privacy policies and terms for each app.">
+<meta name="description" content="About Saud Ismail. Small iPhone apps, built as personal projects.">
 <meta name="theme-color" content="#F5F5F7">
 <link rel="icon" type="image/png" href="../assets/saudapps-favicon.png">
 <link rel="apple-touch-icon" href="../assets/saudapps-favicon.png">
-<title>Saud Apps — Legal</title>
+<title>About — Saud Apps</title>
 
-<link rel="canonical" href="https://saud.im/legal/">
+<link rel="canonical" href="https://saud.im/about/">
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Saud Apps">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:url" content="https://saud.im/legal/">
-<meta property="og:title" content="Saud Apps — Legal">
-<meta property="og:description" content="Privacy policies and terms of use for each Saud Apps product.">
+<meta property="og:url" content="https://saud.im/about/">
+<meta property="og:title" content="About — Saud Apps">
+<meta property="og:description" content="I'm Saud Ismail. I build small iPhone apps as personal projects — using modern AI tools to turn practical ideas into useful apps.">
 <meta property="og:image" content="https://saud.im/assets/saudapps-favicon.png">
 <meta property="og:image:alt" content="Saud Apps icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Saud Apps — Legal">
-<meta name="twitter:description" content="Privacy policies and terms of use for each Saud Apps product.">
+<meta name="twitter:title" content="About — Saud Apps">
+<meta name="twitter:description" content="I'm Saud Ismail. I build small iPhone apps as personal projects — using modern AI tools to turn practical ideas into useful apps.">
 <meta name="twitter:image" content="https://saud.im/assets/saudapps-favicon.png">
 <meta name="twitter:image:alt" content="Saud Apps icon">
 
 <style>
   /* ─────────────────────────────────────────────────────────────
-     Saud Apps — Legal hub. Reuses the Support page tokens.
-     Utility page: index of privacy/terms docs grouped by app.
+     Saud Apps — About. Reuses the Support/Legal token system.
+     Small personal page: who is Saud Ismail, in two short scrolls.
      ───────────────────────────────────────────────────────────── */
   :root {
     --bg: #F5F5F7;
@@ -73,7 +73,7 @@
     overflow-x: hidden;
   }
   html[dir="rtl"] body { font-family: var(--font-ar); }
-  html[lang="ar"] { line-height: 1.7; }
+  html[lang="ar"] { line-height: 1.75; }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; cursor: pointer; }
@@ -84,7 +84,7 @@
 
   .wrap {
     width: 100%;
-    max-width: 880px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -179,52 +179,61 @@
     color: var(--muted);
     font-size: 17px;
     margin: 0;
+    max-width: 48ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  /* Section title */
-  .section-title-row {
-    margin: 16px 0 14px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .section-title-row h2 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0;
-    color: var(--ink-2);
-  }
-  html[lang="ar"] .section-title-row h2 { letter-spacing: 0; }
-  .section-title-row .meta {
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  /* Legal doc list (mirrors the support page app-link rows) */
-  .doc-list {
+  /* Body card */
+  .about-doc {
     background: var(--surface);
     border: 1px solid var(--hairline);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
-    overflow: hidden;
+    padding: 28px 30px;
     margin-bottom: 28px;
   }
-  .doc-row {
+  @media (max-width: 560px) { .about-doc { padding: 24px 22px; } }
+
+  .about-doc p {
+    margin: 0 0 16px;
+    color: var(--ink-2);
+    font-size: 16.5px;
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+  html[lang="ar"] .about-doc p { line-height: 1.9; font-size: 16px; }
+  .about-doc p:last-child { margin-bottom: 0; }
+  .about-doc a {
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--blue);
+    transition: opacity .15s ease;
+  }
+  .about-doc a:hover { opacity: 0.7; }
+
+  /* Cross-link row */
+  .crosslinks-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 600px) { .crosslinks-row { grid-template-columns: 1fr; } }
+
+  .cross-card {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 18px 22px;
-    color: var(--ink-2);
-    border-bottom: 1px solid var(--hairline);
-    transition: background .15s ease;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    box-shadow: var(--shadow-card);
   }
-  .doc-row:last-child { border-bottom: 0; }
-  .doc-row:hover { background: #FBFBFD; }
-
-  .doc-row .ic {
+  .cross-card:hover { transform: translateY(-2px); border-color: var(--hairline-strong); }
+  .cross-card .ic {
     width: 36px; height: 36px;
     border-radius: 10px;
     background: var(--blue-soft);
@@ -234,38 +243,27 @@
     justify-content: center;
     flex: 0 0 auto;
   }
-  .doc-row .ic svg { width: 18px; height: 18px; }
-  .doc-row .ic.terms { background: rgba(138,106,31,0.12); color: #8A6A1F; }
-
-  .doc-row .text { flex: 1; min-width: 0; }
-  .doc-row .title {
-    font-size: 16px;
+  .cross-card .ic svg { width: 18px; height: 18px; }
+  .cross-card .text { flex: 1; min-width: 0; }
+  .cross-card .name {
     font-weight: 600;
-    color: var(--ink);
+    color: var(--ink-2);
+    font-size: 15px;
     letter-spacing: -0.005em;
   }
-  html[lang="ar"] .doc-row .title { letter-spacing: 0; }
-  .doc-row .sub {
-    display: block;
+  html[lang="ar"] .cross-card .name { letter-spacing: 0; }
+  .cross-card .sub {
     color: var(--muted);
-    font-size: 13.5px;
+    font-size: 13px;
     margin-top: 2px;
+    display: block;
   }
-  .doc-row .arrow {
+  .cross-card .arrow {
     color: var(--muted-2);
     flex: 0 0 auto;
   }
-  html[dir="rtl"] .doc-row .arrow { transform: scaleX(-1); }
-  .doc-row .arrow svg { width: 18px; height: 18px; }
-
-  /* Small note */
-  .hub-note {
-    margin: 4px 0 28px;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.5;
-    max-width: 56ch;
-  }
+  html[dir="rtl"] .cross-card .arrow { transform: scaleX(-1); }
+  .cross-card .arrow svg { width: 18px; height: 18px; }
 
   /* Footer */
   footer {
@@ -320,67 +318,60 @@
       <nav class="crumb" aria-label="Breadcrumb">
         <a href="../"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></a>
         <span class="sep" aria-hidden="true">›</span>
-        <span><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></span>
+        <span><span data-en>About</span><span data-ar>عن</span></span>
       </nav>
       <h1>
-        <span data-en>Legal</span>
-        <span data-ar>الشؤون القانونية</span>
+        <span data-en>Saud Ismail</span>
+        <span data-ar>سعود إسماعيل</span>
       </h1>
       <p class="sub">
-        <span data-en>Privacy and Terms documents for each app.</span>
-        <span data-ar>سياسات الخصوصية وشروط الاستخدام لكل تطبيق.</span>
+        <span data-en>Small iPhone apps, built as personal projects.</span>
+        <span data-ar>تطبيقات iPhone صغيرة، أعمل عليها كمشاريع شخصية.</span>
       </p>
     </div>
   </div>
 
   <main class="wrap">
 
-    <p class="hub-note">
-      <span data-en>This page is a directory. Each link opens the original document — nothing here replaces or supersedes the published legal text.</span>
-      <span data-ar>هذه الصفحة دليل روابط. كل رابط يفتح الوثيقة الأصلية — لا شيء هنا يحلّ محلّ النصوص القانونية المنشورة أو يلغيها.</span>
-    </p>
+    <!-- About body -->
+    <article class="about-doc">
+      <p>
+        <span data-en>Small iPhone apps, built as personal projects.</span>
+        <span data-ar>تطبيقات iPhone صغيرة، أعمل عليها كمشاريع شخصية.</span>
+      </p>
+      <p>
+        <span data-en>I'm learning, experimenting, and using modern AI tools to turn practical ideas into simple, useful apps.</span>
+        <span data-ar>أتعلم، أجرّب، وأستخدم أدوات الذكاء الاصطناعي الحديثة لتحويل الأفكار العملية إلى تطبيقات بسيطة ومفيدة.</span>
+      </p>
+      <p>
+        <span data-en>Saud Apps is where I share that work — focused apps made with care, privacy, and everyday use in mind.</span>
+        <span data-ar>Saud Apps هو المكان الذي أشارك فيه هذا العمل — تطبيقات مركّزة، مبنية بعناية واهتمام بالخصوصية والاستخدام اليومي.</span>
+      </p>
+      <p>
+        <span data-en>If you have a question or feedback, you can reach me through <a href="../support/">Support</a>.</span>
+        <span data-ar>إذا كان لديك سؤال أو ملاحظة، يمكنك التواصل عبر <a href="../support/">صفحة الدعم</a>.</span>
+      </p>
+    </article>
 
-    <!-- SShift -->
-    <div class="section-title-row">
-      <h2><span data-en>SShift</span><span data-ar>SShift</span></h2>
-      <span class="meta"><span data-en>Shift Calendar</span><span data-ar>تقويم المناوبات</span></span>
-    </div>
-    <section class="doc-list" aria-label="SShift legal documents">
-      <a class="doc-row" href="../sshift/privacy/">
+    <!-- Cross-links -->
+    <section class="crosslinks-row" aria-label="More from Saud Apps">
+      <a class="cross-card" href="../">
         <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
         </span>
         <span class="text">
-          <span class="title"><span data-en>Privacy Policy</span><span data-ar>سياسة الخصوصية</span></span>
-          <span class="sub"><span data-en>How SShift handles your data.</span><span data-ar>كيف يتعامل SShift مع بياناتك.</span></span>
+          <span class="name"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
+          <span class="sub"><span data-en>All apps and contact.</span><span data-ar>كل التطبيقات والتواصل.</span></span>
         </span>
         <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </a>
-    </section>
-
-    <!-- PhoneSpace -->
-    <div class="section-title-row">
-      <h2><span data-en>PhoneSpace</span><span data-ar>PhoneSpace</span></h2>
-      <span class="meta"><span data-en>Storage Cleaner</span><span data-ar>منظّف التخزين</span></span>
-    </div>
-    <section class="doc-list" aria-label="PhoneSpace legal documents">
-      <a class="doc-row" href="../phonespace/privacy.html">
+      <a class="cross-card" href="../support/">
         <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
         </span>
         <span class="text">
-          <span class="title"><span data-en>Privacy Policy</span><span data-ar>سياسة الخصوصية</span></span>
-          <span class="sub"><span data-en>How PhoneSpace handles your data.</span><span data-ar>كيف يتعامل PhoneSpace مع بياناتك.</span></span>
-        </span>
-        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="doc-row" href="../phonespace/terms.html">
-        <span class="ic terms" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
-        </span>
-        <span class="text">
-          <span class="title"><span data-en>Terms of Use</span><span data-ar>شروط الاستخدام</span></span>
-          <span class="sub"><span data-en>Subscriptions, purchases, and use of PhoneSpace.</span><span data-ar>الاشتراكات والمشتريات واستخدام PhoneSpace.</span></span>
+          <span class="name"><span data-en>Support</span><span data-ar>الدعم</span></span>
+          <span class="sub"><span data-en>Contact and common topics.</span><span data-ar>التواصل والمواضيع الشائعة.</span></span>
         </span>
         <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </a>
@@ -397,8 +388,8 @@
       </span>
       <span class="footer-links">
         <a href="../"><span data-en><span class="chev">‹</span> Home</span><span data-ar><span class="chev">‹</span> الرئيسية</span></a>
-        <a href="../about/"><span data-en>About</span><span data-ar>عن</span></a>
-        <a href="../support/"><span data-en>Support <span class="chev">›</span></span><span data-ar>الدعم <span class="chev">›</span></span></a>
+        <a href="../support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        <a href="../legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </span>
     </div>
   </footer>
