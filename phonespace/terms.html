@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,7 @@
 
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
     --font-serif: "New York", "Iowan Old Style", "Charter", "Georgia", "Times New Roman", serif;
+    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -51,9 +52,17 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
+  html[dir="rtl"] body { font-family: var(--font-ar); }
+  html[lang="ar"] { line-height: 1.75; }
   img { display: block; max-width: 100%; }
   a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--accent); transition: opacity .15s ease; }
   a:hover { opacity: 0.7; }
+  button { font: inherit; cursor: pointer; }
+
+  /* Localized text */
+  [data-en], [data-ar] { display: none; }
+  html[lang="en"] [data-en] { display: inline; }
+  html[lang="ar"] [data-ar] { display: inline; }
 
   .wrap {
     width: 100%;
@@ -101,13 +110,27 @@
     background-position: center;
     box-shadow: inset 0 0 0 0.5px rgba(60,52,40,0.10);
   }
-  .top-link {
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 500;
-    border-bottom: 0;
+  .lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    background: var(--surface);
   }
-  .top-link:hover { color: var(--ink); opacity: 1; }
+  .lang-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: background .15s ease, color .15s ease;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--ink);
+    color: #FBF6E8;
+  }
 
   /* Page head */
   .page-head {
@@ -127,6 +150,7 @@
   }
   .crumb a { color: var(--muted); border-bottom: 0; }
   .crumb a:hover { color: var(--ink); opacity: 1; }
+  html[dir="rtl"] .crumb .sep { transform: scaleX(-1); display: inline-block; }
 
   .eyebrow {
     display: inline-flex;
@@ -145,6 +169,7 @@
     height: 1.5px;
     background: var(--muted-2);
   }
+  html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; font-weight: 700; }
 
   h1 {
     font-family: var(--font-serif);
@@ -155,12 +180,14 @@
     margin: 0 0 10px;
     color: var(--ink);
   }
+  html[lang="ar"] h1 { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.2; }
   .meta {
     font-size: 13px;
     font-style: italic;
     color: var(--muted);
     margin: 0;
   }
+  html[lang="ar"] .meta { font-style: normal; }
 
   /* Lede */
   .lede {
@@ -212,12 +239,14 @@
     margin: 0 0 12px;
     color: var(--ink);
   }
+  html[lang="ar"] h2 { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.45; }
   p, li {
     font-size: 15.5px;
     line-height: 1.65;
     color: var(--ink-2);
     margin: 0 0 12px;
   }
+  html[lang="ar"] p, html[lang="ar"] li { line-height: 1.85; }
   p:last-child, li:last-child { margin-bottom: 0; }
   strong { font-weight: 600; color: var(--ink); }
 
@@ -236,6 +265,8 @@
     border-radius: 50%;
     background: var(--muted-2);
   }
+  html[dir="rtl"] ul li, html[dir="rtl"] ol li { padding-left: 0; padding-right: 18px; }
+  html[dir="rtl"] ul li::before { left: auto; right: 2px; }
 
   /* Auto-renewal callout */
   .callout {
@@ -246,6 +277,7 @@
     padding: 18px 22px;
     margin: 16px 0;
   }
+  html[dir="rtl"] .callout { border-left: 1px solid var(--hairline); border-right: 3px solid var(--navy); }
   .callout p { margin: 0 0 10px; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
   .callout p:last-child { margin-bottom: 0; }
 
@@ -261,6 +293,8 @@
   footer p { margin: 0 0 6px; }
   footer a { color: var(--muted); border-bottom-color: var(--hairline-strong); }
 
+  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
@@ -274,7 +308,10 @@
         <span class="brand-icon" aria-hidden="true"></span>
         <span>PhoneSpace</span>
       </a>
-      <a href="index.html" class="top-link">← Back to PhoneSpace</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      </div>
     </div>
   </header>
 
@@ -283,131 +320,295 @@
     <div class="page-head">
       <nav class="crumb" aria-label="Breadcrumb">
         <a href="index.html">PhoneSpace</a>
-        <span aria-hidden="true">›</span>
-        <span>Terms</span>
+        <span class="sep" aria-hidden="true">›</span>
+        <span><span data-en>Terms</span><span data-ar>الشروط</span></span>
       </nav>
       <div class="eyebrow">PhoneSpace</div>
-      <h1>Terms of Use</h1>
-      <p class="meta">Effective: [Launch date — to be set on App Store release]</p>
+      <h1>
+        <span data-en>Terms of Use</span>
+        <span data-ar>شروط الاستخدام</span>
+      </h1>
+      <p class="meta">
+        <span data-en>Effective: May 22, 2026</span>
+        <span data-ar>ساري ابتداءً من: 22 مايو 2026</span>
+      </p>
     </div>
 
-    <p class="lede">These Terms of Use ("Terms") govern your use of <strong>PhoneSpace</strong> ("the App"), an iOS application provided by <strong>Saud Abdulla</strong> ("we", "us", "our"). By downloading, installing, or using the App, you agree to be bound by these Terms.</p>
+    <p class="lede">
+      <span data-en>These Terms of Use ("Terms") govern your use of <strong>PhoneSpace</strong> ("the App"), an iOS application provided by <strong>Saud Abdulla</strong> ("we", "us", "our"). By downloading, installing, or using the App, you agree to be bound by these Terms.</span>
+      <span data-ar>تحكم شروط الاستخدام هذه ("الشروط") استخدامك لتطبيق <strong>PhoneSpace</strong> ("التطبيق")، وهو تطبيق iOS مقدَّم من <strong>سعود عبدالله</strong> ("نحن"، "نا"). بتنزيلك أو تثبيتك أو استخدامك للتطبيق، فإنك توافق على الالتزام بهذه الشروط.</span>
+    </p>
 
     <article class="doc">
 
       <section>
         <span class="sec-num">01</span>
-        <h2>License</h2>
-        <p>We grant you a personal, non-transferable, non-exclusive, revocable license to use the App on iOS devices that you own or control, subject to the rules of the Apple App Store and these Terms.</p>
-        <p>You may not copy, modify, distribute, sell, lease, reverse-engineer, or attempt to extract the source code of the App.</p>
+        <h2>
+          <span data-en>License</span>
+          <span data-ar>الترخيص</span>
+        </h2>
+        <p>
+          <span data-en>We grant you a personal, non-transferable, non-exclusive, revocable license to use the App on iOS devices that you own or control, subject to the rules of the Apple App Store and these Terms.</span>
+          <span data-ar>نمنحك ترخيصاً شخصياً غير قابل للتحويل، غير حصري، وقابلاً للإلغاء لاستخدام التطبيق على أجهزة iOS التي تملكها أو تتحكّم بها، وفقاً لقواعد متجر Apple وهذه الشروط.</span>
+        </p>
+        <p>
+          <span data-en>You may not copy, modify, distribute, sell, lease, reverse-engineer, or attempt to extract the source code of the App.</span>
+          <span data-ar>لا يجوز لك نسخ التطبيق أو تعديله أو توزيعه أو بيعه أو تأجيره أو إجراء هندسة عكسية له أو محاولة استخراج شيفرته المصدرية.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">02</span>
-        <h2>The Service</h2>
-        <p>PhoneSpace is a privacy-focused, on-device storage management utility. It helps you clean and organize photos, videos, contacts, and files stored on your iOS device.</p>
-        <p>All processing happens locally on your device. We do not upload, transmit, or store your personal content on any remote server.</p>
+        <h2>
+          <span data-en>The Service</span>
+          <span data-ar>الخدمة</span>
+        </h2>
+        <p>
+          <span data-en>PhoneSpace is a privacy-focused, on-device storage management utility. It helps you clean and organize photos, videos, contacts, and files stored on your iOS device.</span>
+          <span data-ar>PhoneSpace أداة لإدارة التخزين تركّز على الخصوصية وتعمل على الجهاز. يساعدك على تنظيف وتنظيم الصور والفيديو وجهات الاتصال والملفات المخزّنة على جهاز iOS الخاص بك.</span>
+        </p>
+        <p>
+          <span data-en>All processing happens locally on your device. We do not upload, transmit, or store your personal content on any remote server.</span>
+          <span data-ar>كل المعالجة تجري محلياً على جهازك. لا نرفع أو ننقل أو نخزّن محتواك الشخصي على أي خادم بعيد.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">03</span>
-        <h2>Free and Premium Tiers</h2>
-        <p>The App offers a free tier with daily usage limits for certain features, and a Premium tier that removes these limits. Premium is available through:</p>
+        <h2>
+          <span data-en>Free and Premium Tiers</span>
+          <span data-ar>النسخة المجانية والنسخة المدفوعة</span>
+        </h2>
+        <p>
+          <span data-en>The App offers a free tier with daily usage limits for certain features, and a Premium tier that removes these limits. Premium is available through:</span>
+          <span data-ar>يوفّر التطبيق نسخة مجانية تحتوي على حدود استخدام يومية لبعض الميزات، ونسخة مدفوعة تُزيل هذه الحدود. تتوفّر النسخة المدفوعة عبر:</span>
+        </p>
         <ul>
-          <li><strong>Auto-renewable subscriptions</strong> (Monthly or Yearly)</li>
-          <li><strong>Lifetime purchase</strong> (one-time payment)</li>
-          <li><strong>Cleanup Pack</strong> (a non-renewing 7-day pass)</li>
+          <li>
+            <span data-en><strong>Monthly subscription</strong> — $4.99 per month, auto-renewing.</span>
+            <span data-ar><strong>اشتراك شهري</strong> — $4.99 شهرياً، يتجدّد تلقائياً.</span>
+          </li>
+          <li>
+            <span data-en><strong>Yearly subscription</strong> — $29.99 per year, auto-renewing. Includes a 7-day free trial for first-time subscribers.</span>
+            <span data-ar><strong>اشتراك سنوي</strong> — $29.99 سنوياً، يتجدّد تلقائياً. يتضمّن تجربة مجانية لمدة 7 أيام للمشتركين الجدد.</span>
+          </li>
+          <li>
+            <span data-en><strong>Lifetime purchase</strong> — $59.99 one-time payment, no recurring charges.</span>
+            <span data-ar><strong>شراء مدى الحياة</strong> — $59.99 دفعة واحدة، دون أي رسوم متكرّرة.</span>
+          </li>
+          <li>
+            <span data-en><strong>Cleanup Pack</strong> — $4.99 for 7 days of unlimited access, one-time purchase, does not auto-renew.</span>
+            <span data-ar><strong>حزمة التنظيف</strong> — $4.99 مقابل 7 أيام من الاستخدام غير المحدود، شراء لمرة واحدة، لا يتجدّد تلقائياً.</span>
+          </li>
         </ul>
+        <p>
+          <span data-en>Prices are shown in US Dollars and may vary by region according to the App Store's local pricing.</span>
+          <span data-ar>الأسعار معروضة بالدولار الأمريكي وقد تختلف من منطقة لأخرى بحسب التسعير المحلي في متجر Apple.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">04</span>
-        <h2>Subscriptions and Auto-Renewal</h2>
+        <h2>
+          <span data-en>Subscriptions and Auto-Renewal</span>
+          <span data-ar>الاشتراكات والتجديد التلقائي</span>
+        </h2>
         <div class="callout">
-          <p><strong>Auto-renewal disclosure (required by Apple):</strong></p>
-          <p>Subscription billing is handled by the Apple App Store. Payment will be charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period.</p>
-          <p>You can manage subscriptions and turn off auto-renewal in your Apple ID account settings after purchase. Cancelling a subscription stops future renewals; it does not provide a refund for the current billing cycle.</p>
+          <p>
+            <span data-en><strong>Auto-renewal disclosure (required by Apple):</strong></span>
+            <span data-ar><strong>إفصاح التجديد التلقائي (مطلوب من Apple):</strong></span>
+          </p>
+          <p>
+            <span data-en>Subscription billing is handled by the Apple App Store. Payment will be charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period.</span>
+            <span data-ar>تتولّى Apple فوترة الاشتراك. سيتم خصم المبلغ من حساب Apple الخاص بك عند تأكيد الشراء. تتجدّد الاشتراكات تلقائياً ما لم يتم إيقاف التجديد التلقائي قبل 24 ساعة على الأقل من نهاية الفترة الحالية. سيتم خصم رسوم التجديد من حسابك خلال 24 ساعة قبل نهاية الفترة الحالية.</span>
+          </p>
+          <p>
+            <span data-en>You can manage subscriptions and turn off auto-renewal in your Apple ID account settings after purchase. Cancelling a subscription stops future renewals; it does not provide a refund for the current billing cycle.</span>
+            <span data-ar>يمكنك إدارة اشتراكاتك وإيقاف التجديد التلقائي من إعدادات حساب Apple بعد الشراء. إلغاء الاشتراك يوقف التجديدات القادمة فقط، ولا يُرجع المبلغ عن الفترة الحالية.</span>
+          </p>
         </div>
       </section>
 
       <section>
         <span class="sec-num">05</span>
-        <h2>Free Trial</h2>
-        <p>If a free trial is offered with a subscription, any unused portion of the free trial period is forfeited when you purchase a subscription, where applicable.</p>
+        <h2>
+          <span data-en>Free Trial</span>
+          <span data-ar>التجربة المجانية</span>
+        </h2>
+        <p>
+          <span data-en>The Yearly subscription includes a 7-day free trial for first-time subscribers. If you do not cancel before the end of the trial, your Apple ID will be charged $29.99 for the first year and the subscription will renew yearly thereafter.</span>
+          <span data-ar>يتضمّن الاشتراك السنوي تجربة مجانية لمدة 7 أيام للمشتركين الجدد. إذا لم تُلغِ قبل انتهاء فترة التجربة، سيتم خصم $29.99 من حساب Apple الخاص بك للسنة الأولى ويتجدّد الاشتراك سنوياً بعد ذلك.</span>
+        </p>
+        <p>
+          <span data-en>Any unused portion of the free trial period is forfeited when you purchase a subscription, where applicable.</span>
+          <span data-ar>أي جزء غير مستخدَم من فترة التجربة المجانية يسقط حقّه عند شراء الاشتراك، حيثما ينطبق ذلك.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">06</span>
-        <h2>Cleanup Pack (Non-Renewing)</h2>
-        <p>The Cleanup Pack is a one-time purchase that grants 7 days of unlimited access starting from the purchase date. It does not auto-renew. Purchasing additional Cleanup Packs while one is active extends the expiry by 7 days from the existing expiry date.</p>
+        <h2>
+          <span data-en>Cleanup Pack (Non-Renewing)</span>
+          <span data-ar>حزمة التنظيف (لا تتجدّد)</span>
+        </h2>
+        <p>
+          <span data-en>The Cleanup Pack is a one-time purchase that grants 7 days of unlimited access starting from the purchase date. It does not auto-renew. Purchasing additional Cleanup Packs while one is active extends the expiry by 7 days from the existing expiry date.</span>
+          <span data-ar>حزمة التنظيف شراء لمرة واحدة يمنحك 7 أيام من الاستخدام غير المحدود ابتداءً من تاريخ الشراء. لا تتجدّد تلقائياً. شراء حزم تنظيف إضافية أثناء سريان واحدة يُمدّد تاريخ الانتهاء 7 أيام إضافية من تاريخ الانتهاء الحالي.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">07</span>
-        <h2>Refunds</h2>
-        <p>All purchases are processed by the Apple App Store. Refund requests are handled by Apple in accordance with their App Store policies. To request a refund, please contact Apple directly through your purchase history at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
-        <p>We do not have the ability to issue refunds directly.</p>
+        <h2>
+          <span data-en>Refunds</span>
+          <span data-ar>عمليات استرداد المبلغ</span>
+        </h2>
+        <p>
+          <span data-en>All purchases are processed by the Apple App Store. Refund requests are handled by Apple in accordance with their App Store policies. To request a refund, please contact Apple directly through your purchase history at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</span>
+          <span data-ar>كل المشتريات تُعالَج عبر متجر Apple. تتولّى Apple طلبات استرداد المبلغ وفق سياسات متجرها. لتقديم طلب استرداد، يرجى التواصل مع Apple مباشرة عبر سجل مشترياتك على <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</span>
+        </p>
+        <p>
+          <span data-en>We do not have the ability to issue refunds directly.</span>
+          <span data-ar>لا نملك القدرة على إصدار استرداد مباشرة.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">08</span>
-        <h2>Acceptable Use</h2>
-        <p>You agree not to:</p>
+        <h2>
+          <span data-en>Acceptable Use</span>
+          <span data-ar>الاستخدام المقبول</span>
+        </h2>
+        <p>
+          <span data-en>You agree not to:</span>
+          <span data-ar>توافق على ألّا:</span>
+        </p>
         <ul>
-          <li>Use the App for any unlawful purpose</li>
-          <li>Attempt to bypass payment requirements or usage limits</li>
-          <li>Use the App to harm or harass any person</li>
-          <li>Interfere with the App's normal operation</li>
+          <li><span data-en>Use the App for any unlawful purpose</span><span data-ar>تستخدم التطبيق لأي غرض غير قانوني</span></li>
+          <li><span data-en>Attempt to bypass payment requirements or usage limits</span><span data-ar>تحاول تجاوز متطلبات الدفع أو حدود الاستخدام</span></li>
+          <li><span data-en>Use the App to harm or harass any person</span><span data-ar>تستخدم التطبيق لإيذاء أو مضايقة أي شخص</span></li>
+          <li><span data-en>Interfere with the App's normal operation</span><span data-ar>تتدخّل في التشغيل الطبيعي للتطبيق</span></li>
         </ul>
       </section>
 
       <section>
         <span class="sec-num">09</span>
-        <h2>Disclaimer of Warranties</h2>
-        <p>The App is provided "as is" and "as available" without warranties of any kind, express or implied. We do not warrant that the App will be error-free, uninterrupted, or that it will meet your specific requirements.</p>
-        <p><strong>Important:</strong> PhoneSpace performs delete and modify operations on your device's content. You are responsible for maintaining backups of your data. We are not liable for any loss of photos, videos, contacts, or files arising from use of the App.</p>
+        <h2>
+          <span data-en>Disclaimer of Warranties</span>
+          <span data-ar>إخلاء المسؤولية عن الضمانات</span>
+        </h2>
+        <p>
+          <span data-en>The App is provided "as is" and "as available" without warranties of any kind, express or implied. We do not warrant that the App will be error-free, uninterrupted, or that it will meet your specific requirements.</span>
+          <span data-ar>يُقدَّم التطبيق "كما هو" و"كما هو متاح" دون أي ضمانات من أي نوع، صريحة كانت أو ضمنية. لا نضمن أن يكون التطبيق خالياً من الأخطاء أو غير منقطع أو أن يلبّي متطلباتك الخاصة.</span>
+        </p>
+        <p>
+          <span data-en><strong>Important:</strong> PhoneSpace performs delete and modify operations on your device's content. You are responsible for maintaining backups of your data. We are not liable for any loss of photos, videos, contacts, or files arising from use of the App.</span>
+          <span data-ar><strong>مهم:</strong> يُجري PhoneSpace عمليات حذف وتعديل على محتوى جهازك. أنت المسؤول عن الاحتفاظ بنُسخ احتياطية من بياناتك. لسنا مسؤولين عن أي فقدان للصور أو الفيديو أو جهات الاتصال أو الملفات ينتج عن استخدام التطبيق.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">10</span>
-        <h2>Limitation of Liability</h2>
-        <p>To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the App.</p>
-        <p>Our total liability to you for any claim arising from these Terms or your use of the App shall not exceed the amount you paid for the App in the twelve months preceding the claim.</p>
+        <h2>
+          <span data-en>Limitation of Liability</span>
+          <span data-ar>تحديد المسؤولية</span>
+        </h2>
+        <p>
+          <span data-en>To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the App.</span>
+          <span data-ar>إلى أقصى حدّ يسمح به القانون المعمول به، لن نكون مسؤولين عن أي أضرار غير مباشرة أو عَرَضية أو خاصة أو تبعية أو عقابية ناشئة عن استخدامك للتطبيق أو متعلّقة به.</span>
+        </p>
+        <p>
+          <span data-en>Our total liability to you for any claim arising from these Terms or your use of the App shall not exceed the amount you paid for the App in the twelve months preceding the claim.</span>
+          <span data-ar>لن تتجاوز مسؤوليتنا الكاملة تجاهك عن أي مطالبة ناشئة عن هذه الشروط أو استخدامك للتطبيق المبلغَ الذي دفعته للتطبيق في الاثني عشر شهراً السابقة للمطالبة.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">11</span>
-        <h2>Changes to the Terms</h2>
-        <p>We may update these Terms from time to time. The updated Terms will be posted on this page with a new effective date. Continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+        <h2>
+          <span data-en>Changes to the Terms</span>
+          <span data-ar>تعديلات الشروط</span>
+        </h2>
+        <p>
+          <span data-en>We may update these Terms from time to time. The updated Terms will be posted on this page with a new effective date. Continued use of the App after changes constitutes acceptance of the updated Terms.</span>
+          <span data-ar>قد نُحدّث هذه الشروط من وقت لآخر. سيتم نشر الشروط المحدَّثة على هذه الصفحة مع تاريخ سريان جديد. استمرارك في استخدام التطبيق بعد التغييرات يُعدّ موافقة على الشروط المُحدَّثة.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">12</span>
-        <h2>Termination</h2>
-        <p>You may stop using the App at any time. We may suspend or terminate your access if you violate these Terms.</p>
+        <h2>
+          <span data-en>Termination</span>
+          <span data-ar>إنهاء الاستخدام</span>
+        </h2>
+        <p>
+          <span data-en>You may stop using the App at any time. We may suspend or terminate your access if you violate these Terms.</span>
+          <span data-ar>يحقّ لك التوقّف عن استخدام التطبيق في أي وقت. يحقّ لنا تعليق وصولك أو إنهاؤه إذا انتهكت هذه الشروط.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">13</span>
-        <h2>Governing Law</h2>
-        <p>These Terms are governed by the laws of the <strong>United Arab Emirates</strong>. Any disputes shall be resolved in the competent courts of the UAE.</p>
+        <h2>
+          <span data-en>Governing Law</span>
+          <span data-ar>القانون الواجب التطبيق</span>
+        </h2>
+        <p>
+          <span data-en>These Terms are governed by the laws of the <strong>United Arab Emirates</strong>. Any disputes shall be resolved in the competent courts of the UAE.</span>
+          <span data-ar>تخضع هذه الشروط لقوانين <strong>دولة الإمارات العربية المتحدة</strong>. تُحلّ أي نزاعات أمام المحاكم المختصة في دولة الإمارات.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">14</span>
-        <h2>Contact</h2>
-        <p>For questions about these Terms, contact:</p>
+        <h2>
+          <span data-en>Contact</span>
+          <span data-ar>التواصل</span>
+        </h2>
+        <p>
+          <span data-en>For questions about these Terms, contact:</span>
+          <span data-ar>للاستفسار حول هذه الشروط، تواصل عبر:</span>
+        </p>
         <p><a href="mailto:support@saud.im">support@saud.im</a></p>
       </section>
 
     </article>
 
     <footer>
-      <p>© 2026 Saud Abdulla · PhoneSpace</p>
-      <p><a href="privacy.html">Privacy Policy</a> · <a href="../">← Saud Apps</a></p>
+      <p>
+        <span data-en>© 2026 Saud Abdulla · PhoneSpace</span>
+        <span data-ar>© 2026 سعود عبدالله · PhoneSpace</span>
+      </p>
+      <p>
+        <a href="privacy.html"><span data-en>Privacy Policy</span><span data-ar>سياسة الخصوصية</span></a>
+        ·
+        <a href="../"><span data-en><span class="chev">‹</span> Saud Apps</span><span data-ar><span class="chev">‹</span> تطبيقات سعود</span></a>
+      </p>
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const btns = document.querySelectorAll('[data-lang-btn]');
+      function setLang(lang) {
+        html.setAttribute('lang', lang);
+        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
+        try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
+      }
+      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
+
+      let initial = 'en';
+      try {
+        const saved = localStorage.getItem('saudapps-lang');
+        if (saved === 'en' || saved === 'ar') initial = saved;
+        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
+      } catch (e) {}
+      setLang(initial);
+    })();
+  </script>
 
 </body>
 </html>

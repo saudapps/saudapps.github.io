@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,7 @@
 
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
     --font-serif: "New York", "Iowan Old Style", "Charter", "Georgia", "Times New Roman", serif;
+    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -51,9 +52,17 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
+  html[dir="rtl"] body { font-family: var(--font-ar); }
+  html[lang="ar"] { line-height: 1.75; }
   img { display: block; max-width: 100%; }
   a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--accent); transition: opacity .15s ease; }
   a:hover { opacity: 0.7; }
+  button { font: inherit; cursor: pointer; }
+
+  /* Localized text */
+  [data-en], [data-ar] { display: none; }
+  html[lang="en"] [data-en] { display: inline; }
+  html[lang="ar"] [data-ar] { display: inline; }
 
   .wrap {
     width: 100%;
@@ -102,14 +111,27 @@
     background-position: center;
     box-shadow: inset 0 0 0 0.5px rgba(60,52,40,0.10);
   }
-  .top-link {
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 500;
-    border-bottom: 0;
+  .lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    background: var(--surface);
   }
-  .top-link:hover { color: var(--ink); opacity: 1; }
-  html[dir="rtl"] .top-link .chev { display: inline-block; transform: scaleX(-1); }
+  .lang-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: background .15s ease, color .15s ease;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--ink);
+    color: #FBF6E8;
+  }
 
   /* ── Page header ────────────────────────────────────────── */
   .page-head {
@@ -129,6 +151,7 @@
   }
   .crumb a { color: var(--muted); border-bottom: 0; }
   .crumb a:hover { color: var(--ink); opacity: 1; }
+  html[dir="rtl"] .crumb .sep { transform: scaleX(-1); display: inline-block; }
 
   .eyebrow {
     display: inline-flex;
@@ -147,6 +170,7 @@
     height: 1.5px;
     background: var(--muted-2);
   }
+  html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; font-weight: 700; }
 
   h1 {
     font-family: var(--font-serif);
@@ -157,12 +181,14 @@
     margin: 0 0 10px;
     color: var(--ink);
   }
+  html[lang="ar"] h1 { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.2; }
   .meta {
     font-size: 13px;
     font-style: italic;
     color: var(--muted);
     margin: 0;
   }
+  html[lang="ar"] .meta { font-style: normal; }
 
   /* ── Short-version callout ──────────────────────────────── */
   .callout {
@@ -174,6 +200,7 @@
     margin: 0 0 32px;
     box-shadow: var(--shadow-card);
   }
+  html[dir="rtl"] .callout { border-left: 1px solid var(--hairline); border-right: 3px solid var(--accent); }
   .callout p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
   .callout p + p { margin-top: 10px; }
   .callout strong { font-weight: 600; color: var(--ink); }
@@ -227,6 +254,7 @@
     margin: 0 0 12px;
     color: var(--ink);
   }
+  html[lang="ar"] h2 { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.45; }
   h3 {
     font-family: var(--font-sans);
     font-size: 14px;
@@ -235,12 +263,14 @@
     margin: 22px 0 8px;
     color: var(--ink-2);
   }
+  html[lang="ar"] h3 { font-family: var(--font-ar); letter-spacing: 0; }
   p, li {
     font-size: 15.5px;
     line-height: 1.65;
     color: var(--ink-2);
     margin: 0 0 12px;
   }
+  html[lang="ar"] p, html[lang="ar"] li { line-height: 1.85; }
   p:last-child, li:last-child { margin-bottom: 0; }
   strong { font-weight: 600; color: var(--ink); }
 
@@ -260,6 +290,8 @@
     border-radius: 50%;
     background: var(--muted-2);
   }
+  html[dir="rtl"] ul li { padding-left: 0; padding-right: 18px; }
+  html[dir="rtl"] ul li::before { left: auto; right: 2px; }
 
   /* ── Footer ─────────────────────────────────────────────── */
   footer {
@@ -272,6 +304,8 @@
   }
   footer p { margin: 0 0 6px; }
   footer a { color: var(--muted); border-bottom-color: var(--hairline-strong); }
+
+  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
@@ -287,7 +321,10 @@
         <span class="brand-icon" aria-hidden="true"></span>
         <span>PhoneSpace</span>
       </a>
-      <a href="index.html" class="top-link">← Back to PhoneSpace</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      </div>
     </div>
   </header>
 
@@ -297,129 +334,275 @@
     <div class="page-head">
       <nav class="crumb" aria-label="Breadcrumb">
         <a href="index.html">PhoneSpace</a>
-        <span aria-hidden="true">›</span>
-        <span>Privacy</span>
+        <span class="sep" aria-hidden="true">›</span>
+        <span><span data-en>Privacy</span><span data-ar>الخصوصية</span></span>
       </nav>
       <div class="eyebrow">PhoneSpace</div>
-      <h1>Privacy Policy</h1>
-      <p class="meta">Effective: [Launch date — to be set on App Store release]</p>
+      <h1>
+        <span data-en>Privacy Policy</span>
+        <span data-ar>سياسة الخصوصية</span>
+      </h1>
+      <p class="meta">
+        <span data-en>Effective: May 22, 2026</span>
+        <span data-ar>ساري ابتداءً من: 22 مايو 2026</span>
+      </p>
     </div>
 
     <!-- Short version -->
     <div class="callout">
-      <p><strong>Short version:</strong> PhoneSpace runs entirely on your iPhone. We do not collect, transmit, store, or share any of your personal data. There is no server, no analytics, and no tracking.</p>
+      <p>
+        <span data-en><strong>Short version:</strong> PhoneSpace runs entirely on your iPhone. We do not collect, transmit, store, or share any of your personal data. There is no server, no analytics, and no tracking.</span>
+        <span data-ar><strong>باختصار:</strong> يعمل PhoneSpace بالكامل على جهازك. لا نجمع أو ننقل أو نخزّن أو نشارك أي بيانات شخصية لك. لا يوجد خادم، ولا تحليلات، ولا تتبّع.</span>
+      </p>
     </div>
 
     <!-- Lede -->
-    <p class="lede">This Privacy Policy explains how <strong>PhoneSpace</strong> ("the App"), provided by <strong>Saud Abdulla</strong>, handles your information.</p>
+    <p class="lede">
+      <span data-en>This Privacy Policy explains how <strong>PhoneSpace</strong> ("the App"), provided by <strong>Saud Abdulla</strong>, handles your information.</span>
+      <span data-ar>تشرح سياسة الخصوصية هذه كيف يتعامل <strong>PhoneSpace</strong> ("التطبيق")، المقدَّم من <strong>سعود عبدالله</strong>، مع معلوماتك.</span>
+    </p>
 
     <!-- Doc body -->
     <article class="doc">
 
       <section>
         <span class="sec-num">01</span>
-        <h2>Data We Collect</h2>
-        <p><strong>None.</strong></p>
-        <p>PhoneSpace does not collect, store, or transmit any personal data, content, identifiers, or usage information to any server we control. All scanning, analysis, and processing happens locally on your device.</p>
-        <p>Specifically, we do <strong>not</strong> collect:</p>
+        <h2>
+          <span data-en>Data We Collect</span>
+          <span data-ar>البيانات التي نجمعها</span>
+        </h2>
+        <p>
+          <span data-en><strong>None.</strong></span>
+          <span data-ar><strong>لا شيء.</strong></span>
+        </p>
+        <p>
+          <span data-en>PhoneSpace does not collect, store, or transmit any personal data, content, identifiers, or usage information to any server we control. All scanning, analysis, and processing happens locally on your device.</span>
+          <span data-ar>لا يجمع PhoneSpace أو يخزّن أو يُرسل أي بيانات شخصية أو محتوى أو معرّفات أو معلومات استخدام إلى أي خادم نتحكّم به. كل الفحص والتحليل والمعالجة تجري محلياً على جهازك.</span>
+        </p>
+        <p>
+          <span data-en>Specifically, we do <strong>not</strong> collect:</span>
+          <span data-ar>على وجه التحديد، نحن <strong>لا</strong> نجمع:</span>
+        </p>
         <ul>
-          <li>Your photos, videos, contacts, or files</li>
-          <li>Your device identifiers (UDID, IDFA, IDFV)</li>
-          <li>Your location</li>
-          <li>Your usage patterns or analytics</li>
-          <li>Your IP address</li>
-          <li>Crash reports (beyond what Apple's standard system provides if you have opted in to share with developers via iOS Settings)</li>
+          <li><span data-en>Your photos, videos, contacts, or files</span><span data-ar>صورك أو مقاطعك أو جهات اتصالك أو ملفاتك</span></li>
+          <li><span data-en>Your device identifiers (UDID, IDFA, IDFV)</span><span data-ar>معرّفات جهازك (UDID، IDFA، IDFV)</span></li>
+          <li><span data-en>Your location</span><span data-ar>موقعك</span></li>
+          <li><span data-en>Your usage patterns or analytics</span><span data-ar>أنماط استخدامك أو بيانات تحليلية</span></li>
+          <li><span data-en>Your IP address</span><span data-ar>عنوان IP الخاص بك</span></li>
+          <li><span data-en>Crash reports (beyond what Apple's standard system provides if you have opted in to share with developers via iOS Settings)</span><span data-ar>تقارير الأعطال (باستثناء ما يوفّره نظام Apple القياسي إذا اخترت مشاركتها مع المطوّرين عبر إعدادات iOS)</span></li>
         </ul>
       </section>
 
       <section>
         <span class="sec-num">02</span>
-        <h2>How the App Uses Your Device</h2>
-        <p>The App requests permission to access certain parts of your device. These accesses are required for the App's core functionality and happen entirely on-device:</p>
+        <h2>
+          <span data-en>How the App Uses Your Device</span>
+          <span data-ar>كيف يستخدم التطبيق جهازك</span>
+        </h2>
+        <p>
+          <span data-en>The App requests permission to access certain parts of your device. These accesses are required for the App's core functionality and happen entirely on-device:</span>
+          <span data-ar>يطلب التطبيق صلاحية الوصول إلى أجزاء معيّنة من جهازك. هذه الصلاحيات لازمة لوظائفه الأساسية وتجري بالكامل على الجهاز:</span>
+        </p>
 
-        <h3>Photos</h3>
-        <p>Requested when you enter the Photos or Videos sections. Used to scan your library for duplicates, similar items, large files, screenshots, and other categories. The scanned metadata stays on your device. We never read, copy, or transmit your photos.</p>
+        <h3><span data-en>Photos</span><span data-ar>الصور</span></h3>
+        <p>
+          <span data-en>Requested when you enter the Photos or Videos sections. Used to scan your library for duplicates, similar items, large files, screenshots, and other categories. The scanned metadata stays on your device. We never read, copy, or transmit your photos.</span>
+          <span data-ar>تُطلب عند دخولك إلى قسم الصور أو الفيديو. تُستخدم لفحص مكتبتك بحثاً عن التكرارات والمتشابهات والملفات الكبيرة ولقطات الشاشة وفئات أخرى. تبقى البيانات الوصفية للفحص على جهازك. لا نقرأ أو ننسخ أو ننقل صورك أبداً.</span>
+        </p>
 
-        <h3>Contacts</h3>
-        <p>Requested when you enter the Contacts section. Used to identify duplicates, incomplete entries, and to support backup-to-file operations. The processed data stays on your device. We never read, copy, or transmit your contacts to a server.</p>
+        <h3><span data-en>Contacts</span><span data-ar>جهات الاتصال</span></h3>
+        <p>
+          <span data-en>Requested when you enter the Contacts section. Used to identify duplicates, incomplete entries, and to support backup-to-file operations. The processed data stays on your device. We never read, copy, or transmit your contacts to a server.</span>
+          <span data-ar>تُطلب عند دخولك إلى قسم جهات الاتصال. تُستخدم لتحديد التكرارات والمدخلات الناقصة ولدعم عمليات النسخ الاحتياطي إلى ملف. تبقى البيانات المعالَجة على جهازك. لا نقرأ أو ننسخ أو ننقل جهات اتصالك إلى أي خادم.</span>
+        </p>
 
-        <h3>Files (Local)</h3>
-        <p>The Files browser only reads from the App's own sandboxed storage. It does not access your iCloud Drive or external storage providers without explicit user action.</p>
+        <h3><span data-en>Files (Local)</span><span data-ar>الملفات (المحلية)</span></h3>
+        <p>
+          <span data-en>The Files browser only reads from the App's own sandboxed storage. It does not access your iCloud Drive or external storage providers without explicit user action.</span>
+          <span data-ar>متصفّح الملفات يقرأ فقط من مساحة التخزين المعزولة الخاصة بالتطبيق. لا يصل إلى iCloud Drive أو مزوّدي التخزين الخارجيين دون إجراء صريح منك.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">03</span>
-        <h2>On-Device Storage</h2>
-        <p>The App stores certain data locally on your device to provide its features:</p>
+        <h2>
+          <span data-en>On-Device Storage</span>
+          <span data-ar>التخزين على الجهاز</span>
+        </h2>
+        <p>
+          <span data-en>The App stores certain data locally on your device to provide its features:</span>
+          <span data-ar>يخزّن التطبيق بعض البيانات محلياً على جهازك ليقدّم ميزاته:</span>
+        </p>
         <ul>
-          <li><strong>Scan snapshots:</strong> Cached results from your last library scan, so the App doesn't need to re-scan on every launch. Stored in the App's private container.</li>
-          <li><strong>User preferences:</strong> Settings such as preset choices and dismissed notices, stored via iOS's standard preferences system.</li>
-          <li><strong>Usage counters:</strong> Daily counts for free-tier limits (e.g., "X of 10 compressions today"). Reset on calendar-day boundary. Local-only.</li>
-          <li><strong>Trash and backup files:</strong> When you delete items via the App, they may be moved to an internal trash for safe recovery before permanent deletion. Contact backups are saved to the App's local storage and shared via the iOS Share Sheet on request.</li>
+          <li>
+            <span data-en><strong>Scan snapshots:</strong> Cached results from your last library scan, so the App doesn't need to re-scan on every launch. Stored in the App's private container.</span>
+            <span data-ar><strong>نتائج الفحص المؤقّتة:</strong> نتائج آخر فحص لمكتبتك، حتى لا يضطر التطبيق لإعادة الفحص في كل مرة. تُحفظ داخل الحاوية الخاصة بالتطبيق.</span>
+          </li>
+          <li>
+            <span data-en><strong>User preferences:</strong> Settings such as preset choices and dismissed notices, stored via iOS's standard preferences system.</span>
+            <span data-ar><strong>تفضيلات المستخدم:</strong> إعدادات مثل الخيارات الافتراضية والإشعارات المُستبعَدة، تُحفظ عبر نظام التفضيلات القياسي في iOS.</span>
+          </li>
+          <li>
+            <span data-en><strong>Usage counters:</strong> Daily counts for free-tier limits (e.g., "X of 10 compressions today"). Reset on calendar-day boundary. Local-only.</span>
+            <span data-ar><strong>عدّادات الاستخدام:</strong> أعداد يومية لحدود النسخة المجانية (مثل: "X من ١٠ عمليات ضغط اليوم"). تُصفَّر عند بداية يوم جديد. محلية فقط.</span>
+          </li>
+          <li>
+            <span data-en><strong>Trash and backup files:</strong> When you delete items via the App, they may be moved to an internal trash for safe recovery before permanent deletion. Contact backups are saved to the App's local storage and shared via the iOS Share Sheet on request.</span>
+            <span data-ar><strong>ملفات سلّة المهملات والنسخ الاحتياطي:</strong> عند حذف عناصر عبر التطبيق، قد تُنقل إلى سلّة مهملات داخلية لاسترجاعها بأمان قبل الحذف الدائم. تُحفظ النسخ الاحتياطية لجهات الاتصال داخل تخزين التطبيق وتُشارك عبر "ورقة المشاركة" في iOS عند الطلب.</span>
+          </li>
         </ul>
-        <p>All this data is stored within the App's sandboxed container and is removed when you delete the App.</p>
+        <p>
+          <span data-en>All this data is stored within the App's sandboxed container and is removed when you delete the App.</span>
+          <span data-ar>كل هذه البيانات تُخزَّن داخل الحاوية المعزولة الخاصة بالتطبيق، وتُحذف عند حذفك للتطبيق.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">04</span>
-        <h2>Purchases</h2>
-        <p>When you make a purchase (subscription, Lifetime, or Cleanup Pack), the transaction is processed by Apple's App Store. We do not see, receive, or store your payment details (credit card information, billing address, Apple ID password, etc.).</p>
-        <p>Apple provides us with anonymized transaction receipts so the App can verify your active entitlements. These receipts contain only product identifiers and transaction IDs — no personally identifiable information.</p>
+        <h2>
+          <span data-en>Purchases</span>
+          <span data-ar>المشتريات</span>
+        </h2>
+        <p>
+          <span data-en>When you make a purchase (subscription, Lifetime, or Cleanup Pack), the transaction is processed by Apple's App Store. We do not see, receive, or store your payment details (credit card information, billing address, Apple ID password, etc.).</span>
+          <span data-ar>عند إجراء أي شراء (اشتراك، مدى الحياة، أو حزمة التنظيف)، تُعالَج العملية عبر متجر Apple. لا نرى أو نستلم أو نخزّن أي تفاصيل دفع (بيانات البطاقة، عنوان الفوترة، كلمة سرّ حساب Apple، إلخ).</span>
+        </p>
+        <p>
+          <span data-en>Apple provides us with anonymized transaction receipts so the App can verify your active entitlements. These receipts contain only product identifiers and transaction IDs — no personally identifiable information.</span>
+          <span data-ar>تزوّدنا Apple بإيصالات معاملات مجهولة الهوية ليتمكّن التطبيق من التحقّق من اشتراكاتك النشطة. تحتوي هذه الإيصالات على معرّفات منتجات وأرقام معاملات فقط — دون أي معلومات تعريف شخصية.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">05</span>
-        <h2>Third-Party Services</h2>
-        <p>PhoneSpace does not integrate any third-party analytics, advertising, crash reporting, or tracking SDKs. The only external service involved is Apple's App Store / StoreKit, used solely to process purchases.</p>
+        <h2>
+          <span data-en>Third-Party Services</span>
+          <span data-ar>الخدمات الخارجية</span>
+        </h2>
+        <p>
+          <span data-en>PhoneSpace does not integrate any third-party analytics, advertising, crash reporting, or tracking SDKs. The only external service involved is Apple's App Store / StoreKit, used solely to process purchases.</span>
+          <span data-ar>لا يستخدم PhoneSpace أي حزم برمجية خارجية للتحليلات أو الإعلانات أو تقارير الأعطال أو التتبّع. الخدمة الخارجية الوحيدة المعنيّة هي متجر Apple / StoreKit، وتُستخدم حصراً لمعالجة المشتريات.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">06</span>
-        <h2>Children's Privacy</h2>
-        <p>The App is intended for users aged 13 and older. We do not knowingly collect any data from anyone — including children — because we do not collect data at all.</p>
+        <h2>
+          <span data-en>Children's Privacy</span>
+          <span data-ar>خصوصية الأطفال</span>
+        </h2>
+        <p>
+          <span data-en>The App is intended for users aged 13 and older. We do not knowingly collect any data from anyone — including children — because we do not collect data at all.</span>
+          <span data-ar>التطبيق مخصّص للمستخدمين بعمر 13 سنة فما فوق. لا نجمع عن قصد أي بيانات من أي شخص — بما في ذلك الأطفال — لأننا لا نجمع البيانات أصلاً.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">07</span>
-        <h2>Data Security</h2>
-        <p>Because all your content stays on your device, security depends primarily on the security of your iPhone (passcode, Face ID / Touch ID, automatic iOS encryption). We recommend keeping iOS updated and using a strong passcode.</p>
+        <h2>
+          <span data-en>Data Security</span>
+          <span data-ar>أمان البيانات</span>
+        </h2>
+        <p>
+          <span data-en>Because all your content stays on your device, security depends primarily on the security of your iPhone (passcode, Face ID / Touch ID, automatic iOS encryption). We recommend keeping iOS updated and using a strong passcode.</span>
+          <span data-ar>بما أن كل محتواك يبقى على جهازك، يعتمد الأمان أساساً على أمان جهازك (رمز المرور، Face ID / Touch ID، التشفير التلقائي في iOS). ننصح بالحفاظ على تحديث iOS واستخدام رمز مرور قوي.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">08</span>
-        <h2>Your Rights</h2>
-        <p>Since we do not collect or hold any data about you, there is nothing to request, export, correct, or delete on our side. You retain full control over your data on your device.</p>
-        <p>You can revoke the App's permissions at any time via <strong>iOS Settings → Privacy &amp; Security → Photos / Contacts → PhoneSpace</strong>.</p>
-        <p>Deleting the App removes all data the App stores in its sandbox.</p>
+        <h2>
+          <span data-en>Your Rights</span>
+          <span data-ar>حقوقك</span>
+        </h2>
+        <p>
+          <span data-en>Since we do not collect or hold any data about you, there is nothing to request, export, correct, or delete on our side. You retain full control over your data on your device.</span>
+          <span data-ar>بما أننا لا نجمع أو نحتفظ بأي بيانات عنك، فلا يوجد ما يمكن طلبه أو تصديره أو تصحيحه أو حذفه من جهتنا. تحتفظ بالسيطرة الكاملة على بياناتك على جهازك.</span>
+        </p>
+        <p>
+          <span data-en>You can revoke the App's permissions at any time via <strong>iOS Settings → Privacy &amp; Security → Photos / Contacts → PhoneSpace</strong>.</span>
+          <span data-ar>يمكنك سحب صلاحيات التطبيق في أي وقت من <strong>إعدادات iOS ← الخصوصية والأمان ← الصور / جهات الاتصال ← PhoneSpace</strong>.</span>
+        </p>
+        <p>
+          <span data-en>Deleting the App removes all data the App stores in its sandbox.</span>
+          <span data-ar>حذف التطبيق يُزيل كل البيانات التي يخزّنها داخل حاويته المعزولة.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">09</span>
-        <h2>Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. The updated version will be posted here with a new effective date. Material changes will be communicated within the App where reasonably possible.</p>
+        <h2>
+          <span data-en>Changes to This Policy</span>
+          <span data-ar>تعديلات هذه السياسة</span>
+        </h2>
+        <p>
+          <span data-en>We may update this Privacy Policy from time to time. The updated version will be posted here with a new effective date. Material changes will be communicated within the App where reasonably possible.</span>
+          <span data-ar>قد نُحدّث هذه السياسة من وقت لآخر. سيتم نشر النسخة المُحدَّثة هنا مع تاريخ سريان جديد. سيتم إبلاغك بالتغييرات الجوهرية داخل التطبيق متى أمكن ذلك.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">10</span>
-        <h2>Governing Law</h2>
-        <p>This Privacy Policy is governed by the laws of the <strong>United Arab Emirates</strong>.</p>
+        <h2>
+          <span data-en>Governing Law</span>
+          <span data-ar>القانون الواجب التطبيق</span>
+        </h2>
+        <p>
+          <span data-en>This Privacy Policy is governed by the laws of the <strong>United Arab Emirates</strong>.</span>
+          <span data-ar>تخضع سياسة الخصوصية هذه لقوانين <strong>دولة الإمارات العربية المتحدة</strong>.</span>
+        </p>
       </section>
 
       <section>
         <span class="sec-num">11</span>
-        <h2>Contact</h2>
-        <p>For questions about this Privacy Policy or PhoneSpace's privacy practices:</p>
+        <h2>
+          <span data-en>Contact</span>
+          <span data-ar>التواصل</span>
+        </h2>
+        <p>
+          <span data-en>For questions about this Privacy Policy or PhoneSpace's privacy practices:</span>
+          <span data-ar>لأي استفسار حول سياسة الخصوصية هذه أو ممارسات PhoneSpace المتعلقة بالخصوصية:</span>
+        </p>
         <p><a href="mailto:support@saud.im">support@saud.im</a></p>
       </section>
 
     </article>
 
     <footer>
-      <p>© 2026 Saud Abdulla · PhoneSpace</p>
-      <p><a href="terms.html">Terms of Use</a> · <a href="../">← Saud Apps</a></p>
+      <p>
+        <span data-en>© 2026 Saud Abdulla · PhoneSpace</span>
+        <span data-ar>© 2026 سعود عبدالله · PhoneSpace</span>
+      </p>
+      <p>
+        <a href="terms.html"><span data-en>Terms of Use</span><span data-ar>شروط الاستخدام</span></a>
+        ·
+        <a href="../"><span data-en><span class="chev">‹</span> Saud Apps</span><span data-ar><span class="chev">‹</span> تطبيقات سعود</span></a>
+      </p>
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const btns = document.querySelectorAll('[data-lang-btn]');
+      function setLang(lang) {
+        html.setAttribute('lang', lang);
+        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
+        try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
+      }
+      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
+
+      let initial = 'en';
+      try {
+        const saved = localStorage.getItem('saudapps-lang');
+        if (saved === 'en' || saved === 'ar') initial = saved;
+        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
+      } catch (e) {}
+      setLang(initial);
+    })();
+  </script>
 
 </body>
 </html>
