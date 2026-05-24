@@ -546,20 +546,20 @@
   .footer-links {
     display: inline-flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
   }
   .footer-links a {
-    padding: 10px 14px;
+    padding: 8px 14px;
     border-radius: var(--radius-pill);
     background: var(--surface);
     border: 1px solid var(--hairline);
-    font-size: 14px;
-    color: var(--ink-2);
+    font-size: 13px;
+    color: var(--muted);
     font-weight: 500;
-    transition: background .15s ease, border-color .15s ease;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
   }
-  .footer-links a:hover { background: #fff; border-color: var(--hairline-strong); }
+  .footer-links a:hover { color: var(--ink); background: #fff; border-color: var(--hairline-strong); }
 
   .footer-meta {
     display: flex;
@@ -997,20 +997,19 @@
         </div>
         <nav class="footer-links" aria-label="Footer">
           <a href="../">
-            <span data-en><span class="chev">‹</span> Saud Apps</span>
-            <span data-ar><span class="chev">‹</span> تطبيقات سعود</span>
+            <span data-en><span class="chev">‹</span> Home</span>
+            <span data-ar><span class="chev">‹</span> الرئيسية</span>
           </a>
-          <a href="mailto:support@saud.im">support@saud.im</a>
           <a href="https://apps.apple.com/us/app/sshift/id6751362215">
             <span data-en>App Store</span><span data-ar>App Store</span>
           </a>
-          <a href="https://saudapps.github.io/support/">
-            <span data-en>Support <span class="chev">›</span></span>
-            <span data-ar>الدعم <span class="chev">›</span></span>
-          </a>
-          <a href="https://saudapps.github.io/sshift/privacy/">
+          <a href="privacy/">
             <span data-en>Privacy <span class="chev">›</span></span>
             <span data-ar>الخصوصية <span class="chev">›</span></span>
+          </a>
+          <a href="../support/">
+            <span data-en>Support <span class="chev">›</span></span>
+            <span data-ar>الدعم <span class="chev">›</span></span>
           </a>
         </nav>
       </div>
