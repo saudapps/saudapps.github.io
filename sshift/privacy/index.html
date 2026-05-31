@@ -285,6 +285,25 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
+
+  /* ── Unified Saud Apps footer (compact) ─────────────────────── */
+  .site-footer { border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 32px; padding: 22px 0 26px; }
+  .site-footer .sf-inner { display: flex; flex-direction: column; gap: 12px; }
+  .sf-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+  .sf-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
+  .sf-brand:hover { text-decoration: none; }
+  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--muted)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
+  .sf-name { font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
+  html[lang="ar"] .sf-name { letter-spacing: 0; }
+  .sf-by { font-size: 13px; color: var(--muted); }
+  .sf-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 13.5px; }
+  .sf-nav a { color: var(--muted); }
+  .sf-nav a:hover { color: var(--ink); text-decoration: none; }
+  .sf-nav .sf-sep { color: var(--hairline-strong); }
+  .sf-base { font-size: 12.5px; color: var(--muted-2); }
+  .sf-base a { color: var(--muted); }
+  .sf-base a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .sf-row { flex-direction: column; align-items: flex-start; gap: 12px; } }
 </style>
 </head>
 <body>
@@ -381,21 +400,25 @@
   </main>
 
   <!-- Footer -->
-  <footer>
-    <div class="wrap footer-inner">
-      <span>
-        <span data-en>© 2026 Saud Apps · Last updated May 21, 2026</span>
-        <span data-ar>© 2026 تطبيقات سعود · آخر تحديث 21 مايو 2026</span>
-      </span>
-      <span>
-        <a href="../../"><span data-en><span class="chev">‹</span> Home</span><span data-ar><span class="chev">‹</span> الرئيسية</span></a>
-        &nbsp;·&nbsp;
-        <a href="../"><span data-en>SShift <span class="chev">›</span></span><span data-ar>SShift <span class="chev">›</span></span></a>
-        &nbsp;·&nbsp;
-        <a href="../../legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
-        &nbsp;·&nbsp;
-        <a href="../../support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
-      </span>
+    <footer class="site-footer">
+    <div class="wrap sf-inner">
+      <div class="sf-row">
+        <a class="sf-brand" href="/" aria-label="Saud Apps home">
+          <span class="sf-mark" aria-hidden="true">S</span>
+          <span class="sf-name">Saud Apps</span>
+          <span class="sf-by"><span data-en>· by Saud Ismail</span><span data-ar>· تطوير سعود إسماعيل</span></span>
+        </a>
+        <nav class="sf-nav" aria-label="Footer">
+          <a href="/sshift/">SShift</a>
+          <a href="/phonespace/">PhoneSpace</a>
+          <a href="/promptbook/">Promptbook</a>
+          <span class="sf-sep" aria-hidden="true">·</span>
+          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+          <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
+        </nav>
+      </div>
+      <div class="sf-base"><span data-en>© 2026 Saud Apps · </span><span data-ar>© 2026 تطبيقات سعود · </span><a href="mailto:support@saud.im">support@saud.im</a></div>
     </div>
   </footer>
 
