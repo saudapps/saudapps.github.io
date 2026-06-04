@@ -57,6 +57,8 @@
     --phonespace-bg-2: #1E2F50;    /* navy bowl in icon */
     --promptbook-bg: #1A1F2E;      /* midnight navy from Promptbook icon */
     --promptbook-bg-2: #0A0E1A;
+    --filed-bg: #2D6CDF;           /* document blue from Filed icon */
+    --filed-bg-2: #163E86;
 
     --radius-card: 24px;
     --radius-tile: 16px;
@@ -254,6 +256,7 @@
   .app-card.sshift     { --strip-1: var(--sshift-bg); --strip-2: var(--sshift-bg-2); }
   .app-card.phonespace { --strip-1: var(--phonespace-bg); --strip-2: var(--phonespace-bg-2); }
   .app-card.promptbook { --strip-1: var(--promptbook-bg); --strip-2: var(--promptbook-bg-2); }
+  .app-card.filed     { --strip-1: var(--filed-bg); --strip-2: var(--filed-bg-2); }
 
   .app-body {
     padding: 0 24px 24px;
@@ -495,7 +498,7 @@
     <div class="wrap">
       <div class="apps-head">
         <h2><span data-en>Apps</span><span data-ar>التطبيقات</span></h2>
-        <span class="count"><span data-en>3 apps</span><span data-ar>٣ تطبيقات</span></span>
+        <span class="count"><span data-en>4 apps</span><span data-ar>٤ تطبيقات</span></span>
       </div>
 
       <div class="apps-grid">
@@ -620,6 +623,44 @@
           </div>
         </article>
 
+        <!-- ───── Filed ───── -->
+        <article class="app-card filed">
+          <div class="app-strip" aria-hidden="true"></div>
+          <div class="app-body">
+            <div class="app-icon">
+              <img src="assets/icon-filed.png" alt="Filed app icon">
+            </div>
+            <div class="app-title-row">
+              <h3 class="app-title">
+                <span data-en>Filed — PDF Library</span>
+                <span data-ar>Filed — مكتبة PDF</span>
+              </h3>
+            </div>
+            <p class="app-tag">
+              <span data-en>A private, local-first home for your PDFs — organize, sign, share.</span>
+              <span data-ar>مساحة خاصة محلية أولاً لملفات PDF — رتّب، وقّع، شارك.</span>
+            </p>
+            <div class="app-meta">
+              <span class="badge review" aria-label="Coming soon">
+                <span class="dot" aria-hidden="true"></span>
+                <span data-en>Coming soon</span>
+                <span data-ar>قريبًا</span>
+              </span>
+              <span class="badge">iOS</span>
+            </div>
+            <div class="app-actions">
+              <span class="btn btn-disabled" aria-disabled="true">
+                <span data-en>Coming soon</span>
+                <span data-ar>قريبًا</span>
+              </span>
+              <a class="btn btn-ghost" href="filed/">
+                <span data-en>Visit page <span class="chev">›</span></span>
+                <span data-ar>زيارة الصفحة <span class="chev">›</span></span>
+              </a>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -637,6 +678,7 @@
           <a href="/sshift/">SShift</a>
           <a href="/phonespace/">PhoneSpace</a>
           <a href="/promptbook/">Promptbook</a>
+          <a href="/filed/">Filed</a>
           <span class="sf-sep" aria-hidden="true">·</span>
           <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
           <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>

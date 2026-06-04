@@ -3,65 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Promptbook — a calm, private, local-first workspace for saving, organizing, and reusing your AI prompts. English & Arabic. No accounts, no tracking.">
-<meta name="theme-color" content="#F0EEE8">
+<meta name="description" content="Filed — a calm, private, local-first PDF library for iPhone. Receive PDFs from any app, sort them into colored folders, sign them by hand, and share one or many. English & Arabic. No accounts, no tracking.">
+<meta name="theme-color" content="#F4F7FB">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
-<title>Promptbook — Your private prompt workspace</title>
+<title>Filed — Your private PDF library</title>
 
-<link rel="canonical" href="https://saud.im/promptbook/">
+<link rel="canonical" href="https://saud.im/filed/">
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Saud Apps">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:url" content="https://saud.im/promptbook/">
-<meta property="og:title" content="Promptbook — Your private prompt workspace">
-<meta property="og:description" content="A calm, local-first place to save, organize, and reuse your AI prompts. Bilingual (English & Arabic). No accounts, no tracking, nothing leaves your device.">
-<meta property="og:image" content="https://saud.im/promptbook/assets/icon.png">
-<meta property="og:image:alt" content="Promptbook app icon">
+<meta property="og:url" content="https://saud.im/filed/">
+<meta property="og:title" content="Filed — Your private PDF library">
+<meta property="og:description" content="A calm, local-first home for your PDFs. Receive, organize in colored folders, sign by hand, and share — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
+<meta property="og:image" content="https://saud.im/filed/assets/icon.png">
+<meta property="og:image:alt" content="Filed app icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promptbook — Your private prompt workspace">
-<meta name="twitter:description" content="A calm, local-first place to save, organize, and reuse your AI prompts. Bilingual (English & Arabic). No accounts, no tracking.">
-<meta name="twitter:image" content="https://saud.im/promptbook/assets/icon.png">
-<meta name="twitter:image:alt" content="Promptbook app icon">
+<meta name="twitter:title" content="Filed — Your private PDF library">
+<meta name="twitter:description" content="A calm, local-first home for your PDFs. Receive, organize, sign, and share — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
+<meta name="twitter:image" content="https://saud.im/filed/assets/icon.png">
+<meta name="twitter:image:alt" content="Filed app icon">
 
 <style>
   /* ─────────────────────────────────────────────────────────────
-     Promptbook — landing. "Pearl & Midnight": warm pearl canvas,
-     midnight-navy ink, editorial serif display. Same Saud Apps
-     skeleton (topbar, footer, lang toggle) as the other app pages.
+     Filed — landing. "Clear Blue": airy blue-tinted canvas, deep
+     navy ink, a confident document-blue accent with multi-color
+     folder dots and a PDF-red detail — drawn from the app icon and
+     its Drive-style UI. Same Saud Apps skeleton (topbar, footer,
+     lang toggle) as the other app pages.
      ───────────────────────────────────────────────────────────── */
   :root {
-    --bg: #F0EEE8;            /* Pearl */
-    --bg-2: #EAE7DE;
-    --surface: #FBFAF6;
-    --surface-2: #F5F3EC;
-    --hairline: rgba(26,31,46,0.12);
-    --hairline-strong: rgba(26,31,46,0.20);
+    --bg: #F4F7FB;           /* airy blue-tinted canvas */
+    --bg-2: #E8EFF9;
+    --surface: #FFFFFF;
+    --surface-2: #F6F9FD;
+    --hairline: rgba(14,33,56,0.10);
+    --hairline-strong: rgba(14,33,56,0.17);
 
-    --ink: #1A1F2E;          /* Midnight Navy */
-    --ink-2: #2A3142;
-    --muted: #5C6172;
-    --muted-2: #7C8190;
+    --ink: #0E2138;          /* deep navy ink */
+    --ink-2: #1C3050;
+    --muted: #5A6B85;
+    --muted-2: #8595AB;
 
-    --accent: #2E3A59;       /* deep navy accent (links) */
-    --accent-soft: #E5E3DA;
+    --accent: #2D6CDF;       /* Filed document blue (app primary) */
+    --accent-2: #5B8DEF;
+    --accent-strong: #2257C0;
+    --accent-soft: #E6EEFC;
+
+    --pdf: #E5484D;          /* PDF-red detail (in-app PDF glyph) */
+    --pdf-soft: #FCE9E9;
+    --green: #1E8E3E;        /* "signed" green */
+    --green-soft: #E4F3E8;
+    --yellow: #E8B400;       /* folder-tab yellow */
 
     --radius-card: 24px;
     --radius-tile: 16px;
     --radius-pill: 999px;
 
-    --shadow-card: 0 1px 2px rgba(26,31,46,0.05), 0 8px 24px rgba(26,31,46,0.07);
-    --shadow-card-hover: 0 2px 4px rgba(26,31,46,0.06), 0 18px 40px rgba(26,31,46,0.12);
+    --shadow-card: 0 1px 2px rgba(14,33,56,0.05), 0 8px 24px rgba(14,33,56,0.08);
+    --shadow-card-hover: 0 2px 4px rgba(14,33,56,0.06), 0 18px 40px rgba(14,33,56,0.13);
 
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
     --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
-    --font-serif: "Fraunces", "New York", "Iowan Old Style", "Charter", "Georgia", serif;
-    --font-serif-ar: "Amiri", "Noto Naskh Arabic", "Geeza Pro", serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -92,7 +100,7 @@
   /* ── Top bar ─────────────────────────────────────────────── */
   .topbar {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(240,238,232,0.80);
+    background: rgba(244,247,251,0.80);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--hairline);
@@ -115,23 +123,31 @@
   .hero { padding: 72px 0 40px; text-align: center; }
   @media (max-width: 640px) { .hero { padding: 52px 0 32px; } }
   .hero-icon {
-    width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 22px;
+    width: 100px; height: 100px; border-radius: 23px; margin: 0 auto 22px;
     overflow: hidden; background: var(--surface);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.5), 0 12px 28px -8px rgba(26,31,46,0.30);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.6), 0 14px 30px -8px rgba(45,108,223,0.40);
   }
   .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
   .hero .eyebrow {
     display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted); margin: 0 0 14px;
+    text-transform: uppercase; color: var(--accent-strong); margin: 0 0 14px;
   }
   html[lang="ar"] .hero .eyebrow { letter-spacing: 0; text-transform: none; }
   .hero h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(38px, 6vw, 60px); line-height: 1.08; letter-spacing: -0.02em;
-    font-weight: 600; margin: 0 0 18px; color: var(--ink);
+    font-size: clamp(38px, 6vw, 58px); line-height: 1.06; letter-spacing: -0.03em;
+    font-weight: 700; margin: 0 0 18px; color: var(--ink);
   }
-  html[lang="ar"] .hero h1 { font-family: var(--font-serif-ar); letter-spacing: 0; line-height: 1.25; }
-  .hero p { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin: 0 auto; max-width: 42ch; line-height: 1.55; }
+  html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.25; font-weight: 700; }
+  .hero h1 .tint { color: var(--accent); }
+  .hero p { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin: 0 auto; max-width: 46ch; line-height: 1.55; }
+
+  /* folder dots — echo the icon's multi-color folder tabs */
+  .dots { display: inline-flex; gap: 7px; margin: 0 0 18px; }
+  .dots span { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dots .d1 { background: var(--accent); }
+  .dots .d2 { background: var(--green); }
+  .dots .d3 { background: var(--yellow); }
+  .dots .d4 { background: var(--pdf); }
 
   /* Buttons */
   .actions { margin-top: 26px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -142,20 +158,21 @@
     transition: transform .12s ease, background .15s ease, border-color .15s ease; white-space: nowrap;
   }
   .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--ink); color: var(--bg); }
-  .btn-primary:hover { background: #11151f; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-strong); }
   .btn-ghost { background: var(--surface); color: var(--ink-2); border-color: var(--hairline-strong); }
   .btn-ghost:hover { background: var(--surface-2); }
-  .btn-disabled { background: var(--bg-2); color: var(--muted-2); border-color: var(--hairline); cursor: default; pointer-events: none; }
+  .btn-disabled { background: var(--bg-2); color: var(--muted); border-color: var(--hairline); cursor: default; pointer-events: none; }
+  .btn-disabled .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); display: inline-block; }
   .btn .ic { width: 16px; height: 16px; flex: 0 0 auto; }
 
   /* ── Section scaffolding ─────────────────────────────────── */
   section.block { padding: 28px 0; }
   .section-title {
-    font-family: var(--font-serif); font-size: 26px; font-weight: 600; letter-spacing: -0.015em;
+    font-size: 27px; font-weight: 700; letter-spacing: -0.02em;
     color: var(--ink); margin: 0 0 18px; text-align: center;
   }
-  html[lang="ar"] .section-title { font-family: var(--font-serif-ar); letter-spacing: 0; }
+  html[lang="ar"] .section-title { letter-spacing: 0; }
 
   /* Feature grid */
   .features { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -168,17 +185,19 @@
   html[lang="ar"] .feature h3 { letter-spacing: 0; }
   .feature p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
   .feature .ic {
-    width: 34px; height: 34px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
+    width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
     display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;
   }
-  .feature .ic svg { width: 18px; height: 18px; }
+  .feature .ic svg { width: 19px; height: 19px; }
+  .feature .ic.pdf { background: var(--pdf-soft); color: var(--pdf); }
+  .feature .ic.sign { background: var(--green-soft); color: var(--green); }
 
   /* Privacy strip */
   .privacy-strip { padding: 8px 0 28px; }
   .privacy-inner {
     display: flex; align-items: flex-start; gap: 14px;
     background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-tile);
-    padding: 18px 20px; box-shadow: var(--shadow-card); max-width: 720px; margin: 0 auto;
+    padding: 18px 20px; box-shadow: var(--shadow-card); max-width: 760px; margin: 0 auto;
   }
   .privacy-inner .ic {
     width: 38px; height: 38px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
@@ -190,17 +209,6 @@
   .privacy-inner .text a { color: var(--accent); }
   .privacy-inner .text a:hover { text-decoration: underline; }
 
-  /* ── Footer ──────────────────────────────────────────────── */
-  footer { padding: 36px 0 52px; border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 16px; }
-  .footer-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .footer-top .brand-mark { width: 30px; height: 30px; border-radius: 8px; }
-  .footer-top .title { font-weight: 600; font-size: 15px; color: var(--ink); }
-  .footer-top .sub { font-size: 12.5px; color: var(--muted); }
-  .footer-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13.5px; }
-  .footer-links a { color: var(--muted); }
-  .footer-links a:hover { color: var(--ink); }
-  .footer-copy { margin-top: 18px; font-size: 12.5px; color: var(--muted-2); }
-
   html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
@@ -210,7 +218,7 @@
   .sf-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
   .sf-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
   .sf-brand:hover { text-decoration: none; }
-  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--muted)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
+  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--accent)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
   .sf-name { font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
   html[lang="ar"] .sf-name { letter-spacing: 0; }
   .sf-by { font-size: 13px; color: var(--muted); }
@@ -243,21 +251,22 @@
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-icon"><img src="assets/icon.png" alt="Promptbook app icon"></div>
+      <div class="hero-icon"><img src="assets/icon.png" alt="Filed app icon"></div>
       <span class="eyebrow">
         <span data-en>Privacy-first · iPhone</span>
         <span data-ar>الخصوصية أولاً · آيفون</span>
       </span>
       <h1>
-        <span data-en>Your prompts,<br>kept like a notebook.</span>
-        <span data-ar>برومبتاتك،<br>محفوظة كدفتر أنيق.</span>
+        <span data-en>Your PDFs,<br>finally <span class="tint">filed</span>.</span>
+        <span data-ar>ملفات PDF لديك،<br>مرتّبة <span class="tint">أخيرًا</span>.</span>
       </h1>
       <p>
-        <span data-en>Promptbook is a calm, local-first workspace for saving, organizing, and reusing your AI prompts — in English and Arabic. No accounts, no tracking, nothing leaves your device.</span>
-        <span data-ar>Promptbook مساحة عمل هادئة محلية أولاً لحفظ برومبتات الذكاء الاصطناعي وتنظيمها وإعادة استخدامها — بالعربية والإنجليزية. بلا حسابات، بلا تتبّع، ولا شيء يغادر جهازك.</span>
+        <span data-en>Filed is a calm, local-first home for your PDFs — receive them from any app, sort them into colored folders, sign them by hand, and send one or many. Everything stays on your iPhone.</span>
+        <span data-ar>Filed مساحة هادئة محلية أولاً لملفات PDF — استقبلها من أي تطبيق، ورتّبها في مجلدات ملوّنة، ووقّعها بيدك، وأرسل ملفًا أو عدة ملفات. كل شيء يبقى على جهازك.</span>
       </p>
       <div class="actions">
         <span class="btn btn-disabled" aria-disabled="true">
+          <span class="dot" aria-hidden="true"></span>
           <span data-en>Coming soon to the App Store</span>
           <span data-ar>قريبًا على App Store</span>
         </span>
@@ -276,38 +285,56 @@
       <div class="features">
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
-          <h3><span data-en>A personal prompt vault</span><span data-ar>خزنة برومبتات شخصية</span></h3>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
+          <h3><span data-en>Receive from any app</span><span data-ar>استقبل من أي تطبيق</span></h3>
           <p>
-            <span data-en>Save prompts with a title, the prompt text, a tool label, notes, and one optional example image. Search and filter to find them again in seconds.</span>
-            <span data-ar>احفظ البرومبتات بعنوان ونصّ وأداة وملاحظات وصورة مثال اختيارية. ابحث وفلتر لتجدها مجددًا في ثوانٍ.</span>
+            <span data-en>Send any PDF to Filed straight from the iOS Share Sheet, or import from Files. The file is copied into Filed's own storage on your device.</span>
+            <span data-ar>أرسل أي ملف PDF إلى Filed مباشرةً من قائمة المشاركة في iOS، أو استورده من تطبيق الملفات. تُنسخ نسخة منه إلى تخزين Filed على جهازك.</span>
           </p>
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg></span>
-          <h3><span data-en>A curated starter library</span><span data-ar>مكتبة بداية منسّقة</span></h3>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg></span>
+          <h3><span data-en>A library that makes sense</span><span data-ar>مكتبة مرتّبة بمنطق</span></h3>
           <p>
-            <span data-en>Browse bundled starter prompts in English and Arabic, then save any of them into your own library with one tap.</span>
-            <span data-ar>تصفّح برومبتات بداية مرفقة بالعربية والإنجليزية، ثم احفظ أيًّا منها في مكتبتك بنقرة واحدة.</span>
+            <span data-en>Organize files into colored sections, switch between list and grid, search by name, and move a file to another section in a tap.</span>
+            <span data-ar>نظّم ملفاتك في أقسام ملوّنة، وبدّل بين عرض القائمة والشبكة، وابحث بالاسم، وانقل أي ملف إلى قسم آخر بنقرة.</span>
           </p>
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h12M3 12h12M3 19h8"/><path d="M19 5v14M16 16l3 3 3-3"/></svg></span>
-          <h3><span data-en>Tools, favorites &amp; notes</span><span data-ar>أدوات ومفضّلة وملاحظات</span></h3>
+          <span class="ic pdf" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
+          <h3><span data-en>Read it clearly</span><span data-ar>اقرأه بوضوح</span></h3>
           <p>
-            <span data-en>Tag prompts by tool (ChatGPT, Claude, Gemini, and more), mark favorites, add private notes, and one-tap copy when you need them.</span>
-            <span data-ar>صنّف حسب الأداة (ChatGPT وClaude وGemini وغيرها)، وميّز المفضّلة، وأضف ملاحظات خاصة، وانسخ بنقرة عند الحاجة.</span>
+            <span data-en>A clean, full-screen viewer built on Apple's PDFKit — pinch to zoom, page through smoothly, and jump around with page thumbnails.</span>
+            <span data-ar>عارض كامل الشاشة ونظيف مبني على PDFKit من Apple — كبّر باللمس، وتنقّل بين الصفحات بسلاسة، واقفز عبر مصغّرات الصفحات.</span>
           </p>
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M6 5v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5"/><path d="M9 5V3h6v2"/><path d="M12 11v5"/></svg></span>
-          <h3><span data-en>English &amp; Arabic, by design</span><span data-ar>عربي وإنجليزي بالتصميم</span></h3>
+          <span class="ic sign" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c3-1 5-4 5-7 0-1.5-1-2-2-1.2C4.5 12 4 16 4 19"/><path d="M8 16c2-1 4-2 6-2s2 1 4 1 3-2 2-3"/><path d="M14 5l3 3"/><path d="M15 4l3 3 2-2a1.5 1.5 0 0 0 0-2l-1-1a1.5 1.5 0 0 0-2 0z"/></svg></span>
+          <h3><span data-en>Sign by hand</span><span data-ar>وقّع بيدك</span></h3>
           <p>
-            <span data-en>A built-in language selector switches the whole app between English and Arabic, with full right-to-left layout.</span>
-            <span data-ar>محدِّد لغة مدمج يبدّل التطبيق بالكامل بين العربية والإنجليزية، مع تخطيط كامل من اليمين إلى اليسار.</span>
+            <span data-en>Draw your signature right on the page, place and size it where you want, then export a fresh signed copy — all on your device.</span>
+            <span data-ar>ارسم توقيعك على الصفحة مباشرةً، وضَعه وحجِّمه حيث تريد، ثم صدّر نسخة موقّعة جديدة — كل ذلك على جهازك.</span>
+          </p>
+        </div>
+
+        <div class="feature">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span>
+          <h3><span data-en>Send one or many</span><span data-ar>أرسل ملفًا أو عدة ملفات</span></h3>
+          <p>
+            <span data-en>Select several files at once and share them together through the Share Sheet, or export them out to the Files app.</span>
+            <span data-ar>اختر عدة ملفات دفعة واحدة وشاركها معًا عبر قائمة المشاركة، أو صدّرها إلى تطبيق الملفات.</span>
+          </p>
+        </div>
+
+        <div class="feature">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          <h3><span data-en>Private by design</span><span data-ar>خاص بالتصميم</span></h3>
+          <p>
+            <span data-en>Everything is local-first, with an optional Face ID / Touch ID lock. Filed is fully bilingual — English and Arabic with right-to-left — and supports dark mode.</span>
+            <span data-ar>كل شيء محلي أولاً، مع قفل اختياري بـ Face ID / Touch ID. وFiled ثنائي اللغة بالكامل — عربي وإنجليزي مع اتجاه من اليمين إلى اليسار — ويدعم الوضع الداكن.</span>
           </p>
         </div>
 
@@ -323,15 +350,15 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
         </span>
         <span class="text">
-          <span data-en>Promptbook is <b>local-first</b>. Your prompts, notes, and images are stored only on your device — no accounts, no servers, no tracking. Read the <a href="privacy/">Privacy Policy</a> and <a href="terms/">Terms of Use</a>.</span>
-          <span data-ar>Promptbook <b>محلي أولاً</b>. تُحفظ برومبتاتك وملاحظاتك وصورك على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="privacy/">سياسة الخصوصية</a> و<a href="terms/">شروط الاستخدام</a>.</span>
+          <span data-en>Filed is <b>local-first</b>. Your PDFs, signed copies, and the sections you create are stored only on your device — no accounts, no servers, no tracking. Read the <a href="privacy/">Privacy Policy</a> and <a href="terms/">Terms of Use</a>.</span>
+          <span data-ar>تطبيق Filed <b>محلي أولاً</b>. تُحفظ ملفات PDF ونسخك الموقّعة والأقسام التي تنشئها على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="privacy/">سياسة الخصوصية</a> و<a href="terms/">شروط الاستخدام</a>.</span>
         </span>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="wrap sf-inner">
       <div class="sf-row">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
