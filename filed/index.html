@@ -45,14 +45,19 @@
   })();
 </script>
 <style>
-  /* ── Filed — folder + signing artifacts (decorative, aria-hidden).
-     A small folder-colour system is Filed's "category" language; it sits on
-     theme surfaces, so it holds in light and dark. ── */
-  .app-filed { --fl-blue:#3B82F6; --fl-green:#34A853; --fl-amber:#EF9F2B; --fl-red:#E5484D; --fl-purple:#8B5CF6; }
+  /* ── Filed — drawn from the PDFHub project: a clean, Google-Drive-style
+     library. SF Pro Rounded headings (the app's "friendly, distinctive"
+     structural type), the real Drive folder-colour palette, a blue FAB,
+     red PDF doc glyphs, and a sign-by-hand pad with a dashed baseline + ×. ── */
+  .app-filed .hero h1, .app-filed .section-title, .fl-apptitle {
+    font-family: ui-rounded, "SF Pro Rounded", "SF Pro Display", -apple-system, system-ui, sans-serif;
+  }
+  /* Drive-style folder palette (blue / green / yellow / red / purple / orange) */
+  .app-filed { --fl-blue:#2D6CDF; --fl-green:#2FA86A; --fl-yellow:#F2B61E; --fl-red:#E5484D; --fl-purple:#8B5CF6; --fl-orange:#F0883E; }
 
-  .fl-app { display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 15px 13px; }
+  .fl-app { position: relative; display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 15px 13px; }
   .fl-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
-  .fl-apptitle { font-weight: 700; font-size: 17px; letter-spacing: -0.015em; color: var(--text); }
+  .fl-apptitle { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; color: var(--text); }
   .fl-sub { font-size: 11px; color: var(--text-3); }
   .fl-folder { display: flex; align-items: center; gap: 11px; background: var(--surface-2);
                border: 1px solid var(--hairline); border-radius: 11px; padding: 9px 11px; }
@@ -61,24 +66,31 @@
   .fl-folder .fic svg { width: 16px; height: 16px; }
   .fl-folder .fname { flex: 1; font-size: 13px; font-weight: 560; color: var(--text); }
   .fl-folder .fcount { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-  .fl-c-blue{ --fc: var(--fl-blue); } .fl-c-green{ --fc: var(--fl-green); }
-  .fl-c-amber{ --fc: var(--fl-amber); } .fl-c-red{ --fc: var(--fl-red); } .fl-c-purple{ --fc: var(--fl-purple); }
+  .fl-c-blue{ --fc: var(--fl-blue); } .fl-c-green{ --fc: var(--fl-green); } .fl-c-yellow{ --fc: var(--fl-yellow); }
+  .fl-c-red{ --fc: var(--fl-red); } .fl-c-purple{ --fc: var(--fl-purple); } .fl-c-orange{ --fc: var(--fl-orange); }
+  /* Floating action button (Drive-style) */
+  .fl-fab { position: absolute; inset-inline-end: 12px; bottom: 14px; width: 42px; height: 42px; border-radius: 50%;
+            background: var(--accent); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-md); }
+  .fl-fab svg { width: 21px; height: 21px; }
 
   /* Signed-document artifact (split) */
   .fl-doc { position: relative; background: var(--surface); border: 1px solid var(--hairline);
-            border-radius: 16px; box-shadow: var(--shadow-md); padding: 28px 26px 30px; max-width: 360px; margin: 0 auto; }
+            border-radius: 16px; box-shadow: var(--shadow-md); padding: 24px 24px 28px; max-width: 360px; margin: 0 auto; }
+  .fl-fhead { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .fl-pdf { width: 26px; height: 30px; flex: 0 0 auto; color: var(--fl-red); }
+  .fl-fname { font-size: 13.5px; font-weight: 600; color: var(--text); }
   .fl-doc .ln { height: 9px; border-radius: 5px; background: var(--surface-2); margin-bottom: 12px; }
   .fl-doc .ln.m { width: 90%; } .fl-doc .ln.s { width: 58%; }
-  .fl-sigwrap { margin-top: 24px; display: inline-block; }
-  .fl-sig { display: block; width: 168px; height: 54px; color: var(--accent); }
-  .fl-sigline { height: 1.5px; width: 184px; background: var(--hairline-strong); margin-top: 2px; }
-  .fl-stamp { position: absolute; top: 16px; right: 16px; display: inline-flex; align-items: center; gap: 5px;
+  .fl-sigwrap { margin-top: 22px; display: inline-block; }
+  .fl-sig { display: block; width: 168px; height: 52px; color: var(--accent); }
+  .fl-sigline { position: relative; height: 0; width: 188px; border-top: 1.5px dashed var(--hairline-strong); margin-top: 2px; }
+  .fl-sigx { position: absolute; inset-inline-start: 0; top: -9px; font-size: 12px; line-height: 1; color: var(--text-3); }
+  .fl-stamp { position: absolute; top: 16px; inset-inline-end: 16px; display: inline-flex; align-items: center; gap: 5px;
               font-size: 11px; font-weight: 700; color: var(--live);
               background: color-mix(in oklab, var(--live) 14%, var(--surface));
               border: 1px solid color-mix(in oklab, var(--live) 32%, transparent);
               border-radius: 999px; padding: 3px 9px; }
   .fl-stamp svg { width: 12px; height: 12px; }
-  html[dir="rtl"] .fl-stamp { right: auto; left: 16px; }
 </style>
 </head>
 <body class="app-filed">
@@ -152,9 +164,10 @@
               <div class="fl-head"><span class="fl-apptitle">Filed</span><span class="fl-sub">24 PDFs</span></div>
               <div class="fl-folder fl-c-blue"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Work</span><span class="fcount">8</span></div>
               <div class="fl-folder fl-c-green"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Personal</span><span class="fcount">5</span></div>
-              <div class="fl-folder fl-c-amber"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Receipts</span><span class="fcount">7</span></div>
+              <div class="fl-folder fl-c-yellow"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Receipts</span><span class="fcount">7</span></div>
               <div class="fl-folder fl-c-red"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Contracts</span><span class="fcount">3</span></div>
               <div class="fl-folder fl-c-purple"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Manuals</span><span class="fcount">1</span></div>
+              <span class="fl-fab" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
             </div>
           </div>
         </div>
@@ -177,12 +190,16 @@
         <div data-reveal>
           <div class="fl-doc" aria-hidden="true">
             <span class="fl-stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>Signed</span>
+            <div class="fl-fhead">
+              <span class="fl-pdf"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" opacity=".18"/><path d="M14 2l6 6h-6z"/><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 0v6h6" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="17.5" text-anchor="middle" font-size="6.5" font-weight="700" fill="currentColor" font-family="sans-serif">PDF</text></svg></span>
+              <span class="fl-fname">Contract.pdf</span>
+            </div>
             <div class="ln m"></div>
             <div class="ln"></div>
             <div class="ln s"></div>
             <div class="fl-sigwrap">
               <svg class="fl-sig" viewBox="0 0 200 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 44 C 18 14, 26 12, 30 36 C 33 54, 40 56, 46 34 C 50 18, 58 14, 64 36 C 68 52, 76 52, 84 30 C 90 14, 100 16, 108 38 C 113 52, 122 48, 132 32 C 140 20, 152 22, 166 28 L 192 22"/></svg>
-              <div class="fl-sigline"></div>
+              <div class="fl-sigline"><span class="fl-sigx">✕</span></div>
             </div>
           </div>
         </div>
