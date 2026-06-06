@@ -44,6 +44,61 @@
     } catch (e) {}
   })();
 </script>
+<style>
+  /* ── SShift — shift-type colour language + calendar artifacts ──────────
+     Functional shift colours (mirror the iOS app). They tint onto theme
+     surfaces via color-mix so they hold contrast in both light and dark.
+     The grid/week mocks are decorative (aria-hidden); the legend carries
+     the real bilingual labels. */
+  .app-sshift {
+    --sh-work: #2FB457; --sh-rest: #8A8A90; --sh-training: #14B3AB;
+    --sh-leave: #4F7BFF; --sh-annual: #EFA024; --sh-force: #A85AD6;
+  }
+  .sh-cell-work     { background: color-mix(in oklab, var(--sh-work) 34%, var(--surface)); }
+  .sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 24%, var(--surface)); }
+  .sh-cell-training { background: color-mix(in oklab, var(--sh-training) 34%, var(--surface)); }
+  .sh-cell-leave    { background: color-mix(in oklab, var(--sh-leave) 34%, var(--surface)); }
+  .sh-cell-annual   { background: color-mix(in oklab, var(--sh-annual) 36%, var(--surface)); }
+
+  /* Month-calendar mock (hero device screen) */
+  .sh-cal { display: flex; flex-direction: column; gap: 9px; height: 100%; padding: 18px 15px; }
+  .sh-cal-head { display: flex; align-items: center; justify-content: space-between; }
+  .sh-cal-title { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: var(--text); }
+  .sh-cal-nav { color: var(--text-3); font-size: 14px; letter-spacing: 4px; }
+  .sh-dow { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+  .sh-dow span { text-align: center; font-size: 9.5px; font-weight: 700; color: var(--text-3); }
+  .sh-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+  .sh-grid .d { aspect-ratio: 1; border-radius: 6px; display: grid; place-items: center;
+                font-size: 10.5px; font-weight: 600; color: var(--text); background: var(--surface-2); }
+  .sh-grid .d.empty { background: transparent; }
+  .sh-grid .d.today { box-shadow: 0 0 0 2px var(--accent); }
+  .sh-next { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+             font-size: 12px; font-weight: 600; color: var(--text-2);
+             background: var(--surface-2); border: 1px solid var(--hairline);
+             border-radius: var(--r-pill); padding: 7px 12px; }
+
+  /* Week rhythm strip (section artifact) */
+  .sh-week { display: grid; grid-template-columns: repeat(7,1fr); gap: 7px; padding: 18px;
+             background: var(--surface); border: 1px solid var(--hairline);
+             border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+  .sh-week .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .sh-week .dow { font-size: 11px; font-weight: 700; color: var(--text-3); }
+  .sh-week .tile { width: 100%; aspect-ratio: 2/3; border-radius: 10px; background: var(--surface-2); }
+  /* tiles carry no text, so they take full shift colour for a vivid rhythm */
+  .sh-week .tile.sh-cell-work     { background: var(--sh-work); }
+  .sh-week .tile.sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 55%, var(--surface)); }
+  .sh-week .tile.sh-cell-training { background: var(--sh-training); }
+  .sh-week .tile.sh-cell-leave    { background: var(--sh-leave); }
+  .sh-week .tile.sh-cell-annual   { background: var(--sh-annual); }
+
+  /* Shift-type legend (real bilingual content) */
+  .sh-legend { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 9px 16px; }
+  .sh-legend li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-2); }
+  .sh-legend .sw { width: 13px; height: 13px; border-radius: 4px; flex: 0 0 auto; }
+  .sw-work{ background: var(--sh-work); } .sw-rest{ background: var(--sh-rest); }
+  .sw-training{ background: var(--sh-training); } .sw-leave{ background: var(--sh-leave); }
+  .sw-annual{ background: var(--sh-annual); }
+</style>
 </head>
 <body class="app-sshift">
 
@@ -127,13 +182,23 @@
         <div class="device-wrap" data-reveal>
           <div class="device" aria-hidden="true">
             <span class="island"></span>
-            <div class="screen" style="display:grid;place-items:center;background:linear-gradient(160deg, color-mix(in oklab, var(--accent) 26%, var(--surface)), color-mix(in oklab, var(--accent-2) 20%, var(--surface)));">
-              <div style="text-align:center;padding:0 22px">
-                <img src="/assets/icon-sshift.png" alt="" style="width:86px;height:86px;border-radius:20px;margin:0 auto 16px;box-shadow:0 12px 30px -8px rgba(0,0,0,.45)">
-                <div style="font-weight:700;font-size:22px;letter-spacing:-0.02em;color:var(--text)">SShift</div>
-                <div style="font-size:14px;color:var(--text-2);margin-top:4px">
-                  <span data-en>Shift Calendar</span><span data-ar>تقويم المناوبات</span>
+            <div class="screen" style="background:var(--surface)">
+              <div class="sh-cal">
+                <div class="sh-cal-head">
+                  <span class="sh-cal-title">June</span>
+                  <span class="sh-cal-nav">‹&nbsp;›</span>
                 </div>
+                <div class="sh-dow"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+                <div class="sh-grid">
+                  <span class="d empty"></span><span class="d empty"></span>
+                  <span class="d sh-cell-work">1</span><span class="d sh-cell-work">2</span><span class="d sh-cell-work">3</span><span class="d sh-cell-rest">4</span><span class="d sh-cell-rest">5</span>
+                  <span class="d sh-cell-training">6</span><span class="d sh-cell-work">7</span><span class="d sh-cell-work">8</span><span class="d sh-cell-work">9</span><span class="d sh-cell-rest">10</span><span class="d sh-cell-rest">11</span><span class="d sh-cell-rest">12</span>
+                  <span class="d sh-cell-work">13</span><span class="d sh-cell-work today">14</span><span class="d sh-cell-leave">15</span><span class="d sh-cell-leave">16</span><span class="d sh-cell-leave">17</span><span class="d sh-cell-rest">18</span><span class="d sh-cell-work">19</span>
+                  <span class="d sh-cell-work">20</span><span class="d sh-cell-work">21</span><span class="d sh-cell-rest">22</span><span class="d sh-cell-rest">23</span><span class="d sh-cell-training">24</span><span class="d sh-cell-work">25</span><span class="d sh-cell-work">26</span>
+                  <span class="d sh-cell-annual">27</span><span class="d sh-cell-annual">28</span><span class="d sh-cell-rest">29</span><span class="d sh-cell-work">30</span>
+                  <span class="d empty"></span><span class="d empty"></span><span class="d empty"></span>
+                </div>
+                <span class="sh-next"><span class="sw sw-work" style="width:9px;height:9px;border-radius:3px"></span>Next · Work · Fri</span>
               </div>
             </div>
           </div>
@@ -142,39 +207,41 @@
     </div>
   </section>
 
-  <!-- ── A closer look ───────────────────────────────────────── -->
+  <!-- ── A closer look — your week, by colour ────────────────── -->
   <section class="section section--tight">
     <div class="wrap">
-      <div data-reveal>
-        <span class="eyebrow">
-          <span data-en>A closer look</span>
-          <span data-ar>نظرة أقرب</span>
-        </span>
-        <h2 class="section-title">
-          <span data-en>Calendar, Dashboard, Settings.</span>
-          <span data-ar>التقويم، اللوحة، الإعدادات.</span>
-        </h2>
-        <p class="section-sub">
-          <span data-en>Three screens. One job — keeping your shift schedule clear, in your language, on your device.</span>
-          <span data-ar>ثلاث شاشات. مهمّة واحدة — جدول مناوباتك واضحاً، بلغتك، على جهازك.</span>
-        </p>
-      </div>
-
-      <div class="feature-grid cols-3" style="margin-top:34px">
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></span>
-          <h3><span data-en>Calendar</span><span data-ar>التقويم</span></h3>
-          <p><span data-en>A clean month view where every shift type reads at a glance, in your language.</span><span data-ar>عرض شهري نظيف يُظهر كل نوع مناوبة بوضوح، بلغتك.</span></p>
+      <div class="split reverse">
+        <div data-reveal>
+          <span class="eyebrow">
+            <span data-en>A closer look</span>
+            <span data-ar>نظرة أقرب</span>
+          </span>
+          <h2 class="section-title">
+            <span data-en>Your whole week, at a glance.</span>
+            <span data-ar>أسبوعك كاملاً، بنظرة واحدة.</span>
+          </h2>
+          <p class="section-sub">
+            <span data-en>Every shift type — work, rest, training, leave — reads instantly by colour, and stays consistent across the calendar, dashboard and printable PDF.</span>
+            <span data-ar>كل نوع مناوبة — عمل، راحة، تدريب، إجازة — يُقرأ فوراً باللون، ويبقى متّسقاً في التقويم واللوحة وملف PDF القابل للطباعة.</span>
+          </p>
+          <ul class="sh-legend">
+            <li><span class="sw sw-work" aria-hidden="true"></span><span data-en>Work</span><span data-ar>عمل</span></li>
+            <li><span class="sw sw-rest" aria-hidden="true"></span><span data-en>Rest</span><span data-ar>راحة</span></li>
+            <li><span class="sw sw-training" aria-hidden="true"></span><span data-en>Training</span><span data-ar>تدريب</span></li>
+            <li><span class="sw sw-leave" aria-hidden="true"></span><span data-en>Leave</span><span data-ar>إجازة</span></li>
+            <li><span class="sw sw-annual" aria-hidden="true"></span><span data-en>Annual</span><span data-ar>سنوية</span></li>
+          </ul>
         </div>
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="11" rx="1.5"/><rect x="13" y="3" width="8" height="7" rx="1.5"/><rect x="13" y="12" width="8" height="9" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/></svg></span>
-          <h3><span data-en>Dashboard</span><span data-ar>اللوحة</span></h3>
-          <p><span data-en>An at-a-glance summary of what's coming up — shifts, rest and leave.</span><span data-ar>ملخّص سريع لما هو قادم — المناوبات والراحة والإجازات.</span></p>
-        </div>
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></span>
-          <h3><span data-en>Settings</span><span data-ar>الإعدادات</span></h3>
-          <p><span data-en>Choose your language, shift types and reminders — exactly the way you work.</span><span data-ar>اختر لغتك وأنواع المناوبات والتذكيرات — بالطريقة التي تناسب عملك.</span></p>
+        <div data-reveal>
+          <div class="sh-week" aria-hidden="true">
+            <div class="col"><span class="dow">M</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">W</span><span class="tile sh-cell-rest"></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-cell-training"></span></div>
+            <div class="col"><span class="dow">F</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">S</span><span class="tile sh-cell-leave"></span></div>
+            <div class="col"><span class="dow">S</span><span class="tile sh-cell-rest"></span></div>
+          </div>
         </div>
       </div>
     </div>
