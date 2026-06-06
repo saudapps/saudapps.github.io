@@ -49,6 +49,37 @@
      editorial SERIF for prompt content, sans for UI chrome, and the app's real
      tool-label colour system (earthy, uppercase, letter-spaced TEXT — never
      neon pills). Tool colours use the app's exact light/dark values. ── */
+  /* The PAGE takes the app's Pearl & Midnight surfaces + midnight-navy ink/accent
+     (replacing the old website violet) so the whole page reads like the
+     cream-and-navy app icon, not just the labels. Page-local override only. */
+  body.app-promptbook {
+    --accent:#2E3A5E; --accent-2:#1A1F2E; --accent-ink:#F4F2EA;
+    --bg:#F0EEE8; --bg-2:#E8E5DB;
+    --hero-tint-1:color-mix(in oklab, var(--accent) 9%, #F0EEE8); --hero-tint-2:#F0EEE8;
+    --surface:#FBFAF6; --surface-2:#F1EEE5; --surface-raised:#FBFAF6; --surface-sunken:#E8E5DB;
+    --text:#1A1F2E; --text-2:#565C6B; --text-3:#8C909B;
+    --hairline:rgba(26,31,46,0.12); --hairline-2:rgba(26,31,46,0.07); --hairline-strong:rgba(26,31,46,0.20);
+    --topbar-bg:rgba(240,238,232,0.80);
+  }
+  :root[data-theme="dark"] body.app-promptbook {
+    --accent:#8E99CC; --accent-2:#6E7AB0; --accent-ink:#0A0E1A;
+    --bg:#0A0E1A; --bg-2:#0E1322;
+    --hero-tint-1:color-mix(in oklab, var(--accent) 16%, #0A0E1A); --hero-tint-2:#070A12;
+    --surface:#14182B; --surface-2:#1A1F33; --surface-raised:#1A1F33; --surface-sunken:#0E1322;
+    --text:#D4D0C2; --text-2:#9D9A8E; --text-3:#6F6D64;
+    --hairline:rgba(212,208,194,0.12); --hairline-2:rgba(212,208,194,0.07); --hairline-strong:rgba(212,208,194,0.20);
+    --topbar-bg:rgba(10,14,26,0.66);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-promptbook {
+    --accent:#8E99CC; --accent-2:#6E7AB0; --accent-ink:#0A0E1A;
+    --bg:#0A0E1A; --bg-2:#0E1322;
+    --hero-tint-1:color-mix(in oklab, var(--accent) 16%, #0A0E1A); --hero-tint-2:#070A12;
+    --surface:#14182B; --surface-2:#1A1F33; --surface-raised:#1A1F33; --surface-sunken:#0E1322;
+    --text:#D4D0C2; --text-2:#9D9A8E; --text-3:#6F6D64;
+    --hairline:rgba(212,208,194,0.12); --hairline-2:rgba(212,208,194,0.07); --hairline-strong:rgba(212,208,194,0.20);
+    --topbar-bg:rgba(10,14,26,0.66);
+  } }
+
   .pb-t-chatgpt    { --tc:#4A3F2A; } .pb-t-claude     { --tc:#1F4A3A; } .pb-t-gemini { --tc:#3F4D6B; }
   .pb-t-grok       { --tc:#5C2A3F; } .pb-t-midjourney { --tc:#5C3A1F; } .pb-t-other  { --tc:#3F3F3F; }
   :root[data-theme="dark"] .pb-t-chatgpt    { --tc:#A89878; }

@@ -54,6 +54,22 @@
   }
   /* Drive-style folder palette (blue / green / yellow / red / purple / orange) */
   .app-filed { --fl-blue:#2D6CDF; --fl-green:#2FA86A; --fl-yellow:#F2B61E; --fl-red:#E5484D; --fl-purple:#8B5CF6; --fl-orange:#F0883E; }
+  /* Brighter, crisper Drive-style canvas in light (near-white, like the app). */
+  :root[data-theme="light"] body.app-filed {
+    --bg:#FFFFFF; --bg-2:#F3F6FB;
+    --surface:#FFFFFF; --surface-2:#F2F5FA; --surface-raised:#FFFFFF; --surface-sunken:#EDF1F8;
+    --hairline:rgba(16,32,60,0.10); --hairline-2:rgba(16,32,60,0.06); --hairline-strong:rgba(16,32,60,0.16);
+    --topbar-bg:rgba(255,255,255,0.82);
+  }
+  /* Multicolour folder-palette hero wash — Filed's ownable Drive identity (both themes). */
+  body.app-filed .signal-field {
+    background:
+      radial-gradient(42% 34% at 20% 14%, color-mix(in oklab, var(--fl-blue) calc(var(--field-alpha)*125%), transparent) 0%, transparent 70%),
+      radial-gradient(34% 30% at 48% 6%, color-mix(in oklab, var(--fl-green) calc(var(--field-alpha)*95%), transparent) 0%, transparent 72%),
+      radial-gradient(32% 28% at 70% 12%, color-mix(in oklab, var(--fl-yellow) calc(var(--field-alpha)*90%), transparent) 0%, transparent 72%),
+      radial-gradient(40% 34% at 90% 8%, color-mix(in oklab, var(--fl-red) calc(var(--field-alpha)*95%), transparent) 0%, transparent 70%);
+    filter: blur(10px) saturate(122%);
+  }
 
   .fl-app { position: relative; display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 15px 13px; }
   .fl-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
