@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Filed — a calm, private, local-first PDF library for iPhone. Receive PDFs from any app, sort them into colored folders, sign them by hand, and share one or many. English & Arabic. No accounts, no tracking.">
-<meta name="theme-color" content="#F4F7FB">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0A0B0F">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <title>Filed — Your private PDF library</title>
@@ -29,263 +30,117 @@
 <meta name="twitter:image" content="https://saud.im/filed/assets/icon.png">
 <meta name="twitter:image:alt" content="Filed app icon">
 
-<style>
-  /* ─────────────────────────────────────────────────────────────
-     Filed — landing. "Clear Blue": airy blue-tinted canvas, deep
-     navy ink, a confident document-blue accent with multi-color
-     folder dots and a PDF-red detail — drawn from the app icon and
-     its Drive-style UI. Same Saud Apps skeleton (topbar, footer,
-     lang toggle) as the other app pages.
-     ───────────────────────────────────────────────────────────── */
-  :root {
-    --bg: #F4F7FB;           /* airy blue-tinted canvas */
-    --bg-2: #E8EFF9;
-    --surface: #FFFFFF;
-    --surface-2: #F6F9FD;
-    --hairline: rgba(14,33,56,0.10);
-    --hairline-strong: rgba(14,33,56,0.17);
-
-    --ink: #0E2138;          /* deep navy ink */
-    --ink-2: #1C3050;
-    --muted: #5A6B85;
-    --muted-2: #8595AB;
-
-    --accent: #2D6CDF;       /* Filed document blue (app primary) */
-    --accent-2: #5B8DEF;
-    --accent-strong: #2257C0;
-    --accent-soft: #E6EEFC;
-
-    --pdf: #E5484D;          /* PDF-red detail (in-app PDF glyph) */
-    --pdf-soft: #FCE9E9;
-    --green: #1E8E3E;        /* "signed" green */
-    --green-soft: #E4F3E8;
-    --yellow: #E8B400;       /* folder-tab yellow */
-
-    --radius-card: 24px;
-    --radius-tile: 16px;
-    --radius-pill: 999px;
-
-    --shadow-card: 0 1px 2px rgba(14,33,56,0.05), 0 8px 24px rgba(14,33,56,0.08);
-    --shadow-card-hover: 0 2px 4px rgba(14,33,56,0.06), 0 18px 40px rgba(14,33,56,0.13);
-
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  html[dir="rtl"] body { font-family: var(--font-ar); }
-  html[lang="ar"] { line-height: 1.6; }
-  img { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; }
-
-  [data-en], [data-ar] { display: none; }
-  html[lang="en"] [data-en] { display: inline; }
-  html[lang="ar"] [data-ar] { display: inline; }
-
-  .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 20px; }
-
-  /* ── Top bar ─────────────────────────────────────────────── */
-  .topbar {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(244,247,251,0.80);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .topbar-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 48px; max-width: 1040px; margin: 0 auto; padding: 0 20px;
-  }
-  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; font-size: 15px; color: var(--ink); }
-  .brand-mark {
-    width: 24px; height: 24px; border-radius: 6px;
-    background-image: url("assets/icon.png"); background-size: cover; background-position: center;
-    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
-  }
-  .lang-toggle { display: inline-flex; border: 1px solid var(--hairline-strong); border-radius: var(--radius-pill); overflow: hidden; background: var(--surface); }
-  .lang-toggle button { appearance: none; border: 0; background: transparent; padding: 6px 12px; font-size: 13px; font-weight: 600; color: var(--muted); transition: background .15s ease, color .15s ease; }
-  .lang-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-
-  /* ── Hero ────────────────────────────────────────────────── */
-  .hero { padding: 72px 0 40px; text-align: center; }
-  @media (max-width: 640px) { .hero { padding: 52px 0 32px; } }
-  .hero-icon {
-    width: 100px; height: 100px; border-radius: 23px; margin: 0 auto 22px;
-    overflow: hidden; background: var(--surface);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.6), 0 14px 30px -8px rgba(45,108,223,0.40);
-  }
-  .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
-  .hero .eyebrow {
-    display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--accent-strong); margin: 0 0 14px;
-  }
-  html[lang="ar"] .hero .eyebrow { letter-spacing: 0; text-transform: none; }
-  .hero h1 {
-    font-size: clamp(38px, 6vw, 58px); line-height: 1.06; letter-spacing: -0.03em;
-    font-weight: 700; margin: 0 0 18px; color: var(--ink);
-  }
-  html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.25; font-weight: 700; }
-  .hero h1 .tint { color: var(--accent); }
-  .hero p { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin: 0 auto; max-width: 46ch; line-height: 1.55; }
-
-  /* folder dots — echo the icon's multi-color folder tabs */
-  .dots { display: inline-flex; gap: 7px; margin: 0 0 18px; }
-  .dots span { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-  .dots .d1 { background: var(--accent); }
-  .dots .d2 { background: var(--green); }
-  .dots .d3 { background: var(--yellow); }
-  .dots .d4 { background: var(--pdf); }
-
-  /* Buttons */
-  .actions { margin-top: 26px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    height: 46px; padding: 0 20px; border-radius: var(--radius-pill); font-weight: 600;
-    font-size: 15px; letter-spacing: -0.005em; border: 1px solid transparent;
-    transition: transform .12s ease, background .15s ease, border-color .15s ease; white-space: nowrap;
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: var(--accent-strong); }
-  .btn-ghost { background: var(--surface); color: var(--ink-2); border-color: var(--hairline-strong); }
-  .btn-ghost:hover { background: var(--surface-2); }
-  .btn-disabled { background: var(--bg-2); color: var(--muted); border-color: var(--hairline); cursor: default; pointer-events: none; }
-  .btn-disabled .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); display: inline-block; }
-  .btn .ic { width: 16px; height: 16px; flex: 0 0 auto; }
-
-  /* ── Section scaffolding ─────────────────────────────────── */
-  section.block { padding: 28px 0; }
-  .section-title {
-    font-size: 27px; font-weight: 700; letter-spacing: -0.02em;
-    color: var(--ink); margin: 0 0 18px; text-align: center;
-  }
-  html[lang="ar"] .section-title { letter-spacing: 0; }
-
-  /* Feature grid */
-  .features { display: grid; grid-template-columns: 1fr; gap: 14px; }
-  @media (min-width: 720px) { .features { grid-template-columns: 1fr 1fr; gap: 16px; } }
-  .feature {
-    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-tile);
-    padding: 22px; box-shadow: var(--shadow-card);
-  }
-  .feature h3 { font-size: 17px; font-weight: 600; margin: 0 0 6px; color: var(--ink); letter-spacing: -0.01em; }
-  html[lang="ar"] .feature h3 { letter-spacing: 0; }
-  .feature p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
-  .feature .ic {
-    width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
-    display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;
-  }
-  .feature .ic svg { width: 19px; height: 19px; }
-  .feature .ic.pdf { background: var(--pdf-soft); color: var(--pdf); }
-  .feature .ic.sign { background: var(--green-soft); color: var(--green); }
-
-  /* Privacy strip */
-  .privacy-strip { padding: 8px 0 28px; }
-  .privacy-inner {
-    display: flex; align-items: flex-start; gap: 14px;
-    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-tile);
-    padding: 18px 20px; box-shadow: var(--shadow-card); max-width: 760px; margin: 0 auto;
-  }
-  .privacy-inner .ic {
-    width: 38px; height: 38px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
-    display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
-  }
-  .privacy-inner .ic svg { width: 19px; height: 19px; }
-  .privacy-inner .text { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; }
-  .privacy-inner .text b { color: var(--ink); font-weight: 600; }
-  .privacy-inner .text a { color: var(--accent); }
-  .privacy-inner .text a:hover { text-decoration: underline; }
-
-  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
-
-  /* ── Unified Saud Apps footer (compact) ─────────────────────── */
-  .site-footer { border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 32px; padding: 22px 0 26px; }
-  .site-footer .sf-inner { display: flex; flex-direction: column; gap: 12px; }
-  .sf-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
-  .sf-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
-  .sf-brand:hover { text-decoration: none; }
-  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--accent)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
-  .sf-name { font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
-  html[lang="ar"] .sf-name { letter-spacing: 0; }
-  .sf-by { font-size: 13px; color: var(--muted); }
-  .sf-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 13.5px; }
-  .sf-nav a { color: var(--muted); }
-  .sf-nav a:hover { color: var(--ink); text-decoration: none; }
-  .sf-nav .sf-sep { color: var(--hairline-strong); }
-  .sf-base { font-size: 12.5px; color: var(--muted-2); }
-  .sf-base a { color: var(--muted); }
-  .sf-base a:hover { color: var(--ink); }
-  @media (max-width: 640px) { .sf-row { flex-direction: column; align-items: flex-start; gap: 12px; } }
-</style>
+<link rel="stylesheet" href="/assets/saud.css">
+<!-- anti-flash: set theme before first paint -->
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('saudapps-theme');
+      var t = (s === 'light' || s === 'dark') ? s
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('saudapps-lang');
+      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
+    } catch (e) {}
+  })();
+</script>
 </head>
-<body>
+<body class="app-filed">
 
-  <!-- Top bar -->
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
-    <div class="topbar-inner">
+    <div class="wrap topbar-inner">
       <a href="/" class="brand" aria-label="Saud Apps home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-mark" aria-hidden="true">S</span>
         <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
       </a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      <div class="topbar-tools">
+        <div class="seg seg--icon" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          </button>
+          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
+          </button>
+        </div>
+        <div class="seg" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- ── Breadcrumb ──────────────────────────────────────────── -->
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></a>
+      <span class="chev" aria-hidden="true">›</span>
+      <span>Filed</span>
+    </nav>
+  </div>
+
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <section class="hero center" data-reveal>
+    <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="hero-icon"><img src="assets/icon.png" alt="Filed app icon"></div>
-      <span class="eyebrow">
+      <span class="eyebrow hero-eyebrow" style="display:inline-flex">
         <span data-en>Privacy-first · iPhone</span>
         <span data-ar>الخصوصية أولاً · آيفون</span>
       </span>
       <h1>
-        <span data-en>Your PDFs,<br>finally <span class="tint">filed</span>.</span>
-        <span data-ar>ملفات PDF لديك،<br>مرتّبة <span class="tint">أخيرًا</span>.</span>
+        <span data-en>Your PDFs,<br>finally <span class="grad-text">filed</span>.</span>
+        <span data-ar>ملفات PDF لديك،<br>مرتّبة <span class="grad-text">أخيرًا</span>.</span>
       </h1>
-      <p>
+      <p class="hero-lede">
         <span data-en>Filed is a calm, local-first home for your PDFs — receive them from any app, sort them into colored folders, sign them by hand, and send one or many. Everything stays on your iPhone.</span>
         <span data-ar>Filed مساحة هادئة محلية أولاً لملفات PDF — استقبلها من أي تطبيق، ورتّبها في مجلدات ملوّنة، ووقّعها بيدك، وأرسل ملفًا أو عدة ملفات. كل شيء يبقى على جهازك.</span>
       </p>
-      <div class="actions">
+      <div class="hero-actions">
         <span class="btn btn-disabled" aria-disabled="true">
-          <span class="dot" aria-hidden="true"></span>
           <span data-en>Coming soon to the App Store</span>
           <span data-ar>قريبًا على App Store</span>
         </span>
-        <a class="btn btn-ghost" href="privacy/">
-          <span data-en>Privacy <span class="chev">›</span></span>
-          <span data-ar>الخصوصية <span class="chev">›</span></span>
+        <a class="btn btn-ghost" href="/filed/privacy/">
+          <span data-en>Privacy</span><span data-ar>الخصوصية</span>
+          <span class="chev" aria-hidden="true">›</span>
         </a>
+      </div>
+
+      <!-- Branded pre-launch device with folder-dot motif -->
+      <div class="device-wrap" style="margin-top:48px">
+        <div class="device" aria-hidden="true">
+          <span class="island"></span>
+          <div class="screen" style="display:grid;place-items:center;background:linear-gradient(165deg, color-mix(in oklab, var(--accent) 18%, var(--surface)), var(--surface) 70%);">
+            <div style="display:grid;place-items:center;gap:16px;padding:24px;text-align:center">
+              <span style="display:inline-flex;width:88px;height:88px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-md)"><img src="assets/icon.png" alt="" style="width:100%;height:100%;object-fit:cover"></span>
+              <span style="font-weight:680;font-size:22px;letter-spacing:-0.02em;color:var(--text)">Filed</span>
+              <span style="display:inline-flex;gap:8px">
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--accent)"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--accent-2)"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:color-mix(in oklab, var(--accent) 45%, var(--text-3))"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:color-mix(in oklab, var(--accent-2) 55%, var(--surface))"></span>
+              </span>
+              <span class="badge badge--soon"><span class="dot" aria-hidden="true"></span><span data-en>Coming soon</span><span data-ar>قريبًا</span></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="block">
+  <!-- ── Features ────────────────────────────────────────────── -->
+  <section class="section section--tight" data-reveal>
     <div class="wrap">
-      <h2 class="section-title"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></h2>
-      <div class="features">
+      <div class="center">
+        <span class="eyebrow" style="display:inline-flex"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></span>
+        <h2 class="section-title"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></h2>
+      </div>
+
+      <div class="feature-grid cols-3" style="margin-top:32px">
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
           <h3><span data-en>Receive from any app</span><span data-ar>استقبل من أي تطبيق</span></h3>
           <p>
             <span data-en>Send any PDF to Filed straight from the iOS Share Sheet, or import from Files. The file is copied into Filed's own storage on your device.</span>
@@ -294,7 +149,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg></span>
           <h3><span data-en>A library that makes sense</span><span data-ar>مكتبة مرتّبة بمنطق</span></h3>
           <p>
             <span data-en>Organize files into colored sections, switch between list and grid, search by name, and move a file to another section in a tap.</span>
@@ -303,7 +158,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic pdf" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
           <h3><span data-en>Read it clearly</span><span data-ar>اقرأه بوضوح</span></h3>
           <p>
             <span data-en>A clean, full-screen viewer built on Apple's PDFKit — pinch to zoom, page through smoothly, and jump around with page thumbnails.</span>
@@ -312,7 +167,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic sign" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c3-1 5-4 5-7 0-1.5-1-2-2-1.2C4.5 12 4 16 4 19"/><path d="M8 16c2-1 4-2 6-2s2 1 4 1 3-2 2-3"/><path d="M14 5l3 3"/><path d="M15 4l3 3 2-2a1.5 1.5 0 0 0 0-2l-1-1a1.5 1.5 0 0 0-2 0z"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c3-1 5-4 5-7 0-1.5-1-2-2-1.2C4.5 12 4 16 4 19"/><path d="M8 16c2-1 4-2 6-2s2 1 4 1 3-2 2-3"/><path d="M14 5l3 3"/><path d="M15 4l3 3 2-2a1.5 1.5 0 0 0 0-2l-1-1a1.5 1.5 0 0 0-2 0z"/></svg></span>
           <h3><span data-en>Sign by hand</span><span data-ar>وقّع بيدك</span></h3>
           <p>
             <span data-en>Draw your signature right on the page, place and size it where you want, then export a fresh signed copy — all on your device.</span>
@@ -321,7 +176,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span>
           <h3><span data-en>Send one or many</span><span data-ar>أرسل ملفًا أو عدة ملفات</span></h3>
           <p>
             <span data-en>Select several files at once and share them together through the Share Sheet, or export them out to the Files app.</span>
@@ -330,7 +185,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
           <h3><span data-en>Private by design</span><span data-ar>خاص بالتصميم</span></h3>
           <p>
             <span data-en>Everything is local-first, with an optional Face ID / Touch ID lock. Filed is fully bilingual — English and Arabic with right-to-left — and supports dark mode.</span>
@@ -342,64 +197,49 @@
     </div>
   </section>
 
-  <!-- Privacy strip -->
-  <section class="privacy-strip">
+  <!-- ── Privacy strip ───────────────────────────────────────── -->
+  <section class="section--tight" data-reveal>
     <div class="wrap">
-      <div class="privacy-inner">
-        <span class="ic" aria-hidden="true">
+      <div class="trust">
+        <span class="t-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
         </span>
-        <span class="text">
-          <span data-en>Filed is <b>local-first</b>. Your PDFs, signed copies, and the sections you create are stored only on your device — no accounts, no servers, no tracking. Read the <a href="privacy/">Privacy Policy</a> and <a href="terms/">Terms of Use</a>.</span>
-          <span data-ar>تطبيق Filed <b>محلي أولاً</b>. تُحفظ ملفات PDF ونسخك الموقّعة والأقسام التي تنشئها على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="privacy/">سياسة الخصوصية</a> و<a href="terms/">شروط الاستخدام</a>.</span>
-        </span>
+        <div class="t-text">
+          <p>
+            <span data-en>Filed is <b>local-first</b>. Your PDFs, signed copies, and the sections you create are stored only on your device — no accounts, no servers, no tracking. Read the <a href="/filed/privacy/">Privacy Policy</a> and <a href="/filed/terms/">Terms of Use</a>.</span>
+            <span data-ar>تطبيق Filed <b>محلي أولاً</b>. تُحفظ ملفات PDF ونسخك الموقّعة والأقسام التي تنشئها على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="/filed/privacy/">سياسة الخصوصية</a> و<a href="/filed/terms/">شروط الاستخدام</a>.</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ── Footer ──────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-row">
+      <div class="sf-bar">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
-          <span class="sf-mark" aria-hidden="true">S</span>
+          <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
-          <span class="sf-by"><span data-en>· by Saud Ismail</span><span data-ar>· تطوير سعود إسماعيل</span></span>
         </a>
-        <nav class="sf-nav" aria-label="Footer">
+        <nav class="sf-links" aria-label="Footer">
           <a href="/sshift/">SShift</a>
           <a href="/phonespace/">PhoneSpace</a>
           <a href="/promptbook/">Promptbook</a>
           <a href="/filed/">Filed</a>
-          <span class="sf-sep" aria-hidden="true">·</span>
+          <span class="sf-dot" aria-hidden="true"></span>
           <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
           <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base"><span data-en>© 2026 Saud Apps · </span><span data-ar>© 2026 تطبيقات سعود · </span><a href="mailto:support@saud.im">support@saud.im</a></div>
+      <div class="sf-base">
+        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+        <a href="mailto:support@saud.im">support@saud.im</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const html = document.documentElement;
-      const btns = document.querySelectorAll('[data-lang-btn]');
-      function setLang(lang) {
-        html.setAttribute('lang', lang);
-        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
-        try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
-      }
-      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
-      let initial = 'en';
-      try {
-        const saved = localStorage.getItem('saudapps-lang');
-        if (saved === 'en' || saved === 'ar') initial = saved;
-        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
-      } catch (e) {}
-      setLang(initial);
-    })();
-  </script>
+  <script src="/assets/saud.js" defer></script>
 </body>
 </html>

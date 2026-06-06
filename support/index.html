@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Saud Apps support. Contact, common topics, and help.">
-<meta name="theme-color" content="#F5F5F7">
-<link rel="icon" type="image/png" href="../assets/saudapps-favicon.png">
-<link rel="apple-touch-icon" href="../assets/saudapps-favicon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0A0B0F">
+<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>Saud Apps — Support</title>
 
 <link rel="canonical" href="https://saud.im/support/">
@@ -29,741 +30,318 @@
 <meta name="twitter:image" content="https://saud.im/assets/saudapps-favicon.png">
 <meta name="twitter:image:alt" content="Saud Apps icon">
 
-<style>
-  /* ─────────────────────────────────────────────────────────────
-     Saud Apps — Support. Same tokens as the SShift landing.
-     Utility page: contact card, FAQ, app cross-links.
-     ───────────────────────────────────────────────────────────── */
-  :root {
-    --bg: #F5F5F7;
-    --surface: #FFFFFF;
-    --surface-2: #FAFAFA;
-    --hairline: rgba(60,60,67,0.12);
-    --hairline-strong: rgba(60,60,67,0.18);
-
-    --ink: #0A0A0A;
-    --ink-2: #1D1D1F;
-    --muted: #6E6E73;
-    --muted-2: #86868B;
-
-    --blue: #0066FF;
-    --blue-soft: #E6F0FF;
-    --green: #34C759;
-    --green-soft: #E8F5EC;
-
-    --radius-card: 22px;
-    --radius-tile: 16px;
-    --radius-pill: 999px;
-
-    --shadow-card: 0 1px 2px rgba(16,24,40,0.04), 0 8px 24px rgba(16,24,40,0.06);
-
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  html[dir="rtl"] body { font-family: var(--font-ar); }
-  html[lang="ar"] { line-height: 1.7; }
-  img { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; }
-
-  [data-en], [data-ar] { display: none; }
-  html[lang="en"] [data-en] { display: inline; }
-  html[lang="ar"] [data-ar] { display: inline; }
-
-  .wrap {
-    width: 100%;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  /* Top bar */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(245,245,247,0.78);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .topbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 48px;
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    font-size: 15px;
-    color: var(--ink);
-  }
-  .brand-monogram {
-    width: 24px; height: 24px;
-    border-radius: 6px;
-    background: linear-gradient(135deg, #0A0A0A, #2C2C2E);
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .lang-toggle {
-    display: inline-flex;
-    border: 1px solid var(--hairline-strong);
-    border-radius: var(--radius-pill);
-    overflow: hidden;
-    background: var(--surface);
-  }
-  .lang-toggle button {
-    appearance: none;
-    border: 0;
-    background: transparent;
-    padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    transition: background .15s ease, color .15s ease;
-  }
-  .lang-toggle button[aria-pressed="true"] {
-    background: var(--ink);
-    color: #fff;
-  }
-
-  /* Page head */
-  .page-head { padding: 64px 0 28px; text-align: center; }
-  @media (max-width: 640px) { .page-head { padding: 48px 0 22px; } }
-
-  .crumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 14px;
-  }
-  .crumb a { color: var(--muted); }
-  .crumb a:hover { color: var(--ink); }
-  html[dir="rtl"] .crumb .sep { transform: scaleX(-1); display: inline-block; }
-
-  .page-head h1 {
-    font-size: clamp(34px, 5vw, 48px);
-    line-height: 1.1;
-    letter-spacing: -0.025em;
-    font-weight: 700;
-    margin: 0 0 10px;
-    color: var(--ink);
-  }
-  html[lang="ar"] .page-head h1 { letter-spacing: 0; line-height: 1.2; }
-  .page-head .sub {
-    color: var(--muted);
-    font-size: 17px;
-    margin: 0;
-  }
-
-  /* Contact card */
-  .contact-card {
-    margin: 8px auto 40px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-card);
-    padding: 24px 26px;
-    box-shadow: var(--shadow-card);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px;
-    align-items: center;
-  }
-  @media (max-width: 600px) {
-    .contact-card { grid-template-columns: 1fr; padding: 22px; }
-  }
-  .contact-text .label {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted-2);
-    margin: 0 0 6px;
-  }
-  html[lang="ar"] .contact-text .label { letter-spacing: 0; text-transform: none; }
-  .contact-text h2 {
-    font-size: 22px;
-    margin: 0 0 4px;
-    letter-spacing: -0.015em;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  html[lang="ar"] .contact-text h2 { letter-spacing: 0; }
-  .contact-text p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 14.5px;
-  }
-  .contact-text p .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 3px 9px;
-    border-radius: var(--radius-pill);
-    background: var(--green-soft);
-    color: #1F7A3A;
-    font-size: 12px;
-    font-weight: 600;
-    margin-left: 6px;
-    border: 1px solid rgba(31,122,58,0.18);
-  }
-  html[dir="rtl"] .contact-text p .pill { margin-left: 0; margin-right: 6px; }
-  .contact-text p .pill .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green);
-    display: inline-block;
-  }
-
-  /* Button */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 46px;
-    padding: 0 20px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.005em;
-    transition: transform .12s ease, background .15s ease, color .15s ease, border-color .15s ease;
-    border: 1px solid transparent;
-    white-space: nowrap;
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--ink); color: #fff; }
-  .btn-primary:hover { background: #2C2C2E; }
-  .btn-ghost {
-    background: var(--surface);
-    color: var(--ink-2);
-    border-color: var(--hairline-strong);
-  }
-  .btn-ghost:hover { background: #FBFBFD; }
-  .btn .ic { width: 16px; height: 16px; flex: 0 0 auto; }
-
-  /* Section title */
-  .section-title-row {
-    margin: 16px 0 14px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .section-title-row h2 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0;
-    color: var(--ink-2);
-  }
-  html[lang="ar"] .section-title-row h2 { letter-spacing: 0; }
-  .section-title-row .meta {
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  /* FAQ list */
-  .faq {
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    margin-bottom: 40px;
-    overflow: hidden;
-  }
-  .faq details {
-    border-bottom: 1px solid var(--hairline);
-  }
-  .faq details:last-child { border-bottom: 0; }
-  .faq summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 20px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink-2);
-    letter-spacing: -0.005em;
-    user-select: none;
-  }
-  html[lang="ar"] .faq summary { letter-spacing: 0; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq summary:hover { background: #FBFBFD; }
-  .faq .indicator {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--bg);
-    color: var(--muted);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    transition: transform .2s ease, background .2s ease, color .2s ease;
-  }
-  .faq .indicator svg { width: 12px; height: 12px; }
-  .faq details[open] .indicator {
-    background: var(--ink);
-    color: #fff;
-    transform: rotate(180deg);
-  }
-  .faq .answer {
-    padding: 0 22px 22px;
-    color: var(--ink-2);
-    font-size: 15.5px;
-    line-height: 1.6;
-  }
-  html[lang="ar"] .faq .answer { line-height: 1.8; }
-  .faq .answer p { margin: 0; max-width: 64ch; }
-  .faq .answer p + p { margin-top: 8px; }
-  .faq .answer code,
-  .faq .answer .kbd {
-    font: inherit;
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 6px;
-    padding: 1px 7px;
-    font-size: 14px;
-    color: var(--ink-2);
-    white-space: nowrap;
-  }
-
-  /* App links row */
-  .apps-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 40px;
-  }
-  @media (max-width: 600px) { .apps-row { grid-template-columns: 1fr; } }
-
-  .app-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 18px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 18px;
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    box-shadow: var(--shadow-card);
-  }
-  .app-link:hover { transform: translateY(-2px); border-color: var(--hairline-strong); }
-  .app-link .app-ic {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    overflow: hidden;
-    flex: 0 0 auto;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
-  }
-  .app-link .app-ic img { width: 100%; height: 100%; object-fit: cover; }
-  .app-link .app-name {
-    font-weight: 600;
-    color: var(--ink-2);
-    font-size: 15px;
-    letter-spacing: -0.005em;
-  }
-  .app-link .app-sub {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 2px;
-    display: block;
-  }
-  .app-link .arrow {
-    margin-left: auto;
-    color: var(--muted-2);
-    flex: 0 0 auto;
-  }
-  html[dir="rtl"] .app-link .arrow {
-    margin-left: 0;
-    margin-right: auto;
-    transform: scaleX(-1);
-  }
-  .app-link .arrow svg { width: 18px; height: 18px; }
-
-  /* Footer */
-  footer {
-    padding: 32px 0 56px;
-    border-top: 1px solid var(--hairline);
-    margin-top: 8px;
-    background: var(--bg);
-  }
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    color: var(--muted-2);
-    font-size: 13px;
-  }
-  .footer-inner a { color: var(--muted); }
-  .footer-inner a:hover { color: var(--ink); }
-
-  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; }
-  }
-
-  /* ── Unified Saud Apps footer (compact) ─────────────────────── */
-  .site-footer { border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 32px; padding: 22px 0 26px; }
-  .site-footer .sf-inner { display: flex; flex-direction: column; gap: 12px; }
-  .sf-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
-  .sf-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
-  .sf-brand:hover { text-decoration: none; }
-  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--muted)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
-  .sf-name { font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
-  html[lang="ar"] .sf-name { letter-spacing: 0; }
-  .sf-by { font-size: 13px; color: var(--muted); }
-  .sf-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 13.5px; }
-  .sf-nav a { color: var(--muted); }
-  .sf-nav a:hover { color: var(--ink); text-decoration: none; }
-  .sf-nav .sf-sep { color: var(--hairline-strong); }
-  .sf-base { font-size: 12.5px; color: var(--muted-2); }
-  .sf-base a { color: var(--muted); }
-  .sf-base a:hover { color: var(--ink); }
-  @media (max-width: 640px) { .sf-row { flex-direction: column; align-items: flex-start; gap: 12px; } }
-</style>
+<link rel="stylesheet" href="/assets/saud.css">
+<!-- anti-flash: set theme before first paint -->
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('saudapps-theme');
+      var t = (s === 'light' || s === 'dark') ? s
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('saudapps-lang');
+      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
+    } catch (e) {}
+  })();
+</script>
 </head>
-<body>
+<body class="app-home">
 
-  <!-- Top bar -->
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
-    <div class="topbar-inner">
-      <a href="../" class="brand" aria-label="Saud Apps home">
-        <span class="brand-monogram" aria-hidden="true">S</span>
+    <div class="wrap topbar-inner">
+      <a href="/" class="brand" aria-label="Saud Apps home">
+        <span class="brand-mark" aria-hidden="true">S</span>
         <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
+        <nav class="topbar-nav" aria-label="Primary">
+          <a href="/#apps"><span data-en>Apps</span><span data-ar>التطبيقات</span></a>
+          <a href="/#approach"><span data-en>Approach</span><span data-ar>المنهج</span></a>
+          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        </nav>
       </a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      <div class="topbar-tools">
+        <div class="seg seg--icon" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          </button>
+          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
+          </button>
+        </div>
+        <div class="seg" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Page head -->
-  <div class="page-head">
-    <div class="wrap">
-      <nav class="crumb" aria-label="Breadcrumb">
-        <a href="../"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></a>
-        <span class="sep" aria-hidden="true">›</span>
-        <span><span data-en>Support</span><span data-ar>الدعم</span></span>
-      </nav>
-      <h1>
+  <!-- ── Breadcrumb ──────────────────────────────────────────── -->
+  <nav class="wrap wrap--narrow crumb" aria-label="Breadcrumb">
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+    <span class="chev" aria-hidden="true">›</span>
+    <span><span data-en>Support</span><span data-ar>الدعم</span></span>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <section class="hero" data-reveal>
+    <div class="signal-field" aria-hidden="true"></div>
+    <div class="wrap wrap--narrow">
+      <span class="eyebrow hero-eyebrow">
         <span data-en>Support</span>
         <span data-ar>الدعم</span>
-      </h1>
-      <p class="sub">
+      </span>
+      <h1>
         <span data-en>We're happy to help.</span>
         <span data-ar>نحن هنا للمساعدة.</span>
+      </h1>
+      <p class="hero-lede">
+        <span data-en>Contact, common topics, and help for SShift and PhoneSpace.</span>
+        <span data-ar>التواصل والمواضيع الشائعة والمساعدة لـ SShift و PhoneSpace.</span>
       </p>
     </div>
-  </div>
+  </section>
 
-  <main class="wrap">
+  <main>
 
-    <!-- Contact -->
-    <section class="contact-card">
-      <div class="contact-text">
-        <div class="label"><span data-en>Contact</span><span data-ar>التواصل</span></div>
-        <h2>support@saud.im</h2>
-        <p>
-          <span data-en>Response time</span><span data-ar>وقت الاستجابة</span>:
-          <span class="pill">
-            <span class="dot" aria-hidden="true"></span>
-            <span data-en>Usually 24–48 hours</span>
-            <span data-ar>عادةً 24–48 ساعة</span>
+    <!-- ── Contact ────────────────────────────────────────────── -->
+    <section class="section--tight" data-reveal>
+      <div class="wrap wrap--narrow">
+        <div class="trust">
+          <span class="t-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           </span>
-        </p>
+          <div class="t-text">
+            <strong>support@saud.im</strong>
+            <p>
+              <span data-en>Response time</span><span data-ar>وقت الاستجابة</span>:
+              <span class="badge badge--live">
+                <span class="dot" aria-hidden="true"></span>
+                <span data-en>Usually 24–48 hours</span>
+                <span data-ar>عادةً 24–48 ساعة</span>
+              </span>
+            </p>
+          </div>
+          <a class="btn btn-primary" href="mailto:support@saud.im">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span data-en>Email us</span>
+            <span data-ar>راسلنا</span>
+          </a>
+        </div>
       </div>
-      <a class="btn btn-primary" href="mailto:support@saud.im">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-        <span data-en>Email us</span>
-        <span data-ar>راسلنا</span>
-      </a>
     </section>
 
-    <!-- FAQ — SShift -->
-    <div class="section-title-row">
-      <h2><span data-en>SShift</span><span data-ar>SShift</span></h2>
-      <span class="meta"><span data-en>Common topics</span><span data-ar>المواضيع الشائعة</span></span>
-    </div>
+    <!-- ── FAQ — SShift ───────────────────────────────────────── -->
+    <section class="section--tight" aria-label="SShift common topics" data-reveal>
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow"><span data-en>SShift · Common topics</span><span data-ar>SShift · المواضيع الشائعة</span></span>
+        <h2 class="section-title"><span data-en>SShift</span><span data-ar>SShift</span></h2>
 
-    <section class="faq" aria-label="SShift common topics">
+        <div style="margin-top:24px">
+          <details class="faq">
+            <summary>
+              <span><span data-en>How do I export my schedule?</span><span data-ar>كيف أصدّر جدولي؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">Go to <b>Settings</b> → <b>PDF Export</b>. Choose a date range, then tap <b>Export PDF</b>.</p>
+              <p data-ar class="blk">اذهب إلى <b>الإعدادات</b> ← <b>تصدير PDF</b>. اختر نطاق التاريخ، ثم اضغط <b>تصدير PDF</b>.</p>
+            </div>
+          </details>
 
-      <details>
-        <summary>
-          <span><span data-en>How do I export my schedule?</span><span data-ar>كيف أصدّر جدولي؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>Go to <span class="kbd">Settings</span> → <span class="kbd">PDF Export</span>. Choose a date range, then tap <b>Export PDF</b>.</p>
-          <p data-ar>اذهب إلى <span class="kbd">الإعدادات</span> ← <span class="kbd">تصدير PDF</span>. اختر نطاق التاريخ، ثم اضغط <b>تصدير PDF</b>.</p>
+          <details class="faq">
+            <summary>
+              <span><span data-en>How do I switch the app language?</span><span data-ar>كيف أبدّل لغة التطبيق؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk"><b>Settings</b> → <b>Language</b>. The app supports English and Arabic.</p>
+              <p data-ar class="blk"><b>الإعدادات</b> ← <b>اللغة</b>. يدعم التطبيق الإنجليزية والعربية.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>How do I restore from a backup?</span><span data-ar>كيف أستعيد من نسخة احتياطية؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk"><b>Settings</b> → <b>Backup &amp; Restore</b>. Choose your <code>.json</code> backup file.</p>
+              <p data-ar class="blk"><b>الإعدادات</b> ← <b>النسخ الاحتياطي والاستعادة</b>. اختر ملف النسخة الاحتياطية <code>.json</code>.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>Why don't I see notifications?</span><span data-ar>لماذا لا أرى الإشعارات؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">Check <b>Settings</b> → <b>Notifications</b> inside the app, then <b>iOS Settings</b> → <b>SShift</b> → <b>Notifications</b>.</p>
+              <p data-ar class="blk">تحقق من <b>الإعدادات</b> ← <b>الإشعارات</b> داخل التطبيق، ثم <b>إعدادات iOS</b> ← <b>SShift</b> ← <b>الإشعارات</b>.</p>
+            </div>
+          </details>
         </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>How do I switch the app language?</span><span data-ar>كيف أبدّل لغة التطبيق؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en><span class="kbd">Settings</span> → <span class="kbd">Language</span>. The app supports English and Arabic.</p>
-          <p data-ar><span class="kbd">الإعدادات</span> ← <span class="kbd">اللغة</span>. يدعم التطبيق الإنجليزية والعربية.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>How do I restore from a backup?</span><span data-ar>كيف أستعيد من نسخة احتياطية؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en><span class="kbd">Settings</span> → <span class="kbd">Backup &amp; Restore</span>. Choose your <code>.json</code> backup file.</p>
-          <p data-ar><span class="kbd">الإعدادات</span> ← <span class="kbd">النسخ الاحتياطي والاستعادة</span>. اختر ملف النسخة الاحتياطية <code>.json</code>.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>Why don't I see notifications?</span><span data-ar>لماذا لا أرى الإشعارات؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>Check <span class="kbd">Settings</span> → <span class="kbd">Notifications</span> inside the app, then <span class="kbd">iOS Settings</span> → <span class="kbd">SShift</span> → <span class="kbd">Notifications</span>.</p>
-          <p data-ar>تحقق من <span class="kbd">الإعدادات</span> ← <span class="kbd">الإشعارات</span> داخل التطبيق، ثم <span class="kbd">إعدادات iOS</span> ← <span class="kbd">SShift</span> ← <span class="kbd">الإشعارات</span>.</p>
-        </div>
-      </details>
-
+      </div>
     </section>
 
-    <!-- FAQ — PhoneSpace -->
-    <div class="section-title-row">
-      <h2><span data-en>PhoneSpace</span><span data-ar>PhoneSpace</span></h2>
-      <span class="meta"><span data-en>Common topics</span><span data-ar>المواضيع الشائعة</span></span>
-    </div>
+    <!-- ── FAQ — PhoneSpace ───────────────────────────────────── -->
+    <section class="section--tight" aria-label="PhoneSpace common topics" data-reveal>
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow"><span data-en>PhoneSpace · Common topics</span><span data-ar>PhoneSpace · المواضيع الشائعة</span></span>
+        <h2 class="section-title"><span data-en>PhoneSpace</span><span data-ar>PhoneSpace</span></h2>
 
-    <section class="faq" aria-label="PhoneSpace common topics">
+        <div style="margin-top:24px">
+          <details class="faq">
+            <summary>
+              <span><span data-en>Why does PhoneSpace need Photos access?</span><span data-ar>لماذا يحتاج PhoneSpace إلى صلاحية الصور؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">PhoneSpace needs Photos access to scan your library locally for duplicates, large files, screenshots, and similar items. Scanning happens entirely on your iPhone — nothing is uploaded.</p>
+              <p data-ar class="blk">يحتاج PhoneSpace إلى صلاحية الصور لفحص مكتبتك محلياً بحثاً عن التكرارات والملفات الكبيرة ولقطات الشاشة والمتشابهات. كل الفحص يجري على جهازك — ولا يُرفع أي شيء.</p>
+            </div>
+          </details>
 
-      <details>
-        <summary>
-          <span><span data-en>Why does PhoneSpace need Photos access?</span><span data-ar>لماذا يحتاج PhoneSpace إلى صلاحية الصور؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>PhoneSpace needs Photos access to scan your library locally for duplicates, large files, screenshots, and similar items. Scanning happens entirely on your iPhone — nothing is uploaded.</p>
-          <p data-ar>يحتاج PhoneSpace إلى صلاحية الصور لفحص مكتبتك محلياً بحثاً عن التكرارات والملفات الكبيرة ولقطات الشاشة والمتشابهات. كل الفحص يجري على جهازك — ولا يُرفع أي شيء.</p>
+          <details class="faq">
+            <summary>
+              <span><span data-en>Are my photos or videos uploaded?</span><span data-ar>هل تُرفع صوري أو مقاطعي؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">No. PhoneSpace runs entirely on-device. Your photos, videos, contacts, and files never leave your iPhone.</p>
+              <p data-ar class="blk">لا. يعمل PhoneSpace بالكامل على جهازك. صورك ومقاطعك وجهات اتصالك وملفاتك لا تغادر هاتفك.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>How does the daily free limit work?</span><span data-ar>كيف يعمل الحدّ اليومي للنسخة المجانية؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">Some features on the free tier have a daily limit. The counter resets at the start of each new day. Premium and the Cleanup Pack remove these limits.</p>
+              <p data-ar class="blk">بعض ميزات النسخة المجانية لها حدّ يومي. يُصفَّر العدّاد مع بداية كل يوم جديد. النسخة المدفوعة و"حزمة التنظيف" تُزيل هذه الحدود.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>What does PhoneSpace Premium unlock?</span><span data-ar>ماذا تفتح نسخة PhoneSpace المدفوعة؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">Premium removes the daily free-tier limits across the app. It's available as a <b>monthly</b> subscription (<code>$4.99/mo</code>), a <b>yearly</b> subscription (<code>$29.99/yr</code>, with a 7-day free trial), or a one-time <b>Lifetime</b> purchase (<code>$59.99</code>).</p>
+              <p data-ar class="blk">تُزيل النسخة المدفوعة الحدود اليومية للنسخة المجانية في كل التطبيق. وهي متاحة كاشتراك <b>شهري</b> (<code>$4.99/شهرياً</code>)، أو اشتراك <b>سنوي</b> (<code>$29.99/سنوياً</code>، مع تجربة مجانية لـ 7 أيام)، أو شراء <b>مدى الحياة</b> لمرة واحدة (<code>$59.99</code>).</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>What is the Cleanup Pack?</span><span data-ar>ما هي "حزمة التنظيف"؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">The Cleanup Pack is a one-time purchase (<code>$4.99</code>) that grants 7 days of unlimited access. It does not auto-renew. Buying it while one is still active extends the expiry by 7 days from the current expiry.</p>
+              <p data-ar class="blk">"حزمة التنظيف" شراء لمرة واحدة (<code>$4.99</code>) يمنحك 7 أيام من الاستخدام غير المحدود. لا تُجدَّد تلقائياً. شراؤها أثناء سريان حزمة أخرى يُمدّد تاريخ الانتهاء 7 أيام إضافية من التاريخ الحالي.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>How do I restore purchases?</span><span data-ar>كيف أستعيد مشترياتي؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">Open <b>Settings</b> inside PhoneSpace and tap <b>Restore Purchases</b>. Make sure you're signed in with the same Apple ID you used for the original purchase.</p>
+              <p data-ar class="blk">افتح <b>الإعدادات</b> داخل PhoneSpace ثم اضغط <b>استعادة المشتريات</b>. تأكد من استخدام نفس حساب Apple الذي اشتريت به.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>How do I cancel a subscription?</span><span data-ar>كيف ألغي الاشتراك؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk"><b>iOS Settings</b> → <b>Your Name</b> → <b>Subscriptions</b> → <b>PhoneSpace</b> → <b>Cancel</b>. Cancelling stops future renewals; it does not refund the current billing period.</p>
+              <p data-ar class="blk"><b>إعدادات iOS</b> ← <b>اسمك</b> ← <b>الاشتراكات</b> ← <b>PhoneSpace</b> ← <b>إلغاء</b>. الإلغاء يوقف التجديدات القادمة فقط، ولا يُرجع المبلغ عن الفترة الحالية.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>
+              <span><span data-en>How do refunds work?</span><span data-ar>كيف تعمل عمليات استرداد المبلغ؟</span></span>
+              <span class="q-chev chev" aria-hidden="true">›</span>
+            </summary>
+            <div class="faq-body">
+              <p data-en class="blk">All purchases are processed by Apple. Refund requests are handled through <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. We can't issue refunds directly.</p>
+              <p data-ar class="blk">كل المشتريات تتمّ عبر Apple. تُقدَّم طلبات استرداد المبلغ عبر <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. لا يمكننا إصدار استرداد مباشرة.</p>
+            </div>
+          </details>
         </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>Are my photos or videos uploaded?</span><span data-ar>هل تُرفع صوري أو مقاطعي؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>No. PhoneSpace runs entirely on-device. Your photos, videos, contacts, and files never leave your iPhone.</p>
-          <p data-ar>لا. يعمل PhoneSpace بالكامل على جهازك. صورك ومقاطعك وجهات اتصالك وملفاتك لا تغادر هاتفك.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>How does the daily free limit work?</span><span data-ar>كيف يعمل الحدّ اليومي للنسخة المجانية؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>Some features on the free tier have a daily limit. The counter resets at the start of each new day. Premium and the Cleanup Pack remove these limits.</p>
-          <p data-ar>بعض ميزات النسخة المجانية لها حدّ يومي. يُصفَّر العدّاد مع بداية كل يوم جديد. النسخة المدفوعة و"حزمة التنظيف" تُزيل هذه الحدود.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>What does PhoneSpace Premium unlock?</span><span data-ar>ماذا تفتح نسخة PhoneSpace المدفوعة؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>Premium removes the daily free-tier limits across the app. It's available as a <b>monthly</b> subscription (<span class="kbd">$4.99/mo</span>), a <b>yearly</b> subscription (<span class="kbd">$29.99/yr</span>, with a 7-day free trial), or a one-time <b>Lifetime</b> purchase (<span class="kbd">$59.99</span>).</p>
-          <p data-ar>تُزيل النسخة المدفوعة الحدود اليومية للنسخة المجانية في كل التطبيق. وهي متاحة كاشتراك <b>شهري</b> (<span class="kbd">$4.99/شهرياً</span>)، أو اشتراك <b>سنوي</b> (<span class="kbd">$29.99/سنوياً</span>، مع تجربة مجانية لـ 7 أيام)، أو شراء <b>مدى الحياة</b> لمرة واحدة (<span class="kbd">$59.99</span>).</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>What is the Cleanup Pack?</span><span data-ar>ما هي "حزمة التنظيف"؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>The Cleanup Pack is a one-time purchase (<span class="kbd">$4.99</span>) that grants 7 days of unlimited access. It does not auto-renew. Buying it while one is still active extends the expiry by 7 days from the current expiry.</p>
-          <p data-ar>"حزمة التنظيف" شراء لمرة واحدة (<span class="kbd">$4.99</span>) يمنحك 7 أيام من الاستخدام غير المحدود. لا تُجدَّد تلقائياً. شراؤها أثناء سريان حزمة أخرى يُمدّد تاريخ الانتهاء 7 أيام إضافية من التاريخ الحالي.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>How do I restore purchases?</span><span data-ar>كيف أستعيد مشترياتي؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>Open <span class="kbd">Settings</span> inside PhoneSpace and tap <b>Restore Purchases</b>. Make sure you're signed in with the same Apple ID you used for the original purchase.</p>
-          <p data-ar>افتح <span class="kbd">الإعدادات</span> داخل PhoneSpace ثم اضغط <b>استعادة المشتريات</b>. تأكد من استخدام نفس حساب Apple الذي اشتريت به.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>How do I cancel a subscription?</span><span data-ar>كيف ألغي الاشتراك؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en><span class="kbd">iOS Settings</span> → <span class="kbd">Your Name</span> → <span class="kbd">Subscriptions</span> → <span class="kbd">PhoneSpace</span> → <b>Cancel</b>. Cancelling stops future renewals; it does not refund the current billing period.</p>
-          <p data-ar><span class="kbd">إعدادات iOS</span> ← <span class="kbd">اسمك</span> ← <span class="kbd">الاشتراكات</span> ← <span class="kbd">PhoneSpace</span> ← <b>إلغاء</b>. الإلغاء يوقف التجديدات القادمة فقط، ولا يُرجع المبلغ عن الفترة الحالية.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span><span data-en>How do refunds work?</span><span data-ar>كيف تعمل عمليات استرداد المبلغ؟</span></span>
-          <span class="indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="answer">
-          <p data-en>All purchases are processed by Apple. Refund requests are handled through <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. We can't issue refunds directly.</p>
-          <p data-ar>كل المشتريات تتمّ عبر Apple. تُقدَّم طلبات استرداد المبلغ عبر <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. لا يمكننا إصدار استرداد مباشرة.</p>
-        </div>
-      </details>
-
+      </div>
     </section>
 
-    <!-- App cross-links -->
-    <div class="section-title-row">
-      <h2><span data-en>Apps</span><span data-ar>التطبيقات</span></h2>
-    </div>
-    <section class="apps-row">
-      <a class="app-link" href="../sshift/">
-        <span class="app-ic"><img src="../sshift/assets/icon.png" alt=""></span>
-        <span>
-          <span class="app-name">SShift</span>
-          <span class="app-sub"><span data-en>Shift Calendar</span><span data-ar>تقويم المناوبات</span></span>
-        </span>
-        <span class="arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </span>
-      </a>
-      <a class="app-link" href="../phonespace/">
-        <span class="app-ic"><img src="../assets/icon-phonespace.png" alt=""></span>
-        <span>
-          <span class="app-name">PhoneSpace</span>
-          <span class="app-sub"><span data-en>Storage Cleaner</span><span data-ar>منظّف التخزين</span></span>
-        </span>
-        <span class="arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </span>
-      </a>
+    <!-- ── App cross-links ────────────────────────────────────── -->
+    <section class="section--tight" aria-label="Apps" data-reveal>
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow"><span data-en>Apps</span><span data-ar>التطبيقات</span></span>
+        <h2 class="section-title"><span data-en>Apps</span><span data-ar>التطبيقات</span></h2>
+        <div class="list-card" style="margin-top:24px">
+          <a class="list-row" href="/sshift/">
+            <span class="lr-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+            </span>
+            <span class="lr-text">
+              <span class="lr-title">SShift</span>
+              <span class="lr-sub"><span data-en>Shift Calendar</span><span data-ar>تقويم المناوبات</span></span>
+            </span>
+            <span class="lr-chev chev" aria-hidden="true">›</span>
+          </a>
+          <a class="list-row" href="/phonespace/">
+            <span class="lr-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+            </span>
+            <span class="lr-text">
+              <span class="lr-title">PhoneSpace</span>
+              <span class="lr-sub"><span data-en>Storage Cleaner</span><span data-ar>منظّف التخزين</span></span>
+            </span>
+            <span class="lr-chev chev" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-    <footer class="site-footer">
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-row">
+      <div class="sf-bar">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
-          <span class="sf-mark" aria-hidden="true">S</span>
+          <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
-          <span class="sf-by"><span data-en>· by Saud Ismail</span><span data-ar>· تطوير سعود إسماعيل</span></span>
         </a>
-        <nav class="sf-nav" aria-label="Footer">
+        <nav class="sf-links" aria-label="Footer">
           <a href="/sshift/">SShift</a>
           <a href="/phonespace/">PhoneSpace</a>
           <a href="/promptbook/">Promptbook</a>
           <a href="/filed/">Filed</a>
-          <span class="sf-sep" aria-hidden="true">·</span>
+          <span class="sf-dot" aria-hidden="true"></span>
           <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
           <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base"><span data-en>© 2026 Saud Apps · </span><span data-ar>© 2026 تطبيقات سعود · </span><a href="mailto:support@saud.im">support@saud.im</a></div>
+      <div class="sf-base">
+        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+        <a href="mailto:support@saud.im">support@saud.im</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const html = document.documentElement;
-      const btns = document.querySelectorAll('[data-lang-btn]');
-      function setLang(lang) {
-        html.setAttribute('lang', lang);
-        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
-        try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
-      }
-      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
-
-      let initial = 'en';
-      try {
-        const saved = localStorage.getItem('saudapps-lang');
-        if (saved === 'en' || saved === 'ar') initial = saved;
-        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
-      } catch (e) {}
-      setLang(initial);
-    })();
-  </script>
+  <script src="/assets/saud.js" defer></script>
 </body>
 </html>
