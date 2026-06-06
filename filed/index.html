@@ -6,8 +6,8 @@
 <meta name="description" content="Filed — a calm, private, local-first PDF library for iPhone. Receive PDFs from any app, sort them into colored folders, sign them by hand, and share one or many. English & Arabic. No accounts, no tracking.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#0A0B0F">
-<link rel="icon" type="image/png" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>Filed — Your private PDF library</title>
 
 <link rel="canonical" href="https://saud.im/filed/">
@@ -20,14 +20,14 @@
 <meta property="og:url" content="https://saud.im/filed/">
 <meta property="og:title" content="Filed — Your private PDF library">
 <meta property="og:description" content="A calm, local-first home for your PDFs. Receive, organize in colored folders, sign by hand, and share — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
-<meta property="og:image" content="https://saud.im/filed/assets/icon.png">
+<meta property="og:image" content="https://saud.im/assets/icon-filed.png">
 <meta property="og:image:alt" content="Filed app icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Filed — Your private PDF library">
 <meta name="twitter:description" content="A calm, local-first home for your PDFs. Receive, organize, sign, and share — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
-<meta name="twitter:image" content="https://saud.im/filed/assets/icon.png">
+<meta name="twitter:image" content="https://saud.im/assets/icon-filed.png">
 <meta name="twitter:image:alt" content="Filed app icon">
 
 <link rel="stylesheet" href="/assets/saud.css">
@@ -44,6 +44,42 @@
     } catch (e) {}
   })();
 </script>
+<style>
+  /* ── Filed — folder + signing artifacts (decorative, aria-hidden).
+     A small folder-colour system is Filed's "category" language; it sits on
+     theme surfaces, so it holds in light and dark. ── */
+  .app-filed { --fl-blue:#3B82F6; --fl-green:#34A853; --fl-amber:#EF9F2B; --fl-red:#E5484D; --fl-purple:#8B5CF6; }
+
+  .fl-app { display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 15px 13px; }
+  .fl-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
+  .fl-apptitle { font-weight: 700; font-size: 17px; letter-spacing: -0.015em; color: var(--text); }
+  .fl-sub { font-size: 11px; color: var(--text-3); }
+  .fl-folder { display: flex; align-items: center; gap: 11px; background: var(--surface-2);
+               border: 1px solid var(--hairline); border-radius: 11px; padding: 9px 11px; }
+  .fl-folder .fic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
+                    color: #fff; background: var(--fc, var(--accent)); flex: 0 0 auto; }
+  .fl-folder .fic svg { width: 16px; height: 16px; }
+  .fl-folder .fname { flex: 1; font-size: 13px; font-weight: 560; color: var(--text); }
+  .fl-folder .fcount { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .fl-c-blue{ --fc: var(--fl-blue); } .fl-c-green{ --fc: var(--fl-green); }
+  .fl-c-amber{ --fc: var(--fl-amber); } .fl-c-red{ --fc: var(--fl-red); } .fl-c-purple{ --fc: var(--fl-purple); }
+
+  /* Signed-document artifact (split) */
+  .fl-doc { position: relative; background: var(--surface); border: 1px solid var(--hairline);
+            border-radius: 16px; box-shadow: var(--shadow-md); padding: 28px 26px 30px; max-width: 360px; margin: 0 auto; }
+  .fl-doc .ln { height: 9px; border-radius: 5px; background: var(--surface-2); margin-bottom: 12px; }
+  .fl-doc .ln.m { width: 90%; } .fl-doc .ln.s { width: 58%; }
+  .fl-sigwrap { margin-top: 24px; display: inline-block; }
+  .fl-sig { display: block; width: 168px; height: 54px; color: var(--accent); }
+  .fl-sigline { height: 1.5px; width: 184px; background: var(--hairline-strong); margin-top: 2px; }
+  .fl-stamp { position: absolute; top: 16px; right: 16px; display: inline-flex; align-items: center; gap: 5px;
+              font-size: 11px; font-weight: 700; color: var(--live);
+              background: color-mix(in oklab, var(--live) 14%, var(--surface));
+              border: 1px solid color-mix(in oklab, var(--live) 32%, transparent);
+              border-radius: 999px; padding: 3px 9px; }
+  .fl-stamp svg { width: 12px; height: 12px; }
+  html[dir="rtl"] .fl-stamp { right: auto; left: 16px; }
+</style>
 </head>
 <body class="app-filed">
 
@@ -111,17 +147,42 @@
       <div class="device-wrap" style="margin-top:48px">
         <div class="device" aria-hidden="true">
           <span class="island"></span>
-          <div class="screen" style="display:grid;place-items:center;background:linear-gradient(165deg, color-mix(in oklab, var(--accent) 18%, var(--surface)), var(--surface) 70%);">
-            <div style="display:grid;place-items:center;gap:16px;padding:24px;text-align:center">
-              <span style="display:inline-flex;width:88px;height:88px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-md)"><img src="assets/icon.png" alt="" style="width:100%;height:100%;object-fit:cover"></span>
-              <span style="font-weight:680;font-size:22px;letter-spacing:-0.02em;color:var(--text)">Filed</span>
-              <span style="display:inline-flex;gap:8px">
-                <span style="width:10px;height:10px;border-radius:50%;background:var(--accent)"></span>
-                <span style="width:10px;height:10px;border-radius:50%;background:var(--accent-2)"></span>
-                <span style="width:10px;height:10px;border-radius:50%;background:color-mix(in oklab, var(--accent) 45%, var(--text-3))"></span>
-                <span style="width:10px;height:10px;border-radius:50%;background:color-mix(in oklab, var(--accent-2) 55%, var(--surface))"></span>
-              </span>
-              <span class="badge badge--soon"><span class="dot" aria-hidden="true"></span><span data-en>Coming soon</span><span data-ar>قريبًا</span></span>
+          <div class="screen" style="background:var(--surface)">
+            <div class="fl-app">
+              <div class="fl-head"><span class="fl-apptitle">Filed</span><span class="fl-sub">24 PDFs</span></div>
+              <div class="fl-folder fl-c-blue"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Work</span><span class="fcount">8</span></div>
+              <div class="fl-folder fl-c-green"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Personal</span><span class="fcount">5</span></div>
+              <div class="fl-folder fl-c-amber"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Receipts</span><span class="fcount">7</span></div>
+              <div class="fl-folder fl-c-red"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Contracts</span><span class="fcount">3</span></div>
+              <div class="fl-folder fl-c-purple"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Manuals</span><span class="fcount">1</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── A closer look — sign by hand ────────────────────────── -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="split">
+        <div data-reveal>
+          <span class="eyebrow"><span data-en>A closer look</span><span data-ar>نظرة أقرب</span></span>
+          <h2 class="section-title"><span data-en>Sign it, by hand.</span><span data-ar>وقّعه بيدك.</span></h2>
+          <p class="section-sub">
+            <span data-en>Draw your signature straight onto the page, place and size it where it belongs, then export a fresh signed copy — without it ever leaving your iPhone.</span>
+            <span data-ar>ارسم توقيعك على الصفحة مباشرةً، وضَعه وحجِّمه في مكانه، ثم صدّر نسخة موقّعة جديدة — دون أن تغادر جهازك أبدًا.</span>
+          </p>
+        </div>
+        <div data-reveal>
+          <div class="fl-doc" aria-hidden="true">
+            <span class="fl-stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>Signed</span>
+            <div class="ln m"></div>
+            <div class="ln"></div>
+            <div class="ln s"></div>
+            <div class="fl-sigwrap">
+              <svg class="fl-sig" viewBox="0 0 200 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 44 C 18 14, 26 12, 30 36 C 33 54, 40 56, 46 34 C 50 18, 58 14, 64 36 C 68 52, 76 52, 84 30 C 90 14, 100 16, 108 38 C 113 52, 122 48, 132 32 C 140 20, 152 22, 166 28 L 192 22"/></svg>
+              <div class="fl-sigline"></div>
             </div>
           </div>
         </div>
@@ -134,7 +195,7 @@
     <div class="wrap">
       <div class="center">
         <span class="eyebrow" style="display:inline-flex"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></span>
-        <h2 class="section-title"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></h2>
+        <h2 class="section-title"><span data-en>Built to keep documents in order.</span><span data-ar>مصمَّم ليُبقي مستنداتك مرتّبة.</span></h2>
       </div>
 
       <div class="feature-grid cols-3" style="margin-top:32px">
