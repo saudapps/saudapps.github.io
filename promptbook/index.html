@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Promptbook — a calm, private, local-first workspace for saving, organizing, and reusing your AI prompts. English & Arabic. No accounts, no tracking.">
-<meta name="theme-color" content="#F0EEE8">
-<link rel="icon" type="image/png" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0A0B0F">
+<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>Promptbook — Your private prompt workspace</title>
 
 <link rel="canonical" href="https://saud.im/promptbook/">
@@ -19,264 +20,246 @@
 <meta property="og:url" content="https://saud.im/promptbook/">
 <meta property="og:title" content="Promptbook — Your private prompt workspace">
 <meta property="og:description" content="A calm, local-first place to save, organize, and reuse your AI prompts. Bilingual (English & Arabic). No accounts, no tracking, nothing leaves your device.">
-<meta property="og:image" content="https://saud.im/promptbook/assets/icon.png">
+<meta property="og:image" content="https://saud.im/assets/icon-promptbook.png">
 <meta property="og:image:alt" content="Promptbook app icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promptbook — Your private prompt workspace">
 <meta name="twitter:description" content="A calm, local-first place to save, organize, and reuse your AI prompts. Bilingual (English & Arabic). No accounts, no tracking.">
-<meta name="twitter:image" content="https://saud.im/promptbook/assets/icon.png">
+<meta name="twitter:image" content="https://saud.im/assets/icon-promptbook.png">
 <meta name="twitter:image:alt" content="Promptbook app icon">
 
+<link rel="stylesheet" href="/assets/saud.css">
+<!-- anti-flash: set theme before first paint -->
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('saudapps-theme');
+      var t = (s === 'light' || s === 'dark') ? s
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('saudapps-lang');
+      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
+    } catch (e) {}
+  })();
+</script>
 <style>
-  /* ─────────────────────────────────────────────────────────────
-     Promptbook — landing. "Pearl & Midnight": warm pearl canvas,
-     midnight-navy ink, editorial serif display. Same Saud Apps
-     skeleton (topbar, footer, lang toggle) as the other app pages.
-     ───────────────────────────────────────────────────────────── */
-  :root {
-    --bg: #F0EEE8;            /* Pearl */
-    --bg-2: #EAE7DE;
-    --surface: #FBFAF6;
-    --surface-2: #F5F3EC;
-    --hairline: rgba(26,31,46,0.12);
-    --hairline-strong: rgba(26,31,46,0.20);
-
-    --ink: #1A1F2E;          /* Midnight Navy */
-    --ink-2: #2A3142;
-    --muted: #5C6172;
-    --muted-2: #7C8190;
-
-    --accent: #2E3A59;       /* deep navy accent (links) */
-    --accent-soft: #E5E3DA;
-
-    --radius-card: 24px;
-    --radius-tile: 16px;
-    --radius-pill: 999px;
-
-    --shadow-card: 0 1px 2px rgba(26,31,46,0.05), 0 8px 24px rgba(26,31,46,0.07);
-    --shadow-card-hover: 0 2px 4px rgba(26,31,46,0.06), 0 18px 40px rgba(26,31,46,0.12);
-
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
-    --font-serif: "Fraunces", "New York", "Iowan Old Style", "Charter", "Georgia", serif;
-    --font-serif-ar: "Amiri", "Noto Naskh Arabic", "Geeza Pro", serif;
+  /* ── Promptbook — drawn from the app's own "Pearl & Midnight" identity:
+     editorial SERIF for prompt content, sans for UI chrome, and the app's real
+     tool-label colour system (earthy, uppercase, letter-spaced TEXT — never
+     neon pills). Tool colours use the app's exact light/dark values. ── */
+  /* The PAGE takes the app's Pearl & Midnight surfaces + midnight-navy ink/accent
+     (replacing the old website violet) so the whole page reads like the
+     cream-and-navy app icon, not just the labels. Page-local override only. */
+  body.app-promptbook {
+    --accent:#2E3A5E; --accent-2:#1A1F2E; --accent-ink:#F4F2EA;
+    --bg:#F0EEE8; --bg-2:#E8E5DB;
+    --hero-tint-1:color-mix(in oklab, var(--accent) 9%, #F0EEE8); --hero-tint-2:#F0EEE8;
+    --surface:#FBFAF6; --surface-2:#F1EEE5; --surface-raised:#FBFAF6; --surface-sunken:#E8E5DB;
+    --text:#1A1F2E; --text-2:#565C6B; --text-3:#8C909B;
+    --hairline:rgba(26,31,46,0.12); --hairline-2:rgba(26,31,46,0.07); --hairline-strong:rgba(26,31,46,0.20);
+    --topbar-bg:rgba(240,238,232,0.80);
   }
+  :root[data-theme="dark"] body.app-promptbook {
+    --accent:#8E99CC; --accent-2:#6E7AB0; --accent-ink:#0A0E1A;
+    --bg:#0A0E1A; --bg-2:#0E1322;
+    --hero-tint-1:color-mix(in oklab, var(--accent) 16%, #0A0E1A); --hero-tint-2:#070A12;
+    --surface:#14182B; --surface-2:#1A1F33; --surface-raised:#1A1F33; --surface-sunken:#0E1322;
+    --text:#D4D0C2; --text-2:#9D9A8E; --text-3:#6F6D64;
+    --hairline:rgba(212,208,194,0.12); --hairline-2:rgba(212,208,194,0.07); --hairline-strong:rgba(212,208,194,0.20);
+    --topbar-bg:rgba(10,14,26,0.66);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-promptbook {
+    --accent:#8E99CC; --accent-2:#6E7AB0; --accent-ink:#0A0E1A;
+    --bg:#0A0E1A; --bg-2:#0E1322;
+    --hero-tint-1:color-mix(in oklab, var(--accent) 16%, #0A0E1A); --hero-tint-2:#070A12;
+    --surface:#14182B; --surface-2:#1A1F33; --surface-raised:#1A1F33; --surface-sunken:#0E1322;
+    --text:#D4D0C2; --text-2:#9D9A8E; --text-3:#6F6D64;
+    --hairline:rgba(212,208,194,0.12); --hairline-2:rgba(212,208,194,0.07); --hairline-strong:rgba(212,208,194,0.20);
+    --topbar-bg:rgba(10,14,26,0.66);
+  } }
 
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  html[dir="rtl"] body { font-family: var(--font-ar); }
-  html[lang="ar"] { line-height: 1.6; }
-  img { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; }
+  .pb-t-chatgpt    { --tc:#4A3F2A; } .pb-t-claude     { --tc:#1F4A3A; } .pb-t-gemini { --tc:#3F4D6B; }
+  .pb-t-grok       { --tc:#5C2A3F; } .pb-t-midjourney { --tc:#5C3A1F; } .pb-t-other  { --tc:#3F3F3F; }
+  :root[data-theme="dark"] .pb-t-chatgpt    { --tc:#A89878; }
+  :root[data-theme="dark"] .pb-t-claude     { --tc:#5FA890; }
+  :root[data-theme="dark"] .pb-t-gemini     { --tc:#8FA0C5; }
+  :root[data-theme="dark"] .pb-t-grok       { --tc:#B97090; }
+  :root[data-theme="dark"] .pb-t-midjourney { --tc:#B88E66; }
+  :root[data-theme="dark"] .pb-t-other      { --tc:#9F9F9F; }
+  .pb-tool { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tc, var(--text-3)); }
+  html[lang="ar"] .pb-tool { letter-spacing: 0; }
 
-  [data-en], [data-ar] { display: none; }
-  html[lang="en"] [data-en] { display: inline; }
-  html[lang="ar"] [data-ar] { display: inline; }
+  /* prompt-library mock (hero device) */
+  .pb-app { display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 14px 12px 0; }
+  .pb-apphead { display: flex; align-items: baseline; justify-content: space-between; padding: 0 2px; }
+  .pb-apptitle { font-family: var(--font-serif); font-weight: 560; font-size: 18px; letter-spacing: -0.01em; color: var(--text); }
+  .pb-count { font-size: 11px; color: var(--text-3); }
+  .pb-search { display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 10px; border-radius: 9px;
+               background: var(--surface-2); border: 1px solid var(--hairline); color: var(--text-3); font-size: 11.5px; }
+  .pb-search svg { width: 13px; height: 13px; }
+  .pb-row { background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 11px;
+            padding: 9px 11px; display: flex; flex-direction: column; gap: 3px; }
+  .pb-row .meta { display: flex; align-items: center; gap: 8px; }
+  .pb-row .title { font-family: var(--font-serif); font-weight: 560; font-size: 13.5px; letter-spacing: -0.01em; color: var(--text); }
+  .pb-row .snippet { font-family: var(--font-serif); font-size: 10.5px; color: var(--text-3); line-height: 1.4; }
+  .pb-star { color: var(--accent); font-size: 11px; margin-inline-start: auto; }
+  .pb-tabs { margin-top: auto; display: flex; justify-content: space-around; border-top: 1px solid var(--hairline); padding: 8px 0 10px; }
+  .pb-tabs .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 8.5px; font-weight: 600; color: var(--text-3); }
+  .pb-tabs .tab.on { color: var(--accent); }
+  .pb-tabs .tab svg { width: 17px; height: 17px; }
 
-  .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  /* enlarged saved-prompt card (split artifact) — the app's "hero unit" */
+  .pb-card { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-lg);
+             box-shadow: var(--shadow-md); padding: 22px; max-width: 430px; }
+  .pb-card .chips { display: flex; align-items: center; justify-content: space-between; }
+  .pb-card .ptitle { font-family: var(--font-serif); font-weight: 560; font-size: 21px; letter-spacing: -0.01em; color: var(--text); margin: 12px 0; }
+  .pb-card .body { font-family: var(--font-serif); font-size: 14.5px; line-height: 1.62; color: var(--text-2);
+                   background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 12px; padding: 14px 16px; }
+  .pb-card .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .pb-chip { font-size: 12px; color: var(--text-2); background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 999px; padding: 4px 10px; }
+  .pb-card .pb-star { font-size: 15px; margin: 0; }
 
-  /* ── Top bar ─────────────────────────────────────────────── */
-  .topbar {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(240,238,232,0.80);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .topbar-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 48px; max-width: 1040px; margin: 0 auto; padding: 0 20px;
-  }
-  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; font-size: 15px; color: var(--ink); }
-  .brand-mark {
-    width: 24px; height: 24px; border-radius: 6px;
-    background-image: url("assets/icon.png"); background-size: cover; background-position: center;
-    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
-  }
-  .lang-toggle { display: inline-flex; border: 1px solid var(--hairline-strong); border-radius: var(--radius-pill); overflow: hidden; background: var(--surface); }
-  .lang-toggle button { appearance: none; border: 0; background: transparent; padding: 6px 12px; font-size: 13px; font-weight: 600; color: var(--muted); transition: background .15s ease, color .15s ease; }
-  .lang-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-
-  /* ── Hero ────────────────────────────────────────────────── */
-  .hero { padding: 72px 0 40px; text-align: center; }
-  @media (max-width: 640px) { .hero { padding: 52px 0 32px; } }
-  .hero-icon {
-    width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 22px;
-    overflow: hidden; background: var(--surface);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.5), 0 12px 28px -8px rgba(26,31,46,0.30);
-  }
-  .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
-  .hero .eyebrow {
-    display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted); margin: 0 0 14px;
-  }
-  html[lang="ar"] .hero .eyebrow { letter-spacing: 0; text-transform: none; }
-  .hero h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(38px, 6vw, 60px); line-height: 1.08; letter-spacing: -0.02em;
-    font-weight: 600; margin: 0 0 18px; color: var(--ink);
-  }
-  html[lang="ar"] .hero h1 { font-family: var(--font-serif-ar); letter-spacing: 0; line-height: 1.25; }
-  .hero p { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin: 0 auto; max-width: 42ch; line-height: 1.55; }
-
-  /* Buttons */
-  .actions { margin-top: 26px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    height: 46px; padding: 0 20px; border-radius: var(--radius-pill); font-weight: 600;
-    font-size: 15px; letter-spacing: -0.005em; border: 1px solid transparent;
-    transition: transform .12s ease, background .15s ease, border-color .15s ease; white-space: nowrap;
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--ink); color: var(--bg); }
-  .btn-primary:hover { background: #11151f; }
-  .btn-ghost { background: var(--surface); color: var(--ink-2); border-color: var(--hairline-strong); }
-  .btn-ghost:hover { background: var(--surface-2); }
-  .btn-disabled { background: var(--bg-2); color: var(--muted-2); border-color: var(--hairline); cursor: default; pointer-events: none; }
-  .btn .ic { width: 16px; height: 16px; flex: 0 0 auto; }
-
-  /* ── Section scaffolding ─────────────────────────────────── */
-  section.block { padding: 28px 0; }
-  .section-title {
-    font-family: var(--font-serif); font-size: 26px; font-weight: 600; letter-spacing: -0.015em;
-    color: var(--ink); margin: 0 0 18px; text-align: center;
-  }
-  html[lang="ar"] .section-title { font-family: var(--font-serif-ar); letter-spacing: 0; }
-
-  /* Feature grid */
-  .features { display: grid; grid-template-columns: 1fr; gap: 14px; }
-  @media (min-width: 720px) { .features { grid-template-columns: 1fr 1fr; gap: 16px; } }
-  .feature {
-    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-tile);
-    padding: 22px; box-shadow: var(--shadow-card);
-  }
-  .feature h3 { font-size: 17px; font-weight: 600; margin: 0 0 6px; color: var(--ink); letter-spacing: -0.01em; }
-  html[lang="ar"] .feature h3 { letter-spacing: 0; }
-  .feature p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
-  .feature .ic {
-    width: 34px; height: 34px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
-    display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;
-  }
-  .feature .ic svg { width: 18px; height: 18px; }
-
-  /* Privacy strip */
-  .privacy-strip { padding: 8px 0 28px; }
-  .privacy-inner {
-    display: flex; align-items: flex-start; gap: 14px;
-    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-tile);
-    padding: 18px 20px; box-shadow: var(--shadow-card); max-width: 720px; margin: 0 auto;
-  }
-  .privacy-inner .ic {
-    width: 38px; height: 38px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
-    display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
-  }
-  .privacy-inner .ic svg { width: 19px; height: 19px; }
-  .privacy-inner .text { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; }
-  .privacy-inner .text b { color: var(--ink); font-weight: 600; }
-  .privacy-inner .text a { color: var(--accent); }
-  .privacy-inner .text a:hover { text-decoration: underline; }
-
-  /* ── Footer ──────────────────────────────────────────────── */
-  footer { padding: 36px 0 52px; border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 16px; }
-  .footer-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .footer-top .brand-mark { width: 30px; height: 30px; border-radius: 8px; }
-  .footer-top .title { font-weight: 600; font-size: 15px; color: var(--ink); }
-  .footer-top .sub { font-size: 12.5px; color: var(--muted); }
-  .footer-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13.5px; }
-  .footer-links a { color: var(--muted); }
-  .footer-links a:hover { color: var(--ink); }
-  .footer-copy { margin-top: 18px; font-size: 12.5px; color: var(--muted-2); }
-
-  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
-
-  /* ── Unified Saud Apps footer (compact) ─────────────────────── */
-  .site-footer { border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 32px; padding: 22px 0 26px; }
-  .site-footer .sf-inner { display: flex; flex-direction: column; gap: 12px; }
-  .sf-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
-  .sf-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
-  .sf-brand:hover { text-decoration: none; }
-  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--muted)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
-  .sf-name { font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
-  html[lang="ar"] .sf-name { letter-spacing: 0; }
-  .sf-by { font-size: 13px; color: var(--muted); }
-  .sf-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 13.5px; }
-  .sf-nav a { color: var(--muted); }
-  .sf-nav a:hover { color: var(--ink); text-decoration: none; }
-  .sf-nav .sf-sep { color: var(--hairline-strong); }
-  .sf-base { font-size: 12.5px; color: var(--muted-2); }
-  .sf-base a { color: var(--muted); }
-  .sf-base a:hover { color: var(--ink); }
-  @media (max-width: 640px) { .sf-row { flex-direction: column; align-items: flex-start; gap: 12px; } }
+  /* tool-colour legend (the app's real tool system, surfaced as content) */
+  .pb-tools { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
 </style>
 </head>
-<body>
+<body class="app-promptbook">
 
-  <!-- Top bar -->
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
-    <div class="topbar-inner">
+    <div class="wrap topbar-inner">
       <a href="/" class="brand" aria-label="Saud Apps home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-mark" aria-hidden="true">S</span>
         <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
       </a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      <div class="topbar-tools">
+        <div class="seg seg--icon" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          </button>
+          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
+          </button>
+        </div>
+        <div class="seg" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- ── Breadcrumb ──────────────────────────────────────────── -->
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></a>
+      <span class="chev" aria-hidden="true">›</span>
+      <span>Promptbook</span>
+    </nav>
+  </div>
+
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <section class="hero center" data-reveal>
+    <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="hero-icon"><img src="assets/icon.png" alt="Promptbook app icon"></div>
-      <span class="eyebrow">
+      <span class="eyebrow hero-eyebrow" style="display:inline-flex">
         <span data-en>Privacy-first · iPhone</span>
         <span data-ar>الخصوصية أولاً · آيفون</span>
       </span>
-      <h1>
-        <span data-en>Your prompts,<br>kept like a notebook.</span>
-        <span data-ar>برومبتاتك،<br>محفوظة كدفتر أنيق.</span>
+      <h1 style="font-family:var(--font-serif);font-weight:560;letter-spacing:-0.01em">
+        <span data-en>Your prompts,<br><span class="grad-text">kept like a notebook.</span></span>
+        <span data-ar>برومبتاتك،<br><span class="grad-text">محفوظة كدفتر أنيق.</span></span>
       </h1>
-      <p>
+      <p class="hero-lede">
         <span data-en>Promptbook is a calm, local-first workspace for saving, organizing, and reusing your AI prompts — in English and Arabic. No accounts, no tracking, nothing leaves your device.</span>
         <span data-ar>Promptbook مساحة عمل هادئة محلية أولاً لحفظ برومبتات الذكاء الاصطناعي وتنظيمها وإعادة استخدامها — بالعربية والإنجليزية. بلا حسابات، بلا تتبّع، ولا شيء يغادر جهازك.</span>
       </p>
-      <div class="actions">
+      <div class="hero-actions">
         <span class="btn btn-disabled" aria-disabled="true">
           <span data-en>Coming soon to the App Store</span>
           <span data-ar>قريبًا على App Store</span>
         </span>
-        <a class="btn btn-ghost" href="privacy/">
-          <span data-en>Privacy <span class="chev">›</span></span>
-          <span data-ar>الخصوصية <span class="chev">›</span></span>
+        <a class="btn btn-ghost" href="/promptbook/privacy/">
+          <span data-en>Privacy</span><span data-ar>الخصوصية</span>
+          <span class="chev" aria-hidden="true">›</span>
         </a>
+      </div>
+
+      <!-- Branded pre-launch device -->
+      <div class="device-wrap" style="margin-top:48px">
+        <div class="device" aria-hidden="true">
+          <span class="island"></span>
+          <div class="screen" style="background:var(--surface)">
+            <div class="pb-app">
+              <div class="pb-apphead">
+                <span class="pb-apptitle">Library</span>
+                <span class="pb-count">12</span>
+              </div>
+              <div class="pb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Search prompts</div>
+              <div class="pb-row"><div class="meta"><span class="pb-tool pb-t-chatgpt">ChatGPT</span><span class="pb-star">★</span></div><div class="title">Blog outline from notes</div><div class="snippet">You are an editor. Turn the notes into a clear outline…</div></div>
+              <div class="pb-row"><div class="meta"><span class="pb-tool pb-t-claude">Claude</span></div><div class="title">Summarize a long PDF</div><div class="snippet">Summarize the document in five short bullets…</div></div>
+              <div class="pb-row"><div class="meta"><span class="pb-tool pb-t-midjourney">Midjourney</span><span class="pb-star">★</span></div><div class="title">Cinematic portrait</div><div class="snippet">Portrait, 85mm, soft rim light, muted palette…</div></div>
+              <div class="pb-tabs">
+                <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Library</span>
+                <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg>Starter</span>
+                <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 2h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 22h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></svg>Settings</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="block">
+  <!-- ── A closer look — a saved prompt ──────────────────────── -->
+  <section class="section section--tight">
     <div class="wrap">
-      <h2 class="section-title"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></h2>
-      <div class="features">
+      <div class="split">
+        <div data-reveal>
+          <span class="eyebrow"><span data-en>A closer look</span><span data-ar>نظرة أقرب</span></span>
+          <h2 class="section-title" style="font-family:var(--font-serif);font-weight:560;letter-spacing:-0.01em">
+            <span data-en>A prompt, kept like a page.</span>
+            <span data-ar>برومبت، محفوظ كصفحة.</span>
+          </h2>
+          <p class="section-sub">
+            <span data-en>Every prompt keeps a title, the prompt text, the tool it's written for, your own notes, and a favorite star — written down once, found again in seconds.</span>
+            <span data-ar>كل برومبت يحتفظ بعنوان ونصّه والأداة المكتوب لها وملاحظاتك ونجمة للمفضّلة — يُكتب مرة، ويُستعاد في ثوانٍ.</span>
+          </p>
+          <p class="section-sub" style="margin-top:18px"><span data-en>Tag and filter by the tool you wrote it for:</span><span data-ar>صنّف وفلتر حسب الأداة التي كتبته لها:</span></p>
+          <ul class="pb-tools" aria-label="Supported tools">
+            <li><span class="pb-tool pb-t-chatgpt">ChatGPT</span></li>
+            <li><span class="pb-tool pb-t-claude">Claude</span></li>
+            <li><span class="pb-tool pb-t-gemini">Gemini</span></li>
+            <li><span class="pb-tool pb-t-grok">Grok</span></li>
+            <li><span class="pb-tool pb-t-midjourney">Midjourney</span></li>
+          </ul>
+        </div>
+        <div data-reveal>
+          <div class="pb-card" aria-hidden="true">
+            <div class="chips"><span class="pb-tool pb-t-chatgpt">ChatGPT</span><span class="pb-star">★</span></div>
+            <div class="ptitle">Blog outline from rough notes</div>
+            <div class="body">You are an editor. Turn the notes below into a clear blog outline — a working title, five sections, and a one-line summary for each.</div>
+            <div class="tags"><span class="pb-chip">#writing</span><span class="pb-chip">#outline</span><span class="pb-chip">#work</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────── -->
+  <section class="section section--tight" data-reveal>
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow" style="display:inline-flex"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></span>
+        <h2 class="section-title" style="font-family:var(--font-serif);font-weight:560;letter-spacing:-0.01em"><span data-en>A calm home for your prompts.</span><span data-ar>مساحة هادئة لبرومبتاتك.</span></h2>
+      </div>
+
+      <div class="feature-grid" style="margin-top:32px">
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
           <h3><span data-en>A personal prompt vault</span><span data-ar>خزنة برومبتات شخصية</span></h3>
           <p>
             <span data-en>Save prompts with a title, the prompt text, a tool label, notes, and one optional example image. Search and filter to find them again in seconds.</span>
@@ -285,7 +268,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg></span>
           <h3><span data-en>A curated starter library</span><span data-ar>مكتبة بداية منسّقة</span></h3>
           <p>
             <span data-en>Browse bundled starter prompts in English and Arabic, then save any of them into your own library with one tap.</span>
@@ -294,7 +277,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h12M3 12h12M3 19h8"/><path d="M19 5v14M16 16l3 3 3-3"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h12M3 12h12M3 19h8"/><path d="M19 5v14M16 16l3 3 3-3"/></svg></span>
           <h3><span data-en>Tools, favorites &amp; notes</span><span data-ar>أدوات ومفضّلة وملاحظات</span></h3>
           <p>
             <span data-en>Tag prompts by tool (ChatGPT, Claude, Gemini, and more), mark favorites, add private notes, and one-tap copy when you need them.</span>
@@ -303,7 +286,7 @@
         </div>
 
         <div class="feature">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M6 5v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5"/><path d="M9 5V3h6v2"/><path d="M12 11v5"/></svg></span>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M6 5v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5"/><path d="M9 5V3h6v2"/><path d="M12 11v5"/></svg></span>
           <h3><span data-en>English &amp; Arabic, by design</span><span data-ar>عربي وإنجليزي بالتصميم</span></h3>
           <p>
             <span data-en>A built-in language selector switches the whole app between English and Arabic, with full right-to-left layout.</span>
@@ -315,64 +298,49 @@
     </div>
   </section>
 
-  <!-- Privacy strip -->
-  <section class="privacy-strip">
+  <!-- ── Privacy strip ───────────────────────────────────────── -->
+  <section class="section--tight" data-reveal>
     <div class="wrap">
-      <div class="privacy-inner">
-        <span class="ic" aria-hidden="true">
+      <div class="trust">
+        <span class="t-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
         </span>
-        <span class="text">
-          <span data-en>Promptbook is <b>local-first</b>. Your prompts, notes, and images are stored only on your device — no accounts, no servers, no tracking. Read the <a href="privacy/">Privacy Policy</a> and <a href="terms/">Terms of Use</a>.</span>
-          <span data-ar>Promptbook <b>محلي أولاً</b>. تُحفظ برومبتاتك وملاحظاتك وصورك على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="privacy/">سياسة الخصوصية</a> و<a href="terms/">شروط الاستخدام</a>.</span>
-        </span>
+        <div class="t-text">
+          <p>
+            <span data-en>Promptbook is <b>local-first</b>. Your prompts, notes, and images are stored only on your device — no accounts, no servers, no tracking. Read the <a href="/promptbook/privacy/">Privacy Policy</a> and <a href="/promptbook/terms/">Terms of Use</a>.</span>
+            <span data-ar>Promptbook <b>محلي أولاً</b>. تُحفظ برومبتاتك وملاحظاتك وصورك على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="/promptbook/privacy/">سياسة الخصوصية</a> و<a href="/promptbook/terms/">شروط الاستخدام</a>.</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-    <footer class="site-footer">
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-row">
+      <div class="sf-bar">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
-          <span class="sf-mark" aria-hidden="true">S</span>
+          <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
-          <span class="sf-by"><span data-en>· by Saud Ismail</span><span data-ar>· تطوير سعود إسماعيل</span></span>
         </a>
-        <nav class="sf-nav" aria-label="Footer">
+        <nav class="sf-links" aria-label="Footer">
           <a href="/sshift/">SShift</a>
           <a href="/phonespace/">PhoneSpace</a>
           <a href="/promptbook/">Promptbook</a>
           <a href="/filed/">Filed</a>
-          <span class="sf-sep" aria-hidden="true">·</span>
+          <span class="sf-dot" aria-hidden="true"></span>
           <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
           <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base"><span data-en>© 2026 Saud Apps · </span><span data-ar>© 2026 تطبيقات سعود · </span><a href="mailto:support@saud.im">support@saud.im</a></div>
+      <div class="sf-base">
+        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+        <a href="mailto:support@saud.im">support@saud.im</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const html = document.documentElement;
-      const btns = document.querySelectorAll('[data-lang-btn]');
-      function setLang(lang) {
-        html.setAttribute('lang', lang);
-        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
-        try { localStorage.setItem('saudapps-lang', lang); } catch (e) {}
-      }
-      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
-      let initial = 'en';
-      try {
-        const saved = localStorage.getItem('saudapps-lang');
-        if (saved === 'en' || saved === 'ar') initial = saved;
-        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
-      } catch (e) {}
-      setLang(initial);
-    })();
-  </script>
+  <script src="/assets/saud.js" defer></script>
 </body>
 </html>

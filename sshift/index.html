@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Plan shifts, rest & leave. A native iOS shift calendar — bilingual, private, offline.">
-<meta name="theme-color" content="#0E2A5A">
-<link rel="icon" type="image/png" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0A0B0F">
+<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>SShift — Shift Calendar</title>
 
 <link rel="canonical" href="https://saud.im/sshift/">
@@ -19,827 +20,251 @@
 <meta property="og:url" content="https://saud.im/sshift/">
 <meta property="og:title" content="SShift — Shift Calendar for iPhone">
 <meta property="og:description" content="Plan shifts, rest, and leave. Native iOS, bilingual in English and Arabic, and private — your schedule never leaves your iPhone.">
-<meta property="og:image" content="https://saud.im/sshift/assets/icon.png">
+<meta property="og:image" content="https://saud.im/assets/icon-sshift.png">
 <meta property="og:image:alt" content="SShift app icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SShift — Shift Calendar for iPhone">
 <meta name="twitter:description" content="Plan shifts, rest, and leave. Native iOS, bilingual in English and Arabic, and private — your schedule never leaves your iPhone.">
-<meta name="twitter:image" content="https://saud.im/sshift/assets/icon.png">
+<meta name="twitter:image" content="https://saud.im/assets/icon-sshift.png">
 <meta name="twitter:image:alt" content="SShift app icon">
 
+<link rel="stylesheet" href="/assets/saud.css">
+<!-- anti-flash: set theme before first paint -->
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('saudapps-theme');
+      var t = (s === 'light' || s === 'dark') ? s
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('saudapps-lang');
+      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
+    } catch (e) {}
+  })();
+</script>
 <style>
-  /* ─────────────────────────────────────────────────────────────
-     SShift landing — design tokens
-     Lifted from the app icon (navy) + in-app category palette.
-     ───────────────────────────────────────────────────────────── */
-  :root {
-    --navy-1: #0E2A5A;
-    --navy-2: #0A1F44;
-    --navy-deep: #061533;
+  /* ── SShift — shift-type colour language + calendar artifacts ──────────
+     Functional shift colours (mirror the iOS app). They tint onto theme
+     surfaces via color-mix so they hold contrast in both light and dark.
+     The grid/week mocks are decorative (aria-hidden); the legend carries
+     the real bilingual labels. */
+  /* Accent + shift colours tuned to the real app: deep ocean blue (the app's
+     primary) and deeper, calmer shift badges. Page-local override only. */
+  body.app-sshift { --accent: #1F5DA0; --accent-2: #16467C; }
+  :root[data-theme="dark"] body.app-sshift { --accent: #6BA5F0; --accent-2: #3D74E6; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-sshift { --accent: #6BA5F0; --accent-2: #3D74E6; } }
 
-    --bg: #F5F5F7;          /* Apple marketing canvas */
-    --surface: #FFFFFF;
-    --surface-2: #FAFAFA;
-    --hairline: rgba(60,60,67,0.12);
-    --hairline-strong: rgba(60,60,67,0.18);
+  .app-sshift {
+    --sh-work: #1E824C; --sh-rest: #7F8C8D; --sh-training: #1E778A;
+    --sh-leave: #3D6FE0; --sh-annual: #D9831A; --sh-force: #9B59B6;
+  }
+  :root[data-theme="dark"] .app-sshift {
+    --sh-work: #34D399; --sh-rest: #9AA3AE; --sh-training: #22B8CF;
+    --sh-leave: #6B9BFF; --sh-annual: #F0A93A; --sh-force: #C07AE0;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .app-sshift {
+    --sh-work: #34D399; --sh-rest: #9AA3AE; --sh-training: #22B8CF;
+    --sh-leave: #6B9BFF; --sh-annual: #F0A93A; --sh-force: #C07AE0;
+  } }
+  .sh-cell-work     { background: color-mix(in oklab, var(--sh-work) 34%, var(--surface)); }
+  .sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 24%, var(--surface)); }
+  .sh-cell-training { background: color-mix(in oklab, var(--sh-training) 34%, var(--surface)); }
+  .sh-cell-leave    { background: color-mix(in oklab, var(--sh-leave) 34%, var(--surface)); }
+  .sh-cell-annual   { background: color-mix(in oklab, var(--sh-annual) 36%, var(--surface)); }
 
-    --ink: #0A0A0A;
-    --ink-2: #1D1D1F;
-    --muted: #6E6E73;
-    --muted-2: #86868B;
+  /* Month-calendar mock (hero device screen) */
+  .sh-cal { display: flex; flex-direction: column; gap: 9px; height: 100%; padding: 18px 15px; }
+  .sh-cal-head { display: flex; align-items: center; justify-content: space-between; }
+  .sh-cal-title { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: var(--text); }
+  .sh-cal-nav { color: var(--text-3); font-size: 14px; letter-spacing: 4px; }
+  .sh-dow { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+  .sh-dow span { text-align: center; font-size: 9.5px; font-weight: 700; color: var(--text-3); }
+  .sh-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+  .sh-grid .d { aspect-ratio: 1; border-radius: 6px; display: grid; place-items: center;
+                font-size: 10.5px; font-weight: 600; color: var(--text); background: var(--surface-2); }
+  .sh-grid .d.empty { background: transparent; }
+  .sh-grid .d.today { box-shadow: 0 0 0 2px var(--accent); }
+  .sh-next { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+             font-size: 12px; font-weight: 600; color: var(--text-2);
+             background: var(--surface-2); border: 1px solid var(--hairline);
+             border-radius: var(--r-pill); padding: 7px 12px; }
 
-    --blue: #0066FF;          /* primary action */
-    --blue-soft: #E6F0FF;
+  /* Week rhythm strip (section artifact) */
+  .sh-week { display: grid; grid-template-columns: repeat(7,1fr); gap: 7px; padding: 18px;
+             background: var(--surface); border: 1px solid var(--hairline);
+             border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+  .sh-week .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .sh-week .dow { font-size: 11px; font-weight: 700; color: var(--text-3); }
+  .sh-week .tile { width: 100%; aspect-ratio: 2/3; border-radius: 10px; background: var(--surface-2); }
+  /* tiles carry no text, so they take full shift colour for a vivid rhythm */
+  .sh-week .tile.sh-cell-work     { background: var(--sh-work); }
+  .sh-week .tile.sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 55%, var(--surface)); }
+  .sh-week .tile.sh-cell-training { background: var(--sh-training); }
+  .sh-week .tile.sh-cell-leave    { background: var(--sh-leave); }
+  .sh-week .tile.sh-cell-annual   { background: var(--sh-annual); }
 
-    /* in-app category accents (match the calendar screen) */
-    --work: #34C759;
-    --rest: #8E8E93;
-    --training: #5AC8C0;
-    --lcl: #5B7BFF;
-    --annual: #FF9F0A;
-    --force: #AF52DE;
-
-    --radius-card: 22px;
-    --radius-tile: 16px;
-    --radius-pill: 999px;
-
-    --shadow-card: 0 1px 2px rgba(16,24,40,0.04), 0 8px 24px rgba(16,24,40,0.06);
-    --shadow-device: 0 30px 80px -20px rgba(6,21,51,0.55), 0 10px 30px -10px rgba(6,21,51,0.35);
-
-    --space: 16px;
-
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    --font-ar: "SF Arabic", "SF Pro Arabic", -apple-system, "Geeza Pro", "Arabic UI Display", "Noto Sans Arabic", sans-serif;
-  }
-
-  /* ── Reset ───────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  html[dir="rtl"] body { font-family: var(--font-ar); }
-  img { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; }
-
-  /* ── Localized strings ───────────────────────────────────── */
-  [data-en], [data-ar] { display: none; }
-  html[lang="en"] [data-en] { display: inline; }
-  html[lang="ar"] [data-ar] { display: inline; }
-  html[lang="en"] [data-en-block] { display: block; }
-  html[lang="ar"] [data-ar-block] { display: block; }
-
-  /* Variant typography defaults for Arabic — slightly tighter line-height */
-  html[lang="ar"] { line-height: 1.55; }
-
-  /* ── Layout container ────────────────────────────────────── */
-  .wrap {
-    width: 100%;
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  /* ── Top bar ─────────────────────────────────────────────── */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(245,245,247,0.78);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .topbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 48px;
-  }
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    font-size: 15px;
-    color: var(--ink);
-  }
-  .brand-mark {
-    width: 24px; height: 24px;
-    border-radius: 6px;
-    background-image: url("assets/icon.png");
-    background-size: cover;
-    background-position: center;
-    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
-  }
-  .lang-toggle {
-    display: inline-flex;
-    border: 1px solid var(--hairline-strong);
-    border-radius: var(--radius-pill);
-    overflow: hidden;
-    background: var(--surface);
-  }
-  .lang-toggle button {
-    appearance: none;
-    border: 0;
-    background: transparent;
-    padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    transition: background .15s ease, color .15s ease;
-  }
-  .lang-toggle button[aria-pressed="true"] {
-    background: var(--ink);
-    color: #fff;
-  }
-
-  /* ── Hero ────────────────────────────────────────────────── */
-  .hero {
-    position: relative;
-    background:
-      radial-gradient(120% 80% at 50% 0%, #15397A 0%, var(--navy-1) 45%, var(--navy-2) 75%, var(--navy-deep) 100%);
-    color: #fff;
-    padding: 56px 0 0;
-    overflow: hidden;
-    isolation: isolate;
-  }
-  .hero::before {
-    /* soft halo behind the device */
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -10%;
-    width: 720px;
-    height: 720px;
-    transform: translateX(-50%);
-    background: radial-gradient(closest-side, rgba(120,170,255,0.18), rgba(120,170,255,0) 70%);
-    z-index: -1;
-    pointer-events: none;
-  }
-  .hero-inner {
-    text-align: center;
-  }
-  .hero-icon {
-    width: 96px; height: 96px;
-    border-radius: 22px; /* iOS squircle approximation */
-    overflow: hidden;
-    margin: 0 auto 22px;
-    box-shadow:
-      0 1px 1px rgba(255,255,255,0.18) inset,
-      0 20px 40px -10px rgba(0,0,0,0.45),
-      0 4px 10px rgba(0,0,0,0.35);
-  }
-  .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
-
-  .hero h1 {
-    font-size: clamp(34px, 6vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    font-weight: 700;
-    margin: 0 0 14px;
-  }
-  html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.15; }
-
-  .hero-tag {
-    font-size: clamp(17px, 2.1vw, 21px);
-    color: rgba(255,255,255,0.78);
-    margin: 0 auto 28px;
-    max-width: 32ch;
-    line-height: 1.4;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 56px;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 48px;
-    padding: 0 20px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.005em;
-    transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
-    border: 1px solid transparent;
-    white-space: nowrap;
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary {
-    background: #fff;
-    color: #0A0A0A;
-  }
-  .btn-primary:hover { background: #F0F0F2; }
-  .btn-ghost {
-    background: rgba(255,255,255,0.06);
-    color: #fff;
-    border-color: rgba(255,255,255,0.22);
-  }
-  .btn-ghost:hover { background: rgba(255,255,255,0.12); }
-  .btn .ic {
-    width: 18px; height: 18px;
-    display: inline-block;
-    flex: 0 0 auto;
-  }
-  .btn .ic-apple { width: 22px; height: 22px; }
-
-  /* hero device */
-  .hero-device-wrap {
-    position: relative;
-    padding-bottom: 80px;
-  }
-  .device {
-    --device-w: 280px;
-    width: var(--device-w);
-    aspect-ratio: 9 / 19.5;
-    margin: 0 auto;
-    background: #0a0a0a;
-    border-radius: 44px;
-    padding: 7px;
-    box-shadow: var(--shadow-device), inset 0 0 0 1.5px rgba(255,255,255,0.06);
-    position: relative;
-  }
-  .device::before {
-    /* dynamic island */
-    content: "";
-    position: absolute;
-    top: 14px; left: 50%;
-    transform: translateX(-50%);
-    width: 92px; height: 26px;
-    background: #000;
-    border-radius: 999px;
-    z-index: 3;
-  }
-  .device-screen {
-    width: 100%; height: 100%;
-    border-radius: 37px;
-    overflow: hidden;
-    background: #fff;
-    position: relative;
-  }
-  .device-screen img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: top center;
-  }
-
-  /* ── Section base ────────────────────────────────────────── */
-  section { padding: 72px 0; }
-  @media (max-width: 640px) { section { padding: 56px 0; } }
-
-  .eyebrow {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin: 0 0 12px;
-  }
-  html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; }
-
-  .section-title {
-    font-size: clamp(28px, 4.2vw, 40px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-weight: 700;
-    margin: 0 0 14px;
-    color: var(--ink);
-  }
-  html[lang="ar"] .section-title { letter-spacing: 0; line-height: 1.25; }
-
-  .section-sub {
-    color: var(--muted);
-    font-size: 17px;
-    max-width: 56ch;
-    margin: 0;
-  }
-
-  /* ── Screens row ─────────────────────────────────────────── */
-  .screens-section {
-    background: var(--bg);
-  }
-  .screens-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 28px;
-    margin-top: 40px;
-    align-items: end;
-  }
-  .screens-row .device { --device-w: 100%; max-width: 260px; }
-  .screen-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-  .screen-card .device {
-    box-shadow:
-      0 1px 1px rgba(255,255,255,0.15) inset,
-      0 20px 50px -20px rgba(6,21,51,0.35),
-      0 8px 18px -10px rgba(6,21,51,0.25);
-  }
-  .screen-label {
-    font-size: 14px;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  @media (max-width: 760px) {
-    .screens-row {
-      display: flex;
-      gap: 18px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      margin-left: -20px;
-      margin-right: -20px;
-      padding: 0 20px 12px;
-      -webkit-overflow-scrolling: touch;
-    }
-    .screen-card { flex: 0 0 220px; scroll-snap-align: center; }
-    .screens-row .device { --device-w: 220px; }
-  }
-
-  /* ── Features grid ───────────────────────────────────────── */
-  .features {
-    background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
-  }
-  .features-head {
-    text-align: left;
-    max-width: 720px;
-    margin: 0 0 32px;
-  }
-  html[dir="rtl"] .features-head { text-align: right; }
-
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-  @media (min-width: 760px) {
-    .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  }
-
-  .feature {
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-card);
-    padding: 22px 20px;
-    box-shadow: var(--shadow-card);
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .feature:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(16,24,40,0.05), 0 16px 36px rgba(16,24,40,0.08);
-  }
-  .feature-chips {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-  .chip {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--rest);
-    display: inline-block;
-  }
-  .chip.work { background: var(--work); }
-  .chip.rest { background: var(--rest); }
-  .chip.training { background: var(--training); }
-  .chip.lcl { background: var(--lcl); }
-  .chip.annual { background: var(--annual); }
-  .chip.force { background: var(--force); }
-  .chip.blue { background: var(--blue); }
-
-  .feature-icon {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-    color: #fff;
-    flex: 0 0 auto;
-  }
-  .feature-icon svg { width: 20px; height: 20px; }
-  .bg-work     { background: var(--work); }
-  .bg-rest     { background: var(--rest); }
-  .bg-blue     { background: var(--blue); }
-  .bg-purple   { background: var(--force); }
-  .bg-orange   { background: var(--annual); }
-  .bg-teal     { background: var(--training); }
-  .bg-ink      { background: var(--ink); }
-
-  .feature h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin: 0 0 6px;
-    letter-spacing: -0.01em;
-    color: var(--ink-2);
-  }
-  html[lang="ar"] .feature h3 { letter-spacing: 0; }
-  .feature p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.45;
-  }
-
-  /* ── Privacy band ────────────────────────────────────────── */
-  .privacy {
-    padding-top: 0;
-  }
-  .privacy-card {
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 26px;
-    padding: 32px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 22px;
-    align-items: center;
-    box-shadow: var(--shadow-card);
-  }
-  .privacy-icon {
-    width: 56px; height: 56px;
-    border-radius: 16px;
-    background: var(--blue-soft);
-    color: var(--blue);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-  }
-  .privacy-icon svg { width: 28px; height: 28px; }
-  .privacy h2 {
-    font-size: 22px;
-    margin: 0 0 4px;
-    letter-spacing: -0.015em;
-    font-weight: 600;
-  }
-  html[lang="ar"] .privacy h2 { letter-spacing: 0; }
-  .privacy p { margin: 0; color: var(--muted); font-size: 15px; }
-  @media (max-width: 560px) {
-    .privacy-card { grid-template-columns: 1fr; }
-  }
-
-  /* ── Built for iOS strip ─────────────────────────────────── */
-  .native-strip {
-    background: var(--bg);
-    padding-top: 32px;
-  }
-  .native-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
-  @media (max-width: 640px) {
-    .native-row { grid-template-columns: 1fr; }
-  }
-  .native-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 20px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 18px;
-  }
-  .native-item .ic-tile {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    background: var(--surface-2);
-    display: inline-flex; align-items: center; justify-content: center;
-    color: var(--ink);
-    border: 1px solid var(--hairline);
-    flex: 0 0 auto;
-  }
-  .native-item .ic-tile svg { width: 18px; height: 18px; }
-  .native-item .label { font-weight: 600; font-size: 15px; color: var(--ink-2); }
-  .native-item .sub { display: block; color: var(--muted); font-size: 13px; font-weight: 400; }
-
-  /* ── Footer ──────────────────────────────────────────────── */
-  footer {
-    background: var(--bg);
-    padding: 56px 0 40px;
-    border-top: 1px solid var(--hairline);
-    margin-top: 24px;
-  }
-  .footer-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .footer-brand .brand-mark { width: 36px; height: 36px; border-radius: 9px; }
-  .footer-brand .title { font-weight: 600; font-size: 16px; }
-  .footer-brand .sub { color: var(--muted); font-size: 13px; }
-
-  .footer-links {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-  }
-  .footer-links a {
-    padding: 8px 14px;
-    border-radius: var(--radius-pill);
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 500;
-    transition: background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .footer-links a:hover { color: var(--ink); background: #fff; border-color: var(--hairline-strong); }
-
-  .footer-meta {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    color: var(--muted-2);
-    font-size: 13px;
-    padding-top: 22px;
-    border-top: 1px solid var(--hairline);
-  }
-  .footer-meta a { color: var(--muted); }
-
-  /* ── RTL: chevron flip in inline link arrows ─────────────── */
-  html[dir="rtl"] .chev { display: inline-block; transform: scaleX(-1); }
-
-  /* ── What's New section ──────────────────────────────────── */
-  .releases {
-    padding: 56px 0;
-    background: var(--bg);
-  }
-  .releases-head {
-    margin-bottom: 24px;
-  }
-  .releases-head .eyebrow {
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin: 0 0 6px;
-  }
-  .releases-head h2 {
-    font-size: 30px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin: 0;
-    color: var(--ink);
-  }
-  html[lang="ar"] .releases-head h2 { letter-spacing: 0; }
-
-  .release {
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-card);
-    padding: 24px 28px;
-    box-shadow: var(--shadow-card);
-  }
-  .release + .release { margin-top: 14px; }
-
-  .release-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-  }
-  .release-version {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  html[lang="ar"] .release-version { letter-spacing: 0; }
-  .release-date {
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .release-notes {
-    color: var(--ink-2);
-    font-size: 15px;
-    line-height: 1.55;
-    margin: 0;
-  }
-  .release-notes.muted { color: var(--muted); }
-  ul.release-notes,
-  .release-notes ul {
-    padding-inline-start: 20px;
-    margin: 0;
-  }
-  .release-notes li + li { margin-top: 4px; }
-  .release-notes p { margin: 0 0 8px; }
-  .release-notes p:last-child { margin-bottom: 0; }
-
-  .release-history {
-    margin-top: 14px;
-  }
-  .release-history > summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 14px 20px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-pill);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-2);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    user-select: none;
-    transition: background .15s ease;
-  }
-  .release-history > summary::-webkit-details-marker { display: none; }
-  .release-history > summary::before {
-    content: "›";
-    display: inline-block;
-    transform: rotate(90deg);
-    transition: transform .2s ease;
-    font-size: 16px;
-    line-height: 1;
-  }
-  .release-history[open] > summary::before { transform: rotate(-90deg); }
-  .release-history > summary:hover {
-    background: var(--surface-2);
-  }
-  html[dir="rtl"] .release-history > summary::before { transform: rotate(-90deg); }
-  html[dir="rtl"] .release-history[open] > summary::before { transform: rotate(90deg); }
-
-  .release-history-list {
-    margin-top: 14px;
-  }
-  .release-history-list .release {
-    padding: 20px 24px;
-  }
-  .release-history-list .release + .release { margin-top: 12px; }
-  .release-history-list .release-version { font-size: 17px; }
-
-  @media (max-width: 640px) {
-    .releases { padding: 40px 0; }
-    .releases-head h2 { font-size: 26px; }
-    .release { padding: 20px 22px; }
-    .release-history-list .release { padding: 18px 20px; }
-  }
-
-  /* ── Misc reduced motion ─────────────────────────────────── */
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; }
-  }
-
-
-  /* ── Unified Saud Apps footer (compact) ─────────────────────── */
-  .site-footer { border-top: 1px solid var(--hairline); background: var(--bg); margin-top: 32px; padding: 22px 0 26px; }
-  .site-footer .sf-inner { display: flex; flex-direction: column; gap: 12px; }
-  .sf-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
-  .sf-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
-  .sf-brand:hover { text-decoration: none; }
-  .sf-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--ink), var(--muted)); color: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
-  .sf-name { font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
-  html[lang="ar"] .sf-name { letter-spacing: 0; }
-  .sf-by { font-size: 13px; color: var(--muted); }
-  .sf-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 13.5px; }
-  .sf-nav a { color: var(--muted); }
-  .sf-nav a:hover { color: var(--ink); text-decoration: none; }
-  .sf-nav .sf-sep { color: var(--hairline-strong); }
-  .sf-base { font-size: 12.5px; color: var(--muted-2); }
-  .sf-base a { color: var(--muted); }
-  .sf-base a:hover { color: var(--ink); }
-  @media (max-width: 640px) { .sf-row { flex-direction: column; align-items: flex-start; gap: 12px; } }
+  /* Shift-type legend (real bilingual content) */
+  .sh-legend { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 9px 16px; }
+  .sh-legend li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-2); }
+  .sh-legend .sw { width: 13px; height: 13px; border-radius: 4px; flex: 0 0 auto; }
+  .sw-work{ background: var(--sh-work); } .sw-rest{ background: var(--sh-rest); }
+  .sw-training{ background: var(--sh-training); } .sw-leave{ background: var(--sh-leave); }
+  .sw-annual{ background: var(--sh-annual); }
 </style>
 </head>
-<body>
+<body class="app-sshift">
 
-  <!-- ────────────────── Top bar ────────────────── -->
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a href="../" class="brand" aria-label="Saud Apps home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>SShift</span>
+      <a href="/" class="brand" aria-label="Saud Apps home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
+        <nav class="topbar-nav" aria-label="Primary">
+          <a href="/#apps"><span data-en>Apps</span><span data-ar>التطبيقات</span></a>
+          <a href="/#approach"><span data-en>Approach</span><span data-ar>المنهج</span></a>
+          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        </nav>
       </a>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+      <div class="topbar-tools">
+        <div class="seg seg--icon" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          </button>
+          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
+          </button>
+        </div>
+        <div class="seg" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ────────────────── Hero ────────────────── -->
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="hero-icon">
-        <img src="assets/icon.png" alt="SShift app icon">
-      </div>
-      <h1>
-        <span data-en>SShift — Shift Calendar</span>
-        <span data-ar>SShift — تقويم المناوبات</span>
-      </h1>
-      <p class="hero-tag">
-        <span data-en>Plan shifts, rest &amp; leave. Quietly capable. Lives on your iPhone.</span>
-        <span data-ar>خطّط مناوباتك، الراحة والإجازات. بهدوء وكفاءة، على جهازك مباشرة.</span>
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/sshift/id6751362215">
-          <svg class="ic ic-apple" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
-          <span data-en>Download on the App Store</span>
-          <span data-ar>التحميل من App Store</span>
-        </a>
-        <a class="btn btn-ghost" href="../support/">
-          <span data-en>Support</span>
-          <span data-ar>الدعم</span>
-        </a>
-      </div>
+  <!-- ── Breadcrumb ──────────────────────────────────────────── -->
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+      <span class="chev" aria-hidden="true">›</span>
+      <span>SShift</span>
+    </nav>
+  </div>
 
-      <div class="hero-device-wrap">
-        <div class="device" aria-hidden="true">
-          <div class="device-screen">
-            <img src="assets/screen-calendar.jpg" alt="SShift calendar screen">
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="signal-field" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow hero-eyebrow">
+            <span data-en>Shift Calendar</span>
+            <span data-ar>تقويم المناوبات</span>
+          </span>
+          <h1>
+            <span data-en>SShift —<br><span class="grad-text">Shift Calendar.</span></span>
+            <span data-ar>SShift —<br><span class="grad-text">تقويم المناوبات.</span></span>
+          </h1>
+          <p class="hero-lede">
+            <span data-en>Plan shifts, rest &amp; leave. Quietly capable. Lives on your iPhone.</span>
+            <span data-ar>خطّط مناوباتك، الراحة والإجازات. بهدوء وكفاءة، على جهازك مباشرة.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://apps.apple.com/us/app/sshift/id6751362215">
+              <svg class="ic ic-apple" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
+              <span data-en>Download on the App Store</span>
+              <span data-ar>التحميل من App Store</span>
+            </a>
+            <a class="btn btn-ghost" href="/support/">
+              <span data-en>Support</span>
+              <span data-ar>الدعم</span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+          </div>
+          <div class="app-card-meta" style="margin-top:24px">
+            <span class="badge badge--live" data-app="sshift" data-field="status"><span class="dot" aria-hidden="true"></span><span data-en>On the App Store</span><span data-ar>على App Store</span></span>
+            <span class="badge" data-app="sshift" data-field="version">iOS · v4.1.1</span>
+            <span class="badge" data-app="sshift" data-field="rating" style="display:none"></span>
+            <span class="badge" data-app="sshift" data-field="updated" style="display:none"></span>
+          </div>
+        </div>
+
+        <div class="device-wrap" data-reveal>
+          <div class="device" aria-hidden="true">
+            <span class="island"></span>
+            <div class="screen" style="background:var(--surface)">
+              <div class="sh-cal">
+                <div class="sh-cal-head">
+                  <span class="sh-cal-title">June</span>
+                  <span class="sh-cal-nav">‹&nbsp;›</span>
+                </div>
+                <div class="sh-dow"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+                <div class="sh-grid">
+                  <span class="d empty"></span><span class="d empty"></span>
+                  <span class="d sh-cell-work">1</span><span class="d sh-cell-work">2</span><span class="d sh-cell-work">3</span><span class="d sh-cell-rest">4</span><span class="d sh-cell-rest">5</span>
+                  <span class="d sh-cell-training">6</span><span class="d sh-cell-work">7</span><span class="d sh-cell-work">8</span><span class="d sh-cell-work">9</span><span class="d sh-cell-rest">10</span><span class="d sh-cell-rest">11</span><span class="d sh-cell-rest">12</span>
+                  <span class="d sh-cell-work">13</span><span class="d sh-cell-work today">14</span><span class="d sh-cell-leave">15</span><span class="d sh-cell-leave">16</span><span class="d sh-cell-leave">17</span><span class="d sh-cell-rest">18</span><span class="d sh-cell-work">19</span>
+                  <span class="d sh-cell-work">20</span><span class="d sh-cell-work">21</span><span class="d sh-cell-rest">22</span><span class="d sh-cell-rest">23</span><span class="d sh-cell-training">24</span><span class="d sh-cell-work">25</span><span class="d sh-cell-work">26</span>
+                  <span class="d sh-cell-annual">27</span><span class="d sh-cell-annual">28</span><span class="d sh-cell-rest">29</span><span class="d sh-cell-work">30</span>
+                  <span class="d empty"></span><span class="d empty"></span><span class="d empty"></span>
+                </div>
+                <span class="sh-next"><span class="sw sw-work" style="width:9px;height:9px;border-radius:3px"></span>Next · Work · Fri</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Three screens ────────────────── -->
-  <section class="screens-section">
+  <!-- ── A closer look — your week, by colour ────────────────── -->
+  <section class="section section--tight">
     <div class="wrap">
-      <span class="eyebrow">
-        <span data-en>A closer look</span>
-        <span data-ar>نظرة أقرب</span>
-      </span>
-      <h2 class="section-title">
-        <span data-en>Calendar, Dashboard, Settings.</span>
-        <span data-ar>التقويم، اللوحة، الإعدادات.</span>
-      </h2>
-      <p class="section-sub">
-        <span data-en>Three screens. One job — keeping your shift schedule clear, in your language, on your device.</span>
-        <span data-ar>ثلاث شاشات. مهمّة واحدة — جدول مناوباتك واضحاً، بلغتك، على جهازك.</span>
-      </p>
-
-      <div class="screens-row">
-        <div class="screen-card">
-          <div class="device"><div class="device-screen"><img src="assets/screen-calendar.jpg" alt=""></div></div>
-          <span class="screen-label">
-            <span data-en>Calendar</span><span data-ar>التقويم</span>
+      <div class="split reverse">
+        <div data-reveal>
+          <span class="eyebrow">
+            <span data-en>A closer look</span>
+            <span data-ar>نظرة أقرب</span>
           </span>
+          <h2 class="section-title">
+            <span data-en>Your whole week, at a glance.</span>
+            <span data-ar>أسبوعك كاملاً، بنظرة واحدة.</span>
+          </h2>
+          <p class="section-sub">
+            <span data-en>Every shift type — work, rest, training, leave — reads instantly by colour, and stays consistent across the calendar, dashboard and printable PDF.</span>
+            <span data-ar>كل نوع مناوبة — عمل، راحة، تدريب، إجازة — يُقرأ فوراً باللون، ويبقى متّسقاً في التقويم واللوحة وملف PDF القابل للطباعة.</span>
+          </p>
+          <ul class="sh-legend">
+            <li><span class="sw sw-work" aria-hidden="true"></span><span data-en>Work</span><span data-ar>عمل</span></li>
+            <li><span class="sw sw-rest" aria-hidden="true"></span><span data-en>Rest</span><span data-ar>راحة</span></li>
+            <li><span class="sw sw-training" aria-hidden="true"></span><span data-en>Training</span><span data-ar>تدريب</span></li>
+            <li><span class="sw sw-leave" aria-hidden="true"></span><span data-en>Leave</span><span data-ar>إجازة</span></li>
+            <li><span class="sw sw-annual" aria-hidden="true"></span><span data-en>Annual</span><span data-ar>سنوية</span></li>
+          </ul>
         </div>
-        <div class="screen-card">
-          <div class="device"><div class="device-screen"><img src="assets/screen-dashboard.jpg" alt=""></div></div>
-          <span class="screen-label">
-            <span data-en>Dashboard</span><span data-ar>اللوحة</span>
-          </span>
-        </div>
-        <div class="screen-card">
-          <div class="device"><div class="device-screen"><img src="assets/screen-settings.jpg" alt=""></div></div>
-          <span class="screen-label">
-            <span data-en>Settings</span><span data-ar>الإعدادات</span>
-          </span>
+        <div data-reveal>
+          <div class="sh-week" aria-hidden="true">
+            <div class="col"><span class="dow">M</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">W</span><span class="tile sh-cell-rest"></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-cell-training"></span></div>
+            <div class="col"><span class="dow">F</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">S</span><span class="tile sh-cell-leave"></span></div>
+            <div class="col"><span class="dow">S</span><span class="tile sh-cell-rest"></span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Features ────────────────── -->
-  <section class="features">
+  <!-- ── Features ────────────────────────────────────────────── -->
+  <section class="section">
     <div class="wrap">
-      <div class="features-head">
+      <div data-reveal>
         <span class="eyebrow">
           <span data-en>Features</span><span data-ar>المميزات</span>
         </span>
@@ -849,16 +274,11 @@
         </h2>
       </div>
 
-      <div class="feature-grid">
+      <div class="feature-grid cols-3" style="margin-top:34px">
 
         <!-- Shift types -->
-        <div class="feature">
-          <div class="feature-chips">
-            <span class="chip work"></span>
-            <span class="chip rest"></span>
-            <span class="chip training"></span>
-            <span class="chip annual"></span>
-          </div>
+        <div class="feature" data-reveal>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></svg></span>
           <h3>
             <span data-en>Work, Rest, Training, Leave</span>
             <span data-ar>عمل، راحة، تدريب، إجازة</span>
@@ -870,10 +290,8 @@
         </div>
 
         <!-- Bilingual -->
-        <div class="feature">
-          <div class="feature-icon bg-purple">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
-          </div>
+        <div class="feature" data-reveal>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></span>
           <h3>
             <span data-en>Bilingual &amp; RTL</span>
             <span data-ar>ثنائي اللغة ودعم RTL</span>
@@ -885,10 +303,8 @@
         </div>
 
         <!-- Notifications -->
-        <div class="feature">
-          <div class="feature-icon bg-orange">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
-          </div>
+        <div class="feature" data-reveal>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></span>
           <h3>
             <span data-en>Smart notifications</span>
             <span data-ar>إشعارات ذكية</span>
@@ -900,10 +316,8 @@
         </div>
 
         <!-- PDF -->
-        <div class="feature">
-          <div class="feature-icon bg-blue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/></svg>
-          </div>
+        <div class="feature" data-reveal>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/></svg></span>
           <h3>
             <span data-en>Printable PDF</span>
             <span data-ar>تصدير PDF للطباعة</span>
@@ -915,10 +329,8 @@
         </div>
 
         <!-- Privacy -->
-        <div class="feature">
-          <div class="feature-icon bg-ink">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
+        <div class="feature" data-reveal>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
           <h3>
             <span data-en>Privacy first</span>
             <span data-ar>الخصوصية أوّلاً</span>
@@ -930,10 +342,8 @@
         </div>
 
         <!-- iOS Native -->
-        <div class="feature">
-          <div class="feature-icon bg-teal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 19h2"/></svg>
-          </div>
+        <div class="feature" data-reveal>
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 19h2"/></svg></span>
           <h3>
             <span data-en>Made for iOS</span>
             <span data-ar>مصمَّم لـ iOS</span>
@@ -948,125 +358,87 @@
     </div>
   </section>
 
-  <!-- ────────────────── What's New ────────────────── -->
-  <section class="releases">
+  <!-- ── What's New ──────────────────────────────────────────── -->
+  <section class="section section--tight">
     <div class="wrap">
-      <div class="releases-head">
-        <p class="eyebrow">
-          <span data-en>RELEASE HISTORY</span>
+      <div data-reveal>
+        <span class="eyebrow">
+          <span data-en>Release history</span>
           <span data-ar>سجل التحديثات</span>
-        </p>
-        <h2>
+        </span>
+        <h2 class="section-title">
           <span data-en>What's New</span>
           <span data-ar>ما الجديد</span>
         </h2>
       </div>
-      <div data-releases="sshift"></div>
+      <div data-releases="sshift" style="margin-top:28px"></div>
     </div>
   </section>
 
-  <!-- ────────────────── Privacy band ────────────────── -->
-  <section class="privacy">
+  <!-- ── Privacy / trust ─────────────────────────────────────── -->
+  <section class="section--tight">
     <div class="wrap">
-      <div class="privacy-card">
-        <div class="privacy-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        </div>
-        <div>
-          <h2>
-            <span data-en>Your schedule never leaves your iPhone.</span>
-            <span data-ar>جدولك لا يغادر جهازك.</span>
-          </h2>
-          <p>
-            <span data-en>SShift has no servers, no analytics, and no sign-in. The app simply does its job — on your device, offline.</span>
-            <span data-ar>لا خوادم ولا تحليلات ولا تسجيل دخول. التطبيق يقوم بمهمّته على جهازك فقط، دون اتصال.</span>
-          </p>
+      <div class="trust" data-reveal>
+        <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+        <div class="t-text">
+          <strong><span data-en>Your schedule never leaves your iPhone.</span><span data-ar>جدولك لا يغادر جهازك.</span></strong>
+          <p><span data-en>SShift has no servers, no analytics, and no sign-in. The app simply does its job — on your device, offline.</span><span data-ar>لا خوادم ولا تحليلات ولا تسجيل دخول. التطبيق يقوم بمهمّته على جهازك فقط، دون اتصال.</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Built for iOS strip ────────────────── -->
-  <section class="native-strip">
+  <!-- ── Built for iOS strip ─────────────────────────────────── -->
+  <section class="section--tight">
     <div class="wrap">
-      <div class="native-row">
-        <div class="native-item">
-          <span class="ic-tile" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          </span>
-          <div>
-            <span class="label"><span data-en>Light &amp; Dark</span><span data-ar>فاتح وداكن</span></span>
-            <span class="sub"><span data-en>Follows your system, automatically.</span><span data-ar>يتبع نظامك تلقائياً.</span></span>
-          </div>
+      <div class="feature-grid cols-3" data-reveal>
+        <div class="feature">
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span>
+          <h3><span data-en>Light &amp; Dark</span><span data-ar>فاتح وداكن</span></h3>
+          <p><span data-en>Follows your system, automatically.</span><span data-ar>يتبع نظامك تلقائياً.</span></p>
         </div>
-        <div class="native-item">
-          <span class="ic-tile" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M3 12a9 9 0 0 0 18 0"/><path d="M2 12h20"/><line x1="4" y1="4" x2="20" y2="20"/></svg>
-          </span>
-          <div>
-            <span class="label"><span data-en>Works offline</span><span data-ar>يعمل دون اتصال</span></span>
-            <span class="sub"><span data-en>No internet required, ever.</span><span data-ar>دون حاجة للإنترنت، أبداً.</span></span>
-          </div>
+        <div class="feature">
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M3 12a9 9 0 0 0 18 0"/><path d="M2 12h20"/><line x1="4" y1="4" x2="20" y2="20"/></svg></span>
+          <h3><span data-en>Works offline</span><span data-ar>يعمل دون اتصال</span></h3>
+          <p><span data-en>No internet required, ever.</span><span data-ar>دون حاجة للإنترنت، أبداً.</span></p>
         </div>
-        <div class="native-item">
-          <span class="ic-tile" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
-          </span>
-          <div>
-            <span class="label"><span data-en>Native SwiftUI</span><span data-ar>SwiftUI أصلي</span></span>
-            <span class="sub"><span data-en>Designed to feel at home on iOS.</span><span data-ar>مصمَّم ليبدو منسجماً مع iOS.</span></span>
-          </div>
+        <div class="feature">
+          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3><span data-en>Native SwiftUI</span><span data-ar>SwiftUI أصلي</span></h3>
+          <p><span data-en>Designed to feel at home on iOS.</span><span data-ar>مصمَّم ليبدو منسجماً مع iOS.</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Footer ────────────────── -->
-    <footer class="site-footer">
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-row">
+      <div class="sf-bar">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
-          <span class="sf-mark" aria-hidden="true">S</span>
+          <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
-          <span class="sf-by"><span data-en>· by Saud Ismail</span><span data-ar>· تطوير سعود إسماعيل</span></span>
         </a>
-        <nav class="sf-nav" aria-label="Footer">
+        <nav class="sf-links" aria-label="Footer">
           <a href="/sshift/">SShift</a>
           <a href="/phonespace/">PhoneSpace</a>
           <a href="/promptbook/">Promptbook</a>
           <a href="/filed/">Filed</a>
-          <span class="sf-sep" aria-hidden="true">·</span>
+          <span class="sf-dot" aria-hidden="true"></span>
           <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
           <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base"><span data-en>© 2026 Saud Apps · </span><span data-ar>© 2026 تطبيقات سعود · </span><a href="mailto:support@saud.im">support@saud.im</a></div>
+      <div class="sf-base">
+        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+        <a href="mailto:support@saud.im">support@saud.im</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const html = document.documentElement;
-      const btns = document.querySelectorAll('[data-lang-btn]');
-      function setLang(lang) {
-        html.setAttribute('lang', lang);
-        html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
-        try { localStorage.setItem('sshift-lang', lang); } catch (e) {}
-      }
-      btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
-
-      // initial: localStorage > browser hint > default en
-      let initial = 'en';
-      try {
-        const saved = localStorage.getItem('sshift-lang');
-        if (saved === 'en' || saved === 'ar') initial = saved;
-        else if ((navigator.language || '').toLowerCase().startsWith('ar')) initial = 'ar';
-      } catch (e) {}
-      setLang(initial);
-    })();
-  </script>
-  <script src="../releases-loader.js" defer></script>
+  <script src="/assets/saud.js" defer></script>
+  <script src="/app-data.js" defer></script>
+  <script src="/releases-loader.js" defer></script>
 </body>
 </html>
