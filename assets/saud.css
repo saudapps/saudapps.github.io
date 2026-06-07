@@ -449,7 +449,7 @@ html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.16; font-weight: 72
 
 .app-card.sshift     { --card-accent: #3D74E6; }
 .app-card.phonespace { --card-accent: #E0A23B; }
-.app-card.promptbook { --card-accent: #8A6CFF; }
+.app-card.promptbook { --card-accent: #6E7AB0; }   /* midnight-navy/indigo — matches the Promptbook page */
 .app-card.filed      { --card-accent: #2D6CDF; }
 
 .app-card-top { display: flex; align-items: center; gap: 16px; }
