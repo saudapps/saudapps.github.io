@@ -181,6 +181,7 @@ body.app-sshift     { --accent: #3D74E6; --accent-2: #2A4FBF; }   /* electric na
 body.app-phonespace { --accent: #E0A23B; --accent-2: #C9772F; --accent-ink:#1A1207; } /* warm amber */
 body.app-promptbook { --accent: #8A6CFF; --accent-2: #6C5CE0; }   /* violet / ink */
 body.app-filed      { --accent: #2D6CDF; --accent-2: #2257C0; }   /* document blue */
+body.app-dufaat     { --accent: #6F7E9C; --accent-2: #535F7A; }   /* pearl-slate */
 
 /* ───────────────────────────  Reset & base  ───────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
@@ -451,6 +452,7 @@ html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.16; font-weight: 72
 .app-card.phonespace { --card-accent: #E0A23B; }
 .app-card.promptbook { --card-accent: #6E7AB0; }   /* midnight-navy/indigo — matches the Promptbook page */
 .app-card.filed      { --card-accent: #2D6CDF; }
+.app-card.dufaat     { --card-accent: #9BA3B5; }   /* warm pearl-grey — kept apart from Promptbook's violet-slate */
 
 .app-card-top { display: flex; align-items: center; gap: 16px; }
 .app-icon {

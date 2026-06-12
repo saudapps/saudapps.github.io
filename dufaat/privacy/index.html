@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Dufaat privacy policy. We collect nothing. Your plans, payments, notes, and receipts stay on your device — no accounts, no servers, no tracking.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0A0B0F">
+<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
+<title>Dufaat — Privacy Policy</title>
+
+<link rel="canonical" href="https://saud.im/dufaat/privacy/">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Saud Apps">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:url" content="https://saud.im/dufaat/privacy/">
+<meta property="og:title" content="Dufaat — Privacy Policy">
+<meta property="og:description" content="Dufaat collects nothing. Your plans, payments, notes, and receipts stay on your iPhone — no accounts, no servers, no tracking.">
+<meta property="og:image" content="https://saud.im/assets/icon-dufaat.png">
+<meta property="og:image:alt" content="Dufaat app icon">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dufaat — Privacy Policy">
+<meta name="twitter:description" content="Dufaat collects nothing. Your plans, payments, notes, and receipts stay on your iPhone — no accounts, no servers, no tracking.">
+<meta name="twitter:image" content="https://saud.im/assets/icon-dufaat.png">
+<meta name="twitter:image:alt" content="Dufaat app icon">
+
+<link rel="stylesheet" href="/assets/saud.css">
+<!-- anti-flash: set theme before first paint -->
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('saudapps-theme');
+      var t = (s === 'light' || s === 'dark') ? s
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('saudapps-lang');
+      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  @font-face {
+    font-family: "Amiri";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/dufaat/assets/amiri-bold-arabic.woff2") format("woff2");
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFC;
+  }
+  html[lang="ar"] body.app-dufaat .section-title {
+    font-family: "Amiri", var(--font-ar), serif;
+    line-height: 1.5;
+  }
+  :root[data-theme="dark"] body.app-dufaat {
+    --bg:#1A1F2E; --bg-2:#151926;
+    --surface:#222839; --surface-2:#293042; --surface-raised:#293042; --surface-sunken:#151926;
+    --text:#F0EEE8; --text-2:#B2B2AC; --text-3:#7C7F84;
+    --hairline:rgba(240,238,232,0.10); --hairline-2:rgba(240,238,232,0.06); --hairline-strong:rgba(240,238,232,0.18);
+    --topbar-bg:rgba(26,31,46,0.66);
+  }
+  :root[data-theme="light"] body.app-dufaat {
+    --bg:#F0EEE8; --bg-2:#E9E6DE;
+    --surface:#FBFAF6; --surface-2:#F3F1EA; --surface-raised:#FDFCF8; --surface-sunken:#E7E4DB;
+    --text:#1A1F2E; --text-2:#4A4F5C; --text-3:#7E828D;
+    --hairline:rgba(26,31,46,0.12); --hairline-2:rgba(26,31,46,0.07); --hairline-strong:rgba(26,31,46,0.18);
+    --topbar-bg:rgba(240,238,232,0.78);
+  }
+</style>
+</head>
+<body class="app-dufaat">
+
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="/" class="brand" aria-label="Saud Apps home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
+      </a>
+      <div class="topbar-tools">
+        <div class="seg seg--icon" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          </button>
+          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
+          </button>
+        </div>
+        <div class="seg" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap wrap--narrow">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+        <span class="chev" aria-hidden="true">›</span>
+        <a href="/dufaat/">Dufaat</a>
+        <span class="chev" aria-hidden="true">›</span>
+        <span><span data-en>Privacy</span><span data-ar>الخصوصية</span></span>
+      </nav>
+      <span class="eyebrow"><span data-en>Dufaat</span><span data-ar>دُفعات</span></span>
+      <h1 class="section-title">
+        <span data-en>Privacy Policy</span>
+        <span data-ar>سياسة الخصوصية</span>
+      </h1>
+      <p class="doc-meta">
+        <span data-en>Effective June 12, 2026</span>
+        <span data-ar>ساري ابتداءً من 12 يونيو 2026</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Trust strip ─────────────────────────────────────────── -->
+  <section class="section--tight" style="padding-top:0">
+    <div class="wrap wrap--narrow">
+      <div class="trust">
+        <span class="t-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </span>
+        <div class="t-text">
+          <p>
+            <span data-en>Dufaat collects <strong>nothing</strong>. Your plans, payments, notes, and receipts stay on your iPhone — no accounts, no servers, no tracking.</span>
+            <span data-ar>تطبيق دُفعات لا يجمع <strong>أي شيء</strong>. تبقى خططك ودفعاتك وملاحظاتك وإيصالاتك على جهازك — بلا حسابات، بلا خوادم، بلا تتبّع.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Policy body ─────────────────────────────────────────── -->
+  <main class="section--tight" style="padding-top:0">
+    <div class="wrap wrap--narrow">
+      <div class="prose">
+
+        <h2><span data-en>1. What we collect</span><span data-ar>١. ما الذي نجمعه</span></h2>
+        <p data-en>Nothing. Dufaat does not collect, store, or transmit any personal information. There is no account, no sign-up, and no email required to use the app. Dufaat works 100% offline.</p>
+        <p data-ar>لا شيء. لا يجمع تطبيق دُفعات أو يخزّن أو يُرسل أي معلومات شخصية. لا يوجد حساب، ولا تسجيل، ولا بريد إلكتروني مطلوب لاستخدام التطبيق. ويعمل دُفعات دون اتصال بنسبة 100%.</p>
+
+        <h2><span data-en>2. Where your data lives</span><span data-ar>٢. أين تُحفظ بياناتك</span></h2>
+        <p data-en>Your installment plans, payments, the notes you write, and everything Dufaat keeps about them (such as names, amounts, months, and settlement status) are stored only on your device, inside the app's private storage. They never leave your iPhone, and we never receive a copy.</p>
+        <p data-ar>تُحفظ خطط أقساطك ودفعاتك والملاحظات التي تكتبها وكل ما يحتفظ به دُفعات عنها (مثل الأسماء والمبالغ والأشهر وحالة التسوية) على جهازك فقط ضمن مساحة التخزين الخاصة بالتطبيق. لا تغادر هاتفك أبدًا، ولا نتلقّى أي نسخة منها.</p>
+
+        <h2><span data-en>3. Receipts &amp; attachments</span><span data-ar>٣. الإيصالات والمرفقات</span></h2>
+        <p data-en>When you attach a receipt to a payment — an image or a PDF — Dufaat makes a copy in its own on-device storage so it stays with the payment. This happens entirely on your device; nothing is uploaded anywhere.</p>
+        <p data-ar>عند إرفاق إيصال بدفعة — صورة أو ملف PDF — يُنشئ دُفعات نسخة منه ضمن تخزينه على الجهاز ليبقى مع الدفعة. يحدث ذلك بالكامل على جهازك، ولا يُرفع أي شيء إلى أي مكان.</p>
+
+        <h2><span data-en>4. Notifications — the only permission</span><span data-ar>٤. الإشعارات — الإذن الوحيد</span></h2>
+        <p data-en>The only system permission Dufaat may ask for is notifications, and only if you choose to turn reminders on. Reminders are scheduled locally by iOS on your device — they never pass through a server, and we never see them. You can switch them off at any time in the app or in iOS Settings.</p>
+        <p data-ar>الإذن الوحيد الذي قد يطلبه دُفعات هو الإشعارات، وفقط إذا اخترت تفعيل التذكيرات. تُجدول التذكيرات محليًا عبر نظام iOS على جهازك — ولا تمرّ عبر أي خادم، ولا نراها إطلاقًا. ويمكنك إيقافها في أي وقت من داخل التطبيق أو من إعدادات iOS.</p>
+
+        <h2><span data-en>5. Backup &amp; restore</span><span data-ar>٥. النسخ الاحتياطي والاستعادة</span></h2>
+        <p data-en>Backup in Dufaat is a file you create yourself, when you choose, and save where you choose. It is yours and stays under your control — Dufaat never uploads it, and we never receive it. Restoring simply reads a backup file you provide.</p>
+        <p data-ar>النسخة الاحتياطية في دُفعات ملف تنشئه بنفسك، متى شئت، وتحفظه حيث تشاء. وهو ملكك ويبقى تحت سيطرتك — لا يرفعه دُفعات أبدًا، ولا نتلقّاه نحن. أما الاستعادة فهي مجرد قراءة لملف النسخة الاحتياطية الذي تقدّمه أنت.</p>
+
+        <h2><span data-en>6. Preferences</span><span data-ar>٦. التفضيلات</span></h2>
+        <p data-en>Your in-app choices — such as the language and whether reminders are enabled — are saved locally on your device as app preferences. They are not shared with anyone.</p>
+        <p data-ar>تُحفظ خياراتك داخل التطبيق — مثل اللغة وما إذا كانت التذكيرات مفعّلة — محليًا على جهازك كتفضيلات للتطبيق، ولا تُشارَك مع أي جهة.</p>
+
+        <h2><span data-en>7. Analytics, tracking &amp; network</span><span data-ar>٧. التحليلات والتتبّع والشبكة</span></h2>
+        <p data-en>None. Dufaat contains no analytics, no tracking, no advertising, and no crash-reporting services. The app makes no network calls to us or to any third party, and there is no backend server.</p>
+        <p data-ar>لا شيء. لا يحتوي دُفعات على أي تحليلات أو تتبّع أو إعلانات أو خدمات تقارير أعطال. ولا يُجري التطبيق أي اتصالات شبكية بنا أو بأي طرف ثالث، ولا يوجد خادم خلفي.</p>
+
+        <h2><span data-en>8. No cloud sync or accounts</span><span data-ar>٨. لا مزامنة سحابية ولا حسابات</span></h2>
+        <p data-en>Dufaat does not use iCloud or any cloud sync, and it has no account system. The only copy of your data that can exist outside your device is a backup file you create yourself, as described above.</p>
+        <p data-ar>لا يستخدم دُفعات خدمة iCloud أو أي مزامنة سحابية، ولا يحتوي على نظام حسابات. والنسخة الوحيدة من بياناتك التي يمكن أن توجد خارج جهازك هي ملف النسخة الاحتياطية الذي تنشئه بنفسك، كما هو موضح أعلاه.</p>
+
+        <h2><span data-en>9. You are in control</span><span data-ar>٩. أنت المتحكّم</span></h2>
+        <p data-en>Because everything is stored locally, you can delete any plan, payment, note, or receipt at any time from within the app. Deleting the app removes its data from your device. Backup files you created and saved elsewhere remain yours.</p>
+        <p data-ar>بما أنّ كل شيء يُحفظ محليًا، يمكنك حذف أي خطة أو دفعة أو ملاحظة أو إيصال في أي وقت من داخل التطبيق. وحذف التطبيق يزيل بياناته من جهازك. وتبقى ملفات النسخ الاحتياطي التي أنشأتها وحفظتها في مكان آخر ملكًا لك.</p>
+
+        <h2><span data-en>10. Changes</span><span data-ar>١٠. التغييرات</span></h2>
+        <p data-en>If Dufaat gains features that change how data is handled, this policy will be updated here with a new effective date before those changes take effect in a released version.</p>
+        <p data-ar>إذا اكتسب دُفعات ميزات تُغيّر طريقة التعامل مع البيانات، فستُحدَّث هذه السياسة هنا بتاريخ سريان جديد قبل أن تُطبَّق تلك التغييرات في نسخة منشورة.</p>
+
+        <h2><span data-en>11. Contact</span><span data-ar>١١. التواصل</span></h2>
+        <p data-en>Questions about privacy? Email <a href="mailto:support@saud.im">support@saud.im</a>.</p>
+        <p data-ar>أسئلة عن الخصوصية؟ راسلنا على <a href="mailto:support@saud.im">support@saud.im</a>.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="wrap sf-inner">
+      <div class="sf-bar">
+        <a class="sf-brand" href="/" aria-label="Saud Apps home">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="sf-name">Saud Apps</span>
+        </a>
+        <nav class="sf-links" aria-label="Footer">
+          <a href="/sshift/">SShift</a>
+          <a href="/phonespace/">PhoneSpace</a>
+          <a href="/promptbook/">Promptbook</a>
+          <a href="/filed/">Filed</a>
+          <a href="/dufaat/">Dufaat</a>
+          <span class="sf-dot" aria-hidden="true"></span>
+          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+          <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
+        </nav>
+      </div>
+      <div class="sf-base">
+        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+        <a href="mailto:support@saud.im">support@saud.im</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/saud.js" defer></script>
+</body>
+</html>
