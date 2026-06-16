@@ -23,6 +23,25 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-16 — Filed pages prepped for App Store submission
+- Done: Reframed Filed pages ahead of submission. (1) /filed/ — replaced the
+  "Coming soon to the App Store" disabled button with a Contact-support primary
+  CTA (mailto:support@saud.im) and added a Terms ghost link beside Privacy;
+  marketing layout/design otherwise untouched. (2) /filed/privacy/ — rewrote §8
+  to remove the explicit iCloud reference (iCloud is hidden in v1.0) while keeping
+  the no-cloud-sync / no-accounts / local-only substance; rest of policy intact.
+  (3) /filed/terms/ — left as-is; verified all four required points are covered
+  (local PDF management, visual signature ≠ certified/PKI digital signature, user
+  responsible for documents, no data-loss/recovery guarantee + backups are user's).
+- Decisions: Per owner, kept the existing marketing landing page (Option 1) rather
+  than replacing it with a bare support page; the real App Store link will be added
+  post-release. No general site design changed outside Filed pages. No iOS app changes.
+- Open / next: After App Store approval, add the real App Store link to /filed/ and
+  flip Filed to "Live" in Docs/APPS.md per WEBSITE_RELEASE_SYNC.md.
+- Deploy state: published to Pages from main — filed/index.html, filed/privacy/index.html changed.
+- Live-check: verify saud.im/filed/, /filed/privacy/, /filed/terms/ after Pages rebuild.
+- ChatGPT review: none.
+
 ## 2026-06-14 — Operating-system docs added
 - Done: Added CLAUDE.md, Docs/APPS.md, Docs/WEBSITE_RELEASE_SYNC.md,
   Docs/SESSION_LOG.md using the Saud Apps operating-system pattern. Docs only —
