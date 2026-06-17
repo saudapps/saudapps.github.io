@@ -37,25 +37,27 @@ Public repo: keep entries free of secrets and private local machine paths.
   commits releases.json with the default GITHUB_TOKEN (GitHub does not re-trigger
   workflows from GITHUB_TOKEN pushes) and the commit message keeps "[skip ci]" as
   a second safeguard — so the bot's own "chore: sync releases" push will not loop.
-- Self-test result (IMPORTANT): the file is correct (validated: on.push.branches=[main],
-  schedule + workflow_dispatch kept, checkout/setup-node @v6, node 22, commit step
-  unchanged) and GitHub processed the push (the Pages build ran for the same SHA) —
-  but NO "Sync App Releases" run with event=push appeared (polled ~9 min; workflow run
-  count stayed at 8). Notably, the daily `schedule` cron has ALSO never produced a run
-  since it was added 2026-05-23 — every historical run (#1–#8) is workflow_dispatch.
-  So non-manual triggers (push + schedule) are currently not spawning runs for this
-  workflow; only manual dispatch works. No loop occurred (trivially — sync didn't run).
-- Open / next: This is a repo/account-level Actions condition, NOT the workflow file
-  (file verified valid). Owner to check, in GitHub repo Settings → Actions: that
-  Actions is allowed to run on push/schedule for this repo (org/repo policy), and
-  Actions → "Sync App Releases" for any "this scheduled workflow is disabled" banner →
-  "Enable workflow". Re-verify by either a manual Run workflow (known-good) or the next
-  push showing an event=push run. Until then, releases.json still syncs via manual
-  dispatch (as the owner did for the dufaat entry, run #8).
-- Deploy state: committed + pushed to main (222bbdc); CI-only change, no site files
-  touched. releases.json untouched by me (bot's dufaat sync 88f9007 preserved via rebase).
-- Live-check: N/A for site pages. Actions self-test did not pass (see above) — pending
-  the owner's repo-settings check.
+- Self-test result: PASSED. The push trigger fires and there is NO loop.
+  • The trigger-adding commit (222bbdc) did NOT self-trigger — expected GitHub
+    behavior: a push is evaluated against the workflow config that existed BEFORE
+    that push, so the commit that first introduces `on: push` never triggers itself.
+    (My initial read mistook this latency for a broken trigger — corrected here.)
+  • The NEXT push (b6b8c4c, now that main already carried `on: push`) triggered
+    run #9 — event=push, conclusion=success.
+  • Run #9 produced the bot commit 2e3504d "chore: sync releases [skip ci]"
+    (releases.json, 1 line). That bot push did NOT spawn another run — total run
+    count stayed at 9 (no #10). Confirms the loop safeguards work: GITHUB_TOKEN
+    pushes don't re-trigger Actions, with [skip ci] as the second guard.
+- Open / next: Nothing required. Release sync now runs automatically on every push
+  to main; daily schedule remains as backup; workflow_dispatch still available.
+  (Aside: the daily `schedule` cron had no historical runs before today — GitHub
+  schedules can be paused after repo inactivity; not blocking since push now covers
+  every deploy. Owner can ignore unless the daily backup is later needed.)
+- Deploy state: committed + pushed to main; CI-only change, no site files touched.
+  releases.json is the bot's (88f9007 dufaat sync, then 2e3504d) — untouched by me,
+  preserved via rebase.
+- Live-check: N/A for site pages. Actions self-test verified via the runs API
+  (run #9 event=push success; no loop).
 - ChatGPT review: none.
 
 ## 2026-06-17 — Pic source folders removed (post live-check)
