@@ -23,6 +23,29 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Landing: hide Promptbook + fix stats strip
+- Done: Landing page only (index.html). Hid Promptbook from the landing WITHOUT
+  deleting code: wrapped the whole `<article class="app-card promptbook">` block
+  in a single HTML comment (folded its inner `<!-- Promptbook -->` marker into the
+  wrapper opening so comments don't nest; restore by removing the wrapper lines),
+  and commented out the footer `<a href="/promptbook/">Promptbook</a>` link.
+  Updated the hardcoded stats strip (div.cred): "5 apps"→"4 apps"
+  (٥ تطبيقات→٤ تطبيقات), "2 on the App Store"→"3", "Built for iOS" unchanged →
+  now reads "4 apps · 3 on the App Store · Built for iOS". Docs/APPS.md Promptbook
+  row annotated as parked/hidden (code retained, status still Coming soon).
+- Decisions: HTML comments can't nest, so the card's existing `<!-- Promptbook -->`
+  label became the opening line of the wrapping comment — one comment span, cleanly
+  reversible. Did NOT touch promptbook/ folder, its pages/assets, or sitemap.xml —
+  /promptbook/ stays directly reachable; only removed from the landing surface.
+- Open / next: When Promptbook is ready to relaunch, un-hide by removing the two
+  comment wrappers (card + footer link) and bump the stats strip back (apps count
+  + App Store count).
+- Deploy state: committed + pushed to main; GitHub Pages rebuilds the landing.
+  No other pages changed.
+- Live-check: PENDING owner — verify saud.im shows 4 cards (no Promptbook), strip
+  reads "4 apps · 3 on the App Store", and saud.im/promptbook/ still loads directly.
+- ChatGPT review: none.
+
 ## 2026-06-17 — Dufaat: Coming soon → Live
 - Done: Took Dufaat live across the site, mirroring SShift/PhoneSpace exactly.
   Wired key `dufaat` (App Store ID 6780440703) into BOTH data systems:
