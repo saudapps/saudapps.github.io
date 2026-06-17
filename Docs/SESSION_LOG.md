@@ -23,6 +23,9 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Pic source folders removed (post live-check)
+- Done: Owner's live check passed. Removed `dufaat/pic` (tracked) via `git rm` + commit "chore: remove dufaat/pic source screenshots"; `sshift/Pic` was local/untracked and is removed by the owner on their machine. Published optimized shots remain in `dufaat/assets/screenshots/` + `sshift/assets/screenshots/`.
+
 ## 2026-06-17 — Dufaat + SShift: real app screenshots (Filed treatment)
 - Done: Replaced the coded/SVG device mockups on /dufaat/ and /sshift/ with the
   owner's real app screenshots, mirroring the Filed .device-frame pattern exactly.
