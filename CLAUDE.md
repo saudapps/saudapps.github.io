@@ -60,6 +60,9 @@ When any apply, follow Docs/WEBSITE_RELEASE_SYNC.md before calling the release d
 
 ## Where to look
 - Docs/APPS.md                 — master public index of all Saud Apps (repos, pages, status).
+- Docs/ARCHITECTURE.md         — technical: stack, file map, the two data systems, deploy flow, coverage.
+- Docs/ADD_NEW_APP.md          — step-by-step to add an app and wire it Live (both systems).
+- Docs/RELEASES_PIPELINE.md    — how releases.json is produced + how to fix it when What's-New is stale.
 - Docs/WEBSITE_RELEASE_SYNC.md — when/how to update the site for an app release.
 - Docs/SESSION_LOG.md          — running session log; newest entry on top.
 

@@ -23,6 +23,22 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Docs: add ARCHITECTURE / ADD_NEW_APP / RELEASES_PIPELINE
+- Done: Added three owner-provided reference docs to Docs/ — ARCHITECTURE.md
+  (stack, repo map, the two data systems, deploy flow, app coverage, failure
+  modes), ADD_NEW_APP.md (Phase 1 coming-soon → Phase 2 going-Live playbook +
+  the five edit points), and RELEASES_PIPELINE.md (releases.json sync deep-dive
+  + troubleshooting). Linked all three from CLAUDE.md under "## Where to look".
+- Decisions: Verified public-safe before committing — no secrets (only secret
+  *names*, already present in committed workflow/script), no local machine paths,
+  no bundle IDs, no private source. Docs-only change; no site files, code,
+  config, or releases.json touched.
+- Open / next: None. The push will trigger the usual release sync (push event);
+  expect no releases.json change (content already current).
+- Deploy state: committed + pushed to main; docs-only, no live-site impact.
+- Live-check: N/A (docs only).
+- ChatGPT review: none.
+
 ## 2026-06-17 — CI: sync releases on every deploy + clear Node 20 warning
 - Done: Edited only `.github/workflows/sync-releases.yml`. (1) Added a `push:
   branches: [ main ]` trigger so the release-notes sync runs on every deploy
