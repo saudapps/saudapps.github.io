@@ -37,11 +37,25 @@ Public repo: keep entries free of secrets and private local machine paths.
   commits releases.json with the default GITHUB_TOKEN (GitHub does not re-trigger
   workflows from GITHUB_TOKEN pushes) and the commit message keeps "[skip ci]" as
   a second safeguard — so the bot's own "chore: sync releases" push will not loop.
-- Open / next: Confirm under Actions that this push spawned a "Sync App Releases"
-  run with event=push, green, and that the follow-up bot commit did NOT spawn a
-  second run (no loop).
-- Deploy state: committed + pushed to main; CI-only change (no site files touched).
-- Live-check: N/A for site pages; verify via the Actions tab run result.
+- Self-test result (IMPORTANT): the file is correct (validated: on.push.branches=[main],
+  schedule + workflow_dispatch kept, checkout/setup-node @v6, node 22, commit step
+  unchanged) and GitHub processed the push (the Pages build ran for the same SHA) —
+  but NO "Sync App Releases" run with event=push appeared (polled ~9 min; workflow run
+  count stayed at 8). Notably, the daily `schedule` cron has ALSO never produced a run
+  since it was added 2026-05-23 — every historical run (#1–#8) is workflow_dispatch.
+  So non-manual triggers (push + schedule) are currently not spawning runs for this
+  workflow; only manual dispatch works. No loop occurred (trivially — sync didn't run).
+- Open / next: This is a repo/account-level Actions condition, NOT the workflow file
+  (file verified valid). Owner to check, in GitHub repo Settings → Actions: that
+  Actions is allowed to run on push/schedule for this repo (org/repo policy), and
+  Actions → "Sync App Releases" for any "this scheduled workflow is disabled" banner →
+  "Enable workflow". Re-verify by either a manual Run workflow (known-good) or the next
+  push showing an event=push run. Until then, releases.json still syncs via manual
+  dispatch (as the owner did for the dufaat entry, run #8).
+- Deploy state: committed + pushed to main (222bbdc); CI-only change, no site files
+  touched. releases.json untouched by me (bot's dufaat sync 88f9007 preserved via rebase).
+- Live-check: N/A for site pages. Actions self-test did not pass (see above) — pending
+  the owner's repo-settings check.
 - ChatGPT review: none.
 
 ## 2026-06-17 — Pic source folders removed (post live-check)
