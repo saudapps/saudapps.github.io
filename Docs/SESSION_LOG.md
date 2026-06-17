@@ -23,6 +23,34 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Homepage accent → graphite (+ dark-mode hero-text fix)
+- Done: Applied the owner-approved graphite homepage accent in assets/saud.css
+  (ONE file). (1) `body.app-home` accent tokens #5B6CFF/#9A6CFF (iridescent) →
+  #3A3F4A/#23272F (graphite). (2) Added a dark-mode-only override for the homepage
+  hero gradient text: the graphite stops are near-black and nearly vanish on the
+  dark canvas once clipped to text, so in dark mode `body.app-home .grad-text`
+  now uses a lifted graphite ramp `linear-gradient(100deg, #8A92A0, #5A6270)`.
+- Decisions: Override uses `background-image` (NOT the `background` shorthand) so
+  the existing `background-clip: text` is preserved — the shorthand would reset
+  clip to border-box and hide the text. Scoped to `body.app-home .grad-text` only;
+  mirrored saud.css's dual dark-mode convention (both `@media (prefers-color-scheme:
+  dark) :root:not([data-theme="light"])` and `:root[data-theme="dark"]`). Global
+  --accent left graphite in dark (buttons/eyebrow/stats unchanged) — only the
+  clipped gradient text was rescued. NO app accents touched.
+- Verified (headless Chrome): homepage light = strong near-black graphite (hero,
+  CTA, stats); homepage dark = hero gradient text now legible, rest still graphite.
+  App pages render-checked — PhoneSpace still amber, SShift still navy (no bleed).
+  Only assets/saud.css changed.
+- Open / next: Retune the dufaat, sshift, and filed accents so they stand out
+  cleanly against the new neutral graphite homepage (they currently read as their
+  own blues/slate; revisit for contrast/distinction). PhoneSpace amber is fine.
+- Deploy state: committed + pushed to main; live CSS change → Pages rebuilds the
+  homepage. (Push also triggers the release sync as usual; no releases.json change.)
+- Live-check: PENDING owner — verify saud.im homepage on mobile + desktop, light
+  AND dark: graphite accent throughout, hero gradient text legible in dark; app
+  pages unaffected (PhoneSpace amber).
+- ChatGPT review: none.
+
 ## 2026-06-17 — Docs: add ARCHITECTURE / ADD_NEW_APP / RELEASES_PIPELINE
 - Done: Added three owner-provided reference docs to Docs/ — ARCHITECTURE.md
   (stack, repo map, the two data systems, deploy flow, app coverage, failure

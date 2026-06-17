@@ -176,7 +176,7 @@
 /* ───────────────────────────  Per-app accents  ─────────────────────────
    Each page sets one body class. Everything else inherits. Adding a new
    app = add one rule here. */
-body.app-home       { --accent: #5B6CFF; --accent-2: #9A6CFF; }   /* iridescent */
+body.app-home       { --accent: #3A3F4A; --accent-2: #23272F; }   /* graphite */
 body.app-sshift     { --accent: #3D74E6; --accent-2: #2A4FBF; }   /* electric navy */
 body.app-phonespace { --accent: #E0A23B; --accent-2: #C9772F; --accent-ink:#1A1207; } /* warm amber */
 body.app-promptbook { --accent: #8A6CFF; --accent-2: #6C5CE0; }   /* violet / ink */
@@ -249,6 +249,20 @@ html[lang="ar"] .section-title { letter-spacing: 0; line-height: 1.22; font-weig
 .grad-text {
   background: linear-gradient(100deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* Homepage hero gradient text: the graphite accent stops are near-black and
+   nearly vanish on the dark canvas once clipped to text. In dark mode only,
+   lift the homepage hero gradient to a lighter graphite ramp (same hue) so it
+   stays legible. Scoped to body.app-home so no app page is affected, and uses
+   background-image (not the background shorthand) to preserve the text clip.
+   Mirrors saud.css's dual dark-mode convention (media fallback + data-theme). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body.app-home .grad-text {
+    background-image: linear-gradient(100deg, #8A92A0, #5A6270);
+  }
+}
+:root[data-theme="dark"] body.app-home .grad-text {
+  background-image: linear-gradient(100deg, #8A92A0, #5A6270);
 }
 
 /* ───────────────────────────  Topbar  ──────────────────────────────────── */
