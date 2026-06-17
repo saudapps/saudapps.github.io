@@ -23,6 +23,26 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Filed landing: real app screenshots
+- Done: Replaced coded illustrations on /filed/ with real in-app screenshots
+  (owner-confirmed demo/clean data — no sensitive info). Converted 5 HEIC shots
+  (filed/Pic/{1,2,4,5,6}.HEIC) → optimized JPGs (~820px, 72–124KB) in new
+  filed/assets/screenshots/ as library.jpg, folder-invoices.jpg,
+  viewer-service-agreement.jpg, sign-by-hand.jpg, settings-privacy.jpg. Added a
+  256px app-icon tile (filed/assets/app-icon.png, from assets/icon-filed.png) to
+  the hero. Hero device now shows the real Library; the "Sign it, by hand" split
+  shows the real signing screen; added a new "A look inside Filed" 3-up gallery
+  (folders / reader / Face ID settings) reusing the site's .device frame pattern.
+  Feature grid and page identity unchanged. Pic/3.HEIC unused (redundant).
+- Decisions: Reused existing .device frame CSS (same as PhoneSpace) for theme/RTL/
+  responsive consistency; left now-unused .fl-* coded-mockup CSS in place (harmless,
+  minimal diff). filed/Pic/ intentionally NOT deleted — owner verifies live first.
+- Open / next: After owner's visual check, delete filed/Pic/ (or owner removes it).
+  Post App Store approval, add the real App Store link + flip Filed to Live in APPS.md.
+- Deploy state: published to Pages from main — filed/index.html + new filed/assets/* added.
+- Live-check: verify saud.im/filed/ renders all real screenshots after Pages rebuild.
+- ChatGPT review: none.
+
 ## 2026-06-16 — Filed pages prepped for App Store submission
 - Done: Reframed Filed pages ahead of submission. (1) /filed/ — replaced the
   "Coming soon to the App Store" disabled button with a Contact-support primary

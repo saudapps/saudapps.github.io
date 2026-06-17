@@ -107,6 +107,16 @@
               border: 1px solid color-mix(in oklab, var(--live) 32%, transparent);
               border-radius: 999px; padding: 3px 9px; }
   .fl-stamp svg { width: 12px; height: 12px; }
+
+  /* Real app icon tile in the hero */
+  .fl-appicon { width: 78px; height: 78px; border-radius: 19px; display: block; margin: 0 auto 20px;
+                box-shadow: var(--shadow-md), inset 0 0 0 1px var(--hairline); }
+  /* "A look inside" — real screenshots in device frames */
+  .fl-shots { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+              gap: 30px 26px; margin-top: 36px; }
+  .fl-shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .fl-shot .device { width: 250px; }
+  .fl-shot figcaption { max-width: 250px; font-size: 13.5px; line-height: 1.5; color: var(--text-3); text-align: center; }
 </style>
 </head>
 <body class="app-filed">
@@ -148,6 +158,7 @@
   <section class="hero center" data-reveal>
     <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
+      <img class="fl-appicon" src="/filed/assets/app-icon.png" alt="Filed app icon" width="78" height="78">
       <span class="eyebrow hero-eyebrow" style="display:inline-flex">
         <span data-en>Privacy-first · iPhone</span>
         <span data-ar>الخصوصية أولاً · آيفون</span>
@@ -176,20 +187,12 @@
         </a>
       </div>
 
-      <!-- Branded pre-launch device with folder-dot motif -->
+      <!-- Real Filed Library screen -->
       <div class="device-wrap" style="margin-top:48px">
-        <div class="device" aria-hidden="true">
-          <span class="island"></span>
-          <div class="screen" style="background:var(--surface)">
-            <div class="fl-app">
-              <div class="fl-head"><span class="fl-apptitle">Filed</span><span class="fl-sub">24 PDFs</span></div>
-              <div class="fl-folder fl-c-blue"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Work</span><span class="fcount">8</span></div>
-              <div class="fl-folder fl-c-green"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Personal</span><span class="fcount">5</span></div>
-              <div class="fl-folder fl-c-yellow"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Receipts</span><span class="fcount">7</span></div>
-              <div class="fl-folder fl-c-red"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Contracts</span><span class="fcount">3</span></div>
-              <div class="fl-folder fl-c-purple"><span class="fic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span><span class="fname">Manuals</span><span class="fcount">1</span></div>
-              <span class="fl-fab" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-            </div>
+        <div class="device">
+          <span class="island" aria-hidden="true"></span>
+          <div class="screen">
+            <img src="/filed/assets/screenshots/library.jpg" alt="Filed Library — colored folders for Contracts, Invoices, Receipts, Work Documents and Personal" style="width:100%;height:100%;object-fit:cover;display:block">
           </div>
         </div>
       </div>
@@ -209,18 +212,12 @@
           </p>
         </div>
         <div data-reveal>
-          <div class="fl-doc" aria-hidden="true">
-            <span class="fl-stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>Signed</span>
-            <div class="fl-fhead">
-              <span class="fl-pdf"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" opacity=".18"/><path d="M14 2l6 6h-6z"/><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 0v6h6" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="17.5" text-anchor="middle" font-size="6.5" font-weight="700" fill="currentColor" font-family="sans-serif">PDF</text></svg></span>
-              <span class="fl-fname">Contract.pdf</span>
-            </div>
-            <div class="ln m"></div>
-            <div class="ln"></div>
-            <div class="ln s"></div>
-            <div class="fl-sigwrap">
-              <svg class="fl-sig" viewBox="0 0 200 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 44 C 18 14, 26 12, 30 36 C 33 54, 40 56, 46 34 C 50 18, 58 14, 64 36 C 68 52, 76 52, 84 30 C 90 14, 100 16, 108 38 C 113 52, 122 48, 132 32 C 140 20, 152 22, 166 28 L 192 22"/></svg>
-              <div class="fl-sigline"><span class="fl-sigx">✕</span></div>
+          <div class="device-wrap">
+            <div class="device">
+              <span class="island" aria-hidden="true"></span>
+              <div class="screen">
+                <img src="/filed/assets/screenshots/sign-by-hand.jpg" alt="Drawing a signature by hand onto a PDF in Filed, with Add signature and Finalize & sign controls" style="width:100%;height:100%;object-fit:cover;display:block">
+              </div>
             </div>
           </div>
         </div>
@@ -292,6 +289,48 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ── A look inside (real screenshots) ────────────────────── -->
+  <section class="section section--tight" data-reveal>
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow" style="display:inline-flex"><span data-en>From the app</span><span data-ar>من داخل التطبيق</span></span>
+        <h2 class="section-title"><span data-en>A look inside Filed.</span><span data-ar>نظرة داخل Filed.</span></h2>
+      </div>
+
+      <div class="fl-shots">
+        <figure class="fl-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/filed/assets/screenshots/folder-invoices.jpg" alt="A Filed folder listing PDF files with names and dates" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Organize files into colored folders.</span><span data-ar>نظّم الملفات في مجلدات ملوّنة.</span></figcaption>
+        </figure>
+
+        <figure class="fl-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/filed/assets/screenshots/viewer-service-agreement.jpg" alt="Reading a PDF in Filed's full-screen viewer" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Read clearly in a full-screen viewer.</span><span data-ar>اقرأ بوضوح في عارض كامل الشاشة.</span></figcaption>
+        </figure>
+
+        <figure class="fl-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/filed/assets/screenshots/settings-privacy.jpg" alt="Filed settings showing an optional Face ID app lock" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Optional Face ID lock — private by design.</span><span data-ar>قفل Face ID اختياري — خاص بالتصميم.</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
