@@ -1,9 +1,27 @@
 {
-  "updatedAt": "2026-05-23T21:07:29.987Z",
+  "updatedAt": "2026-06-17T11:16:16.676Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "4.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-06-25T18:00:00-07:00",
+          "whatsNew": {
+            "en": "A fresh look for your day.\n\n- The \"Today\" card on the Calendar has a new design — your day's color now fills the card, so work, rest, and leave days stand out at a glance, with a cleaner layout and a circular type icon.\n- Tap the Today card to jump straight into editing today.\n- Smoother Dashboard switching and calendar month transitions, plus small visual polish throughout.",
+            "ar": ""
+          }
+        },
+        {
+          "version": "4.1.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-05-22T03:16:27-07:00",
+          "whatsNew": {
+            "en": "Version 4.1.1\n\n• Updated App Store screenshots to better reflect the latest SShift design.\n\nThank you for using SShift.",
+            "ar": ""
+          }
+        },
         {
           "version": "4.1",
           "state": "READY_FOR_SALE",
@@ -64,9 +82,32 @@
       "appStoreId": "6765632161",
       "versions": [
         {
+          "version": "1.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-06-14T22:24:14-07:00",
+          "whatsNew": {
+            "en": "This update focuses on accessibility, performance, and reliability:\n\n• Full VoiceOver support — every screen and selectable item is now properly labeled and announced.\n• Smoother scrolling through large photo and video libraries, with lower memory use on big collections.\n• Safer, more reliable contacts cleanup — clearer confirmations, and delete and merge now keep a recoverable backup before anything is removed.\n• Improved reliability when converting and sharing photos and videos.\n• Additional stability and performance refinements.",
+            "ar": ""
+          }
+        },
+        {
           "version": "1.0",
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-05-01T02:48:07-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        }
+      ]
+    },
+    "dufaat": {
+      "appStoreId": "6780440703",
+      "versions": [
+        {
+          "version": "1.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-06-15T03:30:54-07:00",
           "whatsNew": {
             "en": "",
             "ar": ""
