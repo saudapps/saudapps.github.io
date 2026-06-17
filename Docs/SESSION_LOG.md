@@ -23,6 +23,35 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Dufaat: Coming soon → Live
+- Done: Took Dufaat live across the site, mirroring SShift/PhoneSpace exactly.
+  Wired key `dufaat` (App Store ID 6780440703) into BOTH data systems:
+  app-data.js APPS map and scripts/fetch-releases.mjs APPS array. On
+  /dufaat/index.html replaced the coming-soon hero block with a real "Download
+  on the App Store" button (https://apps.apple.com/ae/app/dufaat/id6780440703)
+  + the live badge set (data-field status / version="iOS · v1.0" / rating hidden
+  / updated hidden), kept the Privacy link, added a "What's New" section with
+  `<div data-releases="dufaat">`, and loaded /app-data.js + /releases-loader.js.
+  On the landing (index.html) flipped the Dufaat card from coming-soon to live
+  (App Store button + live badges, rating hidden). Docs/APPS.md Dufaat row → Live.
+- Decisions: Hardcoded fallback v1.0 confirmed via itunes lookup id=6780440703
+  (Dufaat, Finance, Free, version 1.0). After wiring, status/version/rating/
+  "Updated …"/What's-New populate automatically (app-data.js per-visit fetch +
+  daily sync-releases pipeline) — no manual version/notes upkeep. Used the AE
+  storefront URL per the verified App Store URL. ADD_NEW_APP.md / ARCHITECTURE.md
+  do not exist in this repo, so those steps were N/A.
+- Open / next: After push, manually run GitHub → Actions → "Sync App Releases" →
+  Run workflow (workflow_dispatch); confirm releases.json gains a `dufaat` entry
+  with versions (not an error). gh CLI is not installed locally, so this dispatch
+  must be done from the GitHub UI. Never hand-edit releases.json.
+- Deploy state: committed + pushed to main; GitHub Pages will rebuild /dufaat/
+  and the landing. releases.json unchanged until the workflow is dispatched.
+- Live-check: PENDING owner — verify saud.im/dufaat/ (mobile + desktop): status
+  live, version + "Updated …" populate, rating hidden, What's-New renders and
+  toggles EN/AR, App Store button resolves; verify landing Dufaat card shows live
+  badges.
+- ChatGPT review: none.
+
 ## 2026-06-17 — Filed landing: real app screenshots
 - Done: Replaced coded illustrations on /filed/ with real in-app screenshots
   (owner-confirmed demo/clean data — no sensitive info). Converted 5 HEIC shots
