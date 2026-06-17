@@ -54,6 +54,11 @@
   }
   /* Drive-style folder palette (blue / green / yellow / red / purple / orange) */
   .app-filed { --fl-blue:#2D6CDF; --fl-green:#2FA86A; --fl-yellow:#F2B61E; --fl-red:#E5484D; --fl-purple:#8B5CF6; --fl-orange:#F0883E; }
+  /* Hero word "filed" leans into the multi-colour folder identity: a blue→green
+     ramp (the logo's two strong hues), lightened for the dark canvas. */
+  :root[data-theme="light"] body.app-filed .grad-text { background-image: linear-gradient(100deg, #2563EB, #2FA86A); }
+  :root[data-theme="dark"]  body.app-filed .grad-text { background-image: linear-gradient(100deg, #5B8DEF, #4FD08A); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-filed .grad-text { background-image: linear-gradient(100deg, #5B8DEF, #4FD08A); } }
   /* Brighter, crisper Drive-style canvas in light (near-white, like the app). */
   :root[data-theme="light"] body.app-filed {
     --bg:#FFFFFF; --bg-2:#F3F6FB;
@@ -154,45 +159,52 @@
     </nav>
   </div>
 
-  <!-- ── Hero ────────────────────────────────────────────────── -->
-  <section class="hero center" data-reveal>
+  <!-- ── Hero (two-column: text + real screenshot, PhoneSpace-style) ── -->
+  <section class="hero" data-reveal>
     <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
-      <img class="fl-appicon" src="/filed/assets/app-icon.png" alt="Filed app icon" width="78" height="78">
-      <span class="eyebrow hero-eyebrow" style="display:inline-flex">
-        <span data-en>Privacy-first · iPhone</span>
-        <span data-ar>الخصوصية أولاً · آيفون</span>
-      </span>
-      <h1>
-        <span data-en>Your PDFs,<br>finally <span class="grad-text">filed</span>.</span>
-        <span data-ar>ملفات PDF لديك،<br>مرتّبة <span class="grad-text">أخيرًا</span>.</span>
-      </h1>
-      <p class="hero-lede">
-        <span data-en>Filed is a calm, local-first home for your PDFs — receive them from any app, sort them into colored folders, sign them by hand, and send one or many. Everything stays on your iPhone.</span>
-        <span data-ar>Filed مساحة هادئة محلية أولاً لملفات PDF — استقبلها من أي تطبيق، ورتّبها في مجلدات ملوّنة، ووقّعها بيدك، وأرسل ملفًا أو عدة ملفات. كل شيء يبقى على جهازك.</span>
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="mailto:support@saud.im">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          <span data-en>Contact support</span>
-          <span data-ar>تواصل مع الدعم</span>
-        </a>
-        <a class="btn btn-ghost" href="/filed/privacy/">
-          <span data-en>Privacy</span><span data-ar>الخصوصية</span>
-          <span class="chev" aria-hidden="true">›</span>
-        </a>
-        <a class="btn btn-ghost" href="/filed/terms/">
-          <span data-en>Terms</span><span data-ar>الشروط</span>
-          <span class="chev" aria-hidden="true">›</span>
-        </a>
-      </div>
+      <div class="split">
+        <div>
+          <span class="hero-brand">
+            <img src="/filed/assets/app-icon.png" alt="Filed app icon" width="46" height="46">
+            <span class="hb-name">Filed</span>
+          </span>
+          <span class="eyebrow hero-eyebrow" style="display:inline-flex">
+            <span data-en>Privacy-first · iPhone</span>
+            <span data-ar>الخصوصية أولاً · آيفون</span>
+          </span>
+          <h1>
+            <span data-en>Your PDFs,<br>finally <span class="grad-text">filed</span>.</span>
+            <span data-ar>ملفات PDF لديك،<br>مرتّبة <span class="grad-text">أخيرًا</span>.</span>
+          </h1>
+          <p class="hero-lede">
+            <span data-en>Filed is a calm, local-first home for your PDFs — receive them from any app, sort them into colored folders, sign them by hand, and send one or many. Everything stays on your iPhone.</span>
+            <span data-ar>Filed مساحة هادئة محلية أولاً لملفات PDF — استقبلها من أي تطبيق، ورتّبها في مجلدات ملوّنة، ووقّعها بيدك، وأرسل ملفًا أو عدة ملفات. كل شيء يبقى على جهازك.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:support@saud.im">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span data-en>Contact support</span>
+              <span data-ar>تواصل مع الدعم</span>
+            </a>
+            <a class="btn btn-ghost" href="/filed/privacy/">
+              <span data-en>Privacy</span><span data-ar>الخصوصية</span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+            <a class="btn btn-ghost" href="/filed/terms/">
+              <span data-en>Terms</span><span data-ar>الشروط</span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
 
-      <!-- Real Filed Library screen -->
-      <div class="device-wrap" style="margin-top:48px">
-        <div class="device">
-          <span class="island" aria-hidden="true"></span>
-          <div class="screen">
-            <img src="/filed/assets/screenshots/library.jpg" alt="Filed Library — colored folders for Contracts, Invoices, Receipts, Work Documents and Personal" style="width:100%;height:100%;object-fit:cover;display:block">
+        <!-- Real Filed Library screen -->
+        <div class="device-wrap">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/filed/assets/screenshots/library.jpg" alt="Filed Library — colored folders for Contracts, Invoices, Receipts, Work Documents and Personal" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
           </div>
         </div>
       </div>

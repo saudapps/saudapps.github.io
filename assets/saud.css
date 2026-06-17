@@ -177,11 +177,11 @@
    Each page sets one body class. Everything else inherits. Adding a new
    app = add one rule here. */
 body.app-home       { --accent: #3A3F4A; --accent-2: #23272F; }   /* graphite */
-body.app-sshift     { --accent: #3D74E6; --accent-2: #2A4FBF; }   /* electric navy */
+body.app-sshift     { --accent: #5B57E0; --accent-2: #3F39B8; }   /* indigo (shift palette) */
 body.app-phonespace { --accent: #E0A23B; --accent-2: #C9772F; --accent-ink:#1A1207; } /* warm amber */
 body.app-promptbook { --accent: #8A6CFF; --accent-2: #6C5CE0; }   /* violet / ink */
-body.app-filed      { --accent: #2D6CDF; --accent-2: #2257C0; }   /* document blue */
-body.app-dufaat     { --accent: #6F7E9C; --accent-2: #535F7A; }   /* pearl-slate */
+body.app-filed      { --accent: #2563EB; --accent-2: #1D4ED8; --accent-ink:#FFFFFF; }   /* vivid blue (multi-colour folders) */
+body.app-dufaat     { --accent: #10A37F; --accent-2: #0B7357; --accent-ink:#FFFFFF; }   /* emerald (ledger/finance) */
 
 /* ───────────────────────────  Reset & base  ───────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
@@ -420,6 +420,14 @@ html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.16; font-weight: 72
 .hero.center .hero-lede { margin-left: auto; margin-right: auto; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
 .hero.center .hero-actions { justify-content: center; }
+
+/* Hero brand lockup — app icon + name beside the headline (PhoneSpace-style
+   hero identity). Additive; used only on pages that opt in. */
+.hero-brand { display: flex; width: fit-content; align-items: center; gap: 13px; margin-bottom: 20px; }
+.hero.center .hero-brand { margin-left: auto; margin-right: auto; }
+.hero-brand img { width: 46px; height: 46px; border-radius: 12px; flex: 0 0 auto;
+                  box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--hairline); }
+.hero-brand .hb-name { font-weight: 760; font-size: 19px; letter-spacing: -0.01em; color: var(--text); }
 
 /* small credibility strip */
 .cred {

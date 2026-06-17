@@ -50,24 +50,22 @@
      surfaces via color-mix so they hold contrast in both light and dark.
      The grid/week mocks are decorative (aria-hidden); the legend carries
      the real bilingual labels. */
-  /* Accent + shift colours tuned to the real app: deep ocean blue (the app's
-     primary) and deeper, calmer shift badges. Page-local override only. */
-  body.app-sshift { --accent: #1F5DA0; --accent-2: #16467C; }
-  :root[data-theme="dark"] body.app-sshift { --accent: #6BA5F0; --accent-2: #3D74E6; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-sshift { --accent: #6BA5F0; --accent-2: #3D74E6; } }
+  /* Accent drawn from the app's multi-colour leave-type palette: a confident
+     indigo-violet lead, lightened in dark mode. Page-local override only. */
+  body.app-sshift { --accent: #5B57E0; --accent-2: #3F39B8; }
+  :root[data-theme="dark"] body.app-sshift { --accent: #8B88F2; --accent-2: #6C66E8; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-sshift { --accent: #8B88F2; --accent-2: #6C66E8; } }
 
+  /* Leave-type colours — EXACT hex from the app's DayType.colorHex (mode-
+     independent: identical in light & dark, matching the app 1:1). */
   .app-sshift {
-    --sh-work: #1E824C; --sh-rest: #7F8C8D; --sh-training: #1E778A;
-    --sh-leave: #3D6FE0; --sh-annual: #D9831A; --sh-force: #9B59B6;
+    --sh-work: #4CAF50;     /* Work */
+    --sh-rest: #9E9E9E;     /* Rest Day */
+    --sh-training: #009688; /* Training */
+    --sh-annual: #FF9800;   /* Annual Leave */
+    --sh-leave: #5C6BC0;    /* Long Cycle Leave (LCL) */
+    --sh-sick: #F44336;     /* Sick Leave */
   }
-  :root[data-theme="dark"] .app-sshift {
-    --sh-work: #34D399; --sh-rest: #9AA3AE; --sh-training: #22B8CF;
-    --sh-leave: #6B9BFF; --sh-annual: #F0A93A; --sh-force: #C07AE0;
-  }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .app-sshift {
-    --sh-work: #34D399; --sh-rest: #9AA3AE; --sh-training: #22B8CF;
-    --sh-leave: #6B9BFF; --sh-annual: #F0A93A; --sh-force: #C07AE0;
-  } }
   .sh-cell-work     { background: color-mix(in oklab, var(--sh-work) 34%, var(--surface)); }
   .sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 24%, var(--surface)); }
   .sh-cell-training { background: color-mix(in oklab, var(--sh-training) 34%, var(--surface)); }
@@ -98,12 +96,13 @@
   .sh-week .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .sh-week .dow { font-size: 11px; font-weight: 700; color: var(--text-3); }
   .sh-week .tile { width: 100%; aspect-ratio: 2/3; border-radius: 10px; background: var(--surface-2); }
-  /* tiles carry no text, so they take full shift colour for a vivid rhythm */
+  /* tiles carry no text, so they take the FULL exact shift colour (1:1 with app) */
   .sh-week .tile.sh-cell-work     { background: var(--sh-work); }
-  .sh-week .tile.sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 55%, var(--surface)); }
+  .sh-week .tile.sh-cell-rest     { background: var(--sh-rest); }
   .sh-week .tile.sh-cell-training { background: var(--sh-training); }
   .sh-week .tile.sh-cell-leave    { background: var(--sh-leave); }
   .sh-week .tile.sh-cell-annual   { background: var(--sh-annual); }
+  .sh-week .tile.sh-cell-sick     { background: var(--sh-sick); }
 
   /* Shift-type legend (real bilingual content) */
   .sh-legend { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 9px 16px; }
@@ -111,7 +110,7 @@
   .sh-legend .sw { width: 13px; height: 13px; border-radius: 4px; flex: 0 0 auto; }
   .sw-work{ background: var(--sh-work); } .sw-rest{ background: var(--sh-rest); }
   .sw-training{ background: var(--sh-training); } .sw-leave{ background: var(--sh-leave); }
-  .sw-annual{ background: var(--sh-annual); }
+  .sw-annual{ background: var(--sh-annual); } .sw-sick{ background: var(--sh-sick); }
 
   /* "A look inside" — real screenshots in device frames (mirrors Filed) */
   .sh-shots { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
@@ -167,6 +166,10 @@
     <div class="wrap">
       <div class="split">
         <div>
+          <span class="hero-brand">
+            <img src="/assets/icon-sshift.png" alt="SShift app icon" width="46" height="46">
+            <span class="hb-name">SShift</span>
+          </span>
           <span class="eyebrow hero-eyebrow">
             <span data-en>Shift Calendar</span>
             <span data-ar>تقويم المناوبات</span>
@@ -230,19 +233,20 @@
           </p>
           <ul class="sh-legend">
             <li><span class="sw sw-work" aria-hidden="true"></span><span data-en>Work</span><span data-ar>عمل</span></li>
-            <li><span class="sw sw-rest" aria-hidden="true"></span><span data-en>Rest</span><span data-ar>راحة</span></li>
+            <li><span class="sw sw-rest" aria-hidden="true"></span><span data-en>Rest Day</span><span data-ar>يوم راحة</span></li>
             <li><span class="sw sw-training" aria-hidden="true"></span><span data-en>Training</span><span data-ar>تدريب</span></li>
-            <li><span class="sw sw-leave" aria-hidden="true"></span><span data-en>Leave</span><span data-ar>إجازة</span></li>
-            <li><span class="sw sw-annual" aria-hidden="true"></span><span data-en>Annual</span><span data-ar>سنوية</span></li>
+            <li><span class="sw sw-annual" aria-hidden="true"></span><span data-en>Annual Leave</span><span data-ar>إجازة سنوية</span></li>
+            <li><span class="sw sw-sick" aria-hidden="true"></span><span data-en>Sick Leave</span><span data-ar>إجازة مرضية</span></li>
+            <li><span class="sw sw-leave" aria-hidden="true"></span><span data-en>Long Cycle Leave</span><span data-ar>إجازة دورة طويلة</span></li>
           </ul>
         </div>
         <div data-reveal>
           <div class="sh-week" aria-hidden="true">
             <div class="col"><span class="dow">M</span><span class="tile sh-cell-work"></span></div>
             <div class="col"><span class="dow">T</span><span class="tile sh-cell-work"></span></div>
-            <div class="col"><span class="dow">W</span><span class="tile sh-cell-rest"></span></div>
-            <div class="col"><span class="dow">T</span><span class="tile sh-cell-training"></span></div>
-            <div class="col"><span class="dow">F</span><span class="tile sh-cell-work"></span></div>
+            <div class="col"><span class="dow">W</span><span class="tile sh-cell-training"></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-cell-annual"></span></div>
+            <div class="col"><span class="dow">F</span><span class="tile sh-cell-sick"></span></div>
             <div class="col"><span class="dow">S</span><span class="tile sh-cell-leave"></span></div>
             <div class="col"><span class="dow">S</span><span class="tile sh-cell-rest"></span></div>
           </div>

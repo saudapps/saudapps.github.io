@@ -23,6 +23,43 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Dufaat/SShift/Filed: visual refresh applied (heroes + accents)
+- Done: Applied the owner-approved full refresh to dufaat, sshift, filed (4 files:
+  assets/saud.css + the three app index.html). PhoneSpace 100% untouched.
+  • Two-column PhoneSpace-style heroes (.hero > .wrap > .split > [text] + [.device-wrap],
+    collapsing to one column on mobile) with the real hero screenshot (Dufaat
+    schedule.jpg, SShift calendar.jpg, Filed library.jpg) + a new shared .hero-brand
+    lockup (app icon + name) at the top of the text column.
+  • Accents: Dufaat emerald (#10A37F/#0B7357, ink #FFF) + hero "settled" grad-text
+    (light #1A1F2E→#10A37F, dark #F0EEE8→#5FE0AE); SShift indigo (#5B57E0/#3F39B8,
+    dark lift #8B88F2/#6C66E8); Filed vivid blue (#2563EB/#1D4ED8, ink #FFF) + hero
+    "filed" grad-text (light #2563EB→#2FA86A, dark #5B8DEF→#4FD08A).
+  • SShift week strip + legend recoloured to the app's REAL DayType.colorHex (1:1,
+    identical light & dark, no dark-lift): Work #4CAF50, Rest Day #9E9E9E, Training
+    #009688, Annual #FF9800, Sick #F44336, Long Cycle Leave #5C6BC0. --sh-leave
+    repurposed to LCL, added --sh-sick; tiles render solid exact hex; day labels +
+    structure kept; legend bilingual & honest. Indigo stays the page brand accent.
+  • 5 polish fixes: shared .hero-brand component; .hero-brand block-level on its own
+    line; Dufaat hero meta moved between lede and buttons; removed obsolete inline
+    margin-top:48px on Dufaat/Filed device-wrap; Filed centered .fl-appicon relocated
+    into the brand lockup (unused .fl-appicon CSS left in place, harmless).
+- Decisions: All changes additive/reversible; grad-text overrides use background-image
+  (preserves the text clip). No content/section/screenshot/RTL/lang-toggle removed.
+  Reproduced exactly from the approved previews.
+- Verified (headless Chrome, light+dark, desktop+mobile): all three heroes render
+  two-column with brand lockup + real screenshot; emerald/indigo/blue-green identities;
+  SShift week strip = real leave hex; mobile = single column; sections below intact;
+  PhoneSpace render-checked unchanged (still amber). Only the 4 files changed.
+- Open / next: Optionally retune the landing app-card accents to echo these per-app
+  identities (cards currently inherit graphite home accent). Not required.
+- Deploy state: committed + pushed to main; live CSS/HTML → Pages rebuilds dufaat,
+  sshift, filed. (Push also triggers the release sync; no releases.json change.)
+- Live-check: PENDING owner — verify saud.im/dufaat/, /sshift/, /filed/ on mobile +
+  desktop, light AND dark: two-column hero + brand lockup + real screenshot; correct
+  accent; SShift week strip = real leave colours; sections intact; saud.im/phonespace/
+  unchanged (amber).
+- ChatGPT review: none.
+
 ## 2026-06-17 — Homepage accent → graphite (+ dark-mode hero-text fix)
 - Done: Applied the owner-approved graphite homepage accent in assets/saud.css
   (ONE file). (1) `body.app-home` accent tokens #5B6CFF/#9A6CFF (iridescent) →

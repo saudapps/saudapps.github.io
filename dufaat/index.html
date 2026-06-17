@@ -89,8 +89,8 @@
   }
   /* Hero keyword as a pearl shape on midnight (and midnight on pearl) — the
      default slate-on-slate gradient sits below 3:1 on these canvases */
-  :root[data-theme="dark"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #F0EEE8, #A9B4CC); }
-  :root[data-theme="light"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #1A1F2E, #6F7E9C); }
+  :root[data-theme="dark"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #F0EEE8, #5FE0AE); }
+  :root[data-theme="light"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #1A1F2E, #10A37F); }
   /* Midnight-on-midnight needs a stronger bezel ring than the default 8% */
   body.app-dufaat .device {
     box-shadow: 0 0 0 2px color-mix(in oklab, var(--text) 14%, transparent),
@@ -182,46 +182,54 @@
     </nav>
   </div>
 
-  <!-- ── Hero ────────────────────────────────────────────────── -->
-  <section class="hero center" data-reveal>
+  <!-- ── Hero (two-column: text + real screenshot, PhoneSpace-style) ── -->
+  <section class="hero" data-reveal>
     <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
-      <span class="eyebrow hero-eyebrow" style="display:inline-flex">
-        <span data-en>Privacy-first · iPhone</span>
-        <span data-ar>الخصوصية أولاً · آيفون</span>
-      </span>
-      <h1>
-        <span data-en>Every installment,<br>quietly <span class="grad-text">settled</span>.</span>
-        <span data-ar>كل قسط،<br>يُسوّى <span class="grad-text">بهدوء</span>.</span>
-      </h1>
-      <p class="hero-lede">
-        <span data-en>Dufaat is a calm, offline home for your installment plans — set who you're paying to and how much, let the schedule write itself, then settle each payment with a tick. Everything stays on your iPhone.</span>
-        <span data-ar>دُفعات مساحة هادئة تعمل دون اتصال لخطط أقساطك — حدّد لمن تدفع وكم المبلغ، ودَع الجدول يكتب نفسه، ثم سوِّ كل دفعة بنقرة واحدة. كل شيء يبقى على جهازك.</span>
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://apps.apple.com/ae/app/dufaat/id6780440703">
-          <svg class="ic ic-apple" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
-          <span data-en>Download on the App Store</span>
-          <span data-ar>التحميل من App Store</span>
-        </a>
-        <a class="btn btn-ghost" href="/dufaat/privacy/">
-          <span data-en>Privacy</span><span data-ar>الخصوصية</span>
-          <span class="chev" aria-hidden="true">›</span>
-        </a>
-      </div>
-      <div class="app-card-meta" style="margin-top:24px">
-        <span class="badge badge--live" data-app="dufaat" data-field="status"><span class="dot" aria-hidden="true"></span><span data-en>On the App Store</span><span data-ar>على App Store</span></span>
-        <span class="badge" data-app="dufaat" data-field="version">iOS · v1.0</span>
-        <span class="badge" data-app="dufaat" data-field="rating" style="display:none"></span>
-        <span class="badge" data-app="dufaat" data-field="updated" style="display:none"></span>
-      </div>
+      <div class="split">
+        <div>
+          <span class="hero-brand">
+            <img src="/assets/icon-dufaat.png" alt="Dufaat app icon" width="46" height="46">
+            <span class="hb-name">Dufaat</span>
+          </span>
+          <span class="eyebrow hero-eyebrow" style="display:inline-flex">
+            <span data-en>Privacy-first · iPhone</span>
+            <span data-ar>الخصوصية أولاً · آيفون</span>
+          </span>
+          <h1>
+            <span data-en>Every installment,<br>quietly <span class="grad-text">settled</span>.</span>
+            <span data-ar>كل قسط،<br>يُسوّى <span class="grad-text">بهدوء</span>.</span>
+          </h1>
+          <p class="hero-lede">
+            <span data-en>Dufaat is a calm, offline home for your installment plans — set who you're paying to and how much, let the schedule write itself, then settle each payment with a tick. Everything stays on your iPhone.</span>
+            <span data-ar>دُفعات مساحة هادئة تعمل دون اتصال لخطط أقساطك — حدّد لمن تدفع وكم المبلغ، ودَع الجدول يكتب نفسه، ثم سوِّ كل دفعة بنقرة واحدة. كل شيء يبقى على جهازك.</span>
+          </p>
+          <div class="app-card-meta" style="margin-top:24px">
+            <span class="badge badge--live" data-app="dufaat" data-field="status"><span class="dot" aria-hidden="true"></span><span data-en>On the App Store</span><span data-ar>على App Store</span></span>
+            <span class="badge" data-app="dufaat" data-field="version">iOS · v1.0</span>
+            <span class="badge" data-app="dufaat" data-field="rating" style="display:none"></span>
+            <span class="badge" data-app="dufaat" data-field="updated" style="display:none"></span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://apps.apple.com/ae/app/dufaat/id6780440703">
+              <svg class="ic ic-apple" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
+              <span data-en>Download on the App Store</span>
+              <span data-ar>التحميل من App Store</span>
+            </a>
+            <a class="btn btn-ghost" href="/dufaat/privacy/">
+              <span data-en>Privacy</span><span data-ar>الخصوصية</span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+          </div>
+        </div>
 
-      <!-- Real Dufaat screen: a plan with its payment schedule -->
-      <div class="device-wrap" style="margin-top:48px">
-        <div class="device">
-          <span class="island" aria-hidden="true"></span>
-          <div class="screen">
-            <img src="/dufaat/assets/screenshots/schedule.jpg" alt="A Dufaat plan with its payment schedule — ten monthly payments, the first three settled, with Export PDF and Edit Plan actions" style="width:100%;height:100%;object-fit:cover;display:block">
+        <!-- Real Dufaat screen: a plan with its payment schedule -->
+        <div class="device-wrap">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/schedule.jpg" alt="A Dufaat plan with its payment schedule — ten monthly payments, the first three settled, with Export PDF and Edit Plan actions" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
           </div>
         </div>
       </div>
