@@ -23,6 +23,42 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — Dufaat + SShift: real app screenshots (Filed treatment)
+- Done: Replaced the coded/SVG device mockups on /dufaat/ and /sshift/ with the
+  owner's real app screenshots, mirroring the Filed .device-frame pattern exactly.
+  Converted sources with `sips` to ~820px-wide JPGs (~53–119KB each, crisp + light).
+  • Dufaat (from tracked dufaat/pic/*.png, 6 of 7 used): new dufaat/assets/screenshots/
+    schedule.jpg (hero — a plan's payment schedule), new-plan.jpg, home.jpg,
+    completed.jpg, report.jpg, settings.jpg. Hero device now shows the real schedule;
+    added an "A look inside Dufaat" 5-up gallery (.df-shots/.df-shot) before What's New.
+    Skipped the empty-home shot (0x0ss.png) as weak/redundant.
+  • SShift (from local sshift/Pic/*.HEIC, 5 of 11 used): new sshift/assets/screenshots/
+    calendar.jpg (hero — color-coded month calendar), dashboard.jpg, schedule-pattern.jpg,
+    notifications.jpg, pdf-report.jpg. Hero device now shows the real calendar; added an
+    "A look inside SShift" 4-up gallery (.sh-shots/.sh-shot) before What's New. Skipped
+    duplicate dashboard, sparse Backup/PDF-export, destructive Data-Management, and a
+    duplicate PDF shot.
+  Bilingual EN/AR alt text + figcaptions on every shot; hero `.device` no longer
+  aria-hidden so the alt is exposed.
+- Decisions: Visuals swap ONLY — hero device + new gallery. Every other section
+  (hero copy, "A closer look" coded artifacts [Dufaat df-doc receipt, SShift sh-week
+  strip + legend], feature grids, badges, What's-New, privacy) left UNCHANGED. Reused
+  the site's existing .device CSS; left the now-unused hero-mockup CSS (.df-app / .sh-cal)
+  in place (harmless, minimal diff), as done for Filed. Screenshots vetted for sensitive
+  data: all clean demo content (Dufaat "Bank Loan" + round AED demo amounts/dates;
+  SShift generic leave types + demo dates; only the public developer name appears) —
+  nothing personal/financial published.
+- Open / next: After owner's live visual check, delete the Pic source folders —
+  dufaat/pic is tracked → `git rm` + commit; sshift/Pic is local/untracked → owner
+  removes locally (or I remove after OK). sshift/Pic intentionally NOT committed here.
+- Deploy state: committed + pushed to main — dufaat/index.html, sshift/index.html, and
+  new dufaat/assets/screenshots/* + sshift/assets/screenshots/* added. GitHub Pages
+  rebuilds both pages. Docs/APPS.md unchanged (not needed).
+- Live-check: PENDING owner — verify saud.im/dufaat/ and saud.im/sshift/ on mobile +
+  desktop: real screenshots render in the device frames, no broken images, layout/RTL/
+  language toggle hold, and the rest of each page is unchanged.
+- ChatGPT review: none.
+
 ## 2026-06-17 — Landing: hide Promptbook + fix stats strip
 - Done: Landing page only (index.html). Hid Promptbook from the landing WITHOUT
   deleting code: wrapped the whole `<article class="app-card promptbook">` block

@@ -112,6 +112,13 @@
   .sw-work{ background: var(--sh-work); } .sw-rest{ background: var(--sh-rest); }
   .sw-training{ background: var(--sh-training); } .sw-leave{ background: var(--sh-leave); }
   .sw-annual{ background: var(--sh-annual); }
+
+  /* "A look inside" — real screenshots in device frames (mirrors Filed) */
+  .sh-shots { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+              gap: 30px 26px; margin-top: 36px; }
+  .sh-shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .sh-shot .device { width: 250px; }
+  .sh-shot figcaption { max-width: 250px; font-size: 13.5px; line-height: 1.5; color: var(--text-3); text-align: center; }
 </style>
 </head>
 <body class="app-sshift">
@@ -193,26 +200,10 @@
         </div>
 
         <div class="device-wrap" data-reveal>
-          <div class="device" aria-hidden="true">
-            <span class="island"></span>
-            <div class="screen" style="background:var(--surface)">
-              <div class="sh-cal">
-                <div class="sh-cal-head">
-                  <span class="sh-cal-title">June</span>
-                  <span class="sh-cal-nav">‹&nbsp;›</span>
-                </div>
-                <div class="sh-dow"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
-                <div class="sh-grid">
-                  <span class="d empty"></span><span class="d empty"></span>
-                  <span class="d sh-cell-work">1</span><span class="d sh-cell-work">2</span><span class="d sh-cell-work">3</span><span class="d sh-cell-rest">4</span><span class="d sh-cell-rest">5</span>
-                  <span class="d sh-cell-training">6</span><span class="d sh-cell-work">7</span><span class="d sh-cell-work">8</span><span class="d sh-cell-work">9</span><span class="d sh-cell-rest">10</span><span class="d sh-cell-rest">11</span><span class="d sh-cell-rest">12</span>
-                  <span class="d sh-cell-work">13</span><span class="d sh-cell-work today">14</span><span class="d sh-cell-leave">15</span><span class="d sh-cell-leave">16</span><span class="d sh-cell-leave">17</span><span class="d sh-cell-rest">18</span><span class="d sh-cell-work">19</span>
-                  <span class="d sh-cell-work">20</span><span class="d sh-cell-work">21</span><span class="d sh-cell-rest">22</span><span class="d sh-cell-rest">23</span><span class="d sh-cell-training">24</span><span class="d sh-cell-work">25</span><span class="d sh-cell-work">26</span>
-                  <span class="d sh-cell-annual">27</span><span class="d sh-cell-annual">28</span><span class="d sh-cell-rest">29</span><span class="d sh-cell-work">30</span>
-                  <span class="d empty"></span><span class="d empty"></span><span class="d empty"></span>
-                </div>
-                <span class="sh-next"><span class="sw sw-work" style="width:9px;height:9px;border-radius:3px"></span>Next · Work · Fri</span>
-              </div>
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/sshift/assets/screenshots/calendar.jpg" alt="The SShift month calendar for June — each day colored by shift type, with a card highlighting today's leave day" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
         </div>
@@ -353,6 +344,58 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ── A look inside (real screenshots) ─────────────────────── -->
+  <section class="section section--tight" data-reveal>
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow" style="display:inline-flex"><span data-en>From the app</span><span data-ar>من داخل التطبيق</span></span>
+        <h2 class="section-title"><span data-en>A look inside SShift.</span><span data-ar>نظرة داخل SShift.</span></h2>
+      </div>
+
+      <div class="sh-shots">
+        <figure class="sh-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/sshift/assets/screenshots/dashboard.jpg" alt="The SShift dashboard summing up the month — total days, work, rest and leave counts, with a breakdown by shift type" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Your month, summed up.</span><span data-ar>شهرك، مُلخّصًا.</span></figcaption>
+        </figure>
+
+        <figure class="sh-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/sshift/assets/screenshots/schedule-pattern.jpg" alt="SShift schedule generation — a custom work/off-day pattern that fills the calendar automatically" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Generate from a pattern.</span><span data-ar>وَلِّد الجدول من نمط.</span></figcaption>
+        </figure>
+
+        <figure class="sh-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/sshift/assets/screenshots/notifications.jpg" alt="SShift notification settings — reminders for work shifts, training and leave days at a chosen time" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Reminders for what matters.</span><span data-ar>تذكيرات لما يهمّك.</span></figcaption>
+        </figure>
+
+        <figure class="sh-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/sshift/assets/screenshots/pdf-report.jpg" alt="An SShift schedule exported as a printable PDF with a shift summary and a color-coded month calendar" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Export a printable PDF.</span><span data-ar>صدّر ملف PDF للطباعة.</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>

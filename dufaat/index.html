@@ -138,6 +138,13 @@
               border: 1px solid color-mix(in oklab, var(--live) 32%, transparent);
               border-radius: 999px; padding: 3px 9px; }
   .df-stamp svg { width: 12px; height: 12px; }
+
+  /* "A look inside" — real screenshots in device frames (mirrors Filed) */
+  .df-shots { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+              gap: 30px 26px; margin-top: 36px; }
+  .df-shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .df-shot .device { width: 250px; }
+  .df-shot figcaption { max-width: 250px; font-size: 13.5px; line-height: 1.5; color: var(--text-3); text-align: center; }
 </style>
 </head>
 <body class="app-dufaat">
@@ -209,65 +216,12 @@
         <span class="badge" data-app="dufaat" data-field="updated" style="display:none"></span>
       </div>
 
-      <!-- Branded pre-launch device: a real schedule mid-plan, last row clipping
-           at the screen edge to imply scroll. Bilingual like the app itself. -->
+      <!-- Real Dufaat screen: a plan with its payment schedule -->
       <div class="device-wrap" style="margin-top:48px">
-        <div class="device" aria-hidden="true">
-          <span class="island"></span>
-          <div class="screen" style="background:var(--surface)">
-            <div class="df-app">
-              <div class="df-head">
-                <span class="df-plantitle"><span data-en>Car — Ahmed</span><span data-ar>السيارة — أحمد</span></span>
-                <span class="df-sub"><span data-en>1,500 × 12</span><span data-ar>١٬٥٠٠ × ١٢</span></span>
-              </div>
-              <div class="df-summary"><span data-en>3 of 12 settled · 13,500 left</span><span data-ar>٣ من ١٢ مدفوعة · المتبقي ١٣٬٥٠٠</span></div>
-              <div class="df-bar"><i></i></div>
-              <div class="df-row on">
-                <span class="df-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                <span class="df-month"><span data-en>January</span><span data-ar>يناير</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row on">
-                <span class="df-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                <span class="df-month"><span data-en>February</span><span data-ar>فبراير</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row on">
-                <span class="df-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                <span class="df-month"><span data-en>March</span><span data-ar>مارس</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row">
-                <span class="df-tick"></span>
-                <span class="df-month"><span data-en>April</span><span data-ar>أبريل</span></span>
-                <span class="df-due"><span data-en>Due</span><span data-ar>مستحقة</span></span>
-              </div>
-              <div class="df-row">
-                <span class="df-tick"></span>
-                <span class="df-month"><span data-en>May</span><span data-ar>مايو</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row">
-                <span class="df-tick"></span>
-                <span class="df-month"><span data-en>June</span><span data-ar>يونيو</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row">
-                <span class="df-tick"></span>
-                <span class="df-month"><span data-en>July</span><span data-ar>يوليو</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row">
-                <span class="df-tick"></span>
-                <span class="df-month"><span data-en>August</span><span data-ar>أغسطس</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-              <div class="df-row">
-                <span class="df-tick"></span>
-                <span class="df-month"><span data-en>September</span><span data-ar>سبتمبر</span></span>
-                <span class="df-amt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-              </div>
-            </div>
+        <div class="device">
+          <span class="island" aria-hidden="true"></span>
+          <div class="screen">
+            <img src="/dufaat/assets/screenshots/schedule.jpg" alt="A Dufaat plan with its payment schedule — ten monthly payments, the first three settled, with Export PDF and Edit Plan actions" style="width:100%;height:100%;object-fit:cover;display:block">
           </div>
         </div>
       </div>
@@ -365,6 +319,68 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ── A look inside (real screenshots) ─────────────────────── -->
+  <section class="section section--tight" data-reveal>
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow" style="display:inline-flex"><span data-en>From the app</span><span data-ar>من داخل التطبيق</span></span>
+        <h2 class="section-title"><span data-en>A look inside Dufaat.</span><span data-ar>نظرة داخل دُفعات.</span></h2>
+      </div>
+
+      <div class="df-shots">
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/new-plan.jpg" alt="Creating a new Dufaat plan — paying to, total amount, currency, and a monthly amount or number of months" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Create a plan in seconds.</span><span data-ar>أنشئ خطة في ثوانٍ.</span></figcaption>
+        </figure>
+
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/home.jpg" alt="The Dufaat home showing a plan with its progress, payments settled, amount remaining, and next payment" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>See every plan at a glance.</span><span data-ar>اطّلع على كل خطة بنظرة.</span></figcaption>
+        </figure>
+
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/completed.jpg" alt="A completed Dufaat plan with a congratulations message after the final payment is settled" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Settle the last payment, done.</span><span data-ar>سوِّ آخر دفعة، واكتمل.</span></figcaption>
+        </figure>
+
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/report.jpg" alt="A Dufaat plan exported as a clean PDF report listing every payment with its due date, amount and status" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Export a clean PDF report.</span><span data-ar>صدّر تقرير PDF أنيقًا.</span></figcaption>
+        </figure>
+
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/settings.jpg" alt="Dufaat settings — optional reminders, language, and on-device backup and restore" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Reminders, language &amp; backup.</span><span data-ar>تذكيرات ولغة ونسخ احتياطي.</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
