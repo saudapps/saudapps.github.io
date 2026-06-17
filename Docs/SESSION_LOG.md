@@ -23,6 +23,27 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-17 — CI: sync releases on every deploy + clear Node 20 warning
+- Done: Edited only `.github/workflows/sync-releases.yml`. (1) Added a `push:
+  branches: [ main ]` trigger so the release-notes sync runs on every deploy
+  (no paths filter — any new App Store version is picked up), keeping the daily
+  `schedule` cron (03:00 UTC / 06:00 KSA) as backup and `workflow_dispatch`.
+  (2) Cleared the Node 20 deprecation warning: actions/checkout @v4→@v6,
+  actions/setup-node @v4→@v6, node-version '20'→'22'. Permissions, Install/Fetch
+  steps, env secrets, and the entire "Commit if changed" step left exactly as-is.
+- Decisions: Used @v6 for both actions (verified via GitHub API — current latest
+  majors are checkout v6.0.3 / setup-node v6.4.0, newer than the @v5 example in
+  the brief). Chose Node '22' (current LTS). No extra loop guards added: the bot
+  commits releases.json with the default GITHUB_TOKEN (GitHub does not re-trigger
+  workflows from GITHUB_TOKEN pushes) and the commit message keeps "[skip ci]" as
+  a second safeguard — so the bot's own "chore: sync releases" push will not loop.
+- Open / next: Confirm under Actions that this push spawned a "Sync App Releases"
+  run with event=push, green, and that the follow-up bot commit did NOT spawn a
+  second run (no loop).
+- Deploy state: committed + pushed to main; CI-only change (no site files touched).
+- Live-check: N/A for site pages; verify via the Actions tab run result.
+- ChatGPT review: none.
+
 ## 2026-06-17 — Pic source folders removed (post live-check)
 - Done: Owner's live check passed. Removed `dufaat/pic` (tracked) via `git rm` + commit "chore: remove dufaat/pic source screenshots"; `sshift/Pic` was local/untracked and is removed by the owner on their machine. Published optimized shots remain in `dufaat/assets/screenshots/` + `sshift/assets/screenshots/`.
 

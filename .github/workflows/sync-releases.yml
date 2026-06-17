@@ -1,8 +1,10 @@
 name: Sync App Releases
 
 on:
+  push:
+    branches: [ main ]   # run on every deploy so new App Store versions are picked up
   schedule:
-    # Daily at 03:00 UTC (06:00 KSA time)
+    # Daily at 03:00 UTC (06:00 KSA time) — daily backup, kept in case GitHub disables it after inactivity
     - cron: '0 3 * * *'
   workflow_dispatch:  # Manual trigger button in GitHub UI
 
@@ -14,12 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install dependencies
         run: npm install jsonwebtoken
