@@ -20,14 +20,14 @@
 <meta property="og:url" content="https://saud.im/dufaat/">
 <meta property="og:title" content="Dufaat — Every installment, quietly settled">
 <meta property="og:description" content="A calm, offline home for your installment plans. Create a plan, let the schedule write itself, settle payments with a tick, and keep receipts beside them — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
-<meta property="og:image" content="https://saud.im/assets/icon-dufaat.png">
+<meta property="og:image" content="https://saud.im/dufaat/assets/icon-dufaat.png">
 <meta property="og:image:alt" content="Dufaat app icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dufaat — Every installment, quietly settled">
 <meta name="twitter:description" content="A calm, offline home for your installment plans. Create, settle, and keep receipts — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
-<meta name="twitter:image" content="https://saud.im/assets/icon-dufaat.png">
+<meta name="twitter:image" content="https://saud.im/dufaat/assets/icon-dufaat.png">
 <meta name="twitter:image:alt" content="Dufaat app icon">
 
 <link rel="stylesheet" href="/assets/saud.css">
@@ -45,10 +45,11 @@
   })();
 </script>
 <style>
-  /* ── Dufaat — "Pearl & Midnight": pearl shapes on midnight ink, a calm,
-     editorial ledger. Amiri carries the Arabic display type (self-hosted —
-     no third-party calls). Dark theme IS the identity (#1A1F2E / #F0EEE8);
-     light theme is its pearl inversion. ── */
+  /* ── Dufaat v2 — "Luminous Calm, warmed": a quiet ledger, not a banking
+     dashboard. Cream/midnight canvas (no pure black/white), a single living
+     teal accent, gold for warmth/value, a soft teal+gold aurora behind glass
+     cards. Amiri carries the Arabic display type (self-hosted — no third-party
+     calls); Latin display rides the system serif stack for an editorial feel. ── */
   @font-face {
     font-family: "Amiri";
     font-style: normal;
@@ -63,38 +64,66 @@
     font-family: "Amiri", var(--font-ar), serif;
     line-height: 1.5;
   }
+  /* Editorial serif wordmark (Latin display) — system serif, self-hosted-safe */
+  body.app-dufaat .hero-brand .hb-name { font-family: var(--font-serif); font-weight: 700; letter-spacing: 0; }
 
-  /* Midnight ink canvas (the app's native mood) */
+  /* Midnight canvas — the app's native mood */
   :root[data-theme="dark"] body.app-dufaat {
-    --bg:#1A1F2E; --bg-2:#151926;
-    --surface:#222839; --surface-2:#293042; --surface-raised:#293042; --surface-sunken:#151926;
-    --text:#F0EEE8; --text-2:#B2B2AC; --text-3:#7C7F84;
-    --hairline:rgba(240,238,232,0.10); --hairline-2:rgba(240,238,232,0.06); --hairline-strong:rgba(240,238,232,0.18);
-    --topbar-bg:rgba(26,31,46,0.66);
+    --bg:#0B0D14; --bg-2:#090B11;
+    --surface:#141821; --surface-2:#1A1F2A; --surface-raised:#1A1F2A; --surface-sunken:#0E1118;
+    --text:#F3EEE4; --text-2:#B8B3A8; --text-3:#83837C;
+    --hairline:rgba(243,238,228,0.12); --hairline-2:rgba(243,238,228,0.06); --hairline-strong:rgba(243,238,228,0.20);
+    --topbar-bg:rgba(11,13,20,0.66);
+    --accent:#67DDC5; --accent-2:#3FB89C; --accent-ink:#0B0D14;
+    --df-glass:rgba(255,255,255,0.05); --df-gold:#E3BE86; --df-alert:#CC8B7A;
+    --df-aurora-teal:rgba(103,221,197,0.34); --df-aurora-gold:rgba(227,190,134,0.28);
   }
-  /* Pearl paper inversion for the light theme */
+  /* Cream paper inversion — light theme (no pure white) */
   :root[data-theme="light"] body.app-dufaat {
-    --bg:#F0EEE8; --bg-2:#E9E6DE;
-    --surface:#FBFAF6; --surface-2:#F3F1EA; --surface-raised:#FDFCF8; --surface-sunken:#E7E4DB;
+    --bg:#F6F3EC; --bg-2:#EFEBE1;
+    --surface:#FBF9F3; --surface-2:#F2EEE4; --surface-raised:#FDFCF7; --surface-sunken:#EDE8DC;
     --text:#1A1F2E; --text-2:#4A4F5C; --text-3:#7E828D;
     --hairline:rgba(26,31,46,0.12); --hairline-2:rgba(26,31,46,0.07); --hairline-strong:rgba(26,31,46,0.18);
-    --topbar-bg:rgba(240,238,232,0.78);
+    --topbar-bg:rgba(246,243,236,0.80);
+    --accent:#1F9E75; --accent-2:#17795A; --accent-ink:#F6F3EC;
+    --df-glass:rgba(255,255,255,0.72); --df-gold:#B07D33; --df-alert:#B65C46;
+    --df-aurora-teal:rgba(31,158,117,0.22); --df-aurora-gold:rgba(176,125,51,0.18);
   }
-  /* Quiet single-tone hero wash — editorial, not loud */
+  /* Ambient aurora — two soft, blurred radial glows behind all content (teal
+     top-leading, gold bottom-trailing); static, low-opacity, never neon. */
+  body.app-dufaat {
+    background-image:
+      radial-gradient(42% 32% at 12% 4%,  var(--df-aurora-teal) 0%, transparent 58%),
+      radial-gradient(44% 34% at 92% 98%, var(--df-aurora-gold) 0%, transparent 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  /* Hero wash reinforces the same aurora over the hero */
   body.app-dufaat .signal-field {
     background:
-      radial-gradient(46% 36% at 30% 10%, color-mix(in oklab, var(--accent) calc(var(--field-alpha)*120%), transparent) 0%, transparent 70%),
-      radial-gradient(38% 32% at 78% 12%, color-mix(in oklab, var(--accent-2) calc(var(--field-alpha)*100%), transparent) 0%, transparent 72%);
-    filter: blur(10px) saturate(105%);
+      radial-gradient(54% 44% at 18% 6%,  var(--df-aurora-teal) 0%, transparent 64%),
+      radial-gradient(50% 44% at 86% 96%, var(--df-aurora-gold) 0%, transparent 66%);
+    filter: blur(34px) saturate(112%);
   }
-  /* Hero keyword as a pearl shape on midnight (and midnight on pearl) — the
-     default slate-on-slate gradient sits below 3:1 on these canvases */
-  :root[data-theme="dark"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #F0EEE8, #5FE0AE); }
-  :root[data-theme="light"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #1A1F2E, #10A37F); }
-  /* Midnight-on-midnight needs a stronger bezel ring than the default 8% */
+  /* Hero keyword carries the living teal accent (ink→teal / cream→mint) */
+  :root[data-theme="dark"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #F3EEE4, #67DDC5); }
+  :root[data-theme="light"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #1A1F2E, #1F9E75); }
+
+  /* ── Glass cards — translucent fill + blur, 1px luminous hairline, soft top
+     highlight, 18px radius. Applied to the page's card-like surfaces. ── */
+  body.app-dufaat .df-doc,
+  body.app-dufaat .feature {
+    background: var(--df-glass);
+    backdrop-filter: blur(14px) saturate(125%);
+    -webkit-backdrop-filter: blur(14px) saturate(125%);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 color-mix(in oklab, var(--text) 7%, transparent), var(--shadow-md);
+  }
+  /* Luminous teal-tinted device bezel ring on the cream/midnight canvas */
   body.app-dufaat .device {
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--text) 14%, transparent),
-                inset 0 0 0 1.5px rgba(255,255,255,.06), var(--shadow-lg);
+    box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--accent) 22%, var(--hairline-strong)),
+                inset 0 0 0 1.5px rgba(255,255,255,.05), var(--shadow-lg);
   }
 
   /* Device mockup — a plan with its three-row schedule, one settled (the icon motif) */
@@ -115,9 +144,9 @@
   .df-month { flex: 1; font-size: 13px; font-weight: 560; color: var(--text); }
   .df-row.on .df-month { color: var(--text-2); }
   .df-amt { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-  .df-due { font-size: 10.5px; font-weight: 700; color: var(--soon);
-            background: color-mix(in oklab, var(--soon) 14%, var(--surface));
-            border: 1px solid color-mix(in oklab, var(--soon) 32%, transparent);
+  .df-due { font-size: 10.5px; font-weight: 700; color: var(--df-gold);
+            background: color-mix(in oklab, var(--df-gold) 14%, var(--surface));
+            border: 1px solid color-mix(in oklab, var(--df-gold) 38%, transparent);
             border-radius: 999px; padding: 2px 8px; }
 
   /* Settled-payment artifact (split section) */
@@ -189,7 +218,7 @@
       <div class="split">
         <div>
           <span class="hero-brand">
-            <img src="/assets/icon-dufaat.png" alt="Dufaat app icon" width="46" height="46">
+            <img src="/dufaat/assets/icon-dufaat.png" alt="Dufaat app icon" width="46" height="46">
             <span class="hb-name">Dufaat</span>
           </span>
           <span class="eyebrow hero-eyebrow" style="display:inline-flex">
@@ -223,12 +252,12 @@
           </div>
         </div>
 
-        <!-- Real Dufaat screen: a plan with its payment schedule -->
+        <!-- Real Dufaat screen (v2): the Home, plans with teal progress -->
         <div class="device-wrap">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/dufaat/assets/screenshots/schedule.jpg" alt="A Dufaat plan with its payment schedule — ten monthly payments, the first three settled, with Export PDF and Edit Plan actions" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/dufaat/assets/screenshots/home.jpg" alt="The Dufaat home — a calm list of installment plans, each with a teal progress bar, payments made, amount remaining, and the next payment" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
         </div>
@@ -344,7 +373,17 @@
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/dufaat/assets/screenshots/new-plan.jpg" alt="Creating a new Dufaat plan — paying to, total amount, currency, and a monthly amount or number of months" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/dufaat/assets/screenshots/plan-deferred.jpg" alt="A Dufaat plan detail — paid payments ticked in teal, the remaining balance, and an upcoming payment marked with a gold Deferred badge" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Track every payment — even deferred ones.</span><span data-ar>تتبّع كل دفعة — حتى المؤجَّلة.</span></figcaption>
+        </figure>
+
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/new-plan.jpg" alt="Creating a new Dufaat plan — payee, total amount, currency, and a monthly amount or number of months" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
           <figcaption><span data-en>Create a plan in seconds.</span><span data-ar>أنشئ خطة في ثوانٍ.</span></figcaption>
@@ -354,30 +393,10 @@
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/dufaat/assets/screenshots/home.jpg" alt="The Dufaat home showing a plan with its progress, payments settled, amount remaining, and next payment" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/dufaat/assets/screenshots/plan-car.jpg" alt="A longer Dufaat plan — a car paid over twenty-four months, with each payment dated and its amount listed" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>See every plan at a glance.</span><span data-ar>اطّلع على كل خطة بنظرة.</span></figcaption>
-        </figure>
-
-        <figure class="df-shot">
-          <div class="device">
-            <span class="island" aria-hidden="true"></span>
-            <div class="screen">
-              <img src="/dufaat/assets/screenshots/completed.jpg" alt="A completed Dufaat plan with a congratulations message after the final payment is settled" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-          </div>
-          <figcaption><span data-en>Settle the last payment, done.</span><span data-ar>سوِّ آخر دفعة، واكتمل.</span></figcaption>
-        </figure>
-
-        <figure class="df-shot">
-          <div class="device">
-            <span class="island" aria-hidden="true"></span>
-            <div class="screen">
-              <img src="/dufaat/assets/screenshots/report.jpg" alt="A Dufaat plan exported as a clean PDF report listing every payment with its due date, amount and status" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-          </div>
-          <figcaption><span data-en>Export a clean PDF report.</span><span data-ar>صدّر تقرير PDF أنيقًا.</span></figcaption>
+          <figcaption><span data-en>Any length, automatically scheduled.</span><span data-ar>أي مدّة، بجدول تلقائي.</span></figcaption>
         </figure>
 
         <figure class="df-shot">
@@ -388,6 +407,16 @@
             </div>
           </div>
           <figcaption><span data-en>Reminders, language &amp; backup.</span><span data-ar>تذكيرات ولغة ونسخ احتياطي.</span></figcaption>
+        </figure>
+
+        <figure class="df-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/dufaat/assets/screenshots/home-light.jpg" alt="The Dufaat home in its light, cream theme — the same calm plan list rendered in Luminous Calm light mode" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Calm in light or dark.</span><span data-ar>هدوء في الفاتح والداكن.</span></figcaption>
         </figure>
       </div>
     </div>

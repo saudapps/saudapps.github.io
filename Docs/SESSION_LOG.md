@@ -23,6 +23,38 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-21 — Dufaat v2 "Luminous Calm, warmed" re-skin + new logo
+- Done: Applied the owner-approved Dufaat v2 re-skin (within the existing inline
+  <style> token system; assets/saud.css and all other apps untouched).
+  • Palette per theme: teal accent #1F9E75 / #67DDC5 (with theme-correct
+    --accent-ink), gold #B07D33 / #E3BE86, terracotta alert, canvas
+    #F6F3EC / #0B0D14, cream/ink text — no pure black/white; two soft blurred
+    aurora glows (static, reduced-motion-safe); glass cards (translucent +
+    backdrop-filter blur, 1px luminous hairline, 18px radius); per-theme grad-text.
+  • New v2 app icon wired in: dufaat/assets/icon-dufaat.png (brand lockup +
+    Dufaat-page OG/Twitter) AND the shared assets/icon-dufaat.png (homepage Dufaat
+    card + footer + privacy/terms OG) — owner-approved shared swap.
+  • v2 screenshots (home, plan-deferred, plan-car, new-plan, settings, home-light);
+    hero = v2 Home; gallery Deferred → New Plan → Car → Settings → Home (light);
+    bilingual alt text; removed unused v1 schedule/completed/report.jpg.
+  • privacy + terms: v2 token restyle + ambient aurora; legal CONTENT untouched.
+  • Kept the PhoneSpace-style two-column hero (re-skin only, no layout teardown).
+- Decisions: Did NOT touch the Dufaat version number / data-releases hook /
+  releases-loader.js / app-data.js / "What's New" text (the 1.0 in HTML is the
+  correct pre-JS fallback). PhoneSpace/SShift/Filed/Promptbook + the shared
+  favicon left untouched. Contrast note: the dark app icon is the lowest-contrast
+  of the four homepage cards in dark mode, but reads cleanly (card hairline + the
+  teal/cream interior define it) — flagged, not redesigned.
+- Open / next: after the App Store build is approved + released, no further site
+  change needed (the version auto-syncs from releases.json).
+- Deploy state: committed + pushed to main → GitHub Pages republishes saud.im
+  (homepage Dufaat card, /dufaat, /dufaat/privacy, /dufaat/terms).
+- Live-check: verified locally via headless Chrome (light + dark, desktop +
+  mobile) — Dufaat palette/aurora/glass/logo/hero/gallery; homepage Dufaat card;
+  privacy/terms restyle with content intact; PhoneSpace unchanged (orange identity
+  kept). To confirm on saud.im once Pages finishes deploying.
+- ChatGPT review: none.
+
 ## 2026-06-17 — Dufaat/SShift/Filed: visual refresh applied (heroes + accents)
 - Done: Applied the owner-approved full refresh to dufaat, sshift, filed (4 files:
   assets/saud.css + the three app index.html). PhoneSpace 100% untouched.
