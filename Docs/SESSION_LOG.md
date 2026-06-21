@@ -23,6 +23,42 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-21 — SShift app-faithful re-skin + new simulator screenshots
+- Done: Applied the owner-approved SShift refresh (sshift/index.html inline <style>
+  + sshift/assets/screenshots/ only). Reproduced the app's REAL design language:
+  • Day-cell recipe (not flat): per-tile --c = the type's DayType.colorHex; fill =
+    linear-gradient(180deg, --c@18% → --c@10%) over the theme surface; solid ~4px
+    top strip in --c; 1px border --c@~18%; radius 11; soft shadow; day number wt 600
+    + short code @55%. Week strip = a real week (15–21): Work #4CAF50 · today(16)
+    blue (#ADD1FF→#61A6FF / #3373D9 strip / white) · Training #009688 · Annual
+    #FF9800 · Sick #F44336 · Long Cycle #5C6BC0 · Rest #9E9E9E (only Rest grey).
+  • Legend chips = the app's edit-day type-grid style: type@12% fill + ~48% type
+    border + type dot + code + bilingual name, each in its own colour.
+  • Lead accent indigo #6680F2 (dark lift #8AA0F7). Edge-strip motif on feature
+    cards (4px rounded-leading left strip in a type colour + matching icon chip);
+    cards stay solid (hairline + soft shadow, no blur).
+  • Screenshots (clean 6.9" simulator captures, ~820px JPG ~99–114KB, used as-is):
+    hero theme-swaps calendar-light/calendar-dark; gallery = dashboard, day-detail,
+    calendar-ar (RTL), settings, + dashboard-dark (a dark capture). Removed the v1
+    concepts (calendar, dashboard[old], notifications, pdf-report, schedule-pattern).
+- Decisions: grey→type was a specificity bug — `.sh-week .tile`/`.sh-legend li`
+  (0,2,0) hard-set --c:var(--sh-rest), beating the `.sh-c-*` classes (0,1,0);
+  fixed by removing the hard default and using var(--c, var(--sh-rest)) fallbacks so
+  the type class is the only thing setting --c. Border kept at ~18% (not literal
+  10%) so cell edges read on web. Gallery does NOT auto-swap EN↔AR on the language
+  toggle (Arabic calendar is simply included). Temp sshift/_v2src/ deleted, never
+  committed. saud.css and other apps untouched (accent lives in SShift inline style).
+- Open / next: none required. (Could later add per-language gallery swap if wanted.)
+- Deploy state: committed + pushed to main; live CSS/HTML + screenshots → Pages
+  rebuilds /sshift/. version / data-releases / What's-New / app-data.js /
+  releases-loader.js untouched; badges + hooks intact.
+- Live-check: PENDING owner — verify saud.im/sshift/ mobile + desktop, light AND
+  dark: week strip shows green/blue/teal/amber/red/indigo/grey (not all-grey);
+  legend chips each in their type colour; cells use gradient+strip+border; hero
+  calendar theme-swaps; gallery includes a dark capture; What's-New + badges present;
+  Dufaat/PhoneSpace/Filed unchanged.
+- ChatGPT review: none.
+
 ## 2026-06-21 — Dufaat v2 "Luminous Calm, warmed" re-skin + new logo
 - Done: Applied the owner-approved Dufaat v2 re-skin (within the existing inline
   <style> token system; assets/saud.css and all other apps untouched).

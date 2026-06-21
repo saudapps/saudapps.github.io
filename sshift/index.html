@@ -50,27 +50,25 @@
      surfaces via color-mix so they hold contrast in both light and dark.
      The grid/week mocks are decorative (aria-hidden); the legend carries
      the real bilingual labels. */
-  /* Accent drawn from the app's multi-colour leave-type palette: a confident
-     indigo-violet lead, lightened in dark mode. Page-local override only. */
-  body.app-sshift { --accent: #5B57E0; --accent-2: #3F39B8; }
-  :root[data-theme="dark"] body.app-sshift { --accent: #8B88F2; --accent-2: #6C66E8; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-sshift { --accent: #8B88F2; --accent-2: #6C66E8; } }
+  /* SShift's lead accent = indigo #6680F2 (the app's brand indigo), lifted
+     slightly in dark for contrast. Page-local override only. */
+  body.app-sshift { --accent: #6680F2; --accent-2: #4860D8; }
+  :root[data-theme="dark"] body.app-sshift { --accent: #8AA0F7; --accent-2: #6680F2; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-sshift { --accent: #8AA0F7; --accent-2: #6680F2; } }
 
-  /* Leave-type colours — EXACT hex from the app's DayType.colorHex (mode-
-     independent: identical in light & dark, matching the app 1:1). */
+  /* Leave-type colours — EXACT DayType.colorHex (one hex per type; the
+     gradient/opacity recipe below adapts them to light & dark, like the app). */
   .app-sshift {
-    --sh-work: #4CAF50;     /* Work */
-    --sh-rest: #9E9E9E;     /* Rest Day */
-    --sh-training: #009688; /* Training */
-    --sh-annual: #FF9800;   /* Annual Leave */
-    --sh-leave: #5C6BC0;    /* Long Cycle Leave (LCL) */
-    --sh-sick: #F44336;     /* Sick Leave */
+    --sh-work:#4CAF50; --sh-rest:#9E9E9E; --sh-lcl:#5C6BC0; --sh-nsl:#2196F3;
+    --sh-annual:#FF9800; --sh-sick:#F44336; --sh-force:#9C27B0; --sh-training:#009688;
+    --sh-escort:#E91E63; --sh-business:#795548; --sh-special:#00BCD4; --sh-other:#757575;
+    --sh-leave:#5C6BC0; /* alias: Long Cycle */
   }
-  .sh-cell-work     { background: color-mix(in oklab, var(--sh-work) 34%, var(--surface)); }
-  .sh-cell-rest     { background: color-mix(in oklab, var(--sh-rest) 24%, var(--surface)); }
-  .sh-cell-training { background: color-mix(in oklab, var(--sh-training) 34%, var(--surface)); }
-  .sh-cell-leave    { background: color-mix(in oklab, var(--sh-leave) 34%, var(--surface)); }
-  .sh-cell-annual   { background: color-mix(in oklab, var(--sh-annual) 36%, var(--surface)); }
+  /* Each coloured element sets --c to its type; the recipe reads --c. */
+  .sh-c-work{--c:var(--sh-work);} .sh-c-rest{--c:var(--sh-rest);} .sh-c-training{--c:var(--sh-training);}
+  .sh-c-annual{--c:var(--sh-annual);} .sh-c-lcl{--c:var(--sh-lcl);} .sh-c-sick{--c:var(--sh-sick);}
+  .sh-c-nsl{--c:var(--sh-nsl);} .sh-c-force{--c:var(--sh-force);} .sh-c-escort{--c:var(--sh-escort);}
+  .sh-c-business{--c:var(--sh-business);} .sh-c-special{--c:var(--sh-special);} .sh-c-other{--c:var(--sh-other);}
 
   /* Month-calendar mock (hero device screen) */
   .sh-cal { display: flex; flex-direction: column; gap: 9px; height: 100%; padding: 18px 15px; }
@@ -89,28 +87,66 @@
              background: var(--surface-2); border: 1px solid var(--hairline);
              border-radius: var(--r-pill); padding: 7px 12px; }
 
-  /* Week rhythm strip (section artifact) */
-  .sh-week { display: grid; grid-template-columns: repeat(7,1fr); gap: 7px; padding: 18px;
+  /* ── Week strip = a real calendar week, using the app's day-cell recipe ──
+     fill = BASE@18%→BASE@10% vertical gradient over the surface (so it adapts
+     to light & dark like the app); 1px BASE-tinted border; a solid BASE top
+     accent strip (~4px, full width); radius 11; day number weight 600 +
+     short code @55%; very soft shadow. */
+  .sh-week { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; padding: 16px;
              background: var(--surface); border: 1px solid var(--hairline);
-             border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
-  .sh-week .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .sh-week .dow { font-size: 11px; font-weight: 700; color: var(--text-3); }
-  .sh-week .tile { width: 100%; aspect-ratio: 2/3; border-radius: 10px; background: var(--surface-2); }
-  /* tiles carry no text, so they take the FULL exact shift colour (1:1 with app) */
-  .sh-week .tile.sh-cell-work     { background: var(--sh-work); }
-  .sh-week .tile.sh-cell-rest     { background: var(--sh-rest); }
-  .sh-week .tile.sh-cell-training { background: var(--sh-training); }
-  .sh-week .tile.sh-cell-leave    { background: var(--sh-leave); }
-  .sh-week .tile.sh-cell-annual   { background: var(--sh-annual); }
-  .sh-week .tile.sh-cell-sick     { background: var(--sh-sick); }
+             border-radius: 16px; box-shadow: var(--shadow-sm); }
+  .sh-week .col { display: flex; flex-direction: column; align-items: stretch; gap: 7px; }
+  .sh-week .dow { text-align: center; font-size: 10.5px; font-weight: 700; color: var(--text-3); }
+  .sh-week .tile { position: relative; aspect-ratio: 1/1.18; overflow: hidden;
+                   border-radius: 11px; padding: 7px 7px 6px;
+                   display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+                   background: linear-gradient(180deg,
+                     color-mix(in srgb, var(--c, var(--sh-rest)) 18%, var(--surface)),
+                     color-mix(in srgb, var(--c, var(--sh-rest)) 10%, var(--surface)));
+                   border: 1px solid color-mix(in srgb, var(--c, var(--sh-rest)) 18%, transparent);
+                   box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+  .sh-week .tile::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--c, var(--sh-rest)); }
+  .sh-week .tile .sh-num { font-size: 13.5px; font-weight: 600; line-height: 1; color: var(--text);
+                           font-variant-numeric: tabular-nums; margin-top: 3px; }
+  .sh-week .tile .sh-code { font-size: 9.5px; font-weight: 500; line-height: 1;
+                            color: color-mix(in srgb, var(--text) 55%, transparent); letter-spacing: .02em; }
+  /* Today = always the app's blue cell (overrides type colour), white text */
+  .sh-week .tile.today { background: linear-gradient(180deg, #ADD1FF, #61A6FF);
+                         border-color: color-mix(in srgb, #3373D9 45%, transparent);
+                         box-shadow: 0 1px 5px rgba(51,115,217,0.18); }
+  .sh-week .tile.today::before { background: #3373D9; }
+  .sh-week .tile.today .sh-num { color: #fff; }
+  .sh-week .tile.today .sh-code { color: rgba(255,255,255,0.82); }
 
-  /* Shift-type legend (real bilingual content) */
-  .sh-legend { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 9px 16px; }
-  .sh-legend li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-2); }
-  .sh-legend .sw { width: 13px; height: 13px; border-radius: 4px; flex: 0 0 auto; }
-  .sw-work{ background: var(--sh-work); } .sw-rest{ background: var(--sh-rest); }
-  .sw-training{ background: var(--sh-training); } .sw-leave{ background: var(--sh-leave); }
-  .sw-annual{ background: var(--sh-annual); } .sw-sick{ background: var(--sh-sick); }
+  /* ── Shift-type legend = the app's type chips (dot + code + name; each tinted
+     in its own colour: type@12% fill + type border, radius 9). ── */
+  .sh-legend { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 9px; }
+  .sh-legend li { display: inline-flex; align-items: center; gap: 8px;
+                  font-size: 13px; font-weight: 560; color: var(--text);
+                  background: color-mix(in srgb, var(--c, var(--sh-rest)) 12%, var(--surface));
+                  border: 1px solid color-mix(in srgb, var(--c, var(--sh-rest)) 48%, var(--hairline));
+                  border-radius: 9px; padding: 6px 11px; }
+  .sh-legend li .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c, var(--sh-rest)); flex: 0 0 auto; }
+  .sh-legend li .code { font-size: 11px; font-weight: 700; letter-spacing: .02em;
+                        color: color-mix(in srgb, var(--c, var(--sh-rest)) 65%, var(--text)); }
+
+  /* ── Edge-strip motif — a ~4px rounded-leading vertical strip on the left of
+     each feature card, in its type/accent colour (like the app's Today/stat
+     cards). Cards stay SOLID (no blur) with a thin hairline + soft shadow. ── */
+  body.app-sshift .feature { position: relative; overflow: hidden; }
+  body.app-sshift .feature::before { content: ""; position: absolute; inset-block: 0;
+                                     inset-inline-start: 0; width: 4px; background: var(--c, var(--accent)); }
+  /* icon chip picks up the card's type colour (matches the edge strip) */
+  body.app-sshift .feature .f-ic { background: color-mix(in srgb, var(--c, var(--accent)) 16%, var(--surface));
+                                   color: var(--c, var(--accent)); }
+
+  /* Hero screenshot swaps with the page theme (light/dark calendar capture) */
+  body.app-sshift .sh-hero-shot { width: 100%; height: 100%; object-fit: cover; display: block; }
+  body.app-sshift .sh-hero-dark { display: none; }
+  :root[data-theme="dark"] body.app-sshift .sh-hero-light { display: none; }
+  :root[data-theme="dark"] body.app-sshift .sh-hero-dark { display: block; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-sshift .sh-hero-light { display: none; }
+    :root:not([data-theme="light"]) body.app-sshift .sh-hero-dark { display: block; } }
 
   /* "A look inside" — real screenshots in device frames (mirrors Filed) */
   .sh-shots { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
@@ -206,7 +242,8 @@
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/sshift/assets/screenshots/calendar.jpg" alt="The SShift month calendar for June — each day colored by shift type, with a card highlighting today's leave day" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img class="sh-hero-shot sh-hero-light" src="/sshift/assets/screenshots/calendar-light.jpg" alt="The SShift month calendar — each day a coloured cell by shift type, with today shown in blue and a card summarising today's shift">
+              <img class="sh-hero-shot sh-hero-dark" src="/sshift/assets/screenshots/calendar-dark.jpg" alt="The SShift month calendar in dark mode — each day a coloured cell by shift type, with today shown in blue">
             </div>
           </div>
         </div>
@@ -232,23 +269,23 @@
             <span data-ar>كل نوع مناوبة — عمل، راحة، تدريب، إجازة — يُقرأ فوراً باللون، ويبقى متّسقاً في التقويم واللوحة وملف PDF القابل للطباعة.</span>
           </p>
           <ul class="sh-legend">
-            <li><span class="sw sw-work" aria-hidden="true"></span><span data-en>Work</span><span data-ar>عمل</span></li>
-            <li><span class="sw sw-rest" aria-hidden="true"></span><span data-en>Rest Day</span><span data-ar>يوم راحة</span></li>
-            <li><span class="sw sw-training" aria-hidden="true"></span><span data-en>Training</span><span data-ar>تدريب</span></li>
-            <li><span class="sw sw-annual" aria-hidden="true"></span><span data-en>Annual Leave</span><span data-ar>إجازة سنوية</span></li>
-            <li><span class="sw sw-sick" aria-hidden="true"></span><span data-en>Sick Leave</span><span data-ar>إجازة مرضية</span></li>
-            <li><span class="sw sw-leave" aria-hidden="true"></span><span data-en>Long Cycle Leave</span><span data-ar>إجازة دورة طويلة</span></li>
+            <li class="sh-c-work"><span class="dot" aria-hidden="true"></span><span class="code" aria-hidden="true">W</span><span data-en>Work</span><span data-ar>عمل</span></li>
+            <li class="sh-c-rest"><span class="dot" aria-hidden="true"></span><span class="code" aria-hidden="true">R</span><span data-en>Rest Day</span><span data-ar>يوم راحة</span></li>
+            <li class="sh-c-training"><span class="dot" aria-hidden="true"></span><span class="code" aria-hidden="true">TR</span><span data-en>Training</span><span data-ar>تدريب</span></li>
+            <li class="sh-c-annual"><span class="dot" aria-hidden="true"></span><span class="code" aria-hidden="true">AL</span><span data-en>Annual Leave</span><span data-ar>إجازة سنوية</span></li>
+            <li class="sh-c-sick"><span class="dot" aria-hidden="true"></span><span class="code" aria-hidden="true">SL</span><span data-en>Sick Leave</span><span data-ar>إجازة مرضية</span></li>
+            <li class="sh-c-lcl"><span class="dot" aria-hidden="true"></span><span class="code" aria-hidden="true">LCL</span><span data-en>Long Cycle Leave</span><span data-ar>إجازة دورة طويلة</span></li>
           </ul>
         </div>
         <div data-reveal>
           <div class="sh-week" aria-hidden="true">
-            <div class="col"><span class="dow">M</span><span class="tile sh-cell-work"></span></div>
-            <div class="col"><span class="dow">T</span><span class="tile sh-cell-work"></span></div>
-            <div class="col"><span class="dow">W</span><span class="tile sh-cell-training"></span></div>
-            <div class="col"><span class="dow">T</span><span class="tile sh-cell-annual"></span></div>
-            <div class="col"><span class="dow">F</span><span class="tile sh-cell-sick"></span></div>
-            <div class="col"><span class="dow">S</span><span class="tile sh-cell-leave"></span></div>
-            <div class="col"><span class="dow">S</span><span class="tile sh-cell-rest"></span></div>
+            <div class="col"><span class="dow">M</span><span class="tile sh-c-work"><span class="sh-num">15</span><span class="sh-code">W</span></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-c-work today"><span class="sh-num">16</span><span class="sh-code">W</span></span></div>
+            <div class="col"><span class="dow">W</span><span class="tile sh-c-training"><span class="sh-num">17</span><span class="sh-code">TR</span></span></div>
+            <div class="col"><span class="dow">T</span><span class="tile sh-c-annual"><span class="sh-num">18</span><span class="sh-code">AL</span></span></div>
+            <div class="col"><span class="dow">F</span><span class="tile sh-c-sick"><span class="sh-num">19</span><span class="sh-code">SL</span></span></div>
+            <div class="col"><span class="dow">S</span><span class="tile sh-c-lcl"><span class="sh-num">20</span><span class="sh-code">LCL</span></span></div>
+            <div class="col"><span class="dow">S</span><span class="tile sh-c-rest"><span class="sh-num">21</span><span class="sh-code">R</span></span></div>
           </div>
         </div>
       </div>
@@ -271,7 +308,7 @@
       <div class="feature-grid cols-3" style="margin-top:34px">
 
         <!-- Shift types -->
-        <div class="feature" data-reveal>
+        <div class="feature sh-c-work" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></svg></span>
           <h3>
             <span data-en>Work, Rest, Training, Leave</span>
@@ -284,7 +321,7 @@
         </div>
 
         <!-- Bilingual -->
-        <div class="feature" data-reveal>
+        <div class="feature sh-c-nsl" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></span>
           <h3>
             <span data-en>Bilingual &amp; RTL</span>
@@ -297,7 +334,7 @@
         </div>
 
         <!-- Notifications -->
-        <div class="feature" data-reveal>
+        <div class="feature sh-c-annual" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></span>
           <h3>
             <span data-en>Smart notifications</span>
@@ -310,7 +347,7 @@
         </div>
 
         <!-- PDF -->
-        <div class="feature" data-reveal>
+        <div class="feature sh-c-training" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/></svg></span>
           <h3>
             <span data-en>Printable PDF</span>
@@ -323,7 +360,7 @@
         </div>
 
         <!-- Privacy -->
-        <div class="feature" data-reveal>
+        <div class="feature sh-c-lcl" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
           <h3>
             <span data-en>Privacy first</span>
@@ -336,7 +373,7 @@
         </div>
 
         <!-- iOS Native -->
-        <div class="feature" data-reveal>
+        <div class="feature sh-c-special" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 19h2"/></svg></span>
           <h3>
             <span data-en>Made for iOS</span>
@@ -365,7 +402,7 @@
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/sshift/assets/screenshots/dashboard.jpg" alt="The SShift dashboard summing up the month — total days, work, rest and leave counts, with a breakdown by shift type" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/sshift/assets/screenshots/dashboard.jpg" alt="The SShift dashboard summing up the month — total days, with work, rest and leave counts and a breakdown bar per shift type" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
           <figcaption><span data-en>Your month, summed up.</span><span data-ar>شهرك، مُلخّصًا.</span></figcaption>
@@ -375,30 +412,40 @@
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/sshift/assets/screenshots/schedule-pattern.jpg" alt="SShift schedule generation — a custom work/off-day pattern that fills the calendar automatically" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/sshift/assets/screenshots/day-detail.jpg" alt="Editing a day in SShift — picking from a grid of colour-coded shift and leave types, with a note field" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>Generate from a pattern.</span><span data-ar>وَلِّد الجدول من نمط.</span></figcaption>
+          <figcaption><span data-en>Set any day in a tap.</span><span data-ar>عيّن أي يوم بنقرة.</span></figcaption>
         </figure>
 
         <figure class="sh-shot">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/sshift/assets/screenshots/notifications.jpg" alt="SShift notification settings — reminders for work shifts, training and leave days at a chosen time" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/sshift/assets/screenshots/calendar-ar.jpg" alt="The SShift calendar in Arabic with full right-to-left layout — the same colour-coded month, localized" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>Reminders for what matters.</span><span data-ar>تذكيرات لما يهمّك.</span></figcaption>
+          <figcaption><span data-en>Full Arabic, right-to-left.</span><span data-ar>عربية كاملة، من اليمين لليسار.</span></figcaption>
         </figure>
 
         <figure class="sh-shot">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/sshift/assets/screenshots/pdf-report.jpg" alt="An SShift schedule exported as a printable PDF with a shift summary and a color-coded month calendar" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/sshift/assets/screenshots/settings.jpg" alt="SShift settings — schedule and reminders, PDF export, backup and restore, language, and about" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>Export a printable PDF.</span><span data-ar>صدّر ملف PDF للطباعة.</span></figcaption>
+          <figcaption><span data-en>Reminders, export &amp; backup.</span><span data-ar>تذكيرات وتصدير ونسخ احتياطي.</span></figcaption>
+        </figure>
+
+        <figure class="sh-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/sshift/assets/screenshots/dashboard-dark.jpg" alt="The SShift dashboard in dark mode — the same monthly summary and per-type breakdown, on a near-black canvas" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Right at home in dark mode.</span><span data-ar>في بيئته تمامًا بالوضع الداكن.</span></figcaption>
         </figure>
       </div>
     </div>
