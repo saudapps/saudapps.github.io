@@ -23,6 +23,33 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-22 — PhoneSpace Part 2: drill-down sections → code-drawn
+- Done: Converted the two PhoneSpace drill-down sections from old v1 screenshots
+  to code-drawn, app-faithful, cream+serif visuals (phonespace/index.html only).
+  • Photos "Find what you don't need": cream result-row cards — each a green
+    #5EC46B 4px leading stripe + monochrome grey SF-style icon + serif count/name/
+    sub + right-aligned serif size, hairline + soft shadow; serif "Reclaimable ·
+    ~246 MB" footer (green). No screenshot.
+  • Compress & convert: a burgundy #740031 Compress card (eyebrow + serif title,
+    "Reclaim up to 6.5 GB", quality chips Balanced=filled burgundy+white / Light /
+    Maximum, burgundy CTA with soft accent shadow) + a mustard #E7B636 Convert card
+    (format chips JPEG=filled mustard+dark ink / HEIC / PNG / PDF, mustard CTA).
+    Chips 12px radius, active=filled accent / inactive=clear+hairline. No screenshot.
+  • Removed the now-unused old images via git rm: phonespace/assets/screen-photos.jpg
+    + screen-compress.jpg (confirmed nothing else referenced them).
+  • Section copy/headlines unchanged; flat (only gradients remain the ring conic +
+    cream hero-card linear + donut masks); zero blur. PhoneSpace LIVE hooks
+    (data-app/data-field, data-releases, app-data.js, releases-loader.js,
+    version/What's-New) untouched. saud.css + other apps untouched.
+- Deploy state: committed + pushed to main; live HTML change → Pages rebuilds
+  /phonespace/. Data pipeline untouched.
+- Live-check: PENDING owner — verify saud.im/phonespace/ mobile + desktop, light
+  AND dark: the two sections are code-drawn (no old screenshots), green Photos rows
+  + burgundy Compress / mustard Convert cards read right, cream+serif consistent;
+  badges + What's-New present; sections above/below intact; Dufaat/SShift/Filed
+  unchanged.
+- ChatGPT review: none.
+
 ## 2026-06-22 — PhoneSpace identity CORRECTION: amber → cream + serif
 - Done: Applied the owner-approved PhoneSpace re-skin to the app's REAL identity
   (the old warm-amber accent never matched the app). phonespace/index.html +
