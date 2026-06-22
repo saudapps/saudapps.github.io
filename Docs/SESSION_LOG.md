@@ -23,6 +23,26 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-22 — Support: add "Dufaat · Common topics" FAQ
+- Done: Added a new "Dufaat · Common topics" section to support/index.html — 7
+  bilingual (EN/AR) Q&A drawn from the real app (what Dufaat is, adding a plan,
+  marking paid / deferring, reminders, privacy/no-upload, backup & restore,
+  receipts & PDF export). Placed between the SShift and PhoneSpace sections,
+  matching their exact markup (section--tight > wrap--narrow > eyebrow +
+  section-title + collapsible details.faq with data-en/data-ar bodies). Additive
+  — one new <section aria-label="Dufaat common topics">; +87 lines, nothing else
+  changed. Filed deferred (still coming-soon — no section added).
+- Decisions: details kept collapsible (the force-open was preview-only); RTL +
+  EN/AR toggle inherited automatically from the matched markup. support page
+  only — no app pages / saud.css / data pipeline touched.
+- Deploy state: committed + pushed to main; static support page → Pages rebuilds
+  saud.im/support/.
+- Live-check: PENDING owner — saud.im/support/ desktop + mobile, light AND dark:
+  the Dufaat section sits between SShift and PhoneSpace, the 7 FAQs expand/collapse,
+  bold in-app names render, and the EN/AR toggle flips them to Arabic/RTL correctly;
+  contact form + other sections unchanged.
+- ChatGPT review: none.
+
 ## 2026-06-22 — Docs: add DESIGN_SYSTEM.md (visual system + re-skin recipe)
 - Done: Added Docs/DESIGN_SYSTEM.md (verbatim owner-approved content) documenting
   the visual design system — homepage graphite identity, per-app colour
