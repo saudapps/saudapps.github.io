@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-21T16:55:36.235Z",
+  "updatedAt": "2026-06-22T07:04:31.257Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -104,6 +104,15 @@
     "dufaat": {
       "appStoreId": "6780440703",
       "versions": [
+        {
+          "version": "2.0",
+          "state": "PENDING_DEVELOPER_RELEASE",
+          "releasedAt": "2026-06-21T00:25:49-07:00",
+          "whatsNew": {
+            "en": "A whole new look\n\nDufaat is calmer and more beautiful — a warm new visual identity with luminous touches that makes tracking your installments a relaxed experience.\n\nWhat's new:\n- A completely redesigned, warm and refined look in both light and dark mode\n- Defer payments: officially postpone any payment — it shows as \"Deferred\" instead of \"Overdue,\" moves to the end of the schedule, and your plan's end date updates automatically\n- The Completed plans list is now open by default\n- Polish and refinements across every screen\n\nThank you for using Dufaat",
+            "ar": "تصميم جديد بالكامل\n\nدُفعات صار أهدأ وأجمل — هوية بصرية جديدة دافئة مع لمسات مضيئة، تخلّي متابعة أقساطك تجربة مريحة.\n\nالجديد في هذا الإصدار:\n- تصميم جديد كليًا بمظهر دافئ وأنيق في الوضعين الفاتح والداكن\n- تأجيل الأقساط: أجّل أي قسط بشكل رسمي — يظهر \"مؤجَّل\" بدل \"متأخر\"، ويُرحّل لنهاية الجدول، ويتحدّث تاريخ انتهاء الخطة تلقائيًا\n- قائمة الخطط المكتملة صارت مفتوحة افتراضيًا\n- تحسينات وصقل في كل الشاشات\n\nشكرًا لاستخدامك دُفعات"
+          }
+        },
         {
           "version": "1.0",
           "state": "READY_FOR_SALE",
