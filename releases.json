@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-22T07:04:31.257Z",
+  "updatedAt": "2026-06-22T08:02:25.326Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -106,7 +106,7 @@
       "versions": [
         {
           "version": "2.0",
-          "state": "PENDING_DEVELOPER_RELEASE",
+          "state": "READY_FOR_SALE",
           "releasedAt": "2026-06-21T00:25:49-07:00",
           "whatsNew": {
             "en": "A whole new look\n\nDufaat is calmer and more beautiful — a warm new visual identity with luminous touches that makes tracking your installments a relaxed experience.\n\nWhat's new:\n- A completely redesigned, warm and refined look in both light and dark mode\n- Defer payments: officially postpone any payment — it shows as \"Deferred\" instead of \"Overdue,\" moves to the end of the schedule, and your plan's end date updates automatically\n- The Completed plans list is now open by default\n- Polish and refinements across every screen\n\nThank you for using Dufaat",
