@@ -52,29 +52,60 @@
   .app-filed .hero h1, .app-filed .section-title, .fl-apptitle {
     font-family: ui-rounded, "SF Pro Rounded", "SF Pro Display", -apple-system, system-ui, sans-serif;
   }
-  /* Drive-style folder palette (blue / green / yellow / red / purple / orange) */
-  .app-filed { --fl-blue:#2D6CDF; --fl-green:#2FA86A; --fl-yellow:#F2B61E; --fl-red:#E5484D; --fl-purple:#8B5CF6; --fl-orange:#F0883E; }
-  /* Hero word "filed" leans into the multi-colour folder identity: a blue→green
-     ramp (the logo's two strong hues), lightened for the dark canvas. */
-  :root[data-theme="light"] body.app-filed .grad-text { background-image: linear-gradient(100deg, #2563EB, #2FA86A); }
-  :root[data-theme="dark"]  body.app-filed .grad-text { background-image: linear-gradient(100deg, #5B8DEF, #4FD08A); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-filed .grad-text { background-image: linear-gradient(100deg, #5B8DEF, #4FD08A); } }
-  /* Brighter, crisper Drive-style canvas in light (near-white, like the app). */
+  /* Real Filed SectionColor palette — exact app hex, FLAT full-strength tints
+     (light values; dark pair overridden per theme below). */
+  .app-filed { --fl-blue:#1A73E8; --fl-red:#E5484D; --fl-green:#1E8E3E; --fl-yellow:#E8B400;
+               --fl-orange:#E8710A; --fl-purple:#7A5AF8; --fl-teal:#0E9F9A; --fl-pink:#D01884; --fl-gray:#5F6368; }
+  /* Filed lead accent = Drive-style blue; flat Drive-white canvas in light. */
   :root[data-theme="light"] body.app-filed {
+    --accent:#2D6CDF; --accent-2:#2257C0; --accent-ink:#FFFFFF;
     --bg:#FFFFFF; --bg-2:#F3F6FB;
     --surface:#FFFFFF; --surface-2:#F2F5FA; --surface-raised:#FFFFFF; --surface-sunken:#EDF1F8;
     --hairline:rgba(16,32,60,0.10); --hairline-2:rgba(16,32,60,0.06); --hairline-strong:rgba(16,32,60,0.16);
     --topbar-bg:rgba(255,255,255,0.82);
   }
-  /* Multicolour folder-palette hero wash — Filed's ownable Drive identity (both themes). */
-  body.app-filed .signal-field {
-    background:
-      radial-gradient(42% 34% at 20% 14%, color-mix(in oklab, var(--fl-blue) calc(var(--field-alpha)*125%), transparent) 0%, transparent 70%),
-      radial-gradient(34% 30% at 48% 6%, color-mix(in oklab, var(--fl-green) calc(var(--field-alpha)*95%), transparent) 0%, transparent 72%),
-      radial-gradient(32% 28% at 70% 12%, color-mix(in oklab, var(--fl-yellow) calc(var(--field-alpha)*90%), transparent) 0%, transparent 72%),
-      radial-gradient(40% 34% at 90% 8%, color-mix(in oklab, var(--fl-red) calc(var(--field-alpha)*95%), transparent) 0%, transparent 70%);
-    filter: blur(10px) saturate(122%);
+  :root[data-theme="dark"] body.app-filed {
+    --accent:#5B8DEF; --accent-2:#3D74E6; --accent-ink:#FFFFFF;
+    --fl-blue:#6BA5F5; --fl-red:#FF6166; --fl-green:#4CC76A; --fl-yellow:#F2C744;
+    --fl-orange:#F59E42; --fl-purple:#9B82FF; --fl-teal:#37C7C0; --fl-pink:#E072B8; --fl-gray:#9AA0A6;
   }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-filed {
+    --accent:#5B8DEF; --accent-2:#3D74E6; --accent-ink:#FFFFFF;
+    --fl-blue:#6BA5F5; --fl-red:#FF6166; --fl-green:#4CC76A; --fl-yellow:#F2C744;
+    --fl-orange:#F59E42; --fl-purple:#9B82FF; --fl-teal:#37C7C0; --fl-pink:#E072B8; --fl-gray:#9AA0A6;
+  } }
+  /* FLAT identity: NO hero gradient wash / aurora, NO blur. Hero word = solid accent. */
+  body.app-filed .signal-field { background: none; }
+  body.app-filed .grad-text { background: none; -webkit-text-fill-color: var(--accent); color: var(--accent); }
+
+  /* Solid flat cards — thin hairline + soft shadow, radius 14 (no blur, no gradient). */
+  body.app-filed .feature { background: var(--surface); border: 1px solid var(--hairline);
+                            border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
+  /* Feature icon = a flat ~14% tint in its section colour (the app's chip recipe). */
+  body.app-filed .feature .f-ic { background: color-mix(in srgb, var(--c, var(--accent)) 14%, var(--surface));
+                                  color: var(--c, var(--accent)); border-radius: 12px; }
+  /* Section-colour helpers (set --c) for feature cards + tag chips. */
+  .fl-c-blue{--c:var(--fl-blue);} .fl-c-green{--c:var(--fl-green);} .fl-c-red{--c:var(--fl-red);}
+  .fl-c-orange{--c:var(--fl-orange);} .fl-c-purple{--c:var(--fl-purple);} .fl-c-teal{--c:var(--fl-teal);}
+  .fl-c-yellow{--c:var(--fl-yellow);} .fl-c-pink{--c:var(--fl-pink);} .fl-c-gray{--c:var(--fl-gray);}
+  /* Primary button = flat solid accent fill, white text, radius 12 (no gradient). */
+  body.app-filed .btn-primary { background: var(--accent); border-radius: 12px; }
+
+  /* Tag chip — Filed's signature motif: capsule, colour@15% fill, colour dot + text, no border. */
+  .fl-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .fl-chip { --c: var(--accent); display: inline-flex; align-items: center; gap: 7px;
+             font-size: 13px; font-weight: 600; color: var(--c); line-height: 1;
+             background: color-mix(in srgb, var(--c) 15%, var(--surface));
+             border-radius: 999px; padding: 7px 13px; }
+  .fl-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c); flex: 0 0 auto; }
+
+  /* Hero library screenshot swaps with the page theme (light/dark capture). */
+  body.app-filed .fl-hero-shot { width: 100%; height: 100%; object-fit: cover; display: block; }
+  body.app-filed .fl-hero-dark { display: none; }
+  :root[data-theme="dark"] body.app-filed .fl-hero-light { display: none; }
+  :root[data-theme="dark"] body.app-filed .fl-hero-dark { display: block; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-filed .fl-hero-light { display: none; }
+    :root:not([data-theme="light"]) body.app-filed .fl-hero-dark { display: block; } }
 
   .fl-app { position: relative; display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 15px 13px; }
   .fl-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
@@ -181,6 +212,12 @@
             <span data-en>Filed is a calm, local-first home for your PDFs — receive them from any app, sort them into colored folders, sign them by hand, and send one or many. Everything stays on your iPhone.</span>
             <span data-ar>Filed مساحة هادئة محلية أولاً لملفات PDF — استقبلها من أي تطبيق، ورتّبها في مجلدات ملوّنة، ووقّعها بيدك، وأرسل ملفًا أو عدة ملفات. كل شيء يبقى على جهازك.</span>
           </p>
+          <div class="fl-tags" aria-hidden="true">
+            <span class="fl-chip fl-c-blue"><span class="dot"></span><span data-en>Invoices</span><span data-ar>فواتير</span></span>
+            <span class="fl-chip fl-c-green"><span class="dot"></span><span data-en>Contracts</span><span data-ar>عقود</span></span>
+            <span class="fl-chip fl-c-red"><span class="dot"></span><span data-en>Tax 2026</span><span data-ar>ضرائب ٢٠٢٦</span></span>
+            <span class="fl-chip fl-c-orange"><span class="dot"></span><span data-en>Receipts</span><span data-ar>إيصالات</span></span>
+          </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:support@saud.im">
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -198,12 +235,13 @@
           </div>
         </div>
 
-        <!-- Real Filed Library screen -->
+        <!-- Real Filed Library screen (theme-swapped) -->
         <div class="device-wrap">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/filed/assets/screenshots/library.jpg" alt="Filed Library — colored folders for Contracts, Invoices, Receipts, Work Documents and Personal" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img class="fl-hero-shot fl-hero-light" src="/filed/assets/screenshots/library-light.jpg" alt="The Filed Library — flat colour-coded folders for Invoices, Contracts, Tax 2026, Receipts, Personal and Work, with a search field and a blue add button">
+              <img class="fl-hero-shot fl-hero-dark" src="/filed/assets/screenshots/library-dark.jpg" alt="The Filed Library in dark mode — flat colour-coded folders on a near-black canvas, with a search field and a blue add button">
             </div>
           </div>
         </div>
@@ -228,7 +266,7 @@
             <div class="device">
               <span class="island" aria-hidden="true"></span>
               <div class="screen">
-                <img src="/filed/assets/screenshots/sign-by-hand.jpg" alt="Drawing a signature by hand onto a PDF in Filed, with Add signature and Finalize & sign controls" style="width:100%;height:100%;object-fit:cover;display:block">
+                <img src="/filed/assets/screenshots/signature.jpg" alt="Signing a PDF by hand in Filed — a signature pad with ink-colour swatches and an Add to page button" style="width:100%;height:100%;object-fit:cover;display:block">
               </div>
             </div>
           </div>
@@ -247,7 +285,7 @@
 
       <div class="feature-grid cols-3" style="margin-top:32px">
 
-        <div class="feature">
+        <div class="feature fl-c-blue">
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
           <h3><span data-en>Receive from any app</span><span data-ar>استقبل من أي تطبيق</span></h3>
           <p>
@@ -256,7 +294,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature fl-c-green">
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg></span>
           <h3><span data-en>A library that makes sense</span><span data-ar>مكتبة مرتّبة بمنطق</span></h3>
           <p>
@@ -265,7 +303,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature fl-c-orange">
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
           <h3><span data-en>Read it clearly</span><span data-ar>اقرأه بوضوح</span></h3>
           <p>
@@ -274,7 +312,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature fl-c-purple">
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c3-1 5-4 5-7 0-1.5-1-2-2-1.2C4.5 12 4 16 4 19"/><path d="M8 16c2-1 4-2 6-2s2 1 4 1 3-2 2-3"/><path d="M14 5l3 3"/><path d="M15 4l3 3 2-2a1.5 1.5 0 0 0 0-2l-1-1a1.5 1.5 0 0 0-2 0z"/></svg></span>
           <h3><span data-en>Sign by hand</span><span data-ar>وقّع بيدك</span></h3>
           <p>
@@ -283,7 +321,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature fl-c-teal">
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span>
           <h3><span data-en>Send one or many</span><span data-ar>أرسل ملفًا أو عدة ملفات</span></h3>
           <p>
@@ -292,7 +330,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature fl-c-gray">
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
           <h3><span data-en>Private by design</span><span data-ar>خاص بالتصميم</span></h3>
           <p>
@@ -318,30 +356,40 @@
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/filed/assets/screenshots/folder-invoices.jpg" alt="A Filed folder listing PDF files with names and dates" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/filed/assets/screenshots/folder.jpg" alt="A Filed folder of PDFs with flat red file glyphs, colour-coded filter tag chips (Paid, Review, Signed, Urgent), and file dates" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>Organize files into colored folders.</span><span data-ar>نظّم الملفات في مجلدات ملوّنة.</span></figcaption>
+          <figcaption><span data-en>Colour-coded folders &amp; tags.</span><span data-ar>مجلدات ووسوم ملوّنة.</span></figcaption>
         </figure>
 
         <figure class="fl-shot">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/filed/assets/screenshots/viewer-service-agreement.jpg" alt="Reading a PDF in Filed's full-screen viewer" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/filed/assets/screenshots/viewer.jpg" alt="Reading a PDF in Filed's clean full-screen viewer, with a blue sign button" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>Read clearly in a full-screen viewer.</span><span data-ar>اقرأ بوضوح في عارض كامل الشاشة.</span></figcaption>
+          <figcaption><span data-en>Read clearly, full-screen.</span><span data-ar>اقرأ بوضوح بملء الشاشة.</span></figcaption>
         </figure>
 
         <figure class="fl-shot">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
-              <img src="/filed/assets/screenshots/settings-privacy.jpg" alt="Filed settings showing an optional Face ID app lock" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img src="/filed/assets/screenshots/signature-dark.jpg" alt="Filed's sign-by-hand pad in dark mode, with ink-colour swatches and an Add to page button" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </div>
-          <figcaption><span data-en>Optional Face ID lock — private by design.</span><span data-ar>قفل Face ID اختياري — خاص بالتصميم.</span></figcaption>
+          <figcaption><span data-en>Sign by hand — even in dark mode.</span><span data-ar>وقّع بيدك — حتى في الوضع الداكن.</span></figcaption>
+        </figure>
+
+        <figure class="fl-shot">
+          <div class="device">
+            <span class="island" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="/filed/assets/screenshots/library-ar.jpg" alt="The Filed Library in Arabic with full right-to-left layout — the same flat colour-coded folders, localized" style="width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <figcaption><span data-en>Full Arabic, right-to-left.</span><span data-ar>عربية كاملة، من اليمين لليسار.</span></figcaption>
         </figure>
       </div>
     </div>

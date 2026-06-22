@@ -23,6 +23,44 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-22 — Filed flat app-faithful re-skin + new simulator screenshots
+- Done: Applied the owner-approved Filed refresh (filed/index.html inline <style>
+  + filed/assets/screenshots/ only). Filed is FLAT BY DESIGN — reproduced that:
+  • Removed un-flat elements: the multi-colour radial-gradient hero wash
+    (.signal-field → background:none) and the blue→green gradient hero word
+    (.grad-text → solid var(--accent)). Confirmed ZERO linear-gradient/
+    radial-gradient/backdrop-filter in the Filed inline style.
+  • Real SectionColor palette as flat CSS vars, exact light/dark pairs (blue
+    #1A73E8/#6BA5F5, red #E5484D/#FF6166, green #1E8E3E/#4CC76A, yellow
+    #E8B400/#F2C744, orange #E8710A/#F59E42, purple #7A5AF8/#9B82FF, teal
+    #0E9F9A/#37C7C0, pink #D01884/#E072B8, gray #5F6368/#9AA0A6). Feature icons
+    = flat ~14% tint + full-colour glyph, one section colour per card.
+  • Tag-chip motif (.fl-chip): capsule, colour@15% fill + colour dot + text, no
+    border — incl. the hero "sections" chip row (Invoices/Contracts/Tax/Receipts).
+  • Solid cards: .feature → solid --surface + 1px hairline + radius 14 + soft
+    shadow 0 4px 10px rgba(0,0,0,.06); no blur. Accent --accent #2D6CDF (light) /
+    #5B8DEF (dark); flat Drive-white light canvas; primary button = solid accent
+    fill, radius 12 (no gradient).
+  • Screenshots (clean 6.9" simulator captures, ~820px JPG ~67–79KB, as-is): hero
+    theme-swaps library-light/library-dark; closer-look "Sign by hand" = signature
+    (light); gallery = folder, viewer, signature-dark (a dark capture), library-ar
+    (Arabic RTL). Removed v1 shots (library, folder-invoices, viewer-service-
+    agreement, sign-by-hand, settings-privacy).
+- Decisions: Dark primary button kept at #5B8DEF (matches the app). Hero tag-chip
+  row kept (showcases the signature motif). Closer-look signature stays the light
+  capture (dark one is in the gallery). Filed stays coming-soon — NO data-app/
+  data-releases hooks, no app-data.js/releases-loader.js added (0 data hooks).
+  Temp filed/_v2src/ deleted, never committed. saud.css + other apps untouched.
+- Open / next: none required. (When Filed goes Live, wire it like the others.)
+- Deploy state: committed + pushed to main; live CSS/HTML + screenshots → Pages
+  rebuilds /filed/. No version/What's-New/data hooks involved (Filed has none).
+- Live-check: PENDING owner — verify saud.im/filed/ mobile + desktop, light AND
+  dark: flat folder tints + ~15% tag chips + solid hairline cards + #2D6CDF accent,
+  NO gradients/aurora/glass; library hero screenshot theme-swaps; gallery includes
+  a dark capture + the Arabic shot; sections intact; Filed still shows no live
+  badges/data hooks; Dufaat/PhoneSpace/SShift unchanged.
+- ChatGPT review: none.
+
 ## 2026-06-21 — SShift app-faithful re-skin + new simulator screenshots
 - Done: Applied the owner-approved SShift refresh (sshift/index.html inline <style>
   + sshift/assets/screenshots/ only). Reproduced the app's REAL design language:
