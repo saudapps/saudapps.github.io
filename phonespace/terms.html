@@ -44,6 +44,41 @@
     } catch (e) {}
   })();
 </script>
+<style>
+  /* PhoneSpace v2 — cream + serif identity (shared with the app page), no amber. */
+  :root[data-theme="light"] body.app-phonespace {
+    --accent:#B28A29; --accent-2:#94701E; --accent-ink:#FFFFFF;
+    --bg:#FCFBFA; --bg-2:#F6F2EB;
+    --surface:#FFFFFF; --surface-2:#F7F4EF; --surface-raised:#FFFFFF; --surface-sunken:#F2EEE7;
+    --text:#1A1714; --text-2:#5C554C; --text-3:#8B8377;
+    --hairline:rgba(0,0,0,0.10); --hairline-2:rgba(0,0,0,0.055); --hairline-strong:rgba(0,0,0,0.16);
+    --topbar-bg:rgba(252,251,250,0.82);
+  }
+  :root[data-theme="dark"] body.app-phonespace {
+    --accent:#C49A33; --accent-2:#B28A29; --accent-ink:#FFFFFF;
+    --bg:#0F0F0F; --bg-2:#161514;
+    --surface:#1C1C1B; --surface-2:#232220; --surface-raised:#1C1C1B; --surface-sunken:#161514;
+    --text:#F4F1EA; --text-2:#B7B0A4; --text-3:#857E73;
+    --hairline:rgba(255,255,255,0.20); --hairline-2:rgba(255,255,255,0.10); --hairline-strong:rgba(255,255,255,0.30);
+    --topbar-bg:rgba(15,15,15,0.72);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-phonespace {
+    --accent:#C49A33; --accent-2:#B28A29; --accent-ink:#FFFFFF;
+    --bg:#0F0F0F; --bg-2:#161514;
+    --surface:#1C1C1B; --surface-2:#232220; --surface-raised:#1C1C1B; --surface-sunken:#161514;
+    --text:#F4F1EA; --text-2:#B7B0A4; --text-3:#857E73;
+    --hairline:rgba(255,255,255,0.20); --hairline-2:rgba(255,255,255,0.10); --hairline-strong:rgba(255,255,255,0.30);
+    --topbar-bg:rgba(15,15,15,0.72);
+  } }
+  /* New York serif for English prose; chrome/eyebrows stay sans; Arabic uses its own font. */
+  html[lang="en"] body.app-phonespace .hero h1,
+  html[lang="en"] body.app-phonespace .section-title,
+  html[lang="en"] body.app-phonespace .lead,
+  html[lang="en"] body.app-phonespace .prose,
+  html[lang="en"] body.app-phonespace .doc-meta { font-family: var(--font-serif); }
+  body.app-phonespace .signal-field { background: none; }
+  body.app-phonespace .grad-text { background: none; -webkit-text-fill-color: currentColor; color: inherit; }
+</style>
 </head>
 <body class="app-phonespace">
 

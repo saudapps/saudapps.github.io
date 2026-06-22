@@ -23,6 +23,45 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-22 — PhoneSpace identity CORRECTION: amber → cream + serif
+- Done: Applied the owner-approved PhoneSpace re-skin to the app's REAL identity
+  (the old warm-amber accent never matched the app). phonespace/index.html +
+  privacy.html + terms.html + one saud.css line + new home screenshots.
+  • Cream canvas (#FCFBFA / #0F0F0F) + New York SERIF content (Fraunces/New York/
+    Georgia stack scoped to html[lang="en"]; Arabic keeps its own font); cards
+    #FFFFFF / #1C1C1B, 0.5px hairlines (black@10% / white@20%); chrome/eyebrows
+    stay sans. Amber killed: .signal-field background:none, .grad-text flattened
+    to plain serif. Gold #B28A29 used ONLY on the App Store button + "Try" pill.
+  • Signature CODE-DRAWN storage-ring showcase ("A look inside"): CSS donut —
+    conic-gradient fill, per-segment stops colour@55%(edge)→100%(centre)→55%(edge),
+    butt-cap joins, 12 o'clock clockwise (the glow); hairline track; serif centre
+    count (8,744); legend (8×8 r2 swatches + serif name/value); monochrome storage
+    bar (track text@10%, fill text@50% @53.5%). Category rows = 4px colour stripe +
+    monochrome grey icon + serif name/count. Category colours Photos #5EC46B /
+    Videos #ED9433 / Contacts #5999B8 / Files #8C73B3.
+  • Hero = brand lockup + theme-swapped real home screenshot (01-home light ⇄
+    02-home dark) → phonespace/assets/screenshots/home-light.jpg + home-dark.jpg.
+  • privacy.html + terms.html restyled to cream+serif (content untouched).
+  • saud.css: flipped the dormant body.app-phonespace line amber → gold (only that
+    one line; the inline per-theme overrides already win — this just removes stale
+    amber). No other app tokens touched.
+  • Flat: only gradients are the ring conic + the cream hero-card linear (+ the
+    donut radial masks); zero blur/glass.
+- Decisions: PhoneSpace is LIVE — data-app/data-field badges, data-releases,
+  app-data.js, releases-loader.js, version/What's-New all left intact (7 hooks).
+  Temp phonespace/_v2src/ deleted, never committed.
+- Open / next: the two drill-down sections (Photos "Find what you don't need" /
+  Compress "Compress & convert") still use the old v1 pre-redesign marketing
+  screenshots — being converted to code-drawn app-faithful visuals as a SEPARATE
+  preview for owner review before applying.
+- Deploy state: committed + pushed to main; live CSS/HTML + 2 screenshots → Pages
+  rebuilds /phonespace/ (+ privacy/terms). Data pipeline untouched.
+- Live-check: PENDING owner — verify saud.im/phonespace/ mobile + desktop, light
+  AND dark: cream+serif, NO amber; glowing storage ring + category rows + mono bar;
+  theme-swapped home hero; badges + What's-New present; privacy/terms cream+serif
+  with content intact; Dufaat/SShift/Filed unchanged.
+- ChatGPT review: none.
+
 ## 2026-06-22 — Filed flat app-faithful re-skin + new simulator screenshots
 - Done: Applied the owner-approved Filed refresh (filed/index.html inline <style>
   + filed/assets/screenshots/ only). Filed is FLAT BY DESIGN — reproduced that:
