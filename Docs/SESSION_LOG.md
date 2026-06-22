@@ -23,6 +23,24 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-06-22 — Docs: add DESIGN_SYSTEM.md (visual system + re-skin recipe)
+- Done: Added Docs/DESIGN_SYSTEM.md (verbatim owner-approved content) documenting
+  the visual design system — homepage graphite identity, per-app colour
+  identities (SShift/PhoneSpace/Filed/Dufaat), the shared two-column hero +
+  brand-lockup pattern, each app's character + WHY they differ, the 5-stage
+  app-faithful re-skin recipe (extract → transfer → prompt → preview → apply),
+  the hard-won lessons (dormant asset-catalog colours, extract recipes not flat
+  hex, each app from its own source, Simulator > real-phone, _v2src is temp,
+  don't touch live data hooks), and special cases (PhoneSpace identity
+  correction, limited assets; Filed stays flat). Linked it from CLAUDE.md
+  "## Where to look" (one column-aligned bullet, after the ADD_NEW_APP.md line).
+- Decisions: Docs-only, additive; public-safe (no secrets/internal names/local
+  paths). Content written verbatim as approved — not paraphrased.
+- Deploy state: committed + pushed to main; docs-only — no site render change
+  (no app pages / saud.css / data pipeline touched).
+- Live-check: n/a (docs only).
+- ChatGPT review: none.
+
 ## 2026-06-22 — PhoneSpace Part 2: drill-down sections → code-drawn
 - Done: Converted the two PhoneSpace drill-down sections from old v1 screenshots
   to code-drawn, app-faithful, cream+serif visuals (phonespace/index.html only).
