@@ -23,6 +23,26 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-03 — Support: add "Filed · Common topics" FAQ
+- Done: Added a "Filed · Common topics" FAQ section to support/index.html — 6
+  bilingual (EN/AR) Q&A drawn from the real app (what Filed is, adding a PDF via
+  Share/Import/Scan, Sections + colour Tags, hand-signing, view & search, privacy
+  + getting files out / moving devices). Placed after the PhoneSpace section and
+  before the app-cross-links section, matching the existing sections' exact markup
+  (section--tight[aria-label="Filed common topics"] → wrap--narrow → eyebrow +
+  section-title + six details.faq with data-en/data-ar bodies, bold <b> for in-app
+  names). Additive — one new <section>, +76 lines; nothing else changed. Support
+  page now covers all 4 live apps (SShift, PhoneSpace, Dufaat, Filed). Public brand
+  "Filed" only — no internal name in the copy.
+- Decisions: details kept collapsible; RTL + EN/AR toggle inherited automatically
+  from the matched markup. Support page only — no app pages / saud.css / data
+  pipeline touched.
+- Deploy state: committed + pushed to main; static support page → Pages rebuilds
+  saud.im/support/.
+- Live-check: saud.im/support/ — Filed section renders after PhoneSpace, 6 rows
+  expand/collapse, EN + AR/RTL correct, desktop + mobile, light + dark.
+- ChatGPT review: none.
+
 ## 2026-07-03 — Filed taken Live (wired into both data systems)
 - Done: Filed taken Live — wired into both data systems: `app-data.js` APPS map
   (`filed: '6781196551'`, System A) + `scripts/fetch-releases.mjs` APPS array
