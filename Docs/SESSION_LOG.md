@@ -23,6 +23,32 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-03 — Filed taken Live (wired into both data systems)
+- Done: Filed taken Live — wired into both data systems: `app-data.js` APPS map
+  (`filed: '6781196551'`, System A) + `scripts/fetch-releases.mjs` APPS array
+  (`{ key: 'filed', appStoreId: '6781196551' }`, System B). On `filed/index.html`:
+  added the live badge block (status/version/rating/updated), the App Store
+  download button (https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551)
+  replacing the old "Contact support" placeholder, a What's-New section
+  (`data-releases="filed"`), and now loads `app-data.js` + `releases-loader.js`.
+  Landing `index.html`: Filed card Coming soon → Live (badge + version + store
+  button, 3 badge fields like the other Live cards — status/version/rating, no
+  "updated" on the card); stats strip **3 → 4** on the App Store. `Docs/APPS.md`:
+  Filed row flipped to Live (ID 6781196551 + store link). Filed's approved flat
+  identity untouched (no gradient/aurora, #2D6CDF accent, tag chips). `<key>`
+  = "filed" identical across both APPS lists + both `data-*` hooks. Additive /
+  reversible; RTL + language toggle + responsiveness preserved.
+- Decisions: didn't hand-edit `releases.json` (pipeline populates it on push;
+  v1.0 with empty notes is normal). Did NOT touch Dufaat/SShift/PhoneSpace/
+  Promptbook wiring, `assets/saud.css`, or the workflow file. Changeset = 5 files
+  + this log.
+- Deploy state: committed + pushed to main. Push triggers the "Sync App Releases"
+  Action — confirm green run + `releases.json` gains a `filed` key.
+- Live-check: saud.im/filed/ (live badge + version + Download button + What's New)
+  and saud.im/ (Filed card Live + stats strip "4 on the App Store"), desktop +
+  mobile, light + dark.
+- ChatGPT review: none.
+
 ## 2026-07-03 — Dufaat 2.1 website sync (screenshots + copy)
 - Done: Synced saud.im/dufaat/ for the live 2.1 (build 3) release. Swapped in the
   real 2.1 App Store screenshots (EN set), resized 1320×2868 → 820×1781 JPG via

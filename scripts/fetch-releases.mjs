@@ -16,6 +16,7 @@ const APPS = [
   { key: 'sshift',     appStoreId: '6751362215' },
   { key: 'phonespace', appStoreId: '6765632161' },
   { key: 'dufaat',     appStoreId: '6780440703' },
+  { key: 'filed',      appStoreId: '6781196551' },
 ];
 
 const API_BASE = 'https://api.appstoreconnect.apple.com/v1';
