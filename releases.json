@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-03T09:08:23.195Z",
+  "updatedAt": "2026-07-03T10:18:38.580Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -126,6 +126,20 @@
           "version": "1.0",
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-06-15T03:30:54-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        }
+      ]
+    },
+    "filed": {
+      "appStoreId": "6781196551",
+      "versions": [
+        {
+          "version": "1.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-06-17T01:44:18-07:00",
           "whatsNew": {
             "en": "",
             "ar": ""
