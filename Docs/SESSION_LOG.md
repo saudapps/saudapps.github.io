@@ -23,6 +23,34 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-03 — Dufaat 2.1 website sync (screenshots + copy)
+- Done: Synced saud.im/dufaat/ for the live 2.1 (build 3) release. Swapped in the
+  real 2.1 App Store screenshots (EN set), resized 1320×2868 → 820×1781 JPG via
+  sips: hero = installments.jpg (03), gallery = paysoon.jpg (01) + plan-detail.jpg
+  (05) + paysoon-form.jpg (04). Retired the 6 stale 2.0 shots (home, home-light,
+  plan-deferred, new-plan, plan-car, settings). Copy: added a "Pay Soon / للتسديد"
+  feature card (EN+AR); split the old "Reminders & reports" card into "Reminders"
+  + a dedicated "PDF reports" card with the improved-export wording. Bumped the
+  hardcoded hero badge fallback v1.0 → v2.1 (app-data.js still overrides it live).
+  Feature grid now 8 cards (3-3-2, no orphan); gallery 3 device frames. App repo
+  (Desktop/Dufaat) untouched. Commit f5aae96 `dufaat: 2.1 screenshots + copy`.
+- Decisions: 02-pdf (PDF report) deliberately NOT placed in a phone frame
+  (letterbox bars look wrong) — PDF is covered by copy instead. Site keeps ONE
+  image set (EN UI chrome) with bilingual captions, per existing structure — no
+  per-language image swap. releases.json NOT hand-edited (hard rule): the push
+  re-triggered sync-releases, but the Action had already pulled 2.1 earlier today
+  (versions 2.1/2.0/1.0; full EN+AR What's New).
+- Open / next: none required. Optional: align the Pay Soon feature-card copy
+  closer to the App Store wording ("money you pay off with your monthly salary,
+  separate from long-term installments") if desired.
+- Deploy state: committed + pushed to main (rebased over accumulated bot sync
+  commits). GitHub Pages redeployed ~30s later; new assets live, old ones 404.
+- Live-check: saud.im/dufaat/ verified live (desktop, EN + AR/RTL) — hero shows
+  new Installments screenshot, 3 gallery shots render, badge reads iOS · v2.1,
+  What's New renders Version 2.1 (Pay Soon + improved PDF reports). No console
+  errors; all 4 new image URLs 200, all 6 old URLs 404.
+- ChatGPT review: none.
+
 ## 2026-06-22 — Support: add "Dufaat · Common topics" FAQ
 - Done: Added a new "Dufaat · Common topics" section to support/index.html — 7
   bilingual (EN/AR) Q&A drawn from the real app (what Dufaat is, adding a plan,
