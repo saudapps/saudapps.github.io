@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-02T06:39:46.843Z",
+  "updatedAt": "2026-07-03T06:29:33.976Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -104,6 +104,15 @@
     "dufaat": {
       "appStoreId": "6780440703",
       "versions": [
+        {
+          "version": "2.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-07-02T11:07:47-07:00",
+          "whatsNew": {
+            "en": "Pay Soon: for short-term amounts and money you pay off with your monthly salary — completely separate from your long-term installments. Add the amount and its due date, and follow each month at a glance: what's paid, what's still due, and what's overdue.\n\nImproved PDF reports: choose the report period, attach your payment proofs, and combine everything into one tidy file that's ready to share.\n\nPerformance improvements and fixes for a smoother, clearer experience.",
+            "ar": "قسم \"للتسديد\": للسلف والمبالغ المؤقتة التي تسدّدها على راتبك — منفصلة تمامًا عن أقساطك طويلة المدى. أضِف المبلغ وتاريخ استحقاقه، وتابع كل شهر بنظرة واحدة: ما دُفع، وما تبقّى، وما تأخّر.\n\nتقارير PDF محسّنة: اختر فترة التقرير، أرفِق إثباتات الدفع، ووحّدها في ملف واحد مرتّب جاهز للمشاركة.\n\nتحسينات في الأداء وإصلاحات لتجربة أسلس وأوضح."
+          }
+        },
         {
           "version": "2.0",
           "state": "READY_FOR_SALE",
