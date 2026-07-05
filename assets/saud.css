@@ -72,6 +72,20 @@
   --t-mid: .24s;
   --t-slow: .4s;
 
+  /* Motion foundation (Stage 1) — additive; consumed starting Stage 2.
+     A richer duration scale that coexists with --t-fast/-mid/-slow above,
+     two extra easings, and the reveal-system inputs. Durations and easings
+     are theme-independent, so they live in :root only. Nothing here is used
+     yet, so adding it changes no rendered pixel. */
+  --dur-xs: 120ms;
+  --dur-s:  200ms;
+  --dur-m:  320ms;
+  --dur-l:  560ms;
+  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);   /* faithful to the CSS ease-in-out keyword */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* gentle overshoot for entrances */
+  --reveal-distance: 14px;                          /* matches the current [data-reveal] translateY */
+  --stagger-step: 60ms;                             /* per-child delay in reveal groups */
+
   --maxw: 1120px;
   --maxw-narrow: 760px;
 }
