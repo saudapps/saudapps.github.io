@@ -23,6 +23,52 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 0: pre-redesign cleanup + full backup
+- Done: Surgical, gated cleanup ahead of the planned visual redesign — no design
+  work, and no changes to logic, URLs, or the data systems. Preceded by a
+  read-only full-site audit (report kept outside the repo). First took a permanent
+  pre-redesign snapshot: git tag `pre-redesign-2026-07-05` (pushed with this stage)
+  plus a full offline zip archive of the repo including `.git` history, stored
+  outside the repo, with written restore notes. Then seven gated edits, each
+  diff-reviewed and approved before its own single-purpose commit:
+  1. Filed page — tidied an inline-style comment that referenced an internal
+     project name (CSS-comment text only; render verified pixel-identical).
+  2. Removed an unused legacy stylesheet (`assets/sshift-style.css`, referenced by
+     nothing; render verified identical).
+  3. SShift static version fallback refreshed to the live version on the landing
+     card + app page (text-only inside existing badge spans).
+  3b. Aligned the remaining static version fallbacks with live versions across the
+     landing + app pages (PhoneSpace, Dufaat); Filed left correct. Every
+     `data-field="version"` fallback now matches `releases.json`.
+  4. Synced the operating docs to current reality (Filed Live + wired into both
+     data systems, four apps, current versions, stats 4/4) and reworded them to
+     drop an internal repo name while keeping the naming rule.
+  5. Optimized the heavy app-icon PNGs to 512² (~3.3MB → ~876KB, −74%, ~2.5MB
+     saved), alpha preserved, filenames/paths unchanged; kept at 512² rather than
+     smaller because these icons double as og:image / twitter social-preview
+     images. Rendered before/after (landing light+dark + an app page) — visually
+     identical at rendered sizes.
+  6. SEO: removed Promptbook's 3 URLs from `sitemap.xml`, recomputed every
+     remaining `lastmod` from git history, and added `noindex` to the 3 Promptbook
+     pages (still reachable) — parking it from indexing while it stays hidden.
+- Decisions: audit + backup before any edit; every item its own diff + preview
+  gate and single-purpose commit; `releases.json` / data hooks / language + RTL /
+  theme / CNAME / robots left untouched. Icons kept at 512² for their
+  social-preview role (same reason the favicon was left for the redesign's OG
+  work). Promptbook parked (hidden + noindex + out of sitemap); reversal steps
+  recorded in APPS.md.
+- Open / next: run the visual redesign (landing + app pages) on this clean
+  baseline, preserving both data systems, EN/AR + RTL, dark mode, and all URLs.
+- Deploy state: 8 commits made locally on `main`; a single push (branch + tag
+  `pre-redesign-2026-07-05`) at the end of the stage → Pages rebuilds. That push
+  also triggers the release-sync workflow (may add a `chore: sync releases` bot
+  commit — expected).
+- Live-check: pending post-push — verify the saud.im landing + affected app pages
+  (icons, version badges), the 15-URL sitemap, and Promptbook noindex.
+- ChatGPT review: none.
+- Note: a verbatim export of five operating docs to a folder outside the repo
+  follows the push (never committed).
+
 ## 2026-07-03 — Support: add "Filed · Common topics" FAQ
 - Done: Added a "Filed · Common topics" FAQ section to support/index.html — 6
   bilingual (EN/AR) Q&A drawn from the real app (what Filed is, adding a PDF via
