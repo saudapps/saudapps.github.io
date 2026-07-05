@@ -23,6 +23,24 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 3c: PhoneSpace page motion redesign (app-page tier)
+- Done: `phonespace/index.html` (+ docs) carried to the app-page motion tier
+  in its editorial voice — restrained chapter-like reveals; masked serif
+  headline; THE living signature: the 132px storage ring draws itself on
+  reveal (registered @property conic mask over the existing ring conic — no
+  new painted gradients; CCW in RTL with the count upright), then count →
+  legend → monochrome bar growth → gold Try pill → category rows with stripe
+  draws; category cards' stripes draw slot-keyed; code-drawn Photos/tools
+  mocks file in per chapter; What's-New container-level reveal (re-render
+  verified across the ع toggle). Shipped under the owner's standing approval;
+  self-verification recorded (hooks byte-identical, en==ar, v1.1 live in both
+  systems, zero console errors, dark + RTL + mobile-390 + reduced-motion
+  composed, identity audit: no new gradients/blur).
+- Open / next: Stage 3d — Filed page (strictly flat).
+- Deploy state: 2 commits (design + docs), single push at the gate.
+- Live-check: pending post-push.
+- ChatGPT review: none.
+
 ## 2026-07-05 — Stage 3b: Dufaat page motion redesign (app-page tier)
 - Done: `dufaat/index.html` (+ docs) carried to the app-page motion tier in
   its own "Luminous Calm" voice — hero choreography with the aurora wash

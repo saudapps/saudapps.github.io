@@ -255,6 +255,17 @@ recipes (gradients, opacity, borders, shapes), not just flat colour values.
   storage bar is a deliberately monochrome capsule. The ONLY gradients on the
   page are the ring conic + one warm cream hero-card linear; everything else is
   flat. No blur/glass.
+  **Stage-3 motion (shipped):** hero choreography per the app-page tier (masked
+  serif headline); THE living signature is the storage ring DRAWING itself at
+  page scale when the showcase chapter reveals (the conic paint moved to a
+  ::before whose alpha conic mask sweeps 0→360° via a registered @property —
+  no new painted gradients; paint layers flipped in RTL so the draw runs
+  counter-clockwise while the number stays upright), followed by the count
+  fading in, legend items, the monochrome bar growing (origin-mirrored), the
+  gold Try pill, and the category rows filing in with their 4px stripes
+  drawing. Category feature cards: stripes draw + monochrome icons settle,
+  slot-keyed. Code-drawn mocks (Photos rows, Compress/Convert tools) file in
+  crisply per chapter. Hover: stripe widen only — editorial restraint.
 
 ## The app-faithful re-skin recipe (five stages)
 Proven across Dufaat (v2), SShift, Filed, PhoneSpace. To re-skin an app page so
