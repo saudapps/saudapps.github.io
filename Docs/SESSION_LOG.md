@@ -23,6 +23,42 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 2: landing redesign (bold motion + living atmosphere)
+- Done: First visible redesign step — the landing page (`index.html`) rebuilt
+  as a choreographed, atmosphere-first page. Same sections (topbar → hero →
+  cards → stats → footer), same copy, same URLs; everything page-local in the
+  inline `<style>` + two small inline scripts (saud.css/saud.js untouched →
+  no cache-version bump needed). Shipped through THREE owner preview rounds:
+  R1 (static screenshots) established the card identity system; R2 (live
+  localhost preview) rebuilt the entrance as a cinematic composition — masked
+  per-line wordmark rise (with Arabic diacritic clip headroom), overlapping
+  beats, card signatures animating on entrance (SShift day-cell cascade,
+  PhoneSpace conic ring drawing itself via a registered @property angle,
+  Filed flat tile cascade, Dufaat aurora bloom); R3 added the "living grid"
+  atmosphere — a fixed graphite-luminance background (fine grid +
+  micro-parallax, 18s diagonal light sweep, cursor luminance spot) with
+  pointer follow done purely in CSS (registered @property percentages,
+  per-layer transition lag, no rAF), pointer:fine-gated. Two atmosphere
+  concepts were built and A/B-switchable live; the owner selected B and the
+  losing concept + all dev scaffolding were removed before commit.
+- Decisions: hooks sacred and verified byte-identical (12 landing spans);
+  bilingual markup pairs unchanged (43/43; repo-wide en==ar); stats strip
+  stays hardcoded text; promptbook card/footer link re-shaped but still
+  commented (inert, verified); every entrance keyframe is from-only +
+  fill:backwards so hover transforms survive; all new motion covered by the
+  page's reduced-motion block (atmosphere freezes to a designed static
+  state); atmosphere stays graphite/ink luminance only — cards remain the
+  page's only colour voices; RTL fully mirrored (incl. ring draw direction).
+- Open / next: Stage 3 — carry the motion language to the app pages.
+- Deploy state: 2 commits on `main` locally (design + docs); single push at
+  the stage gate → Pages rebuilds. Push triggers the release-sync workflow
+  (bot commit expected — ignore).
+- Live-check: pending post-push — verify saud.im landing (entrance, atmosphere,
+  cursor follow, EN/AR + RTL, dark, mobile) + badges/What's-New still live.
+- ChatGPT review: none.
+- Note: docs export outside the repo follows the push (DESIGN_SYSTEM.md
+  changed).
+
 ## 2026-07-05 — Stage 1: motion foundation + cache-busting (infrastructure only)
 - Done: Shipped the animation INFRASTRUCTURE for the upcoming redesign with no
   visible change to any page — the new capabilities are unused until Stage 2.

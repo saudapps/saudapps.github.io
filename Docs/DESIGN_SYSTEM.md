@@ -73,13 +73,75 @@ pages the absolute `/assets/…` — only the query string carries the version).
 `saud.js` changes**, so returning visitors fetch the new file instead of a cached
 one. `app-data.js` / `releases-loader.js` are deliberately NOT versioned yet.
 
-## Homepage identity
-- Accent: neutral **graphite** — `#3A3F4A` / `#23272F` (replaced an earlier
-  indigo). The landing is deliberately neutral so the coloured app cards stand
-  out against it.
-- Dark-mode hero wordmark: the `.grad-text` uses a lifted graphite ramp
-  (`#8A92A0 → #5A6270`) via `background-image` so it stays legible on the dark
-  hero while preserving `background-clip:text`.
+## Homepage identity (Stage 2 — bold motion landing)
+The landing is a **choreographed, atmosphere-first page**: neutral graphite
+canvas, cinematic entrance, living background — and the coloured app cards as
+the only colour voices. Everything below lives page-locally in `index.html`'s
+inline `<style>`/inline scripts (saud.css/saud.js untouched); all of it is
+transform/opacity (plus the sanctioned small-moment techniques noted below),
+dual-theme, RTL-mirrored, and fully neutralized by the page's
+reduced-motion block.
+
+- **Accent:** neutral **graphite** — `#3A3F4A` / `#23272F`. Dark-mode hero
+  wordmark: `.grad-text` uses a lifted graphite ramp (`#8A92A0 → #5A6270`) via
+  `background-image`, preserving `background-clip:text`.
+
+- **Atmosphere layer ("living grid").** A fixed, negative-z decorative layer
+  behind the whole page (`.atm`, aria-hidden): a fine 56px neutral grid with
+  micro-parallax, a slow diagonal light band sweeping over 18s
+  (ease-in-out alternate), and a cursor luminance spot. Pointer physics:
+  a tiny inline script writes raw `--pxr/--pyr` percentages on pointermove;
+  each layer maps them to its own registered `@property` `--px/--py` with a
+  different CSS transition duration (1.5s spot / 1.9s grid) — soft lagged
+  follow and depth with **no rAF loop**. Gated to `(pointer:fine)` and off
+  under reduced motion (layer freezes to its designed static state — never
+  removed). Strictly **graphite/ink + white alpha luminance** on both theme
+  paths — no new hues, ever. Vertical falloff mask keeps it strongest in the
+  upper third. It blooms in with the page's 0s stage-light beat.
+
+- **Entrance choreography** (~1.6s tail, overlapping musical beats; headline
+  readable by ~1s; never blocks scroll/clicks): signal-field + atmosphere
+  bloom (0s, opacity-only so `field-drift` survives) → **the wordmark moment**:
+  per-line masked rise through `overflow:clip` line wrappers (`.hl`/`.hli`,
+  with `.18em` clip headroom so Arabic diacritics never shear), expo-out →
+  eyebrow fades in above with its dash drawing (scaleX, RTL-mirrored origin)
+  → lede rises → buttons pop (spring) → stats strip lands as the tail.
+  **Pattern rule:** every entrance keyframe is *from-only with
+  `fill: backwards`* — elements animate TO their natural styles, so hover
+  transforms stay alive afterwards.
+
+- **Cards as an event.** The grid uses the Stage-1 system verbatim
+  (`data-reveal-group` + `data-reveal="scale"`); a `transition-timing-function`
+  longhand injects `--ease-spring` into the reveal transform without touching
+  the group's stagger delays. Each card carries `--slot`/`--sig-d` so its
+  signature plays right as it lands. Hover/focus expression is shadow +
+  accent border + inner glow + icon tilt (RTL-mirrored) — no card-level hover
+  transform (nothing fights the reveal transition); `:focus-within` gets the
+  full hover treatment.
+
+- **Card signature elements** (medium identity dose — one motif per Live app,
+  drawn from each app's documented character; entrance + hover both):
+  - **SShift** — a 7-cell week strip in the real day-cell recipe (gradient
+    fill + 3px top strip, real DayType hexes, today-blue cell). Entrance:
+    cells cascade/pop in sequence; hover: ripple wave.
+  - **PhoneSpace** — serif card title + the conic category ring
+    (edge-soft glow stops; paint on `::before`, masked by a registered
+    `@property --ring-a` conic) + monochrome storage capsule. Entrance: the
+    ring **draws itself** (sweep; falls back to a full ring where
+    unsupported), the capsule fill grows; hover: ring rotates. The whole ring
+    is flipped in RTL so segments and the draw sweep counter-clockwise.
+  - **Filed** — strictly flat: 6 folder-palette tiles + a "PDF" tag-chip
+    capsule (15% fill + dot, no border). Entrance: tiles file into place with
+    crisp sharp timing (position/opacity only); hover: tiles lift in
+    sequence. **No gradients, no glow, no glass — ever.**
+  - **Dufaat** — the only glass/aurora card: static teal+gold aurora
+    (`::after`, blurred, RTL-mirrored corners, per-theme opacity var) behind a
+    true glass meta panel (backdrop-blur, luminous teal hairline,
+    fit-content). Entrance: the aurora blooms up from dark; hover: it
+    brightens.
+  - **Promptbook** (parked, commented card) — neutral treatment, violet
+    `#8A6CFF` accent; markup kept in the new card shape so the documented
+    un-hide still works.
 
 ## Per-app colour identities (final)
 Each app leads with its own accent; **the identity comes from that app's own
@@ -222,6 +284,4 @@ it feels like the app:
 - **Filed stays flat** — documented above, but it bears repeating: no gradients.
 
 ## Open / future (optional)
-- Landing app-card accents could echo these per-app identities (currently
-  neutral on the graphite landing).
 - Auto-compute the hardcoded landing stats numbers (currently manual).
