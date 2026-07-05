@@ -23,6 +23,26 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 3a: SShift page motion redesign (app-page tier)
+- Done: First app page carried to the motion language — `sshift/index.html`
+  only (+ these docs). Defined and applied the "app-page motion tier": calmer
+  than the landing (no atmosphere, no cursor-follow) — hero choreography
+  (masked line-by-line headline rise, device-screenshot beat), THE living
+  signature (week tiles cascade in real DayType colours, top strips draw,
+  today-blue lands with a deeper beat, legend chips pop staggered), feature
+  edge-strips draw + icon chips pop per card slot, gallery scale-group
+  reveals, What's-New revealed at container level only (loader re-renders
+  inside on language switch — verified live in both directions).
+- Decisions: shipped under the owner's standing approval; self-verification
+  replaced per-item review (hooks byte-identical incl. all four data-app
+  fields + data-releases; repo-wide en==ar; both data systems verified live;
+  zero console errors; dark + RTL + mobile-390 + reduced-motion all pass).
+  Screenshots as-is; scripts untouched; all motion page-local.
+- Open / next: Stage 3b — Dufaat page, same tier.
+- Deploy state: 2 commits (design + docs), single push at the gate.
+- Live-check: pending post-push.
+- ChatGPT review: none.
+
 ## 2026-07-05 — Stage 2: landing redesign (bold motion + living atmosphere)
 - Done: First visible redesign step — the landing page (`index.html`) rebuilt
   as a choreographed, atmosphere-first page. Same sections (topbar → hero →

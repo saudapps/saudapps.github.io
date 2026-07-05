@@ -143,6 +143,27 @@ reduced-motion block.
     `#8A6CFF` accent; markup kept in the new card shape so the documented
     un-hide still works.
 
+## App-page motion tier (Stage 3)
+The contract for every app page (SShift, Dufaat, PhoneSpace, Filed) — one tier
+CALMER than the landing. Each page gets:
+- **Entrance choreography** in the landing's family (~1.2s tail): brand lockup
+  settles → eyebrow + dash draw → masked per-line headline rise (Arabic clip
+  headroom) → lede → buttons pop → badges fade → the device screenshot arrives
+  as its own beat.
+- **Living signature elements**: the page's own identity motifs animate on
+  reveal (scroll-triggered), drawn ONLY from that app's documented character.
+- **Scroll reveals** via the Stage-1 system (variants + group stagger) and
+  **hover micro-interactions** that echo the motifs.
+- **NO atmosphere layer, NO cursor-follow** — those are the landing's grand-gate
+  treatment; app pages are faster, focused reading experiences.
+- Pattern rules inherited from Stage 2: from-only keyframes + `fill:backwards`
+  (hovers stay alive), signature-moment allowances only (clip-path /
+  registered `@property` / stroke draws), no layout-property animation, no rAF
+  loops, page-local styles/scripts only, both theme paths, full RTL mirrors,
+  a page-local reduced-motion block forcing the final composed state, and
+  What's-New animated at CONTAINER level only (the releases loader owns and
+  re-renders its inside on every language switch).
+
 ## Per-app colour identities (final)
 Each app leads with its own accent; **the identity comes from that app's own
 source, not from a shared template**. Values are the `saud.css` base line; the
@@ -194,6 +215,15 @@ recipes (gradients, opacity, borders, shapes), not just flat colour values.
   Business `#795548`, Special Event `#00BCD4`, Other `#757575`. The legend uses
   the app's "edit-day" chip style (type@12% fill + type border + dot). An "edge
   strip" motif (a coloured rounded-leading left strip) appears on feature cards.
+  **Stage-3 motion (shipped):** hero choreography per the app-page tier; THE
+  living signature is the week strip — tiles cascade in with their real
+  DayType colours (spring pops, 55ms steps), each tile's 4px top strip draws
+  itself (scaleX, RTL-mirrored origin) a beat after its tile, and the
+  today-blue cell lands with a distinct deeper beat; legend chips pop in
+  staggered. Feature cards: edge strip draws down (scaleY) + icon chip pops as
+  each card lands (slot-keyed); hover widens the strip (scaleX 1.6, mirrored).
+  Week hover = ripple (tiles rise in sequence). Gallery devices reveal as a
+  staggered scale group with gentle hover scale.
 - **Filed — flat by design.** Filed uses **flat full-strength icon tints, ~15%
   tag-chip fills, solid hairline cards, and NO gradients anywhere** — do not add
   gradients/aurora/glass to Filed; that would betray its identity. Drive-style
