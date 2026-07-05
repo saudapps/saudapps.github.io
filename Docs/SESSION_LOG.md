@@ -23,6 +23,46 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 1: motion foundation + cache-busting (infrastructure only)
+- Done: Shipped the animation INFRASTRUCTURE for the upcoming redesign with no
+  visible change to any page — the new capabilities are unused until Stage 2.
+  Four gated, diff-reviewed commits:
+  1. Motion tokens in `assets/saud.css` (`:root`): a richer duration scale
+     (`--dur-xs/s/m/l` = 120/200/320/560ms) + easings (`--ease-in-out`,
+     `--ease-spring`; reused `--ease-out`) + reveal inputs (`--reveal-distance`
+     14px, `--stagger-step` 60ms). Purely additive, no migrations → zero
+     computed-style change.
+  2. Extended the reveal system (CSS only; `saud.js` untouched): variants via
+     `data-reveal="up|fade|scale|left|right"` (plain `data-reveal` unchanged),
+     `[data-reveal-group]` stagger (n×60ms, capped at child 8),
+     `data-reveal-delay="1..4"`. Single-variable (`--reveal-t`) mechanism;
+     left/right mirror under any `[dir="rtl"]`; the reduced-motion block was
+     extended to force all variants + staggered children to the final visible
+     state. Verified on a throwaway demo (computed-transform proof incl. RTL,
+     stagger cascade, no console errors).
+  3. Cache-busting: `?v=20260705-1` appended to every `saud.css` / `saud.js`
+     reference across all 18 pages (query-string only; relative on the root
+     page, absolute on nested; `app-data.js` / `releases-loader.js` deliberately
+     not versioned).
+  4. Docs: `DESIGN_SYSTEM.md` gained a "Motion" section (tokens, reveal API,
+     `--reveal-t` mechanism, RTL, reduced-motion guarantee, cache-busting
+     ritual); plus this log entry.
+- Decisions: infrastructure-only — no page markup, inline-style recipes, data
+  hooks, language/RTL/theme mechanisms, or URLs touched. Existing plain
+  `[data-reveal]` behavior is byte-identical. Any new motion must stay covered
+  by the reduced-motion block; bump the `?v=` version on any future
+  `saud.css` / `saud.js` content change.
+- Open / next: Stage 2 — begin applying the motion system in the redesign,
+  preserving both data systems, EN/AR + RTL, dark mode, and all URLs.
+- Deploy state: 4 commits on `main` locally; a single push at the end of the
+  stage → Pages rebuilds. The push also triggers the release-sync workflow (may
+  add a `chore: sync releases` bot commit — expected).
+- Live-check: pending post-push — spot-check that the 3 baseline pages render
+  unchanged (no visual change is the whole point of this stage).
+- ChatGPT review: none.
+- Note: a verbatim export of the operating docs to a folder outside the repo
+  follows the push (`DESIGN_SYSTEM.md` changed).
+
 ## 2026-07-05 — Stage 0: pre-redesign cleanup + full backup
 - Done: Surgical, gated cleanup ahead of the planned visual redesign — no design
   work, and no changes to logic, URLs, or the data systems. Preceded by a

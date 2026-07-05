@@ -25,6 +25,54 @@ This file is the "how the site looks and how we make it look that way" reference
   `@media (prefers-color-scheme: dark)`. Every identity below is defined for
   light **and** dark.
 
+## Motion (Stage 1 foundation)
+Shipped as infrastructure in `assets/saud.css` (+ the existing observer in
+`assets/saud.js`); consumed by pages starting Stage 2. Adding it changed no
+rendered pixel — the tokens/variants were unused on existing pages.
+
+**Tokens** (in `:root` only — durations/easings are theme-independent, so no
+dark-path duplication). A richer scale that coexists with the older
+`--t-fast/-mid/-slow` (.16/.24/.4s):
+- Durations: `--dur-xs: 120ms`, `--dur-s: 200ms`, `--dur-m: 320ms`, `--dur-l: 560ms`.
+- Easings: `--ease-out` (reused: `cubic-bezier(0.16,1,0.3,1)`),
+  `--ease-in-out: cubic-bezier(0.42,0,0.58,1)`,
+  `--ease-spring: cubic-bezier(0.34,1.56,0.64,1)` (gentle overshoot).
+- Reveal inputs: `--reveal-distance: 14px`, `--stagger-step: 60ms`.
+
+**Reveal attribute API** (extends the existing `[data-reveal]` +
+IntersectionObserver; the observer just adds `.in` and is unchanged):
+- `data-reveal` — value optional. `up` (default) · `fade` · `scale` · `left` · `right`.
+  Plain `data-reveal` and `data-reveal="up"` behave EXACTLY as before
+  (`translateY(14px)`, `.6s`, `--ease-out`).
+- `data-reveal-group` on a parent — its direct `[data-reveal]` children get an
+  incremental `transition-delay` of `n × --stagger-step` (60ms each), **capped
+  at child 8** (the 9th onward hold the cap, `7 × step`). Pure CSS (`nth-child`);
+  direct children are expected to be the reveal items.
+- `data-reveal-delay="1".."4"` — per-element delay multiplier for standalone reveals.
+- **Mechanism:** each variant only sets one custom property, `--reveal-t` (the
+  START transform). The base rule is
+  `transform: var(--reveal-t, translateY(var(--reveal-distance)))`; the revealed
+  state (`.in`) sets `transform: none` and is shared by all variants — so there
+  is no per-variant specificity war.
+- **RTL:** `left`/`right` are physical, so their start offset mirrors under **any**
+  `[dir="rtl"]` ancestor (the site sets `dir` on `<html>`, but nested RTL
+  containers work too).
+
+**Reduced-motion guarantee.** The global `@media (prefers-reduced-motion: reduce)`
+block forces `[data-reveal]` **and** `[data-reveal-group] > [data-reveal]` to the
+final visible state — `opacity:1; transform:none; transition:none;
+transition-delay:0` — so every variant and every staggered child appears
+instantly with no motion and no delay. Any NEW animation added later must stay
+covered by this block (extend it explicitly; don't assume).
+
+**Cache-busting convention.** Both shared files are referenced with a query
+version: `assets/saud.css?v=YYYYMMDD-N` and `assets/saud.js?v=YYYYMMDD-N` (current:
+`?v=20260705-1`), on all 18 pages (root pages use the relative `assets/…`, nested
+pages the absolute `/assets/…` — only the query string carries the version).
+**Deploy ritual: bump `N` (or the date) whenever the CONTENT of `saud.css` or
+`saud.js` changes**, so returning visitors fetch the new file instead of a cached
+one. `app-data.js` / `releases-loader.js` are deliberately NOT versioned yet.
+
 ## Homepage identity
 - Accent: neutral **graphite** — `#3A3F4A` / `#23272F` (replaced an earlier
   indigo). The landing is deliberately neutral so the coloured app cards stand
