@@ -242,6 +242,14 @@ recipes (gradients, opacity, borders, shapes), not just flat colour values.
   purple `#7A5AF8`/`#9B82FF`, teal `#0E9F9A`/`#37C7C0`, pink `#D01884`/`#E072B8`,
   gray `#5F6368`/`#9AA0A6`. Tag chip = capsule, colour@15% fill + colour dot +
   colour text, no border. Cards = solid surface + 0.5px hairline + radius 14.
+  **Stage-3 motion (shipped):** hero choreography per the app-page tier, in
+  Filed's own voice — strictly flat motion: position/opacity with crisp,
+  sharp-timed curves (cubic-bezier(.2,0,0,1) filings + expo-out), NO spring
+  bounce, and audited zero new gradients/blur/glow. The tag chips pop in
+  filed one after another (the signature motif); section feature cards land
+  crisply via the Stage-1 group with slot-keyed flat icon-tint pops; gallery
+  scale group; hover = small position shifts only (chip row ripple, device
+  lift).
 - **PhoneSpace — cream + serif, editorial.** Neutral canvas `#FCFBFA`/`#0F0F0F`
   + **New York / serif** content type (sans for chrome/eyebrows); gold `#B28A29`
   used only as a small accent (App Store button + "Try" pill). The signature is

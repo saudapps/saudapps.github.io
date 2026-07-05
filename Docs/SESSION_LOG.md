@@ -23,6 +23,25 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 3d: Filed page motion redesign (app-page tier)
+- Done: `filed/index.html` (+ docs) — the final Stage-3 page, in Filed's
+  strictly-flat voice: crisp sharp-timed position/opacity motion only (no
+  spring bounce, no gradients/glow/glass — the added CSS was grep-audited for
+  effect properties and every keyframe is pure opacity/transform). Hero
+  choreography with masked headline; tag chips pop in filed one after
+  another; section cards land via the Stage-1 group with slot-keyed flat
+  icon pops; gallery scale group; What's-New container-level reveal (Arabic
+  re-render verified — v1.0 no-notes state renders correctly); flat hovers.
+  Shipped under the owner's standing approval; self-verification recorded
+  (hooks byte-identical, en==ar, both systems live, zero console errors,
+  dark + RTL + mobile-390 + reduced-motion composed). Stage 3 complete —
+  all four app pages now carry the motion tier.
+- Open / next: owner's return review of the full Stage-3 run (report +
+  renders stored outside the repo); then future stages as decided.
+- Deploy state: 2 commits (design + docs), single push at the gate.
+- Live-check: pending post-push.
+- ChatGPT review: none.
+
 ## 2026-07-05 — Stage 3c: PhoneSpace page motion redesign (app-page tier)
 - Done: `phonespace/index.html` (+ docs) carried to the app-page motion tier
   in its editorial voice — restrained chapter-like reveals; masked serif
