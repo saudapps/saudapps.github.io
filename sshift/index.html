@@ -154,6 +154,119 @@
   .sh-shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .sh-shot .device { width: 250px; }
   .sh-shot figcaption { max-width: 250px; font-size: 13.5px; line-height: 1.5; color: var(--text-3); text-align: center; }
+
+  /* ══ Stage 3a — motion (app-page calmer tier) ══════════════════════════
+     Entrance choreography + living signatures + scroll reveals. No
+     atmosphere layer, no cursor-follow (that stays the landing's). Pattern
+     rules from the landing: every entrance keyframe is from-only +
+     fill:backwards (elements animate TO their natural styles, hovers stay
+     alive); Arabic clip headroom on the masked headline; all of it
+     neutralized by the reduced-motion block at the end. */
+  body.app-sshift { --rise3: 22px; }
+  @media (max-width: 480px) { body.app-sshift { --rise3: 14px; } }
+
+  @keyframes sh-rise   { from { opacity: 0; transform: translateY(var(--rise3, 22px)); } }
+  @keyframes sh-fade   { from { opacity: 0; } }
+  @keyframes sh-pop    { from { opacity: 0; transform: translateY(14px) scale(.95); } }
+  @keyframes sh-grow   { from { transform: scaleX(0); } }
+  @keyframes sh-wm     { from { transform: translateY(112%); } }
+  @keyframes sh-device { from { opacity: 0; transform: translateY(30px) scale(.97); } }
+
+  /* — hero choreography (~1.2s tail; the device arrives as its own beat) — */
+  body.app-sshift .hero-brand { animation: sh-fade .5s var(--ease-out) .05s backwards; }
+  body.app-sshift .hero .hero-eyebrow { animation: sh-fade .45s var(--ease-out) .30s backwards; }
+  body.app-sshift .hero .hero-eyebrow::before { transform-origin: var(--eo, left) center; animation: sh-grow .6s var(--ease-out) .36s backwards; }
+  html[dir="rtl"] body.app-sshift .hero .hero-eyebrow::before { --eo: right; }
+  html[lang="en"] body.app-sshift .hero h1 [data-en] { display: block; }
+  html[lang="ar"] body.app-sshift .hero h1 [data-ar] { display: block; }
+  body.app-sshift .hero h1 .hl { display: block; overflow: clip; padding-block: .18em; margin-block: -.18em; }
+  body.app-sshift .hero h1 .hli { display: inline-block; animation: sh-wm .75s cubic-bezier(.19, 1, .22, 1) backwards; }
+  body.app-sshift .hero h1 .hl:nth-child(1) .hli { animation-delay: .14s; }
+  body.app-sshift .hero h1 .hl:nth-child(2) .hli { animation-delay: .28s; }
+  body.app-sshift .hero-lede { animation: sh-rise .6s cubic-bezier(.19, 1, .22, 1) .48s backwards; }
+  body.app-sshift .hero-actions .btn:nth-child(1) { animation: sh-pop .55s var(--ease-spring) .62s backwards; }
+  body.app-sshift .hero-actions .btn:nth-child(2) { animation: sh-pop .55s var(--ease-spring) .72s backwards; }
+  body.app-sshift .hero .app-card-meta { animation: sh-fade .5s var(--ease-out) .88s backwards; }
+  body.app-sshift .hero .device-wrap { animation: sh-device .8s cubic-bezier(.19, 1, .22, 1) .55s backwards; }
+  body.app-sshift .badge--live .dot { animation-duration: 3.2s; }
+
+  /* — THE living signature: the week cascades in when its block reveals;
+       each tile pops, its top strip draws, today lands with a deeper beat — */
+  @keyframes sh-tile       { from { opacity: 0; transform: translateY(10px) scale(.7); } }
+  @keyframes sh-tile-today { from { opacity: 0; transform: translateY(12px) scale(.5); } }
+  @keyframes sh-strip      { from { transform: scaleX(0); } }
+  .split [data-reveal].in .sh-week .dow  { animation: sh-fade .4s var(--ease-out) backwards; }
+  .split [data-reveal].in .sh-week .tile { animation: sh-tile .55s var(--ease-spring) backwards; }
+  .split [data-reveal].in .sh-week .tile.today { animation-name: sh-tile-today; animation-duration: .7s; }
+  .split [data-reveal].in .sh-week .tile::before { transform-origin: var(--so, left) top; animation: sh-strip .45s var(--ease-out) backwards; }
+  html[dir="rtl"] .sh-week .tile::before { --so: right; }
+  .split [data-reveal].in .sh-week .col:nth-child(1) :is(.dow, .tile) { animation-delay: .05s; }
+  .split [data-reveal].in .sh-week .col:nth-child(2) :is(.dow, .tile) { animation-delay: .105s; }
+  .split [data-reveal].in .sh-week .col:nth-child(3) :is(.dow, .tile) { animation-delay: .16s; }
+  .split [data-reveal].in .sh-week .col:nth-child(4) :is(.dow, .tile) { animation-delay: .215s; }
+  .split [data-reveal].in .sh-week .col:nth-child(5) :is(.dow, .tile) { animation-delay: .27s; }
+  .split [data-reveal].in .sh-week .col:nth-child(6) :is(.dow, .tile) { animation-delay: .325s; }
+  .split [data-reveal].in .sh-week .col:nth-child(7) :is(.dow, .tile) { animation-delay: .38s; }
+  .split [data-reveal].in .sh-week .col:nth-child(1) .tile::before { animation-delay: .23s; }
+  .split [data-reveal].in .sh-week .col:nth-child(2) .tile::before { animation-delay: .285s; }
+  .split [data-reveal].in .sh-week .col:nth-child(3) .tile::before { animation-delay: .34s; }
+  .split [data-reveal].in .sh-week .col:nth-child(4) .tile::before { animation-delay: .395s; }
+  .split [data-reveal].in .sh-week .col:nth-child(5) .tile::before { animation-delay: .45s; }
+  .split [data-reveal].in .sh-week .col:nth-child(6) .tile::before { animation-delay: .505s; }
+  .split [data-reveal].in .sh-week .col:nth-child(7) .tile::before { animation-delay: .56s; }
+  /* legend chips pop in as their text block reveals */
+  .split [data-reveal].in .sh-legend li { animation: sh-pop .5s var(--ease-spring) backwards; }
+  .split [data-reveal].in .sh-legend li:nth-child(1) { animation-delay: .12s; }
+  .split [data-reveal].in .sh-legend li:nth-child(2) { animation-delay: .18s; }
+  .split [data-reveal].in .sh-legend li:nth-child(3) { animation-delay: .24s; }
+  .split [data-reveal].in .sh-legend li:nth-child(4) { animation-delay: .30s; }
+  .split [data-reveal].in .sh-legend li:nth-child(5) { animation-delay: .36s; }
+  .split [data-reveal].in .sh-legend li:nth-child(6) { animation-delay: .42s; }
+
+  /* — feature cards: edge strip draws + icon chip pops as each card lands
+       (slots mirror the Stage-1 group stagger) — */
+  @keyframes sh-stripv { from { transform: scaleY(0); } }
+  body.app-sshift .feature-grid > .feature:nth-child(2) { --slot: 1; }
+  body.app-sshift .feature-grid > .feature:nth-child(3) { --slot: 2; }
+  body.app-sshift .feature-grid > .feature:nth-child(4) { --slot: 3; }
+  body.app-sshift .feature-grid > .feature:nth-child(5) { --slot: 4; }
+  body.app-sshift .feature-grid > .feature:nth-child(6) { --slot: 5; }
+  body.app-sshift .feature.in::before { animation: sh-stripv .5s var(--ease-out) calc(var(--slot, 0) * var(--stagger-step) + .28s) backwards; }
+  body.app-sshift .feature.in .f-ic { animation: sh-pop .45s var(--ease-spring) calc(var(--slot, 0) * var(--stagger-step) + .34s) backwards; }
+
+  /* — hover micro-interactions (entrances are from-only, so these stay alive) — */
+  .sh-week .tile { transition: transform .3s var(--ease-spring); }
+  .sh-week:hover .tile, .sh-week:focus-within .tile { transform: translateY(-2px); }
+  .sh-week:hover .col:nth-child(2) .tile { transition-delay: 30ms; }
+  .sh-week:hover .col:nth-child(3) .tile { transition-delay: 60ms; }
+  .sh-week:hover .col:nth-child(4) .tile { transition-delay: 90ms; }
+  .sh-week:hover .col:nth-child(5) .tile { transition-delay: 120ms; }
+  .sh-week:hover .col:nth-child(6) .tile { transition-delay: 150ms; }
+  .sh-week:hover .col:nth-child(7) .tile { transition-delay: 180ms; }
+  .sh-legend li { transition: transform .25s var(--ease-out); }
+  .sh-legend li:hover { transform: translateY(-1.5px); }
+  body.app-sshift .feature::before { transform-origin: var(--so, left) top; transition: transform .3s var(--ease-out); }
+  html[dir="rtl"] body.app-sshift .feature::before { --so: right; }
+  body.app-sshift .feature:hover::before { transform: scaleX(1.6); }
+  .sh-shot .device { transition: transform .35s var(--ease-spring); }
+  .sh-shot:hover .device { transform: scale(1.015); }
+
+  /* — reduced motion: everything lands fully visible and static — */
+  @media (prefers-reduced-motion: reduce) {
+    body.app-sshift .hero-brand, body.app-sshift .hero .hero-eyebrow,
+    body.app-sshift .hero .hero-eyebrow::before, body.app-sshift .hero h1 .hli,
+    body.app-sshift .hero-lede, body.app-sshift .hero-actions .btn,
+    body.app-sshift .hero .app-card-meta, body.app-sshift .hero .device-wrap,
+    .split [data-reveal].in .sh-week :is(.dow, .tile),
+    .split [data-reveal].in .sh-week .tile::before,
+    .split [data-reveal].in .sh-legend li,
+    body.app-sshift .feature.in::before, body.app-sshift .feature.in .f-ic {
+      animation: none !important; opacity: 1 !important; transform: none !important;
+    }
+    .sh-week .tile, .sh-legend li, body.app-sshift .feature::before, .sh-shot .device {
+      transition: none !important;
+    }
+  }
 </style>
 </head>
 <body class="app-sshift">
@@ -211,8 +324,8 @@
             <span data-ar>تقويم المناوبات</span>
           </span>
           <h1>
-            <span data-en>SShift —<br><span class="grad-text">Shift Calendar.</span></span>
-            <span data-ar>SShift —<br><span class="grad-text">تقويم المناوبات.</span></span>
+            <span data-en><span class="hl"><span class="hli">SShift —</span></span><span class="hl"><span class="hli grad-text">Shift Calendar.</span></span></span>
+            <span data-ar><span class="hl"><span class="hli">SShift —</span></span><span class="hl"><span class="hli grad-text">تقويم المناوبات.</span></span></span>
           </h1>
           <p class="hero-lede">
             <span data-en>Plan shifts, rest &amp; leave. Quietly capable. Lives on your iPhone.</span>
@@ -238,7 +351,7 @@
           </div>
         </div>
 
-        <div class="device-wrap" data-reveal>
+        <div class="device-wrap">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -254,7 +367,7 @@
   <!-- ── A closer look — your week, by colour ────────────────── -->
   <section class="section section--tight">
     <div class="wrap">
-      <div class="split reverse">
+      <div class="split reverse" data-reveal-group>
         <div data-reveal>
           <span class="eyebrow">
             <span data-en>A closer look</span>
@@ -305,7 +418,7 @@
         </h2>
       </div>
 
-      <div class="feature-grid cols-3" style="margin-top:34px">
+      <div class="feature-grid cols-3" style="margin-top:34px" data-reveal-group>
 
         <!-- Shift types -->
         <div class="feature sh-c-work" data-reveal>
@@ -390,15 +503,15 @@
   </section>
 
   <!-- ── A look inside (real screenshots) ─────────────────────── -->
-  <section class="section section--tight" data-reveal>
+  <section class="section section--tight">
     <div class="wrap">
-      <div class="center">
+      <div class="center" data-reveal>
         <span class="eyebrow" style="display:inline-flex"><span data-en>From the app</span><span data-ar>من داخل التطبيق</span></span>
         <h2 class="section-title"><span data-en>A look inside SShift.</span><span data-ar>نظرة داخل SShift.</span></h2>
       </div>
 
-      <div class="sh-shots">
-        <figure class="sh-shot">
+      <div class="sh-shots" data-reveal-group>
+        <figure class="sh-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -408,7 +521,7 @@
           <figcaption><span data-en>Your month, summed up.</span><span data-ar>شهرك، مُلخّصًا.</span></figcaption>
         </figure>
 
-        <figure class="sh-shot">
+        <figure class="sh-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -418,7 +531,7 @@
           <figcaption><span data-en>Set any day in a tap.</span><span data-ar>عيّن أي يوم بنقرة.</span></figcaption>
         </figure>
 
-        <figure class="sh-shot">
+        <figure class="sh-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -428,7 +541,7 @@
           <figcaption><span data-en>Full Arabic, right-to-left.</span><span data-ar>عربية كاملة، من اليمين لليسار.</span></figcaption>
         </figure>
 
-        <figure class="sh-shot">
+        <figure class="sh-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -438,7 +551,7 @@
           <figcaption><span data-en>Reminders, export &amp; backup.</span><span data-ar>تذكيرات وتصدير ونسخ احتياطي.</span></figcaption>
         </figure>
 
-        <figure class="sh-shot">
+        <figure class="sh-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -464,7 +577,7 @@
           <span data-ar>ما الجديد</span>
         </h2>
       </div>
-      <div data-releases="sshift" style="margin-top:28px"></div>
+      <div data-releases="sshift" data-reveal="fade" style="margin-top:28px"></div>
     </div>
   </section>
 
@@ -484,7 +597,7 @@
   <!-- ── Footer ──────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-bar">
+      <div class="sf-bar" data-reveal="fade">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
           <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
@@ -501,7 +614,7 @@
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base">
+      <div class="sf-base" data-reveal="fade">
         <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </div>
