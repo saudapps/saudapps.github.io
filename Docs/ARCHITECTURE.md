@@ -19,8 +19,8 @@ This file is the "how it actually works" reference.
 ## Repo map
 - `index.html` — landing page: app cards + live status/version badges. Loads
   `app-data.js` only (no "What's New" on the landing).
-- `<app>/index.html` — one folder per app: `sshift/`, `phonespace/`, `dufaat/`
-  (Live), `filed/`, `promptbook/` (not Live). Live app pages load BOTH
+- `<app>/index.html` — one folder per app: `sshift/`, `phonespace/`, `dufaat/`,
+  `filed/` (Live), `promptbook/` (not Live). Live app pages load BOTH
   `app-data.js` and `releases-loader.js`.
 - `<app>/privacy*`, `<app>/terms*`, `support/`, `legal/`, `about/` — static
   pages. (Path style varies per app — see APPS.md for exact links.)
@@ -36,7 +36,7 @@ This file is the "how it actually works" reference.
 
 ## The two data systems (independent; share nothing; fail independently)
 A working badge does NOT imply System B is working, and vice-versa. They are
-separate. Both currently cover the three Live apps: sshift, phonespace, dufaat.
+separate. Both currently cover the four Live apps: sshift, phonespace, dufaat, filed.
 
 ### System A — Live badges (`app-data.js`)
 - Runs in the visitor's browser on page load.
@@ -46,7 +46,7 @@ separate. Both currently cover the three Live apps: sshift, phonespace, dufaat.
   to the page's hardcoded HTML, on failure.
 - Hooks: `data-app="<key>"` + `data-field="<status|version|rating|updated>"`.
 - App list: the `APPS` map at the top of `app-data.js`
-  (currently `sshift`, `phonespace`, `dufaat`).
+  (currently `sshift`, `phonespace`, `dufaat`, `filed`).
 - Effect: version / rating / "Updated …" stay current per visit — no rebuild.
 
 ### System B — "What's New" / release notes (`releases.json` pipeline)
@@ -56,7 +56,7 @@ Full detail + troubleshooting in RELEASES_PIPELINE.md. In short:
    backup) and **`workflow_dispatch`** (manual button).
 2. **Fetch** — `node scripts/fetch-releases.mjs` calls the authenticated **App
    Store Connect API** (JWT/ES256) for each app in its `APPS` array (sshift,
-   phonespace, dufaat) and reads each version's `whatsNew` in en + ar. Auth =
+   phonespace, dufaat, filed) and reads each version's `whatsNew` in en + ar. Auth =
    GitHub secrets `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY`. Runner:
    Node 22, `actions/checkout@v6` + `actions/setup-node@v6`.
 3. **Commit** — writes `releases.json`; commits + pushes
@@ -75,9 +75,8 @@ Full detail + troubleshooting in RELEASES_PIPELINE.md. In short:
   first — see CLAUDE.md).
 
 ## App coverage status (current)
-- Wired into BOTH data systems (Live, have App Store IDs): `sshift` (4.x),
-  `phonespace` (1.x), `dufaat` (1.0).
-- Page exists, NOT wired (static "Coming soon", no App Store ID): `filed`.
+- Wired into BOTH data systems (Live, have App Store IDs): `sshift` (4.2),
+  `phonespace` (1.1), `dufaat` (2.1), `filed` (1.0).
 - **Parked**: `promptbook` — page exists and is reachable at `/promptbook/`, but
   it is HIDDEN from the landing (its card + footer link are commented out, code
   retained) and not wired into either system. Un-hide by reversing the comments
@@ -86,7 +85,7 @@ Full detail + troubleshooting in RELEASES_PIPELINE.md. In short:
 
 ## Known manual touch-point — landing stats strip
 The "N apps · M on the App Store · Built for iOS" strip in `index.html`
-(`div.cred`) is **hardcoded** (currently `4 apps` / `3 on the App Store`). It does
+(`div.cred`) is **hardcoded** (currently `4 apps` / `4 on the App Store`). It does
 NOT auto-update — update it by hand whenever an app is added, hidden, or flipped
 Live. (Optional future improvement: compute both numbers from the rendered cards.)
 

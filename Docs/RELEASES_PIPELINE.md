@@ -25,7 +25,7 @@ silently frozen.)
    - **`workflow_dispatch`** — manual "Run workflow" button in the Actions tab.
 2. **Fetch** — `node scripts/fetch-releases.mjs` calls the App Store Connect API
    (JWT/ES256) for every app in its `APPS` array (currently `sshift`,
-   `phonespace`, `dufaat`) and reads each version's `whatsNew` in en + ar.
+   `phonespace`, `dufaat`, `filed`) and reads each version's `whatsNew` in en + ar.
    Auth = GitHub secrets `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY`.
    Runner: Node 22, `actions/checkout@v6` + `actions/setup-node@v6`.
 3. **Commit** — writes `releases.json` (always a fresh `updatedAt`); if changed,

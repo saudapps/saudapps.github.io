@@ -13,7 +13,7 @@ once it's approved on the App Store.
 
 ## Phase 1 — Coming-soon page (no App Store ID yet)
 No live data, so wired into NEITHER system. Model it on an existing coming-soon
-app (e.g. `filed/`).
+app (e.g. `promptbook/`).
 1. Create `<app>/index.html` (marketing/landing). Copy an existing app page for
    the shared layout, `.device` frame pattern, RTL, and language toggle.
 2. Add legal pages as needed: `<app>/privacy*`, `<app>/terms*`. Match the path
@@ -29,12 +29,12 @@ app (e.g. `filed/`).
 
 ## Phase 2 — Going Live (app approved, has a numeric App Store ID)
 Wire it into both systems. Reference implementation: `sshift/index.html` and the
-SShift card in `index.html` — every hook is in place there. (Dufaat was the most
+SShift card in `index.html` — every hook is in place there. (Filed was the most
 recent app taken Live this way.)
 
 **System A — live badges (`app-data.js`):**
 1. Add to the `APPS` map at the top of `app-data.js`: `<key>: '<appStoreId>'`
-   (already has sshift, phonespace, dufaat).
+   (already has sshift, phonespace, dufaat, filed).
 2. On the app page (and its landing card), add badge elements:
    - `data-app="<key>" data-field="status"`  (live/hidden)
    - `data-app="<key>" data-field="version"` (e.g. `iOS · v1.0`)
@@ -82,8 +82,9 @@ SShift. Use only clean/demo data — no real personal/financial info. Delete the
 | Landing count | `index.html` `div.cred` | bump the hardcoded N/M (manual) |
 
 ## Common pitfalls
-- Brand vs internal name: always use the public brand (e.g. "Filed", not its
-  private repo name "PDFHub"). See APPS.md naming notes.
+- Brand vs internal name: always use the public brand (e.g. "Filed"); the app's
+  internal repo name must never appear in this public repo or on the site. See
+  APPS.md naming notes.
 - `<key>` must be identical everywhere (folder, both `APPS` lists, both `data-*`
   hooks). A mismatch silently shows nothing.
 - Don't hand-edit `releases.json` — regenerated; your edit is lost.

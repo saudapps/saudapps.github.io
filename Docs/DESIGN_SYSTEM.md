@@ -154,7 +154,7 @@ it feels like the app:
 - **`_v2src/` is always temporary** — deleted after the owner verifies.
 - **Live apps:** never touch the version / "What's New" / `data-releases` hook /
   `app-data.js` / `releases-loader.js` during a re-skin (they're auto-managed;
-  see RELEASES_PIPELINE.md). Coming-soon apps (e.g. Filed) have no data hooks —
+  see RELEASES_PIPELINE.md). Coming-soon apps (e.g. Promptbook) have no data hooks —
   don't add any.
 - **`releases.json` is generated — never hand-edit.** The landing stats strip
   (`div.cred`) is hardcoded — update it by hand when app counts change
