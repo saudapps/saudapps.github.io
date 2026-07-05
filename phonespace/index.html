@@ -227,6 +227,128 @@
     box-shadow: 0 4px 10px color-mix(in srgb, var(--tc) 28%, transparent); }
   .ps-c-burgundy { --tc: var(--ps-burgundy); --tc-ink: #FFFFFF; }
   .ps-c-mustard { --tc: var(--ps-mustard); --tc-ink: #2A2310; }
+
+  /* ══ Stage 3c — motion (app-page tier): editorial, chapter-like ═════════
+     Restrained entrance choreography + THE living signature (the storage
+     ring draws itself) + scroll reveals. No atmosphere, no cursor-follow.
+     From-only keyframes + fill:backwards; masked serif headline with clip
+     headroom; page-local reduced-motion block at the end. Adds NO new
+     painted gradients (the ring draw is an alpha mask on the existing conic). */
+  @property --ring-a { syntax: '<angle>'; inherits: false; initial-value: 360deg; }
+  body.app-phonespace { --rise3: 22px; }
+  @media (max-width: 480px) { body.app-phonespace { --rise3: 14px; } }
+
+  @keyframes ps-rise   { from { opacity: 0; transform: translateY(var(--rise3, 22px)); } }
+  @keyframes ps-fade   { from { opacity: 0; } }
+  @keyframes ps-pop    { from { opacity: 0; transform: translateY(12px) scale(.96); } }
+  @keyframes ps-grow   { from { transform: scaleX(0); } }
+  @keyframes ps-wm     { from { transform: translateY(112%); } }
+  @keyframes ps-device { from { opacity: 0; transform: translateY(30px) scale(.97); } }
+
+  /* — hero choreography (editorial pacing) — */
+  body.app-phonespace .hero-brand { animation: ps-fade .5s var(--ease-out) .05s backwards; }
+  body.app-phonespace .hero > .wrap .badge--live { animation: ps-fade .45s var(--ease-out) .26s backwards; }
+  html[lang="en"] body.app-phonespace .hero h1 [data-en] { display: block; }
+  html[lang="ar"] body.app-phonespace .hero h1 [data-ar] { display: block; }
+  body.app-phonespace .hero h1 .hl { display: block; overflow: clip; padding-block: .18em; margin-block: -.18em; }
+  body.app-phonespace .hero h1 .hli { display: inline-block; animation: ps-wm .8s cubic-bezier(.19, 1, .22, 1) backwards; }
+  body.app-phonespace .hero h1 .hl:nth-child(1) .hli { animation-delay: .16s; }
+  body.app-phonespace .hero h1 .hl:nth-child(2) .hli { animation-delay: .32s; }
+  body.app-phonespace .hero-lede { animation: ps-rise .65s cubic-bezier(.19, 1, .22, 1) .52s backwards; }
+  body.app-phonespace .hero .cred { animation: ps-fade .5s var(--ease-out) .68s backwards; }
+  body.app-phonespace .hero-actions .btn:nth-child(1) { animation: ps-pop .55s var(--ease-spring) .82s backwards; }
+  body.app-phonespace .hero-actions .btn:nth-child(2) { animation: ps-pop .55s var(--ease-spring) .92s backwards; }
+  body.app-phonespace .hero .device-wrap { animation: ps-device .85s cubic-bezier(.19, 1, .22, 1) .55s backwards; }
+  body.app-phonespace .badge--live .dot { animation-duration: 3.2s; }
+
+  /* — THE living signature: the storage ring DRAWS itself when the showcase
+       chapter reveals. The colourful conic moves to ::before (CSS-only) whose
+       own conic alpha mask sweeps 0→360° via the registered angle; the donut
+       radial mask stays on the parent and clips the child. CCW in RTL by
+       flipping the paint layers only (the number stays upright). — */
+  .ps-ring-fill { background: none; }
+  .ps-ring-fill::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
+    --ring-a: 360deg;
+    background: conic-gradient(from 0deg,
+      color-mix(in srgb,var(--ps-photos) 55%,transparent) 0deg,
+      var(--ps-photos) 68.4deg,
+      color-mix(in srgb,var(--ps-photos) 55%,transparent) 136.8deg,
+      color-mix(in srgb,var(--ps-videos) 55%,transparent) 136.8deg,
+      var(--ps-videos) 190.8deg,
+      color-mix(in srgb,var(--ps-videos) 55%,transparent) 244.8deg,
+      color-mix(in srgb,var(--ps-contacts) 55%,transparent) 244.8deg,
+      var(--ps-contacts) 277.2deg,
+      color-mix(in srgb,var(--ps-contacts) 55%,transparent) 309.6deg,
+      color-mix(in srgb,var(--ps-files) 55%,transparent) 309.6deg,
+      var(--ps-files) 334.8deg,
+      color-mix(in srgb,var(--ps-files) 55%,transparent) 360deg);
+    -webkit-mask: conic-gradient(#000 0 var(--ring-a), transparent var(--ring-a));
+            mask: conic-gradient(#000 0 var(--ring-a), transparent var(--ring-a));
+  }
+  html[dir="rtl"] .ps-ring-track, html[dir="rtl"] .ps-ring-fill { transform: scaleX(-1); }
+  @keyframes ps-ring-draw { from { --ring-a: 0deg; } }
+  section.in .ps-ring-fill::before { animation: ps-ring-draw 1.3s cubic-bezier(.33, 0, .2, 1) .25s backwards; }
+  section.in .ps-num { animation: ps-fade .6s var(--ease-out) .9s backwards; }
+  section.in .ps-leg li { animation: ps-fade .45s var(--ease-out) backwards; }
+  section.in .ps-leg li:nth-child(1) { animation-delay: .45s; }
+  section.in .ps-leg li:nth-child(2) { animation-delay: .55s; }
+  section.in .ps-leg li:nth-child(3) { animation-delay: .65s; }
+  section.in .ps-leg li:nth-child(4) { animation-delay: .75s; }
+  section.in .ps-bar-fill { transform-origin: var(--bo, left) center; animation: ps-grow .8s cubic-bezier(.19, 1, .22, 1) 1.0s backwards; }
+  html[dir="rtl"] .ps-bar-fill { --bo: right; }
+  section.in .ps-unlock { animation: ps-rise .55s var(--ease-out) 1.15s backwards; }
+  section.in .ps-rows .ps-row { animation: ps-fade .45s var(--ease-out) backwards; }
+  section.in .ps-rows .ps-row:nth-child(1) { animation-delay: 1.25s; }
+  section.in .ps-rows .ps-row:nth-child(2) { animation-delay: 1.33s; }
+  section.in .ps-rows .ps-row:nth-child(3) { animation-delay: 1.41s; }
+  section.in .ps-rows .ps-row:nth-child(4) { animation-delay: 1.49s; }
+  @keyframes ps-stripev { from { transform: scaleY(0); } }
+  section.in .ps-rows .ps-row::before { transform-origin: center top; animation: ps-stripev .4s var(--ease-out) backwards; }
+  section.in .ps-rows .ps-row:nth-child(1)::before { animation-delay: 1.35s; }
+  section.in .ps-rows .ps-row:nth-child(2)::before { animation-delay: 1.43s; }
+  section.in .ps-rows .ps-row:nth-child(3)::before { animation-delay: 1.51s; }
+  section.in .ps-rows .ps-row:nth-child(4)::before { animation-delay: 1.59s; }
+
+  /* — category feature cards: stripes draw + monochrome icons settle,
+       slot-keyed to the Stage-1 group stagger — */
+  body.app-phonespace .feature-grid > .feature:nth-child(2) { --slot: 1; }
+  body.app-phonespace .feature-grid > .feature:nth-child(3) { --slot: 2; }
+  body.app-phonespace .feature-grid > .feature:nth-child(4) { --slot: 3; }
+  body.app-phonespace .feature.in::before { transform-origin: center top; animation: ps-stripev .45s var(--ease-out) calc(var(--slot, 0) * var(--stagger-step) + .26s) backwards; }
+  body.app-phonespace .feature.in .ps-cat-ic { animation: ps-fade .5s var(--ease-out) calc(var(--slot, 0) * var(--stagger-step) + .32s) backwards; }
+
+  /* — code-drawn mocks: rows file in crisply as their chapter reveals — */
+  section.in .ps-mock .ps-mrow { animation: ps-pop .4s cubic-bezier(.2, 0, 0, 1) backwards; }
+  section.in .ps-mock .ps-mrow:nth-child(1) { animation-delay: .25s; }
+  section.in .ps-mock .ps-mrow:nth-child(2) { animation-delay: .33s; }
+  section.in .ps-mock .ps-mrow:nth-child(3) { animation-delay: .41s; }
+  section.in .ps-mock .ps-mrow:nth-child(4) { animation-delay: .49s; }
+  section.in .ps-mock .ps-mfoot { animation: ps-fade .45s var(--ease-out) .6s backwards; }
+  section.in .ps-mock .ps-tool { animation: ps-rise .55s var(--ease-out) backwards; }
+  section.in .ps-mock .ps-tool:nth-child(2) { animation-delay: .28s; }
+  section.in .ps-mock .ps-tool:nth-child(3) { animation-delay: .40s; }
+
+  /* — hover micro (editorial restraint) — */
+  body.app-phonespace .feature::before { transform-origin: var(--so, left) top; transition: transform .3s var(--ease-out); }
+  html[dir="rtl"] body.app-phonespace .feature::before { --so: right; }
+  body.app-phonespace .feature:hover::before { transform: scaleX(1.6); }
+
+  /* — reduced motion: composed, fully visible, static — */
+  @media (prefers-reduced-motion: reduce) {
+    body.app-phonespace .hero-brand, body.app-phonespace .hero > .wrap .badge--live,
+    body.app-phonespace .hero h1 .hli, body.app-phonespace .hero-lede,
+    body.app-phonespace .hero .cred, body.app-phonespace .hero-actions .btn,
+    body.app-phonespace .hero .device-wrap,
+    section.in .ps-ring-fill::before, section.in .ps-num,
+    section.in .ps-leg li, section.in .ps-bar-fill, section.in .ps-unlock,
+    section.in .ps-rows .ps-row, section.in .ps-rows .ps-row::before,
+    section.in .ps-mock :is(.ps-mrow, .ps-mfoot, .ps-tool),
+    body.app-phonespace .feature.in::before, body.app-phonespace .feature.in .ps-cat-ic {
+      animation: none !important; opacity: 1 !important; transform: none !important;
+    }
+    html[dir="rtl"] .ps-ring-track, html[dir="rtl"] .ps-ring-fill { transform: scaleX(-1) !important; }
+    body.app-phonespace .feature::before { transition: none !important; }
+  }
 </style>
 </head>
 <body class="app-phonespace">
@@ -281,8 +403,8 @@
           </span>
 
           <h1 style="margin-top:18px">
-            <span data-en>PhoneSpace:<br><span class="grad-text">Storage Cleaner.</span></span>
-            <span data-ar>PhoneSpace:<br><span class="grad-text">منظّف التخزين.</span></span>
+            <span data-en><span class="hl"><span class="hli">PhoneSpace:</span></span><span class="hl"><span class="hli grad-text">Storage Cleaner.</span></span></span>
+            <span data-ar><span class="hl"><span class="hli">PhoneSpace:</span></span><span class="hl"><span class="hli grad-text">منظّف التخزين.</span></span></span>
           </h1>
           <p class="hero-lede">
             <span data-en>A storage cleaner that respects your privacy. Everything runs on your iPhone — nothing is uploaded.</span>
@@ -343,7 +465,7 @@
         </p>
       </div>
 
-      <div class="feature-grid" style="margin-top:34px">
+      <div class="feature-grid" style="margin-top:34px" data-reveal-group>
         <div class="feature ps-c-photos" data-reveal>
           <span class="ps-cat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m4 17 5-5 5 5 3-3 3 3"/></svg></span>
           <h3><span data-en>Photos</span><span data-ar>الصور</span></h3>
@@ -531,7 +653,7 @@
           <span data-ar>ما الجديد</span>
         </h2>
       </div>
-      <div data-releases="phonespace" style="margin-top:24px"></div>
+      <div data-releases="phonespace" data-reveal="fade" style="margin-top:24px"></div>
     </div>
   </section>
 
@@ -562,7 +684,7 @@
   <!-- ── Footer ──────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-bar">
+      <div class="sf-bar" data-reveal="fade">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
           <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
@@ -579,7 +701,7 @@
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base">
+      <div class="sf-base" data-reveal="fade">
         <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </div>
