@@ -203,6 +203,15 @@ recipes (gradients, opacity, borders, shapes), not just flat colour values.
   bottom-trailing; static, reduced-motion-safe); **glass cards** (translucent +
   `backdrop-filter` blur, 1px luminous hairline, 18px radius); Amiri for Arabic
   headings. Dufaat is the only app that uses glass/blur + aurora.
+  **Stage-3 motion (shipped):** hero choreography per the app-page tier (the
+  hero aurora wash blooms in as the opening beat; Amiri headline gets .22em
+  clip headroom for its diacritics); THE living signature is the settle
+  moment — as the receipt card reveals, header/note fade in, the receipt chip
+  rises, the Settled stamp pops (spring + tiny rotation, mirrored in RTL) and
+  its tick DRAWS itself (stroke-dashoffset, static fallback = drawn). Glass
+  features rise via the Stage-1 group with slot-keyed icon pops; gallery
+  devices reveal as a staggered scale group; hovers stay calm (device breathe,
+  receipt-card lift).
 - **SShift — real leave-type colour, gradient cells.** Indigo lead `#6680F2`
   (page) / `#5B57E0` (saud.css base). The signature is the **day-cell recipe**
   (NOT flat): `linear-gradient(180deg, BASE@18% → BASE@10%)` over the surface +

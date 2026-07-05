@@ -23,6 +23,24 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-05 — Stage 3b: Dufaat page motion redesign (app-page tier)
+- Done: `dufaat/index.html` (+ docs) carried to the app-page motion tier in
+  its own "Luminous Calm" voice — hero choreography with the aurora wash
+  blooming as the opening beat (Amiri Arabic headline masked rise with
+  diacritic clip headroom), THE living signature = the settle moment (receipt
+  card reveals → header/note fade, chip rises, Settled stamp pops with an
+  RTL-mirrored rotation, tick draws itself via stroke-dashoffset), glass
+  features rising as a Stage-1 group with slot-keyed icon pops, gallery scale
+  group, What's-New container-level reveal (Arabic re-render verified — Dufaat
+  has real AR notes), calm hovers. Shipped under the owner's standing
+  approval; full self-verification recorded (hooks byte-identical, en==ar,
+  both data systems live incl. v2.1 AR notes, zero console errors, dark + RTL
+  + mobile-390 + reduced-motion composed).
+- Open / next: Stage 3c — PhoneSpace page.
+- Deploy state: 2 commits (design + docs), single push at the gate.
+- Live-check: pending post-push.
+- ChatGPT review: none.
+
 ## 2026-07-05 — Stage 3a: SShift page motion redesign (app-page tier)
 - Done: First app page carried to the motion language — `sshift/index.html`
   only (+ these docs). Defined and applied the "app-page motion tier": calmer
