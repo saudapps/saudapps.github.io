@@ -174,6 +174,88 @@
   .df-shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .df-shot .device { width: 250px; }
   .df-shot figcaption { max-width: 250px; font-size: 13.5px; line-height: 1.5; color: var(--text-3); text-align: center; }
+
+  /* ══ Stage 3b — motion (app-page tier): "Luminous Calm" in motion ═══════
+     Entrance choreography + living settle-moment signature + scroll reveals.
+     No atmosphere layer, no cursor-follow. From-only keyframes +
+     fill:backwards (hovers stay alive); Amiri headline gets extra clip
+     headroom; everything neutralized by the reduced-motion block below. */
+  body.app-dufaat { --rise3: 22px; }
+  @media (max-width: 480px) { body.app-dufaat { --rise3: 14px; } }
+
+  @keyframes df-rise   { from { opacity: 0; transform: translateY(var(--rise3, 22px)); } }
+  @keyframes df-fade   { from { opacity: 0; } }
+  @keyframes df-pop    { from { opacity: 0; transform: translateY(14px) scale(.95); } }
+  @keyframes df-grow   { from { transform: scaleX(0); } }
+  @keyframes df-wm     { from { transform: translateY(112%); } }
+  @keyframes df-device { from { opacity: 0; transform: translateY(30px) scale(.97); } }
+  @keyframes df-bloom  { 0% { opacity: 0; } 55% { opacity: .9; } 100% { opacity: 1; } }
+
+  /* — hero choreography; the aurora wash blooms in as the opening beat — */
+  body.app-dufaat .signal-field { animation: df-bloom 1.5s var(--ease-out) backwards; }
+  body.app-dufaat .hero-brand { animation: df-fade .5s var(--ease-out) .05s backwards; }
+  body.app-dufaat .hero .hero-eyebrow { animation: df-fade .45s var(--ease-out) .30s backwards; }
+  body.app-dufaat .hero .hero-eyebrow::before { transform-origin: var(--eo, left) center; animation: df-grow .6s var(--ease-out) .36s backwards; }
+  html[dir="rtl"] body.app-dufaat .hero .hero-eyebrow::before { --eo: right; }
+  html[lang="en"] body.app-dufaat .hero h1 [data-en] { display: block; }
+  html[lang="ar"] body.app-dufaat .hero h1 [data-ar] { display: block; }
+  body.app-dufaat .hero h1 .hl { display: block; overflow: clip; padding-block: .22em; margin-block: -.22em; }
+  body.app-dufaat .hero h1 .hli { display: inline-block; animation: df-wm .8s cubic-bezier(.19, 1, .22, 1) backwards; }
+  body.app-dufaat .hero h1 .hl:nth-child(1) .hli { animation-delay: .14s; }
+  body.app-dufaat .hero h1 .hl:nth-child(2) .hli { animation-delay: .30s; }
+  body.app-dufaat .hero-lede { animation: df-rise .6s cubic-bezier(.19, 1, .22, 1) .50s backwards; }
+  body.app-dufaat .hero .app-card-meta { animation: df-fade .5s var(--ease-out) .66s backwards; }
+  body.app-dufaat .hero-actions .btn:nth-child(1) { animation: df-pop .55s var(--ease-spring) .78s backwards; }
+  body.app-dufaat .hero-actions .btn:nth-child(2) { animation: df-pop .55s var(--ease-spring) .88s backwards; }
+  body.app-dufaat .hero .device-wrap { animation: df-device .85s cubic-bezier(.19, 1, .22, 1) .55s backwards; }
+  body.app-dufaat .badge--live .dot { animation-duration: 3.2s; }
+
+  /* — THE living signature: the settle moment. As the receipt card reveals,
+       its header/note fade in, the receipt chip rises, then the Settled stamp
+       pops (spring, tiny rotation — mirrored in RTL) and its tick DRAWS
+       itself (stroke-dashoffset; static fallback = fully drawn). — */
+  @keyframes df-stamp { from { opacity: 0; transform: scale(.5) rotate(var(--rot, -8deg)); } }
+  @keyframes df-check { from { stroke-dashoffset: 26; } }
+  @keyframes df-chip  { from { opacity: 0; transform: translateY(8px); } }
+  .split [data-reveal].in .df-doc .df-fhead { animation: df-fade .5s var(--ease-out) .10s backwards; }
+  .split [data-reveal].in .df-doc .df-note  { animation: df-fade .5s var(--ease-out) .22s backwards; }
+  .split [data-reveal].in .df-doc .df-chip  { animation: df-chip .5s var(--ease-out) .55s backwards; }
+  .split [data-reveal].in .df-doc .df-stamp { animation: df-stamp .6s var(--ease-spring) .40s backwards; }
+  html[dir="rtl"] .df-doc .df-stamp { --rot: 8deg; }
+  .df-stamp svg path { stroke-dasharray: 26; }
+  .split [data-reveal].in .df-doc .df-stamp svg path { animation: df-check .5s var(--ease-out) .78s backwards; }
+
+  /* — glass features: luminous rise via the Stage-1 group; icon chips pop
+       slot-keyed as each card lands — */
+  body.app-dufaat .feature-grid > .feature:nth-child(2) { --slot: 1; }
+  body.app-dufaat .feature-grid > .feature:nth-child(3) { --slot: 2; }
+  body.app-dufaat .feature-grid > .feature:nth-child(4) { --slot: 3; }
+  body.app-dufaat .feature-grid > .feature:nth-child(5) { --slot: 4; }
+  body.app-dufaat .feature-grid > .feature:nth-child(6) { --slot: 5; }
+  body.app-dufaat .feature-grid > .feature:nth-child(7) { --slot: 6; }
+  body.app-dufaat .feature-grid > .feature:nth-child(8) { --slot: 7; }
+  body.app-dufaat .feature.in .f-ic { animation: df-pop .45s var(--ease-spring) calc(var(--slot, 0) * var(--stagger-step) + .30s) backwards; }
+
+  /* — hover micro (calm): devices breathe, receipt card lifts slightly — */
+  .df-shot .device { transition: transform .35s var(--ease-spring); }
+  .df-shot:hover .device { transform: scale(1.015); }
+  .df-doc { transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out); }
+  .df-doc:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+  /* — reduced motion: composed, fully visible, static — */
+  @media (prefers-reduced-motion: reduce) {
+    body.app-dufaat .signal-field, body.app-dufaat .hero-brand,
+    body.app-dufaat .hero .hero-eyebrow, body.app-dufaat .hero .hero-eyebrow::before,
+    body.app-dufaat .hero h1 .hli, body.app-dufaat .hero-lede,
+    body.app-dufaat .hero .app-card-meta, body.app-dufaat .hero-actions .btn,
+    body.app-dufaat .hero .device-wrap,
+    .split [data-reveal].in .df-doc :is(.df-fhead, .df-note, .df-chip, .df-stamp),
+    .split [data-reveal].in .df-doc .df-stamp svg path,
+    body.app-dufaat .feature.in .f-ic {
+      animation: none !important; opacity: 1 !important; transform: none !important;
+    }
+    .df-shot .device, .df-doc { transition: none !important; }
+  }
 </style>
 </head>
 <body class="app-dufaat">
@@ -212,7 +294,7 @@
   </div>
 
   <!-- ── Hero (two-column: text + real screenshot, PhoneSpace-style) ── -->
-  <section class="hero" data-reveal>
+  <section class="hero">
     <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
       <div class="split">
@@ -226,8 +308,8 @@
             <span data-ar>الخصوصية أولاً · آيفون</span>
           </span>
           <h1>
-            <span data-en>Every installment,<br>quietly <span class="grad-text">settled</span>.</span>
-            <span data-ar>كل قسط،<br>يُسوّى <span class="grad-text">بهدوء</span>.</span>
+            <span data-en><span class="hl"><span class="hli">Every installment,</span></span><span class="hl"><span class="hli">quietly <span class="grad-text">settled</span>.</span></span></span>
+            <span data-ar><span class="hl"><span class="hli">كل قسط،</span></span><span class="hl"><span class="hli">يُسوّى <span class="grad-text">بهدوء</span>.</span></span></span>
           </h1>
           <p class="hero-lede">
             <span data-en>Dufaat is a calm, offline home for your installment plans — set who you're paying to and how much, let the schedule write itself, then settle each payment with a tick. Everything stays on your iPhone.</span>
@@ -293,16 +375,16 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────── -->
-  <section class="section section--tight" data-reveal>
+  <section class="section section--tight">
     <div class="wrap">
-      <div class="center">
+      <div class="center" data-reveal>
         <span class="eyebrow" style="display:inline-flex"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></span>
         <h2 class="section-title"><span data-en>Built to keep payments in order.</span><span data-ar>مصمَّم ليُبقي دفعاتك مرتّبة.</span></h2>
       </div>
 
-      <div class="feature-grid cols-3" style="margin-top:32px">
+      <div class="feature-grid cols-3" style="margin-top:32px" data-reveal-group>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span>
           <h3><span data-en>Pay Soon</span><span data-ar>للتسديد</span></h3>
           <p>
@@ -311,7 +393,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></span>
           <h3><span data-en>Create a plan in seconds</span><span data-ar>أنشئ خطة في ثوانٍ</span></h3>
           <p>
@@ -320,7 +402,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
           <h3><span data-en>A schedule that writes itself</span><span data-ar>جدول يكتب نفسه</span></h3>
           <p>
@@ -329,7 +411,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-6"/></svg></span>
           <h3><span data-en>Settle in order</span><span data-ar>سَوِّ بالترتيب</span></h3>
           <p>
@@ -338,7 +420,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05 12.25 20.24a6 6 0 0 1-8.49-8.49l8.57-8.57a4 4 0 1 1 5.66 5.66l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span>
           <h3><span data-en>Notes &amp; receipts</span><span data-ar>ملاحظات وإيصالات</span></h3>
           <p>
@@ -347,7 +429,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
           <h3><span data-en>Reminders</span><span data-ar>التذكيرات</span></h3>
           <p>
@@ -356,7 +438,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
           <h3><span data-en>PDF reports</span><span data-ar>تقارير PDF</span></h3>
           <p>
@@ -365,7 +447,7 @@
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature" data-reveal>
           <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
           <h3><span data-en>Private by design</span><span data-ar>خاص بالتصميم</span></h3>
           <p>
@@ -379,15 +461,15 @@
   </section>
 
   <!-- ── A look inside (real screenshots) ─────────────────────── -->
-  <section class="section section--tight" data-reveal>
+  <section class="section section--tight">
     <div class="wrap">
-      <div class="center">
+      <div class="center" data-reveal>
         <span class="eyebrow" style="display:inline-flex"><span data-en>From the app</span><span data-ar>من داخل التطبيق</span></span>
         <h2 class="section-title"><span data-en>A look inside Dufaat.</span><span data-ar>نظرة داخل دُفعات.</span></h2>
       </div>
 
-      <div class="df-shots">
-        <figure class="df-shot">
+      <div class="df-shots" data-reveal-group>
+        <figure class="df-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -397,7 +479,7 @@
           <figcaption><span data-en>Pay Soon — settle the near-term first.</span><span data-ar>للتسديد — سوِّ القريب أولًا.</span></figcaption>
         </figure>
 
-        <figure class="df-shot">
+        <figure class="df-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -407,7 +489,7 @@
           <figcaption><span data-en>Any length, automatically scheduled.</span><span data-ar>أي مدّة، بجدول تلقائي.</span></figcaption>
         </figure>
 
-        <figure class="df-shot">
+        <figure class="df-shot" data-reveal="scale">
           <div class="device">
             <span class="island" aria-hidden="true"></span>
             <div class="screen">
@@ -433,7 +515,7 @@
           <span data-ar>ما الجديد</span>
         </h2>
       </div>
-      <div data-releases="dufaat" style="margin-top:28px"></div>
+      <div data-releases="dufaat" data-reveal="fade" style="margin-top:28px"></div>
     </div>
   </section>
 
@@ -457,7 +539,7 @@
   <!-- ── Footer ──────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-bar">
+      <div class="sf-bar" data-reveal="fade">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
           <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
@@ -474,7 +556,7 @@
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base">
+      <div class="sf-base" data-reveal="fade">
         <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </div>
