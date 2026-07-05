@@ -26,5 +26,8 @@ no private source, no bundle IDs, no local machine paths.
   via Docs/WEBSITE_RELEASE_SYNC.md.
 - "Coming soon / in development" apps have website pages but no App Store ID yet.
   Keep them in the "Coming soon" state until their App Store release is approved.
+- **Promptbook** is parked: hidden from the landing, `noindex` on all 3 pages, and
+  out of `sitemap.xml`. At launch, reverse all three — un-hide the card + footer
+  link, remove the noindex metas, and re-add its URLs to the sitemap with fresh lastmod.
 - Bundle IDs and other internal identifiers are intentionally omitted here to keep
   this index public-safe; they live in each app's private repo.
