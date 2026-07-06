@@ -44,6 +44,23 @@
     } catch (e) {}
   })();
 </script>
+<style>
+  /* ── Quiet-tier motion (Final Stage): a brief entrance (≤0.8s tail) over
+     the page's existing scroll reveals. No signatures, no atmosphere — calm
+     consistency with the redesigned site. From-only keyframes +
+     fill:backwards; neutralized below for reduced motion. */
+  @keyframes q-rise { from { opacity: 0; transform: translateY(14px); } }
+  @keyframes q-fade { from { opacity: 0; } }
+  .crumb { animation: q-fade .45s var(--ease-out) .05s backwards; }
+  .hero .eyebrow { animation: q-fade .4s var(--ease-out) .12s backwards; }
+  .hero h1 { animation: q-rise .55s cubic-bezier(.19, 1, .22, 1) .18s backwards; }
+  .hero-lede { animation: q-rise .5s cubic-bezier(.19, 1, .22, 1) .30s backwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .crumb, .hero .eyebrow, .hero h1, .hero-lede {
+      animation: none !important; opacity: 1 !important; transform: none !important;
+    }
+  }
+</style>
 </head>
 <body class="app-home">
 
@@ -84,7 +101,7 @@
   </nav>
 
   <!-- ── Hero ────────────────────────────────────────────────── -->
-  <section class="hero" data-reveal>
+  <section class="hero">
     <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap wrap--narrow">
       <span class="eyebrow hero-eyebrow">
@@ -157,7 +174,7 @@
   <!-- ── Footer ──────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="wrap sf-inner">
-      <div class="sf-bar">
+      <div class="sf-bar" data-reveal="fade">
         <a class="sf-brand" href="/" aria-label="Saud Apps home">
           <span class="brand-mark" aria-hidden="true">S</span>
           <span class="sf-name">Saud Apps</span>
@@ -174,7 +191,7 @@
           <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
         </nav>
       </div>
-      <div class="sf-base">
+      <div class="sf-base" data-reveal="fade">
         <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </div>
