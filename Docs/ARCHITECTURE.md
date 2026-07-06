@@ -31,6 +31,10 @@ This file is the "how it actually works" reference.
 - `.github/workflows/sync-releases.yml` — the job that runs the fetcher.
 - `assets/` — shared CSS/JS/icons; per-app media in `<app>/assets/` (incl.
   `<app>/assets/screenshots/` — optimized real screenshots in `.device` frames).
+- `assets/og/` — designed 1200×630 social-preview cards (og-home + one per
+  Live app), wired on the 5 marketing pages only (see DESIGN_SYSTEM.md).
+- `404.html` — branded bilingual not-found page; GitHub Pages serves it
+  automatically for any missing path (absolute asset paths; not in sitemap).
 - `CNAME`, `robots.txt`, `sitemap.xml` — site config (release-sensitive).
 - `Docs/` — these operating docs.
 

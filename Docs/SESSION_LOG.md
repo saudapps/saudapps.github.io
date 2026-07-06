@@ -23,6 +23,31 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-07-06 — Final Stage: studio pages + 404 + OG images (+ site check)
+- Done: The redesign's closing stage, owner-reviewed per item. (1) Quiet
+  tier (a third, lowest motion tier — brief ≤0.8s entrance over existing
+  scroll reveals, no signatures/atmosphere) applied to about/, support/ and
+  legal/ (FAQ details untouched; zero anchor ids existed so no deep links
+  at risk). (2) New branded bilingual `404.html` — graphite identity,
+  quiet entrance, absolute asset paths, dark + RTL + reduced-motion;
+  GitHub Pages routes missing paths to it (live routing verified after
+  push). (3) Five designed 1200×630 social-preview cards in `assets/og/`
+  (studio + one per Live app, each with a static hint of its signature
+  motif; Filed's card gradient/glow-free), owner-approved visually, then
+  wired on the 5 marketing pages only (og:image + dimensions +
+  twitter:card=summary_large_image); promptbook deliberately excluded.
+  (4) Sitemap lastmod refreshed for the 8 pages touched this stage only —
+  privacy/terms rows intentionally left (a ?v head-line change isn't
+  content worth signaling). (5) These docs.
+- Decisions: legal documents (privacy/terms) stay still — no motion there;
+  JSON-LD remains on the open list; saud.css/saud.js untouched all stage
+  (no cache-version bump needed).
+- Open / next: post-push live checks (404 routing, one OG URL fetch,
+  full-site spot pass), then the redesign programme is complete.
+- Deploy state: 5 commits, single push at the final gate.
+- Live-check: pending post-push.
+- ChatGPT review: none.
+
 ## 2026-07-05 — Stage 3d: Filed page motion redesign (app-page tier)
 - Done: `filed/index.html` (+ docs) — the final Stage-3 page, in Filed's
   strictly-flat voice: crisp sharp-timed position/opacity motion only (no

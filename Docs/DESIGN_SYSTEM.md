@@ -164,6 +164,33 @@ CALMER than the landing. Each page gets:
   What's-New animated at CONTAINER level only (the releases loader owns and
   re-renders its inside on every language switch).
 
+## Quiet tier (Final Stage) — studio pages + 404
+The third and lowest motion tier, for the graphite app-home pages
+(about/, support/, legal/, 404.html): a **brief entrance only** (≤0.8s tail
+— breadcrumb fade → eyebrow → title rise → lede, from-only +
+`fill:backwards`, page-local reduced-motion block) over the pages' existing
+Stage-1 scroll reveals, plus footer fades for consistency. **No signature
+elements, no masked-wordmark theatrics, no atmosphere, no new colours** —
+identity on these pages is calm consistency with the redesigned site.
+Support's FAQ `<details>` keep native open/close behaviour (sections reveal
+as blocks; never animate inside a disclosure). The 404 page follows this
+tier with a dimmed graphite "404" figure and absolute asset paths (it can be
+served at any URL depth).
+
+## Social preview (OG) assets
+`assets/og/` holds five designed 1200×630 cards — `og-home.png` (graphite
+studio card) and `og-<app>.png` for sshift / phonespace / dufaat / filed,
+each in its app's documented identity with a STATIC hint of its signature
+motif (week strip, category ring, aurora + settle tick, flat folder tiles +
+chip — Filed's card is gradient/glow-free like everything Filed). Wired on
+the **5 marketing pages only** (landing + 4 app pages): `og:image` (absolute
+URL) + `og:image:width/height` (1200/630) + `twitter:image` +
+`twitter:card=summary_large_image`. Legal/studio pages keep the favicon
+meta; **promptbook is deliberately excluded** (parked + noindex). The build
+templates are throwaway — only the PNGs are committed; regenerate by
+rebuilding a 1200×630 template in the app's identity if a card ever needs
+updating.
+
 ## Per-app colour identities (final)
 Each app leads with its own accent; **the identity comes from that app's own
 source, not from a shared template**. Values are the `saud.css` base line; the
