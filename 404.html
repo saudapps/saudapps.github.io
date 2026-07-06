@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Page not found — Saud Apps.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0A0B0F">
+<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
+<title>Page not found — Saud Apps</title>
+
+<link rel="stylesheet" href="/assets/saud.css?v=20260705-1">
+<!-- anti-flash: set theme before first paint -->
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('saudapps-theme');
+      var t = (s === 'light' || s === 'dark') ? s
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('saudapps-lang');
+      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  /* ── 404 — quiet-tier entrance on the graphite app-home identity.
+       Served at any URL depth (all asset/link paths are absolute). ── */
+  .nf-code {
+    font-size: clamp(72px, 14vw, 140px); font-weight: 760; line-height: 1;
+    letter-spacing: -0.04em; margin: 0 0 6px;
+    color: color-mix(in oklab, var(--text) 14%, transparent);
+    font-variant-numeric: tabular-nums; user-select: none;
+  }
+  @keyframes q-rise { from { opacity: 0; transform: translateY(14px); } }
+  @keyframes q-fade { from { opacity: 0; } }
+  .nf-code { animation: q-fade .6s var(--ease-out) backwards; }
+  .hero .eyebrow { animation: q-fade .4s var(--ease-out) .12s backwards; }
+  .hero h1 { animation: q-rise .55s cubic-bezier(.19, 1, .22, 1) .18s backwards; }
+  .hero-lede { animation: q-rise .5s cubic-bezier(.19, 1, .22, 1) .30s backwards; }
+  .hero-actions { animation: q-fade .5s var(--ease-out) .44s backwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .nf-code, .hero .eyebrow, .hero h1, .hero-lede, .hero-actions {
+      animation: none !important; opacity: 1 !important; transform: none !important;
+    }
+  }
+</style>
+</head>
+<body class="app-home">
+
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="/" class="brand" aria-label="Saud Apps home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
+        <nav class="topbar-nav" aria-label="Primary">
+          <a href="/#apps"><span data-en>Apps</span><span data-ar>التطبيقات</span></a>
+          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        </nav>
+      </a>
+      <div class="topbar-tools">
+        <div class="seg seg--icon" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          </button>
+          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
+          </button>
+        </div>
+        <div class="seg" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Not-found hero ──────────────────────────────────────── -->
+  <section class="hero center">
+    <div class="signal-field" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="nf-code" aria-hidden="true">404</p>
+      <span class="eyebrow hero-eyebrow">
+        <span data-en>Page not found</span>
+        <span data-ar>الصفحة غير موجودة</span>
+      </span>
+      <h1>
+        <span data-en>This page doesn't exist.</span>
+        <span data-ar>هذه الصفحة غير موجودة.</span>
+      </h1>
+      <p class="hero-lede">
+        <span data-en>The page you're looking for may have moved, or the address was mistyped. Nothing is lost — everything is a step away.</span>
+        <span data-ar>ربما انتقلت الصفحة التي تبحث عنها، أو كُتب العنوان بشكل غير صحيح. لا شيء ضاع — كل شيء على بُعد خطوة.</span>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/">
+          <span data-en>Back to home</span><span data-ar>العودة للرئيسية</span>
+        </a>
+        <a class="btn btn-ghost" href="/support/">
+          <span data-en>Support</span><span data-ar>الدعم</span>
+          <span class="chev" aria-hidden="true">›</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="wrap sf-inner">
+      <div class="sf-base">
+        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+        <a href="mailto:support@saud.im">support@saud.im</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/saud.js?v=20260705-1" defer></script>
+</body>
+</html>
