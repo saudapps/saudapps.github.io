@@ -1,0 +1,366 @@
+/* Shared, decorative atmosphere layer for the Product Cinema rollout. */
+
+body.pc-home,
+body.pc-sshift,
+body.pc-phonespace,
+body.pc-filed,
+body.pc-dufaat {
+  position: relative;
+  isolation: isolate;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.pc-atmosphere {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pc-site-brand__mark i:last-child {
+  background: var(--brand-mark-accent, var(--pc-signal));
+}
+
+body.pc-home > main,
+body.pc-home > footer,
+body.pc-sshift > main,
+body.pc-sshift > footer,
+body.pc-phonespace > main,
+body.pc-phonespace > footer,
+body.pc-filed > main,
+body.pc-filed > footer,
+body.pc-dufaat > main,
+body.pc-dufaat > footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Saud Apps — pearl, cool metal, graphite, and a restrained cyan signal. */
+body.pc-home {
+  --brand-mark-accent: #6f777c;
+  --paper: #ffffff;
+  --paper-soft: #f1f3f4;
+  --ink: #151a1c;
+  --muted: #596266;
+  --line-strong: rgba(21, 26, 28, .48);
+  --panel: rgba(255, 255, 255, .8);
+  --panel-solid: #fafaf8;
+  --signal: #1b7184;
+  --signal-soft: #73c4d1;
+  --deep: #303336;
+  --pc-paper: #ffffff;
+  --pc-paper-soft: #f1f3f4;
+  --pc-ink: #151a1c;
+  --pc-muted: #596266;
+  --pc-line: rgba(21, 26, 28, .17);
+  --pc-line-strong: rgba(21, 26, 28, .48);
+  --pc-signal: #1b7184;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(circle at 13% 14%, rgba(71, 77, 82, .04), transparent 29%),
+    radial-gradient(circle at 84% 76%, rgba(93, 100, 105, .055), transparent 35%),
+    linear-gradient(132deg, #ffffff 0%, #fafaf8 58%, #f1f3f4 100%);
+}
+
+:root[data-theme="dark"] body.pc-home {
+  --brand-mark-accent: #d0d5d8;
+  --paper: #303336;
+  --paper-soft: #383c40;
+  --ink: #f3f4f3;
+  --muted: #c3c7c8;
+  --line-strong: rgba(243, 244, 243, .42);
+  --panel: rgba(56, 60, 64, .78);
+  --panel-solid: #383c40;
+  --signal: #6dc5d5;
+  --signal-soft: #82d2de;
+  --deep: #24272a;
+  --pc-paper: #303336;
+  --pc-paper-soft: #383c40;
+  --pc-ink: #f3f4f3;
+  --pc-muted: #c3c7c8;
+  --pc-line: rgba(243, 244, 243, .16);
+  --pc-line-strong: rgba(243, 244, 243, .42);
+  --pc-signal: #6dc5d5;
+  background-color: #303336;
+  background-image:
+    radial-gradient(circle at 14% 16%, rgba(255, 255, 255, .055), transparent 31%),
+    radial-gradient(circle at 82% 74%, rgba(185, 191, 194, .065), transparent 37%),
+    linear-gradient(132deg, #383c40 0%, #303336 52%, #24272a 100%);
+}
+
+.pc-home .pc-opening { background-color: rgba(255, 255, 255, .54); }
+.pc-home .pc-studio { background-color: rgba(250, 250, 248, .84); }
+.pc-home .pc-sequence__grid { background-image: none; }
+.pc-home .pc-sequence {
+  background: linear-gradient(132deg, #383c40 0%, #303336 56%, #24272a 100%);
+}
+:root[data-theme="dark"] .pc-home .pc-opening { background-color: rgba(48, 51, 54, .66); }
+:root[data-theme="dark"] .pc-home .pc-studio { background-color: rgba(56, 60, 64, .84); }
+:root[data-theme="dark"] .pc-home .pc-sequence {
+  background: linear-gradient(132deg, #383c40 0%, #303336 56%, #24272a 100%);
+}
+
+/* SShift — an icy calendar field with indigo depth and cyan light. */
+body.pc-sshift {
+  --brand-mark-accent: color-mix(in srgb, var(--pc-signal) 78%, #38c7df);
+  --paper: #edf3f8;
+  --paper-soft: #dfe9f2;
+  --ink: #111a29;
+  --muted: #56677d;
+  --line-strong: rgba(17, 26, 41, .48);
+  --panel: rgba(247, 251, 255, .78);
+  --panel-solid: #f1f6fb;
+  --signal: #2e69db;
+  --signal-soft: #69c7e4;
+  --deep: #101a34;
+  --pc-paper: #edf3f8;
+  --pc-paper-soft: #dfe9f2;
+  --pc-ink: #111a29;
+  --pc-muted: #56677d;
+  --pc-line: rgba(17, 26, 41, .17);
+  --pc-line-strong: rgba(17, 26, 41, .48);
+  --pc-signal: #2e69db;
+  background-color: #e7eff6;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(80, 211, 236, .19), transparent 29%),
+    radial-gradient(circle at 82% 66%, rgba(57, 83, 194, .17), transparent 34%),
+    linear-gradient(145deg, #f5f9fc 0%, #e3edf6 45%, #cad9ec 100%);
+}
+
+:root[data-theme="dark"] body.pc-sshift {
+  --brand-mark-accent: color-mix(in srgb, var(--pc-signal) 78%, #8bdff0);
+  --paper: #0b1224;
+  --paper-soft: #111c37;
+  --ink: #f0f5ff;
+  --muted: #a9bad6;
+  --line-strong: rgba(240, 245, 255, .43);
+  --panel: rgba(17, 29, 56, .82);
+  --panel-solid: #111d38;
+  --signal: #67d5ec;
+  --signal-soft: #7adcf0;
+  --deep: #050916;
+  --pc-paper: #0b1224;
+  --pc-paper-soft: #111c37;
+  --pc-ink: #f0f5ff;
+  --pc-muted: #a9bad6;
+  --pc-line: rgba(240, 245, 255, .16);
+  --pc-line-strong: rgba(240, 245, 255, .43);
+  --pc-signal: #67d5ec;
+  background-color: #081021;
+  background-image:
+    radial-gradient(circle at 16% 12%, rgba(54, 194, 226, .16), transparent 30%),
+    radial-gradient(circle at 84% 68%, rgba(71, 83, 198, .2), transparent 36%),
+    linear-gradient(145deg, #111b37 0%, #091125 52%, #050916 100%);
+}
+
+.pc-sshift .pc-product-opening,
+.pc-sshift .pc-week-system,
+.pc-sshift .pc-real-screens { background-color: rgba(237, 243, 248, .67); }
+.pc-sshift .pc-continuity { background-color: rgba(223, 233, 242, .84); }
+.pc-sshift .pc-product-motion {
+  background: linear-gradient(145deg, #14254a 0%, #0b1531 58%, #060b1b 100%);
+}
+:root[data-theme="dark"] .pc-sshift .pc-product-opening,
+:root[data-theme="dark"] .pc-sshift .pc-week-system,
+:root[data-theme="dark"] .pc-sshift .pc-real-screens { background-color: rgba(11, 18, 36, .72); }
+:root[data-theme="dark"] .pc-sshift .pc-continuity { background-color: rgba(17, 28, 55, .86); }
+:root[data-theme="dark"] .pc-sshift .pc-product-motion {
+  background: linear-gradient(145deg, #14254a 0%, #0b1531 58%, #060b1b 100%);
+}
+
+/* PhoneSpace — warm storage density opening into cream and amber air. */
+body.pc-phonespace {
+  --brand-mark-accent: color-mix(in srgb, var(--pc-gold) 86%, var(--pc-signal));
+  --pc-paper: #f5eddf;
+  --pc-paper-soft: #e9dcc7;
+  --pc-ink: #211b14;
+  --pc-muted: #6c5e4c;
+  --pc-line: rgba(55, 42, 27, .17);
+  --pc-line-strong: rgba(55, 42, 27, .53);
+  --pc-panel: rgba(255, 250, 240, .8);
+  --pc-signal: #9f5629;
+  --pc-gold: #b88227;
+  background-color: #eee2cf;
+  background-image:
+    radial-gradient(circle at 13% 18%, rgba(163, 92, 42, .16), transparent 31%),
+    radial-gradient(circle at 84% 70%, rgba(218, 163, 52, .19), transparent 37%),
+    linear-gradient(132deg, #f8f1e5 0%, #eee1cc 46%, #d8bd90 100%);
+}
+
+:root[data-theme="dark"] body.pc-phonespace {
+  --pc-paper: #15110c;
+  --pc-paper-soft: #20180f;
+  --pc-ink: #f5ecdd;
+  --pc-muted: #c6b69e;
+  --pc-line: rgba(245, 236, 221, .16);
+  --pc-line-strong: rgba(245, 236, 221, .43);
+  --pc-panel: rgba(35, 27, 18, .82);
+  --pc-signal: #e99a5f;
+  --pc-gold: #ddb65d;
+  background-color: #120f0b;
+  background-image:
+    radial-gradient(circle at 14% 18%, rgba(170, 84, 37, .18), transparent 32%),
+    radial-gradient(circle at 84% 70%, rgba(208, 154, 51, .14), transparent 38%),
+    linear-gradient(132deg, #21170f 0%, #15110c 50%, #0c0a08 100%);
+}
+
+.pc-phonespace .ps-opening,
+.pc-phonespace .ps-section:not(.ps-tools) { background-color: rgba(245, 237, 223, .67); }
+.pc-phonespace .ps-sequence { background-color: rgba(226, 207, 176, .8); }
+.pc-phonespace .ps-releases { background-color: rgba(233, 220, 199, .84); }
+.pc-phonespace .ps-tools {
+  background: linear-gradient(132deg, #35291d 0%, #211a13 56%, #15110d 100%);
+}
+:root[data-theme="dark"] .pc-phonespace .ps-opening,
+:root[data-theme="dark"] .pc-phonespace .ps-section:not(.ps-tools) { background-color: rgba(21, 17, 12, .72); }
+:root[data-theme="dark"] .pc-phonespace .ps-sequence { background-color: rgba(12, 10, 8, .82); }
+:root[data-theme="dark"] .pc-phonespace .ps-releases { background-color: rgba(32, 24, 15, .86); }
+:root[data-theme="dark"] .pc-phonespace .ps-tools {
+  background: linear-gradient(132deg, #35291d 0%, #211a13 56%, #15110d 100%);
+  color: #f5ecdd;
+}
+:root[data-theme="dark"] .pc-phonespace .ps-tools .ps-kicker { color: #e99a5f; }
+:root[data-theme="dark"] .pc-phonespace .ps-tools .ps-chapter-heading > p:last-child,
+:root[data-theme="dark"] .pc-phonespace .ps-tool-board__copy p,
+:root[data-theme="dark"] .pc-phonespace .ps-tool-row small { color: rgba(245, 236, 221, .7); }
+:root[data-theme="dark"] .pc-phonespace .ps-tool-board,
+:root[data-theme="dark"] .pc-phonespace .ps-tool-row { border-color: rgba(245, 236, 221, .38); }
+:root[data-theme="dark"] .pc-phonespace .ps-tool-board__visual { border-color: rgba(245, 236, 221, .28); }
+
+/* Filed — a disciplined cool document network, separate from the brand field. */
+body.pc-filed {
+  --brand-mark-accent: color-mix(in srgb, var(--fl-blue) 82%, var(--fl-green));
+  --fl-blue: #2862c7;
+  --fl-blue-deep: #174b9f;
+  background-color: #edf2f5;
+  background-image:
+    radial-gradient(circle at 16% 12%, rgba(54, 172, 224, .16), transparent 29%),
+    radial-gradient(circle at 83% 72%, rgba(43, 157, 112, .13), transparent 35%),
+    linear-gradient(138deg, #fafbfc 0%, #edf2f5 48%, #dce5eb 100%);
+}
+
+:root[data-theme="dark"] body.pc-filed {
+  background-color: #080d15;
+  background-image:
+    radial-gradient(circle at 15% 12%, rgba(41, 170, 216, .14), transparent 30%),
+    radial-gradient(circle at 84% 72%, rgba(90, 112, 148, .14), transparent 37%),
+    linear-gradient(138deg, #101b2c 0%, #09111d 50%, #050910 100%);
+}
+
+.pc-filed .fl-opening,
+.pc-filed .fl-section:not(.fl-reader),
+.pc-filed .fl-coda { background-color: rgba(245, 246, 248, .68); }
+.pc-filed .fl-filing,
+.pc-filed .fl-control,
+.pc-filed .fl-releases { background-color: rgba(236, 239, 243, .84); }
+.pc-filed .fl-reader {
+  background: linear-gradient(138deg, #15243b 0%, #0c1729 60%, #070d17 100%);
+}
+:root[data-theme="dark"] .pc-filed .fl-opening,
+:root[data-theme="dark"] .pc-filed .fl-section:not(.fl-reader),
+:root[data-theme="dark"] .pc-filed .fl-coda { background-color: rgba(11, 13, 17, .72); }
+:root[data-theme="dark"] .pc-filed .fl-filing,
+:root[data-theme="dark"] .pc-filed .fl-control,
+:root[data-theme="dark"] .pc-filed .fl-releases { background-color: rgba(20, 23, 29, .86); }
+:root[data-theme="dark"] .pc-filed .fl-reader {
+  background: linear-gradient(138deg, #15243b 0%, #0c1729 60%, #070d17 100%);
+  color: #f4f6f8;
+}
+:root[data-theme="dark"] .pc-filed .fl-reader .fl-device { border-color: rgba(244, 246, 248, .4); }
+:root[data-theme="dark"] .pc-filed .fl-reader .fl-product-figure figcaption { border-color: rgba(244, 246, 248, .28); color: rgba(244, 246, 248, .66); }
+:root[data-theme="dark"] .pc-filed .fl-reader .fl-product-figure figcaption strong { color: #f4f6f8; }
+:root[data-theme="dark"] .pc-filed .fl-reader__copy > p:not(.fl-kicker) { color: rgba(244, 246, 248, .72); }
+:root[data-theme="dark"] .pc-filed .fl-reader__index { border-color: rgba(244, 246, 248, .32); }
+:root[data-theme="dark"] .pc-filed .fl-reader__index span { border-color: rgba(244, 246, 248, .24); }
+
+/* Dufaat — diagonal settlement progression from mint calm to copper proof. */
+body.pc-dufaat {
+  --brand-mark-accent: color-mix(in srgb, var(--df-teal) 92%, var(--df-gold));
+  --df-line-strong: rgba(16, 35, 38, .5);
+  background-color: #eee9dc;
+  background-image:
+    radial-gradient(circle at 11% 13%, rgba(79, 169, 157, .2), transparent 31%),
+    radial-gradient(circle at 85% 76%, rgba(184, 100, 67, .18), transparent 35%),
+    linear-gradient(132deg, #e8f1e9 0%, #f5f0e5 38%, #ead9c3 69%, #c98769 118%);
+}
+
+:root[data-theme="dark"] body.pc-dufaat {
+  background-color: #071317;
+  background-image:
+    radial-gradient(circle at 12% 13%, rgba(58, 179, 161, .17), transparent 31%),
+    radial-gradient(circle at 86% 76%, rgba(184, 102, 58, .16), transparent 37%),
+    linear-gradient(132deg, #113332 0%, #08191d 47%, #040b0f 100%);
+}
+
+.pc-dufaat .df-opening,
+.pc-dufaat .df-section:not(.df-paysoon),
+.pc-dufaat .df-coda { background-color: rgba(244, 239, 229, .67); }
+.pc-dufaat .df-settlement,
+.pc-dufaat .df-proof,
+.pc-dufaat .df-gallery { background-color: rgba(233, 224, 209, .83); }
+.pc-dufaat .df-paysoon {
+  background: linear-gradient(132deg, #163d3b 0%, #0b2428 54%, #07151a 100%);
+}
+:root[data-theme="dark"] .pc-dufaat .df-opening,
+:root[data-theme="dark"] .pc-dufaat .df-section:not(.df-paysoon),
+:root[data-theme="dark"] .pc-dufaat .df-coda { background-color: rgba(8, 21, 25, .72); }
+:root[data-theme="dark"] .pc-dufaat .df-settlement,
+:root[data-theme="dark"] .pc-dufaat .df-proof,
+:root[data-theme="dark"] .pc-dufaat .df-gallery { background-color: rgba(13, 32, 36, .86); }
+
+@media (max-width: 760px), (pointer: coarse) {
+  .pc-atmosphere { opacity: .78; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-atmosphere { transform: none !important; }
+}
+
+/* Landing routes use the same page-level atmosphere as their legal documents.
+   Product content remains intact; only the previous decorative section layers
+   are removed so the shared canvas and route background are the sole backdrop. */
+body.pc-sshift:not(.pc-info) .pc-product-opening,
+body.pc-sshift:not(.pc-info) .pc-week-system,
+body.pc-sshift:not(.pc-info) .pc-real-screens,
+body.pc-sshift:not(.pc-info) .pc-continuity,
+body.pc-sshift:not(.pc-info) .pc-product-motion,
+body.pc-phonespace:not(.pc-info) .ps-opening,
+body.pc-phonespace:not(.pc-info) .ps-section,
+body.pc-phonespace:not(.pc-info) .ps-sequence,
+body.pc-phonespace:not(.pc-info) .ps-releases,
+body.pc-phonespace:not(.pc-info) .ps-tools,
+body.pc-filed:not(.pc-info) .fl-opening,
+body.pc-filed:not(.pc-info) .fl-section,
+body.pc-filed:not(.pc-info) .fl-filing,
+body.pc-filed:not(.pc-info) .fl-control,
+body.pc-filed:not(.pc-info) .fl-releases,
+body.pc-filed:not(.pc-info) .fl-coda,
+body.pc-dufaat:not(.pc-info) .df-opening,
+body.pc-dufaat:not(.pc-info) .df-section,
+body.pc-dufaat:not(.pc-info) .df-settlement,
+body.pc-dufaat:not(.pc-info) .df-proof,
+body.pc-dufaat:not(.pc-info) .df-gallery,
+body.pc-dufaat:not(.pc-info) .df-paysoon,
+body.pc-dufaat:not(.pc-info) .df-coda { background: transparent !important; }
+
+body.pc-sshift:not(.pc-info) .pc-product-opening__field,
+body.pc-sshift:not(.pc-info) .pc-sequence__grid,
+body.pc-phonespace:not(.pc-info) .ps-opening::before,
+body.pc-phonespace:not(.pc-info) .ps-opening::after,
+body.pc-phonespace:not(.pc-info) .ps-coda::before,
+body.pc-filed:not(.pc-info) .fl-opening::before,
+body.pc-filed:not(.pc-info) .fl-opening::after,
+body.pc-dufaat:not(.pc-info) .df-opening::before,
+body.pc-dufaat:not(.pc-info) .df-opening::after { display: none; }
+
+/* Homepage now shares About's neutral route-level atmosphere without the
+   previous page-specific field, sequence grid, or section backdrops. */
+body.pc-home:not(.pc-info) .pc-opening,
+body.pc-home:not(.pc-info) .pc-sequence,
+body.pc-home:not(.pc-info) .pc-studio { background: transparent !important; }
+
+body.pc-home:not(.pc-info) .pc-field,
+body.pc-home:not(.pc-info) .pc-sequence__grid { display: none; }

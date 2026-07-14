@@ -195,6 +195,11 @@ body.product-cinema-rollout figure { margin: 0; }
 
 .pc-site-menu { display: none; }
 
+/* Legacy Product Cinema routes retain their frozen body class. Match the
+   rollout shell's inherited control typography without adopting its page reset. */
+body.product-cinema:not(.product-cinema-rollout) .pc-site-header button,
+body.product-cinema:not(.product-cinema-rollout) .pc-site-header summary { font: inherit; }
+
 .pc-site-action {
   min-height: 48px;
   padding: 12px 18px;
@@ -241,18 +246,18 @@ html.pc-site-observe [data-pc-site-reveal] {
 
 html.pc-site-observe [data-pc-site-reveal].is-visible { opacity: 1; transform: none; }
 
-.release { padding: 20px 0; border-top: 1px solid var(--pc-line); }
-.release:first-child { border-top: 0; }
-.release-head { display: flex; justify-content: space-between; gap: 20px; }
-.release-version { font-family: var(--pc-serif); font-size: clamp(24px, 3vw, 42px); font-weight: 500; }
-.release-date { padding-top: 8px; color: var(--pc-muted); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.release-notes { margin-top: 14px; color: var(--pc-muted); }
-.release-notes p { margin-top: 10px; }
-.release-notes ul,
-ul.release-notes { margin: 14px 0 0; padding-left: 20px; }
-.release-notes li + li { margin-top: 8px; }
-.release-history { border-top: 1px solid var(--pc-line-strong); }
-.release-history summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-size: 10px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+:where(.product-cinema-rollout) .release { padding: 20px 0; border-top: 1px solid var(--pc-line); }
+:where(.product-cinema-rollout) .release:first-child { border-top: 0; }
+:where(.product-cinema-rollout) .release-head { display: flex; justify-content: space-between; gap: 20px; }
+:where(.product-cinema-rollout) .release-version { font-family: var(--pc-serif); font-size: clamp(24px, 3vw, 42px); font-weight: 500; }
+:where(.product-cinema-rollout) .release-date { padding-top: 8px; color: var(--pc-muted); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+:where(.product-cinema-rollout) .release-notes { margin-top: 14px; color: var(--pc-muted); }
+:where(.product-cinema-rollout) .release-notes p { margin-top: 10px; }
+:where(.product-cinema-rollout) .release-notes ul,
+:where(.product-cinema-rollout) ul.release-notes { margin: 14px 0 0; padding-left: 20px; }
+:where(.product-cinema-rollout) .release-notes li + li { margin-top: 8px; }
+:where(.product-cinema-rollout) .release-history { border-top: 1px solid var(--pc-line-strong); }
+:where(.product-cinema-rollout) .release-history summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-size: 10px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
 
 @media (max-width: 1120px) {
   .pc-site-header { grid-template-columns: 1fr auto; }

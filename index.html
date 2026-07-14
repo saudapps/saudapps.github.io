@@ -6,7 +6,7 @@
 <meta name="description" content="Saud Apps — four focused, private iPhone apps made by one independent developer.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F2EBDD">
-<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>Saud Apps — Four focused apps. One independent maker.</title>
 
@@ -26,7 +26,22 @@
 <meta name="twitter:description" content="A small software studio building private, on-device iOS apps. No accounts, no tracking.">
 <meta name="twitter:image" content="https://saud.im/assets/og/og-home.png">
 
-<link rel="stylesheet" href="/assets/product-cinema.css?v=phase2f-1">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch3-header-v3">
+<style>
+  body.product-cinema {
+    --pc-paper: var(--paper);
+    --pc-paper-soft: var(--paper-soft);
+    --pc-ink: var(--ink);
+    --pc-muted: var(--muted);
+    --pc-line: var(--line);
+    --pc-line-strong: var(--line-strong);
+    --pc-panel: var(--panel);
+    --pc-signal: var(--signal);
+  }
+</style>
+<link rel="stylesheet" href="/assets/product-cinema.css?v=box-scenes-1">
+<link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-about-bg-1">
+<link rel="stylesheet" href="/assets/product-cinema-info.css?v=info-home-2">
 <script>
   (function () {
     try {
@@ -39,27 +54,48 @@
 </script>
 </head>
 <body class="product-cinema pc-home">
-<a class="pc-skip" href="#main">Skip to content</a>
+<a class="pc-site-skip" href="#main">Skip to content</a>
 
-<header class="pc-header">
-  <a class="pc-brand" href="/" aria-label="Saud Apps home">
-    <span class="pc-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+<header class="pc-site-header">
+  <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
+    <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
     <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
   </a>
-  <nav class="pc-header__nav" aria-label="Studio navigation">
-    <a href="/about/">Maker</a>
+
+  <nav class="pc-site-nav" aria-label="Primary navigation">
+    <a href="/" aria-current="page">Home</a>
+    <a href="/sshift/">SShift</a>
+    <a href="/phonespace/">PhoneSpace</a>
+    <a href="/filed/">Filed</a>
+    <a href="/dufaat/">Dufaat</a>
+    <a href="/about/">About</a>
     <a href="/support/">Support</a>
     <a href="/legal/">Legal</a>
   </nav>
-  <div class="pc-theme" role="group" aria-label="Color theme">
-    <button type="button" data-pc-theme="light" aria-pressed="false"><span aria-hidden="true">○</span><span>Day</span></button>
-    <button type="button" data-pc-theme="dark" aria-pressed="false"><span aria-hidden="true">●</span><span>Night</span></button>
+
+  <div class="pc-site-tools">
+    <div class="pc-site-theme" role="group" aria-label="Color theme">
+      <button type="button" data-pc-site-theme="light" data-pc-theme="light" aria-pressed="false">Day</button>
+      <button type="button" data-pc-site-theme="dark" data-pc-theme="dark" aria-pressed="false">Night</button>
+    </div>
+    <details class="pc-site-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/sshift/">SShift</a>
+        <a href="/phonespace/">PhoneSpace</a>
+        <a href="/filed/">Filed</a>
+        <a href="/dufaat/">Dufaat</a>
+        <a href="/about/">About</a>
+        <a href="/support/">Support</a>
+        <a href="/legal/">Legal</a>
+      </nav>
+    </details>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
   <section class="pc-opening" aria-labelledby="opening-title">
-    <div class="pc-field" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <div class="pc-opening__mast">
       <p class="pc-edition"><span>PRODUCT FILM 02</span><span>FOUR LIVE PRODUCTS</span><span>DUBAI · 2026</span></p>
       <h1 id="opening-title"><span>Saud</span><span>Apps</span></h1>
@@ -263,13 +299,24 @@
   </section>
 </main>
 
-<footer class="pc-footer">
-  <div class="pc-footer__identity"><strong>SAUD APPS</strong><span>Four focused apps for iPhone.</span></div>
-  <nav aria-label="Application destinations"><a href="/sshift/">SShift</a><a href="/phonespace/">PhoneSpace</a><a href="/filed/">Filed</a><a href="/dufaat/">Dufaat</a></nav>
-  <div class="pc-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+<footer class="pc-site-footer">
+  <div class="pc-site-footer__identity"><strong>SAUD APPS</strong><span>Four focused apps for iPhone.</span></div>
+  <nav aria-label="Footer navigation">
+    <a href="/" aria-current="page">Home</a>
+    <a href="/sshift/">SShift</a>
+    <a href="/phonespace/">PhoneSpace</a>
+    <a href="/filed/">Filed</a>
+    <a href="/dufaat/">Dufaat</a>
+    <a href="/about/">About</a>
+    <a href="/support/">Support</a>
+    <a href="/legal/">Legal</a>
+  </nav>
+  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
 </footer>
 
-<script src="/assets/product-cinema.js?v=phase2f-1" defer></script>
+<script src="/assets/product-cinema.js?v=box-hover-1" defer></script>
+<script src="/assets/product-cinema-core.js?v=batch3" defer></script>
+<script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>
 </body>
 </html>

@@ -6,11 +6,14 @@
 <meta name="description" content="Page not found — Saud Apps.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#0A0B0F">
-<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>Page not found — Saud Apps</title>
 
 <link rel="stylesheet" href="/assets/saud.css?v=20260705-1">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=info-1">
+<link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=info-1">
+<link rel="stylesheet" href="/assets/product-cinema-info.css?v=info-2">
 <!-- anti-flash: set theme before first paint -->
 <script>
   (function () {
@@ -47,7 +50,7 @@
   }
 </style>
 </head>
-<body class="app-home">
+<body class="app-home product-cinema-rollout pc-info pc-home" data-pc-info="404" data-pc-title="Page not found">
 
   <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
@@ -79,7 +82,7 @@
   </header>
 
   <!-- ── Not-found hero ──────────────────────────────────────── -->
-  <section class="hero center">
+  <main id="main" tabindex="-1"><section class="hero center">
     <div class="signal-field" aria-hidden="true"></div>
     <div class="wrap">
       <p class="nf-code" aria-hidden="true">404</p>
@@ -105,7 +108,7 @@
         </a>
       </div>
     </div>
-  </section>
+  </section></main>
 
   <!-- ── Footer ──────────────────────────────────────────────── -->
   <footer class="site-footer">
@@ -118,5 +121,8 @@
   </footer>
 
   <script src="/assets/saud.js?v=20260705-1" defer></script>
+  <script src="/assets/product-cinema-info.js?v=info-1" defer></script>
+  <script src="/assets/product-cinema-core.js?v=info-1" defer></script>
+  <script src="/assets/product-cinema-atmosphere.js?v=info-1" defer></script>
 </body>
 </html>

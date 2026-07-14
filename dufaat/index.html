@@ -3,570 +3,351 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Dufaat (دُفعات) — a calm, offline installment tracker for iPhone. Create a plan, let the schedule write itself, settle each payment with a tick, attach receipts, and export a PDF report. English & Arabic. No accounts, no tracking.">
+<meta name="description" content="Dufaat is a calm, offline iPhone record for planning installment schedules, tracking Pay Soon items, marking payments, and keeping proof together.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#0A0B0F">
-<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<meta name="theme-color" content="#F4EFE5">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
-<title>Dufaat — Every installment, quietly settled</title>
+<title>Dufaat — A calm path from due to settled</title>
 
 <link rel="canonical" href="https://saud.im/dufaat/">
-
-<!-- Open Graph -->
 <meta property="og:site_name" content="Saud Apps">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:url" content="https://saud.im/dufaat/">
-<meta property="og:title" content="Dufaat — Every installment, quietly settled">
-<meta property="og:description" content="A calm, offline home for your installment plans. Create a plan, let the schedule write itself, settle payments with a tick, and keep receipts beside them — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
+<meta property="og:title" content="Dufaat — A calm path from due to settled">
+<meta property="og:description" content="Plan personal installments, see what is due, record what is paid, and keep proof beside the record — offline on iPhone.">
 <meta property="og:image" content="https://saud.im/assets/og/og-dufaat.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Dufaat app icon">
-
-<!-- Twitter Card -->
+<meta property="og:image:alt" content="Dufaat app icon and installment milestone path">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dufaat — Every installment, quietly settled">
-<meta name="twitter:description" content="A calm, offline home for your installment plans. Create, settle, and keep receipts — all on your iPhone. Bilingual (English & Arabic). No accounts, no tracking.">
+<meta name="twitter:title" content="Dufaat — A calm path from due to settled">
+<meta name="twitter:description" content="A private, offline record for installment plans, Pay Soon items, payments, and proof on iPhone.">
 <meta name="twitter:image" content="https://saud.im/assets/og/og-dufaat.png">
-<meta name="twitter:image:alt" content="Dufaat app icon">
+<meta name="twitter:image:alt" content="Dufaat app icon and installment milestone path">
 
-<link rel="stylesheet" href="/assets/saud.css?v=20260705-1">
-<!-- anti-flash: set theme before first paint -->
 <script>
   (function () {
     try {
-      var s = localStorage.getItem('saudapps-theme');
-      var t = (s === 'light' || s === 'dark') ? s
-            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', t);
-      var l = localStorage.getItem('saudapps-lang');
-      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
-    } catch (e) {}
+      var saved = localStorage.getItem('saudapps-theme');
+      var theme = saved === 'light' || saved === 'dark' ? saved
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('lang', 'en');
+      document.documentElement.setAttribute('dir', 'ltr');
+    } catch (error) {}
   })();
 </script>
-<style>
-  /* ── Dufaat v2 — "Luminous Calm, warmed": a quiet ledger, not a banking
-     dashboard. Cream/midnight canvas (no pure black/white), a single living
-     teal accent, gold for warmth/value, a soft teal+gold aurora behind glass
-     cards. Amiri carries the Arabic display type (self-hosted — no third-party
-     calls); Latin display rides the system serif stack for an editorial feel. ── */
-  @font-face {
-    font-family: "Amiri";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url("/dufaat/assets/amiri-bold-arabic.woff2") format("woff2");
-    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFC;
-  }
-  /* Amiri for Arabic display headings only; body text stays on the system stack */
-  html[lang="ar"] body.app-dufaat .hero h1,
-  html[lang="ar"] body.app-dufaat .section-title {
-    font-family: "Amiri", var(--font-ar), serif;
-    line-height: 1.5;
-  }
-  /* Editorial serif wordmark (Latin display) — system serif, self-hosted-safe */
-  body.app-dufaat .hero-brand .hb-name { font-family: var(--font-serif); font-weight: 700; letter-spacing: 0; }
-
-  /* Midnight canvas — the app's native mood */
-  :root[data-theme="dark"] body.app-dufaat {
-    --bg:#0B0D14; --bg-2:#090B11;
-    --surface:#141821; --surface-2:#1A1F2A; --surface-raised:#1A1F2A; --surface-sunken:#0E1118;
-    --text:#F3EEE4; --text-2:#B8B3A8; --text-3:#83837C;
-    --hairline:rgba(243,238,228,0.12); --hairline-2:rgba(243,238,228,0.06); --hairline-strong:rgba(243,238,228,0.20);
-    --topbar-bg:rgba(11,13,20,0.66);
-    --accent:#67DDC5; --accent-2:#3FB89C; --accent-ink:#0B0D14;
-    --df-glass:rgba(255,255,255,0.05); --df-gold:#E3BE86; --df-alert:#CC8B7A;
-    --df-aurora-teal:rgba(103,221,197,0.34); --df-aurora-gold:rgba(227,190,134,0.28);
-  }
-  /* Cream paper inversion — light theme (no pure white) */
-  :root[data-theme="light"] body.app-dufaat {
-    --bg:#F6F3EC; --bg-2:#EFEBE1;
-    --surface:#FBF9F3; --surface-2:#F2EEE4; --surface-raised:#FDFCF7; --surface-sunken:#EDE8DC;
-    --text:#1A1F2E; --text-2:#4A4F5C; --text-3:#7E828D;
-    --hairline:rgba(26,31,46,0.12); --hairline-2:rgba(26,31,46,0.07); --hairline-strong:rgba(26,31,46,0.18);
-    --topbar-bg:rgba(246,243,236,0.80);
-    --accent:#1F9E75; --accent-2:#17795A; --accent-ink:#F6F3EC;
-    --df-glass:rgba(255,255,255,0.72); --df-gold:#B07D33; --df-alert:#B65C46;
-    --df-aurora-teal:rgba(31,158,117,0.22); --df-aurora-gold:rgba(176,125,51,0.18);
-  }
-  /* Ambient aurora — two soft, blurred radial glows behind all content (teal
-     top-leading, gold bottom-trailing); static, low-opacity, never neon. */
-  body.app-dufaat {
-    background-image:
-      radial-gradient(42% 32% at 12% 4%,  var(--df-aurora-teal) 0%, transparent 58%),
-      radial-gradient(44% 34% at 92% 98%, var(--df-aurora-gold) 0%, transparent 60%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-  /* Hero wash reinforces the same aurora over the hero */
-  body.app-dufaat .signal-field {
-    background:
-      radial-gradient(54% 44% at 18% 6%,  var(--df-aurora-teal) 0%, transparent 64%),
-      radial-gradient(50% 44% at 86% 96%, var(--df-aurora-gold) 0%, transparent 66%);
-    filter: blur(34px) saturate(112%);
-  }
-  /* Hero keyword carries the living teal accent (ink→teal / cream→mint) */
-  :root[data-theme="dark"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #F3EEE4, #67DDC5); }
-  :root[data-theme="light"] body.app-dufaat .grad-text { background-image: linear-gradient(100deg, #1A1F2E, #1F9E75); }
-
-  /* ── Glass cards — translucent fill + blur, 1px luminous hairline, soft top
-     highlight, 18px radius. Applied to the page's card-like surfaces. ── */
-  body.app-dufaat .df-doc,
-  body.app-dufaat .feature {
-    background: var(--df-glass);
-    backdrop-filter: blur(14px) saturate(125%);
-    -webkit-backdrop-filter: blur(14px) saturate(125%);
-    border: 1px solid var(--hairline);
-    border-radius: 18px;
-    box-shadow: inset 0 1px 0 color-mix(in oklab, var(--text) 7%, transparent), var(--shadow-md);
-  }
-  /* Luminous teal-tinted device bezel ring on the cream/midnight canvas */
-  body.app-dufaat .device {
-    box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--accent) 22%, var(--hairline-strong)),
-                inset 0 0 0 1.5px rgba(255,255,255,.05), var(--shadow-lg);
-  }
-
-  /* Device mockup — a plan with its three-row schedule, one settled (the icon motif) */
-  .df-app { position: relative; display: flex; flex-direction: column; gap: 9px; height: 100%; padding: 16px 13px; }
-  .df-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
-  .df-plantitle { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; color: var(--text); }
-  .df-sub { font-size: 11px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-  .df-summary { font-size: 11.5px; color: var(--text-2); font-variant-numeric: tabular-nums; margin: -3px 0 1px; }
-  .df-bar { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-bottom: 4px; }
-  .df-bar i { display: block; height: 100%; width: 25%; border-radius: 3px; background: var(--text); }
-  .df-row { display: flex; align-items: center; gap: 11px; background: var(--surface-2);
-            border: 1px solid var(--hairline); border-radius: 11px; padding: 11px; }
-  .df-tick { width: 23px; height: 23px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
-             border: 1.5px solid var(--hairline-strong); color: transparent; }
-  .df-tick svg { width: 12px; height: 12px; }
-  /* settled = the inversion at the heart of the identity: pearl tick on midnight, midnight tick on pearl */
-  .df-row.on .df-tick { background: var(--text); border-color: var(--text); color: var(--bg); }
-  .df-month { flex: 1; font-size: 13px; font-weight: 560; color: var(--text); }
-  .df-row.on .df-month { color: var(--text-2); }
-  .df-amt { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-  .df-due { font-size: 10.5px; font-weight: 700; color: var(--df-gold);
-            background: color-mix(in oklab, var(--df-gold) 14%, var(--surface));
-            border: 1px solid color-mix(in oklab, var(--df-gold) 38%, transparent);
-            border-radius: 999px; padding: 2px 8px; }
-
-  /* Settled-payment artifact (split section) */
-  .df-doc { position: relative; background: var(--surface); border: 1px solid var(--hairline);
-            border-radius: 16px; box-shadow: var(--shadow-md); padding: 24px 24px 26px; max-width: 360px; margin: 0 auto; }
-  .df-fhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
-  .df-fmonth { font-size: 15px; font-weight: 700; color: var(--text); }
-  .df-famt { font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-  .df-note { font-size: 13.5px; color: var(--text-2); line-height: 1.5; margin: 0; }
-  .df-chip { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px;
-             font-size: 12px; font-weight: 600; color: var(--text-2);
-             background: var(--surface-2); border: 1px solid var(--hairline);
-             border-radius: 999px; padding: 6px 12px; }
-  .df-chip svg { width: 13px; height: 13px; color: var(--text-3); }
-  .df-stamp { position: absolute; top: 16px; inset-inline-end: 16px; display: inline-flex; align-items: center; gap: 5px;
-              font-size: 11px; font-weight: 700; color: var(--live);
-              background: color-mix(in oklab, var(--live) 14%, var(--surface));
-              border: 1px solid color-mix(in oklab, var(--live) 32%, transparent);
-              border-radius: 999px; padding: 3px 9px; }
-  .df-stamp svg { width: 12px; height: 12px; }
-
-  /* "A look inside" — real screenshots in device frames (mirrors Filed) */
-  .df-shots { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
-              gap: 30px 26px; margin-top: 36px; }
-  .df-shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .df-shot .device { width: 250px; }
-  .df-shot figcaption { max-width: 250px; font-size: 13.5px; line-height: 1.5; color: var(--text-3); text-align: center; }
-
-  /* ══ Stage 3b — motion (app-page tier): "Luminous Calm" in motion ═══════
-     Entrance choreography + living settle-moment signature + scroll reveals.
-     No atmosphere layer, no cursor-follow. From-only keyframes +
-     fill:backwards (hovers stay alive); Amiri headline gets extra clip
-     headroom; everything neutralized by the reduced-motion block below. */
-  body.app-dufaat { --rise3: 22px; }
-  @media (max-width: 480px) { body.app-dufaat { --rise3: 14px; } }
-
-  @keyframes df-rise   { from { opacity: 0; transform: translateY(var(--rise3, 22px)); } }
-  @keyframes df-fade   { from { opacity: 0; } }
-  @keyframes df-pop    { from { opacity: 0; transform: translateY(14px) scale(.95); } }
-  @keyframes df-grow   { from { transform: scaleX(0); } }
-  @keyframes df-wm     { from { transform: translateY(112%); } }
-  @keyframes df-device { from { opacity: 0; transform: translateY(30px) scale(.97); } }
-  @keyframes df-bloom  { 0% { opacity: 0; } 55% { opacity: .9; } 100% { opacity: 1; } }
-
-  /* — hero choreography; the aurora wash blooms in as the opening beat — */
-  body.app-dufaat .signal-field { animation: df-bloom 1.5s var(--ease-out) backwards; }
-  body.app-dufaat .hero-brand { animation: df-fade .5s var(--ease-out) .05s backwards; }
-  body.app-dufaat .hero .hero-eyebrow { animation: df-fade .45s var(--ease-out) .30s backwards; }
-  body.app-dufaat .hero .hero-eyebrow::before { transform-origin: var(--eo, left) center; animation: df-grow .6s var(--ease-out) .36s backwards; }
-  html[dir="rtl"] body.app-dufaat .hero .hero-eyebrow::before { --eo: right; }
-  html[lang="en"] body.app-dufaat .hero h1 [data-en] { display: block; }
-  html[lang="ar"] body.app-dufaat .hero h1 [data-ar] { display: block; }
-  body.app-dufaat .hero h1 .hl { display: block; overflow: clip; padding-block: .22em; margin-block: -.22em; }
-  body.app-dufaat .hero h1 .hli { display: inline-block; animation: df-wm .8s cubic-bezier(.19, 1, .22, 1) backwards; }
-  body.app-dufaat .hero h1 .hl:nth-child(1) .hli { animation-delay: .14s; }
-  body.app-dufaat .hero h1 .hl:nth-child(2) .hli { animation-delay: .30s; }
-  body.app-dufaat .hero-lede { animation: df-rise .6s cubic-bezier(.19, 1, .22, 1) .50s backwards; }
-  body.app-dufaat .hero .app-card-meta { animation: df-fade .5s var(--ease-out) .66s backwards; }
-  body.app-dufaat .hero-actions .btn:nth-child(1) { animation: df-pop .55s var(--ease-spring) .78s backwards; }
-  body.app-dufaat .hero-actions .btn:nth-child(2) { animation: df-pop .55s var(--ease-spring) .88s backwards; }
-  body.app-dufaat .hero .device-wrap { animation: df-device .85s cubic-bezier(.19, 1, .22, 1) .55s backwards; }
-  body.app-dufaat .badge--live .dot { animation-duration: 3.2s; }
-
-  /* — THE living signature: the settle moment. As the receipt card reveals,
-       its header/note fade in, the receipt chip rises, then the Settled stamp
-       pops (spring, tiny rotation — mirrored in RTL) and its tick DRAWS
-       itself (stroke-dashoffset; static fallback = fully drawn). — */
-  @keyframes df-stamp { from { opacity: 0; transform: scale(.5) rotate(var(--rot, -8deg)); } }
-  @keyframes df-check { from { stroke-dashoffset: 26; } }
-  @keyframes df-chip  { from { opacity: 0; transform: translateY(8px); } }
-  .split [data-reveal].in .df-doc .df-fhead { animation: df-fade .5s var(--ease-out) .10s backwards; }
-  .split [data-reveal].in .df-doc .df-note  { animation: df-fade .5s var(--ease-out) .22s backwards; }
-  .split [data-reveal].in .df-doc .df-chip  { animation: df-chip .5s var(--ease-out) .55s backwards; }
-  .split [data-reveal].in .df-doc .df-stamp { animation: df-stamp .6s var(--ease-spring) .40s backwards; }
-  html[dir="rtl"] .df-doc .df-stamp { --rot: 8deg; }
-  .df-stamp svg path { stroke-dasharray: 26; }
-  .split [data-reveal].in .df-doc .df-stamp svg path { animation: df-check .5s var(--ease-out) .78s backwards; }
-
-  /* — glass features: luminous rise via the Stage-1 group; icon chips pop
-       slot-keyed as each card lands — */
-  body.app-dufaat .feature-grid > .feature:nth-child(2) { --slot: 1; }
-  body.app-dufaat .feature-grid > .feature:nth-child(3) { --slot: 2; }
-  body.app-dufaat .feature-grid > .feature:nth-child(4) { --slot: 3; }
-  body.app-dufaat .feature-grid > .feature:nth-child(5) { --slot: 4; }
-  body.app-dufaat .feature-grid > .feature:nth-child(6) { --slot: 5; }
-  body.app-dufaat .feature-grid > .feature:nth-child(7) { --slot: 6; }
-  body.app-dufaat .feature-grid > .feature:nth-child(8) { --slot: 7; }
-  body.app-dufaat .feature.in .f-ic { animation: df-pop .45s var(--ease-spring) calc(var(--slot, 0) * var(--stagger-step) + .30s) backwards; }
-
-  /* — hover micro (calm): devices breathe, receipt card lifts slightly — */
-  .df-shot .device { transition: transform .35s var(--ease-spring); }
-  .df-shot:hover .device { transform: scale(1.015); }
-  .df-doc { transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out); }
-  .df-doc:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-
-  /* — reduced motion: composed, fully visible, static — */
-  @media (prefers-reduced-motion: reduce) {
-    body.app-dufaat .signal-field, body.app-dufaat .hero-brand,
-    body.app-dufaat .hero .hero-eyebrow, body.app-dufaat .hero .hero-eyebrow::before,
-    body.app-dufaat .hero h1 .hli, body.app-dufaat .hero-lede,
-    body.app-dufaat .hero .app-card-meta, body.app-dufaat .hero-actions .btn,
-    body.app-dufaat .hero .device-wrap,
-    .split [data-reveal].in .df-doc :is(.df-fhead, .df-note, .df-chip, .df-stamp),
-    .split [data-reveal].in .df-doc .df-stamp svg path,
-    body.app-dufaat .feature.in .f-ic {
-      animation: none !important; opacity: 1 !important; transform: none !important;
-    }
-    .df-shot .device, .df-doc { transition: none !important; }
-  }
-</style>
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch3">
+<link rel="stylesheet" href="/dufaat/product-cinema.css?v=batch3-v2">
+<link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-legal-bg-1">
 </head>
-<body class="app-dufaat">
+<body class="product-cinema-rollout pc-dufaat">
+<a class="pc-site-skip" href="#main">Skip to content</a>
 
-  <!-- ── Top bar ─────────────────────────────────────────────── -->
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a href="/" class="brand" aria-label="Saud Apps home">
-        <span class="brand-mark" aria-hidden="true">S</span>
-        <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
-      </a>
-      <div class="topbar-tools">
-        <div class="seg seg--icon" role="group" aria-label="Theme">
-          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-          </button>
-          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
-          </button>
-        </div>
-        <div class="seg" role="group" aria-label="Language">
-          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
-        </div>
-      </div>
+<header class="pc-site-header">
+  <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
+    <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+  </a>
+
+  <nav class="pc-site-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/sshift/">SShift</a>
+    <a href="/phonespace/">PhoneSpace</a>
+    <a href="/filed/">Filed</a>
+    <a href="/dufaat/" aria-current="page">Dufaat</a>
+    <a href="/about/">About</a>
+    <a href="/support/">Support</a>
+    <a href="/legal/">Legal</a>
+  </nav>
+
+  <div class="pc-site-tools">
+    <div class="pc-site-theme" role="group" aria-label="Color theme">
+      <button type="button" data-pc-site-theme="light" aria-pressed="false">Day</button>
+      <button type="button" data-pc-site-theme="dark" aria-pressed="false">Night</button>
     </div>
-  </header>
-
-  <!-- ── Breadcrumb ──────────────────────────────────────────── -->
-  <div class="wrap">
-    <nav class="crumb" aria-label="Breadcrumb">
-      <a href="/"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></a>
-      <span class="chev" aria-hidden="true">›</span>
-      <span>Dufaat</span>
-    </nav>
+    <details class="pc-site-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <a href="/">Home</a>
+        <a href="/sshift/">SShift</a>
+        <a href="/phonespace/">PhoneSpace</a>
+        <a href="/filed/">Filed</a>
+        <a href="/dufaat/" aria-current="page">Dufaat</a>
+        <a href="/about/">About</a>
+        <a href="/support/">Support</a>
+        <a href="/legal/">Legal</a>
+      </nav>
+    </details>
   </div>
+</header>
 
-  <!-- ── Hero (two-column: text + real screenshot, PhoneSpace-style) ── -->
-  <section class="hero">
-    <div class="signal-field" aria-hidden="true"></div>
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <span class="hero-brand">
-            <img src="/dufaat/assets/icon-dufaat.png" alt="Dufaat app icon" width="46" height="46">
-            <span class="hb-name">Dufaat</span>
-          </span>
-          <span class="eyebrow hero-eyebrow" style="display:inline-flex">
-            <span data-en>Privacy-first · iPhone</span>
-            <span data-ar>الخصوصية أولاً · آيفون</span>
-          </span>
-          <h1>
-            <span data-en><span class="hl"><span class="hli">Every installment,</span></span><span class="hl"><span class="hli">quietly <span class="grad-text">settled</span>.</span></span></span>
-            <span data-ar><span class="hl"><span class="hli">كل قسط،</span></span><span class="hl"><span class="hli">يُسوّى <span class="grad-text">بهدوء</span>.</span></span></span>
-          </h1>
-          <p class="hero-lede">
-            <span data-en>Dufaat is a calm, offline home for your installment plans — set who you're paying to and how much, let the schedule write itself, then settle each payment with a tick. Everything stays on your iPhone.</span>
-            <span data-ar>دُفعات مساحة هادئة تعمل دون اتصال لخطط أقساطك — حدّد لمن تدفع وكم المبلغ، ودَع الجدول يكتب نفسه، ثم سوِّ كل دفعة بنقرة واحدة. كل شيء يبقى على جهازك.</span>
-          </p>
-          <div class="app-card-meta" style="margin-top:24px">
-            <span class="badge badge--live" data-app="dufaat" data-field="status"><span class="dot" aria-hidden="true"></span><span data-en>On the App Store</span><span data-ar>على App Store</span></span>
-            <span class="badge" data-app="dufaat" data-field="version">iOS · v2.1</span>
-            <span class="badge" data-app="dufaat" data-field="rating" style="display:none"></span>
-            <span class="badge" data-app="dufaat" data-field="updated" style="display:none"></span>
-          </div>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://apps.apple.com/ae/app/dufaat/id6780440703">
-              <svg class="ic ic-apple" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
-              <span data-en>Download on the App Store</span>
-              <span data-ar>التحميل من App Store</span>
-            </a>
-            <a class="btn btn-ghost" href="/dufaat/privacy/">
-              <span data-en>Privacy</span><span data-ar>الخصوصية</span>
-              <span class="chev" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Real Dufaat screen (v2): the Home, plans with teal progress -->
-        <div class="device-wrap">
-          <div class="device">
-            <span class="island" aria-hidden="true"></span>
-            <div class="screen">
-              <img src="/dufaat/assets/screenshots/installments.jpg" alt="The Dufaat home — the Installments tab listing each plan with a teal progress bar, payments made, amount remaining, and the next payment" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-          </div>
-        </div>
-      </div>
+<main id="main" tabindex="-1">
+  <section class="df-opening" aria-labelledby="dufaat-title">
+    <div class="df-opening__edition" aria-hidden="true">
+      <span>Product film · 05</span><span>The Settlement Cut</span><span>Dufaat · iPhone</span>
     </div>
-  </section>
 
-  <!-- ── A closer look — the proof lives with the payment ────── -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="split">
-        <div data-reveal>
-          <span class="eyebrow"><span data-en>A closer look</span><span data-ar>نظرة أقرب</span></span>
-          <h2 class="section-title"><span data-en>The receipt lives with the payment.</span><span data-ar>الإيصال يبقى مع الدفعة.</span></h2>
-          <p class="section-sub">
-            <span data-en>Add a note to any payment and attach its receipt — a photo or a PDF. When you settle the payment, the note, the receipt, and the date stay together, right where you'll look for them.</span>
-            <span data-ar>أضف ملاحظة إلى أي دفعة وأرفق إيصالها — صورة أو ملف PDF. وعند تسوية الدفعة، تبقى الملاحظة والإيصال والتاريخ معًا، حيث ستبحث عنها تمامًا.</span>
-          </p>
+    <div class="df-opening__layout">
+      <div class="df-opening__copy">
+        <div class="df-lockup">
+          <img src="/dufaat/assets/icon-dufaat.png" alt="Dufaat app icon" width="256" height="256">
+          <span><small>Saud Apps · Product 04</small><strong>Dufaat</strong></span>
         </div>
-        <div data-reveal>
-          <div class="df-doc" aria-hidden="true">
-            <span class="df-stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-en>Settled</span><span data-ar>مسوّاة</span></span>
-            <div class="df-fhead">
-              <span class="df-fmonth"><span data-en>March</span><span data-ar>مارس</span></span>
-              <span class="df-famt"><span data-en>1,500</span><span data-ar>١٬٥٠٠</span></span>
-            </div>
-            <p class="df-note"><span data-en>Paid in cash · Mar 28</span><span data-ar>دفعتها نقدًا · ٢٨ مارس</span></p>
-            <span class="df-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05 12.25 20.24a6 6 0 0 1-8.49-8.49l8.57-8.57a4 4 0 1 1 5.66 5.66l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>receipt.pdf</span>
-          </div>
+
+        <p class="df-opening__eyebrow">Personal installment record · Offline</p>
+        <h1 id="dufaat-title"><span>A calm path.</span><span>Due to settled.</span></h1>
+        <p class="df-opening__lede">Plan personal installments, put every due date in order, record what you have paid, and keep the proof beside it. Dufaat organizes your record on your iPhone; it never moves money.</p>
+
+        <div class="df-opening__metadata" role="group" aria-label="Dufaat App Store information">
+          <span data-app="dufaat" data-field="status">On the App Store</span>
+          <span data-app="dufaat" data-field="version">iOS · v2.1</span>
+          <span data-app="dufaat" data-field="rating" style="display:none"></span>
+          <span data-app="dufaat" data-field="updated" style="display:none"></span>
+          <span>Private · on device</span>
+        </div>
+
+        <div class="df-opening__actions">
+          <a class="pc-site-action pc-site-action--dufaat" href="https://apps.apple.com/ae/app/dufaat/id6780440703">View on the App Store <span aria-hidden="true">↗</span></a>
+          <a class="pc-site-action" href="#settlement-sequence">Follow the path <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── Features ────────────────────────────────────────────── -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="center" data-reveal>
-        <span class="eyebrow" style="display:inline-flex"><span data-en>What it does</span><span data-ar>ماذا يفعل</span></span>
-        <h2 class="section-title"><span data-en>Built to keep payments in order.</span><span data-ar>مصمَّم ليُبقي دفعاتك مرتّبة.</span></h2>
-      </div>
-
-      <div class="feature-grid cols-3" style="margin-top:32px" data-reveal-group>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span>
-          <h3><span data-en>Pay Soon</span><span data-ar>للتسديد</span></h3>
-          <p>
-            <span data-en>For short-term amounts and money you pay off with your monthly salary — kept completely separate from your long-term installments. Add an amount and its due date, then see at a glance what's paid, due, or overdue.</span>
-            <span data-ar>للمبالغ قصيرة الأجل والمبالغ التي تسدّدها على راتبك الشهري — منفصلة تمامًا عن أقساطك طويلة المدى. أضِف المبلغ وتاريخ استحقاقه، وتابِع بنظرة واحدة ما دُفع وما تبقّى وما تأخّر.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></span>
-          <h3><span data-en>Create a plan in seconds</span><span data-ar>أنشئ خطة في ثوانٍ</span></h3>
-          <p>
-            <span data-en>Name who you're paying to, set the total amount, then choose a monthly amount or a number of months — Dufaat works out the rest.</span>
-            <span data-ar>اكتب لمن تدفع، وحدّد المبلغ الإجمالي، ثم اختر قسطًا شهريًا أو عدد الأشهر — ويتولّى دُفعات الباقي.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-          <h3><span data-en>A schedule that writes itself</span><span data-ar>جدول يكتب نفسه</span></h3>
-          <p>
-            <span data-en>Every payment is generated for you with its month and amount, so you always see what's settled, what's next, and what's overdue.</span>
-            <span data-ar>تُولَّد كل دفعة تلقائيًا بشهرها ومبلغها، فترى دائمًا ما سُوّي، وما هو التالي، وما تأخّر.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-6"/></svg></span>
-          <h3><span data-en>Settle in order</span><span data-ar>سَوِّ بالترتيب</span></h3>
-          <p>
-            <span data-en>Tick payments off one at a time, in order, and watch the plan's progress fill in — calm, visible, and always up to date.</span>
-            <span data-ar>علّم الدفعات واحدة تلو الأخرى وبترتيبها، وشاهد تقدّم الخطة يكتمل — بهدوء ووضوح وتحديث دائم.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05 12.25 20.24a6 6 0 0 1-8.49-8.49l8.57-8.57a4 4 0 1 1 5.66 5.66l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span>
-          <h3><span data-en>Notes &amp; receipts</span><span data-ar>ملاحظات وإيصالات</span></h3>
-          <p>
-            <span data-en>Add a note to any payment and attach its receipt — a photo or a PDF — so the proof lives right next to the payment it belongs to.</span>
-            <span data-ar>أضف ملاحظة إلى أي دفعة وأرفق إيصالها — صورة أو ملف PDF — ليبقى الإثبات بجانب الدفعة التي يخصّها.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
-          <h3><span data-en>Reminders</span><span data-ar>التذكيرات</span></h3>
-          <p>
-            <span data-en>Turn on optional reminders so a due payment never slips by — scheduled locally on your device, and never sent anywhere.</span>
-            <span data-ar>فعّل التذكيرات الاختيارية كي لا تفوتك دفعة مستحقة — تُجدول محليًا على جهازك، ولا تُرسل إلى أي مكان.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
-          <h3><span data-en>PDF reports</span><span data-ar>تقارير PDF</span></h3>
-          <p>
-            <span data-en>Improved PDF export — choose the period, attach your proofs, and get one tidy file to keep or share.</span>
-            <span data-ar>تصدير PDF مُحسَّن — اختر الفترة، وأرفق إثباتاتك، واحصل على ملف واحد أنيق تحتفظ به أو تشاركه.</span>
-          </p>
-        </div>
-
-        <div class="feature" data-reveal>
-          <span class="f-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          <h3><span data-en>Private by design</span><span data-ar>خاص بالتصميم</span></h3>
-          <p>
-            <span data-en>Your records never leave your iPhone. Backup is a file you create and control — save it where you choose, restore it when you need. Fully bilingual, English and Arabic with right-to-left.</span>
-            <span data-ar>سجلاتك لا تغادر جهازك أبدًا. والنسخة الاحتياطية ملف تنشئه وتتحكم به أنت — احفظه حيث تشاء واستعده متى احتجت. ثنائي اللغة بالكامل، عربي وإنجليزي مع اتجاه من اليمين إلى اليسار.</span>
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── A look inside (real screenshots) ─────────────────────── -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="center" data-reveal>
-        <span class="eyebrow" style="display:inline-flex"><span data-en>From the app</span><span data-ar>من داخل التطبيق</span></span>
-        <h2 class="section-title"><span data-en>A look inside Dufaat.</span><span data-ar>نظرة داخل دُفعات.</span></h2>
-      </div>
-
-      <div class="df-shots" data-reveal-group>
-        <figure class="df-shot" data-reveal="scale">
-          <div class="device">
-            <span class="island" aria-hidden="true"></span>
-            <div class="screen">
-              <img src="/dufaat/assets/screenshots/paysoon.jpg" alt="The Dufaat Pay Soon tab — short-term amounts grouped by month, each with a tick to settle and a running paid total" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-          </div>
-          <figcaption><span data-en>Pay Soon — settle the near-term first.</span><span data-ar>للتسديد — سوِّ القريب أولًا.</span></figcaption>
+      <div class="df-opening__evidence" aria-label="Real Dufaat installment plan screen">
+        <div class="df-opening__rail" aria-hidden="true"><span>PLAN</span><span>DUE</span><span>PAID</span><span>PROOF</span></div>
+        <figure class="df-device df-device--hero">
+          <img src="/dufaat/assets/screenshots/installments.jpg" alt="Dufaat Installments screen showing two personal plans, progress, remaining amounts, and next payment dates" width="820" height="1781" fetchpriority="high" decoding="async">
         </figure>
+        <p class="df-opening__evidence-note" aria-hidden="true"><span>Real interface</span><strong>Installments · current view</strong></p>
+      </div>
+    </div>
+  </section>
 
-        <figure class="df-shot" data-reveal="scale">
-          <div class="device">
-            <span class="island" aria-hidden="true"></span>
-            <div class="screen">
-              <img src="/dufaat/assets/screenshots/plan-detail.jpg" alt="A Dufaat plan detail — the remaining balance, progress, and every payment dated, with paid ones ticked in teal" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
-          </div>
-          <figcaption><span data-en>Any length, automatically scheduled.</span><span data-ar>أي مدّة، بجدول تلقائي.</span></figcaption>
-        </figure>
+  <section class="df-settlement" id="settlement-sequence" data-df-settlement data-stage="6" aria-labelledby="settlement-title">
+    <div class="df-settlement__sticky">
+      <header class="df-chapter-heading df-settlement__heading" data-pc-site-reveal>
+        <p class="df-kicker">Chapter 02 · Plan → due → paid → proof</p>
+        <h2 id="settlement-title">Put every due date<br>in its place.</h2>
+        <p>A scattered set of obligations becomes a visible path. Dufaat records the schedule, the next item, the payment you mark, and the proof you choose to keep.</p>
+      </header>
 
-        <figure class="df-shot" data-reveal="scale">
-          <div class="device">
-            <span class="island" aria-hidden="true"></span>
-            <div class="screen">
-              <img src="/dufaat/assets/screenshots/paysoon-form.jpg" alt="Adding a Pay Soon amount in Dufaat — amount and currency, an optional note and due date, and optional reminders" style="width:100%;height:100%;object-fit:cover;display:block">
-            </div>
+      <div class="df-settlement__stage">
+        <div class="df-path" aria-hidden="true">
+          <div class="df-path__axis"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="df-obligation df-obligation--one"><span>PLAN 01</span><strong>Scheduled</strong></div>
+          <div class="df-obligation df-obligation--two"><span>PLAN 02</span><strong>Pending</strong></div>
+          <div class="df-obligation df-obligation--soon"><span>PAY SOON</span><strong>Next</strong></div>
+          <div class="df-due-marker"><span>DUE</span><strong>Nearest item</strong></div>
+          <div class="df-paid-marker"><span>✓</span><strong>Recorded paid</strong></div>
+          <div class="df-proof-marker"><span>PROOF</span><strong>Receipt attached</strong></div>
+          <div class="df-settled-line"><span>PLANNED</span><span>DUE</span><span>PAID</span><span>SETTLED</span></div>
+          <figure class="df-path__product">
+            <img src="/dufaat/assets/screenshots/plan-detail.jpg" alt="" width="820" height="1781" loading="lazy" decoding="async">
+          </figure>
+        </div>
+
+        <div class="df-settlement__steps">
+          <article><span>01 · Gather</span><h3>Several obligations enter the same view.</h3><p>Plans and near-term items are recorded without pretending to connect to a bank.</p></article>
+          <article><span>02 · Order</span><h3>Dates and plans gain a sequence.</h3><p>A schedule makes the next step legible and keeps long-term installments distinct.</p></article>
+          <article><span>03 · Pay Soon</span><h3>The nearest item comes forward.</h3><p>Short-term amounts receive calm priority, with due, paid, and overdue states.</p></article>
+          <article><span>04 · Mark</span><h3>You record the payment as paid.</h3><p>The tick is a personal record you make after paying; Dufaat does not process it.</p></article>
+          <article><span>05 · Attach</span><h3>Proof stays beside the payment.</h3><p>Add a receipt photo or PDF when you want factual context later.</p></article>
+          <article><span>06 · Understand</span><h3>The whole path becomes visible.</h3><p>Pending, paid, deferred, and completed states remain understandable at a glance.</p></article>
+          <article><span>07 · Resolve</span><h3>The real Dufaat record takes the frame.</h3><p>The interface remains the evidence; the milestone path simply explains it.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="df-section df-paysoon" aria-labelledby="paysoon-title">
+    <div class="df-section__inner">
+      <div class="df-paysoon__layout">
+        <div class="df-paysoon__copy" data-pc-site-reveal>
+          <p class="df-kicker">Chapter 03 · Pay Soon</p>
+          <h2 id="paysoon-title">Near-term,<br>not alarming.</h2>
+          <p>Pay Soon keeps short-term amounts separate from longer installment plans. Add the amount and due date, then see what is paid, still due, or overdue—without implying automatic payment.</p>
+          <div class="df-status-rail" aria-label="Pay Soon states">
+            <span><b>01</b>Due</span><span><b>02</b>Paid</span><span><b>03</b>Overdue</span>
           </div>
-          <figcaption><span data-en>Add an amount in seconds.</span><span data-ar>أضِف مبلغًا في ثوانٍ.</span></figcaption>
+        </div>
+        <figure class="df-product-figure df-product-figure--paysoon" data-pc-site-reveal>
+          <div class="df-device"><img src="/dufaat/assets/screenshots/paysoon.jpg" alt="Dufaat Pay Soon screen with a monthly progress summary, one pending amount, one paid amount, and a completed month" width="820" height="1781" loading="lazy" decoding="async"></div>
+          <figcaption><span>Real interface · Pay Soon</span><strong>Due and paid, separated clearly</strong></figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ── What's New ──────────────────────────────────────────── -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div data-reveal>
-        <span class="eyebrow">
-          <span data-en>Release history</span>
-          <span data-ar>سجل التحديثات</span>
-        </span>
-        <h2 class="section-title">
-          <span data-en>What's New</span>
-          <span data-ar>ما الجديد</span>
-        </h2>
-      </div>
-      <div data-releases="dufaat" data-reveal="fade" style="margin-top:28px"></div>
-    </div>
-  </section>
+  <section class="df-section df-progress" aria-labelledby="progress-title">
+    <div class="df-section__inner">
+      <header class="df-chapter-heading" data-pc-site-reveal>
+        <p class="df-kicker">Chapter 04 · Mark progress</p>
+        <h2 id="progress-title">Progress becomes<br>visible.</h2>
+        <p>Dufaat generates the schedule for a plan, keeps paid and pending installments in order, and lets you defer a payment when the current app supports it.</p>
+      </header>
 
-  <!-- ── Privacy strip ───────────────────────────────────────── -->
-  <section class="section--tight" data-reveal>
-    <div class="wrap">
-      <div class="trust">
-        <span class="t-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        </span>
-        <div class="t-text">
-          <p>
-            <span data-en>Dufaat is <b>100% offline</b>. Your plans, payments, notes, and receipts are stored only on your device — no accounts, no servers, no tracking. Read the <a href="/dufaat/privacy/">Privacy Policy</a> and <a href="/dufaat/terms/">Terms of Use</a>.</span>
-            <span data-ar>تطبيق دُفعات يعمل <b>دون اتصال بنسبة 100%</b>. تُحفظ خططك ودفعاتك وملاحظاتك وإيصالاتك على جهازك فقط — بلا حسابات، بلا خوادم، بلا تتبّع. اطّلع على <a href="/dufaat/privacy/">سياسة الخصوصية</a> و<a href="/dufaat/terms/">شروط الاستخدام</a>.</span>
-          </p>
+      <div class="df-progress__layout">
+        <figure class="df-product-figure df-product-figure--plan" data-pc-site-reveal>
+          <div class="df-device"><img src="/dufaat/assets/screenshots/plan-detail.jpg" alt="Dufaat plan detail showing a twelve-payment schedule with seven payments marked paid and the next installment highlighted" width="820" height="1781" loading="lazy" decoding="async"></div>
+          <figcaption><span>Real interface · Plan detail</span><strong>Paid and pending in order</strong></figcaption>
+        </figure>
+        <div class="df-progress__ledger" data-pc-site-reveal aria-label="Installment progress explanation">
+          <article><span>01</span><div><strong>Scheduled</strong><p>Months and amounts are generated from the plan you enter.</p></div><b>PLAN</b></article>
+          <article><span>02</span><div><strong>Paid</strong><p>A settled tick records the payment you already made.</p></div><b>✓</b></article>
+          <article><span>03</span><div><strong>Pending</strong><p>The next unpaid item stays visible without manufactured urgency.</p></div><b>NEXT</b></article>
+          <article><span>04</span><div><strong>Deferred</strong><p>Supported plans can move a deferred payment to the end of the schedule.</p></div><b>LATER</b></article>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Footer ──────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="wrap sf-inner">
-      <div class="sf-bar" data-reveal="fade">
-        <a class="sf-brand" href="/" aria-label="Saud Apps home">
-          <span class="brand-mark" aria-hidden="true">S</span>
-          <span class="sf-name">Saud Apps</span>
-        </a>
-        <nav class="sf-links" aria-label="Footer">
-          <a href="/sshift/">SShift</a>
-          <a href="/phonespace/">PhoneSpace</a>
-          <a href="/promptbook/">Promptbook</a>
-          <a href="/filed/">Filed</a>
-          <a href="/dufaat/">Dufaat</a>
-          <span class="sf-dot" aria-hidden="true"></span>
-          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
-          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
-          <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
-        </nav>
+  <section class="df-section df-proof" aria-labelledby="proof-title">
+    <div class="df-section__inner">
+      <header class="df-chapter-heading" data-pc-site-reveal>
+        <p class="df-kicker">Chapter 05 · Keep the proof</p>
+        <h2 id="proof-title">The receipt stays<br>with the record.</h2>
+        <p>Attach up to three receipt photos or PDFs to a payment. They remain in Dufaat’s on-device storage as your personal record—not bank verification.</p>
+      </header>
+
+      <div class="df-proof__layout">
+        <div class="df-proof-sheet" data-pc-site-reveal aria-label="Receipt attachment concept">
+          <div class="df-proof-sheet__head"><span>PERSONAL RECORD</span><strong>Proof attached</strong></div>
+          <div class="df-proof-sheet__line"><span>Payment note</span><b>Kept locally</b></div>
+          <div class="df-proof-sheet__attachment"><i>PDF</i><span><strong>Receipt or photo</strong><small>Up to three attachments</small></span><b>✓</b></div>
+          <div class="df-proof-sheet__foot"><span>On device</span><span>No upload</span><span>You control the file</span></div>
+        </div>
+        <div class="df-proof__copy" data-pc-site-reveal>
+          <p class="df-rule-label">Proof is context</p>
+          <h3>Keep the fact beside the payment.</h3>
+          <p>Notes, the date you recorded, and any attachment stay together so the record is easier to understand later.</p>
+        </div>
       </div>
-      <div class="sf-base" data-reveal="fade">
-        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+    </div>
+  </section>
+
+  <section class="df-section df-record" aria-labelledby="understand-title">
+    <div class="df-section__inner">
+      <header class="df-chapter-heading" data-pc-site-reveal>
+        <p class="df-kicker">Chapter 06 · Understand the record</p>
+        <h2 id="understand-title">Your record<br>stays yours.</h2>
+        <p>Reports, local reminders, and user-controlled backup files help you carry the record forward without an account, a backend, or cloud synchronization.</p>
+      </header>
+
+      <div class="df-record__grid">
+        <article data-pc-site-reveal><span>01 · Report</span><h3>Choose a period.</h3><p>Export a PDF report and include payment proofs in one file you can keep or share.</p><b>PDF</b></article>
+        <article data-pc-site-reveal><span>02 · Remind</span><h3>Scheduled locally.</h3><p>Optional notifications are created by iOS on your device and can be turned off.</p><b>DUE</b></article>
+        <article data-pc-site-reveal><span>03 · Back up</span><h3>A file you control.</h3><p>Create a backup when you choose, save it where you choose, and restore from a file you provide.</p><b>FILE</b></article>
+        <article data-pc-site-reveal><span>04 · Private</span><h3>No account system.</h3><p>Dufaat stores personal records on device and does not connect to banks or lenders.</p><b>LOCAL</b></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="df-section df-gallery" aria-labelledby="gallery-title">
+    <div class="df-section__inner">
+      <header class="df-chapter-heading" data-pc-site-reveal>
+        <p class="df-kicker">Chapter 07 · Real product record</p>
+        <h2 id="gallery-title">Four screens.<br>One calm system.</h2>
+        <p>Every image is a real Dufaat capture. The screenshots contain current Arabic sample records; this marketing page remains English and left-to-right.</p>
+      </header>
+
+      <div class="df-gallery__grid">
+        <figure class="df-gallery-card df-gallery-card--lead" data-pc-site-reveal><img src="/dufaat/assets/screenshots/installments.jpg" alt="Dufaat Installments overview with two plans and their progress" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>01 · Primary</span><strong>Installments</strong></figcaption></figure>
+        <figure class="df-gallery-card df-gallery-card--major" data-pc-site-reveal><img src="/dufaat/assets/screenshots/paysoon.jpg" alt="Dufaat Pay Soon overview with due and paid short-term items" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>02 · Supporting</span><strong>Pay Soon</strong></figcaption></figure>
+        <figure class="df-gallery-card df-gallery-card--major" data-pc-site-reveal><img src="/dufaat/assets/screenshots/plan-detail.jpg" alt="Dufaat installment plan detail with paid and pending payments" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>03 · Supporting</span><strong>Plan detail</strong></figcaption></figure>
+        <figure class="df-gallery-card df-gallery-card--compact" data-pc-site-reveal><img src="/dufaat/assets/screenshots/paysoon-form.jpg" alt="Dufaat New amount form with amount, currency, due date, note, and notification fields" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>04 · Evidence</span><strong>Pay Soon form</strong></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="df-section df-releases" aria-labelledby="release-title">
+    <div class="df-section__inner">
+      <header class="df-chapter-heading" data-pc-site-reveal>
+        <p class="df-kicker">Chapter 08 · Releases and continuity</p>
+        <h2 id="release-title">Three releases.<br>A clearer record.</h2>
+        <p>Version 2.1 adds Pay Soon and improved reports. The live release renderer preserves the complete public history above a truthful static fallback.</p>
+      </header>
+
+      <div class="df-release-layout">
+        <div class="df-release-copy" data-pc-site-reveal>
+          <p class="df-rule-label">Current fallback · iOS v2.1</p>
+          <p>Dufaat is available on the App Store. Personal records remain offline, and release information continues to come from the existing site data.</p>
+        </div>
+        <div class="df-release-wall" data-pc-site-reveal>
+          <div class="df-release-static">
+            <article class="df-release-entry">
+              <header><h3>Version 2.1</h3><span>Current release</span></header>
+              <p>Pay Soon: for short-term amounts and money you pay off with your monthly salary — completely separate from your long-term installments. Add the amount and its due date, and follow each month at a glance: what's paid, what's still due, and what's overdue.</p>
+              <p>Improved PDF reports: choose the report period, attach your payment proofs, and combine everything into one tidy file that's ready to share.</p>
+              <p>Performance improvements and fixes for a smoother, clearer experience.</p>
+            </article>
+            <details class="df-release-history">
+              <summary>Show earlier releases (2)</summary>
+              <article class="df-release-entry">
+                <header><h4>Version 2.0</h4><span>Earlier release</span></header>
+                <p>A whole new look</p>
+                <p>Dufaat is calmer and more beautiful — a warm new visual identity with luminous touches that makes tracking your installments a relaxed experience.</p>
+                <p>What's new:</p>
+                <ul>
+                  <li>A completely redesigned, warm and refined look in both light and dark mode</li>
+                  <li>Defer payments: officially postpone any payment — it shows as "Deferred" instead of "Overdue," moves to the end of the schedule, and your plan's end date updates automatically</li>
+                  <li>The Completed plans list is now open by default</li>
+                  <li>Polish and refinements across every screen</li>
+                </ul>
+                <p>Thank you for using Dufaat</p>
+              </article>
+              <article class="df-release-entry">
+                <header><h4>Version 1.0</h4><span>Initial release</span></header>
+                <p>No release notes provided.</p>
+              </article>
+            </details>
+          </div>
+          <div data-releases="dufaat"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="df-coda" aria-labelledby="coda-title">
+    <div class="df-coda__path" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="df-coda__content" data-pc-site-reveal>
+      <p class="df-kicker">Dufaat · The Settlement Cut</p>
+      <h2 id="coda-title">Know what is next.<br>Keep what is settled.</h2>
+      <p>Plan the schedule, follow the next due item, record progress, and keep proof under your own control—a calm personal record on iPhone.</p>
+      <div class="df-coda__actions">
+        <a class="pc-site-action pc-site-action--dufaat" href="https://apps.apple.com/ae/app/dufaat/id6780440703">View on the App Store <span aria-hidden="true">↗</span></a>
+        <a class="pc-site-action" href="/">All Saud Apps <span aria-hidden="true">→</span></a>
+      </div>
+      <nav class="df-coda__links" aria-label="Dufaat support and legal links">
+        <a href="/dufaat/privacy/">Privacy policy</a>
+        <a href="/dufaat/terms/">Terms of use</a>
+        <a href="/support/">Support</a>
         <a href="mailto:support@saud.im">support@saud.im</a>
-      </div>
+      </nav>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script src="/assets/saud.js?v=20260705-1" defer></script>
-  <script src="/app-data.js" defer></script>
-  <script src="/releases-loader.js" defer></script>
+<footer class="pc-site-footer">
+  <div class="pc-site-footer__identity"><strong>DUFAAT · SAUD APPS</strong><span>Plan · due · paid · proof · record</span></div>
+  <nav aria-label="Footer navigation">
+    <a href="/">Home</a>
+    <a href="/sshift/">SShift</a>
+    <a href="/phonespace/">PhoneSpace</a>
+    <a href="/filed/">Filed</a>
+    <a href="/dufaat/" aria-current="page">Dufaat</a>
+    <a href="/about/">About</a>
+    <a href="/support/">Support</a>
+    <a href="/legal/">Legal</a>
+  </nav>
+  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+</footer>
+
+<script src="/assets/product-cinema-core.js?v=batch3" defer></script>
+<script src="/dufaat/product-cinema.js?v=batch3" defer></script>
+<script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
+<script src="/app-data.js" defer></script>
+<script src="/releases-loader.js" defer></script>
 </body>
 </html>

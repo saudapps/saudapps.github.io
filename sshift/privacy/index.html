@@ -6,7 +6,7 @@
 <meta name="description" content="SShift privacy policy. We collect nothing. Your data stays on your device.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#0A0B0F">
-<link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
 <title>SShift — Privacy Policy</title>
 
@@ -31,6 +31,9 @@
 <meta name="twitter:image:alt" content="SShift app icon">
 
 <link rel="stylesheet" href="/assets/saud.css?v=20260705-1">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=info-1">
+<link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=info-1">
+<link rel="stylesheet" href="/assets/product-cinema-info.css?v=privacy-cleanup-1">
 <!-- anti-flash: set theme before first paint -->
 <script>
   (function () {
@@ -45,7 +48,7 @@
   })();
 </script>
 </head>
-<body class="app-sshift">
+<body class="app-sshift product-cinema-rollout pc-info pc-sshift" data-pc-info="legal" data-pc-title="SShift Privacy Policy">
 
   <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
@@ -93,20 +96,13 @@
     </div>
   </section>
 
-  <!-- ── Trust strip ─────────────────────────────────────────── -->
-  <section class="section--tight" style="padding-top:0">
+  <!-- ── Privacy introduction ────────────────────────────────── -->
+  <section class="section--tight sshift-privacy-intro" style="padding-top:0">
     <div class="wrap wrap--narrow">
-      <div class="trust">
-        <span class="t-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        </span>
-        <div class="t-text">
-          <p>
-            <span data-en>SShift collects <strong>nothing</strong>. Your data stays on your iPhone — no accounts, no servers, no tracking.</span>
-            <span data-ar>تطبيق SShift لا يجمع <strong>أي شيء</strong>. بياناتك تبقى على جهازك — بلا حسابات، بلا خوادم، بلا تتبّع.</span>
-          </p>
-        </div>
-      </div>
+      <p class="sshift-privacy-intro__sentence">
+        <span data-en>SShift collects <strong>nothing</strong>. Your data stays on your iPhone — no accounts, no servers, no tracking.</span>
+        <span data-ar>تطبيق SShift لا يجمع <strong>أي شيء</strong>. بياناتك تبقى على جهازك — بلا حسابات، بلا خوادم، بلا تتبّع.</span>
+      </p>
     </div>
   </section>
 
@@ -167,5 +163,8 @@
   </footer>
 
   <script src="/assets/saud.js?v=20260705-1" defer></script>
+  <script src="/assets/product-cinema-info.js?v=info-1" defer></script>
+  <script src="/assets/product-cinema-core.js?v=info-1" defer></script>
+  <script src="/assets/product-cinema-atmosphere.js?v=info-1" defer></script>
 </body>
 </html>

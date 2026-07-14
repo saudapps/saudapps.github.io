@@ -212,9 +212,6 @@
 
     if (opening) configs.push({ element: opening, back: 5, mid: 3, front: 0, visible: true });
     if (productOpening) configs.push({ element: productOpening, back: 9, mid: 6, front: 4, visible: true });
-    document.querySelectorAll('.pc-cast__item').forEach(function (item) {
-      configs.push({ element: item, back: 0, mid: 2, front: 3, visible: true });
-    });
     if (!configs.length) return;
 
     var pending = null;
@@ -312,8 +309,22 @@
         item.classList.toggle('is-pc-engaged', focusMotionAllowed() && (pointerCanAnimate || focused));
       }
 
+      function resetLight() {
+        item.style.setProperty('--pc-cast-light-x', '50%');
+        item.style.setProperty('--pc-cast-light-y', '50%');
+      }
+
+      function followPointer(event) {
+        if (!hovered || !finePointerQuery || !finePointerQuery.matches || (reduceQuery && reduceQuery.matches) || (mobileQuery && mobileQuery.matches)) return;
+        var rect = item.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        item.style.setProperty('--pc-cast-light-x', (((event.clientX - rect.left) / rect.width) * 100).toFixed(1) + '%');
+        item.style.setProperty('--pc-cast-light-y', (((event.clientY - rect.top) / rect.height) * 100).toFixed(1) + '%');
+      }
+
       item.addEventListener('pointerenter', function () { hovered = true; update(); }, { passive: true });
-      item.addEventListener('pointerleave', function () { hovered = false; update(); }, { passive: true });
+      item.addEventListener('pointermove', followPointer, { passive: true });
+      item.addEventListener('pointerleave', function () { hovered = false; resetLight(); update(); }, { passive: true });
       item.addEventListener('focusin', function () { focused = true; update(); });
       item.addEventListener('focusout', function (event) {
         if (event.relatedTarget && item.contains(event.relatedTarget)) return;
@@ -321,7 +332,7 @@
         update();
       });
 
-      var reset = function () { item.classList.remove('is-pc-engaged'); };
+      var reset = function () { item.classList.remove('is-pc-engaged'); resetLight(); };
       if (reduceQuery && reduceQuery.addEventListener) reduceQuery.addEventListener('change', reset);
       if (mobileQuery && mobileQuery.addEventListener) mobileQuery.addEventListener('change', reset);
     });
