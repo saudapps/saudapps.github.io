@@ -3,715 +3,333 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="PhoneSpace: Storage Cleaner. A storage cleaner that respects your privacy. On-device, no tracking, no uploads.">
+<meta name="description" content="PhoneSpace is a private, on-device storage cleaner for reviewing photos, videos, contacts, and files on iPhone.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#0A0B0F">
+<meta name="theme-color" content="#F3ECDE">
 <link rel="icon" type="image/png" href="/assets/saudapps-favicon.png">
 <link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
-<title>PhoneSpace: Storage Cleaner</title>
+<title>PhoneSpace — Storage pressure, made understandable</title>
 
 <link rel="canonical" href="https://saud.im/phonespace/">
-
-<!-- Open Graph -->
 <meta property="og:site_name" content="Saud Apps">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:url" content="https://saud.im/phonespace/">
 <meta property="og:title" content="PhoneSpace — Storage Cleaner for iPhone">
-<meta property="og:description" content="Clean and organize photos, videos, contacts, and files on your iPhone. On-device only — nothing is uploaded.">
+<meta property="og:description" content="Review photos, videos, contacts, and files on your iPhone. Processing stays on-device and nothing is uploaded.">
 <meta property="og:image" content="https://saud.im/assets/og/og-phonespace.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="PhoneSpace app icon">
-
-<!-- Twitter Card -->
+<meta property="og:image:alt" content="PhoneSpace app icon and storage categories">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PhoneSpace — Storage Cleaner for iPhone">
-<meta name="twitter:description" content="Clean and organize photos, videos, contacts, and files on your iPhone. On-device only — nothing is uploaded.">
+<meta name="twitter:description" content="Private, on-device tools for understanding and reviewing iPhone storage.">
 <meta name="twitter:image" content="https://saud.im/assets/og/og-phonespace.png">
-<meta name="twitter:image:alt" content="PhoneSpace app icon">
+<meta name="twitter:image:alt" content="PhoneSpace app icon and storage categories">
 
-<link rel="stylesheet" href="/assets/saud.css?v=20260705-1">
-<!-- anti-flash: set theme before first paint -->
 <script>
   (function () {
     try {
-      var s = localStorage.getItem('saudapps-theme');
-      var t = (s === 'light' || s === 'dark') ? s
-            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', t);
-      var l = localStorage.getItem('saudapps-lang');
-      if (l === 'ar') { document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); }
-    } catch (e) {}
+      var saved = localStorage.getItem('saudapps-theme');
+      var theme = saved === 'light' || saved === 'dark' ? saved
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (error) {}
   })();
 </script>
-
-<style>
-  /* ── PhoneSpace v2 — the app's REAL identity: a warm-cream canvas + New York
-     SERIF content, per-category colour used only as thin accents (the glowing
-     storage ring + 4px row stripes), and a truthful gold accent used sparingly.
-     NO amber page wash, NO blur/glass. FLAT — the ONLY non-flat things are the
-     ring's per-segment glow and the one warm cream hero-card gradient. ── */
-
-  /* Warm-cream canvas + surfaces + truthful gold accent (light). */
-  :root[data-theme="light"] body.app-phonespace {
-    --accent:#B28A29; --accent-2:#94701E; --accent-ink:#FFFFFF;
-    --bg:#FCFBFA; --bg-2:#F6F2EB;
-    --surface:#FFFFFF; --surface-2:#F7F4EF; --surface-raised:#FFFFFF; --surface-sunken:#F2EEE7;
-    --text:#1A1714; --text-2:#5C554C; --text-3:#8B8377;
-    --hairline:rgba(0,0,0,0.10); --hairline-2:rgba(0,0,0,0.055); --hairline-strong:rgba(0,0,0,0.16);
-    --topbar-bg:rgba(252,251,250,0.82);
-    --ps-card-1:#F6F2EB; --ps-card-2:#F2EEE7;
-  }
-  /* Near-black warm canvas (dark). */
-  :root[data-theme="dark"] body.app-phonespace {
-    --accent:#C49A33; --accent-2:#B28A29; --accent-ink:#FFFFFF;
-    --bg:#0F0F0F; --bg-2:#161514;
-    --surface:#1C1C1B; --surface-2:#232220; --surface-raised:#1C1C1B; --surface-sunken:#161514;
-    --text:#F4F1EA; --text-2:#B7B0A4; --text-3:#857E73;
-    --hairline:rgba(255,255,255,0.20); --hairline-2:rgba(255,255,255,0.10); --hairline-strong:rgba(255,255,255,0.30);
-    --topbar-bg:rgba(15,15,15,0.72);
-    --ps-card-1:#241F1A; --ps-card-2:#1F1A14;
-  }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-phonespace {
-    --accent:#C49A33; --accent-2:#B28A29; --accent-ink:#FFFFFF;
-    --bg:#0F0F0F; --bg-2:#161514;
-    --surface:#1C1C1B; --surface-2:#232220; --surface-raised:#1C1C1B; --surface-sunken:#161514;
-    --text:#F4F1EA; --text-2:#B7B0A4; --text-3:#857E73;
-    --hairline:rgba(255,255,255,0.20); --hairline-2:rgba(255,255,255,0.10); --hairline-strong:rgba(255,255,255,0.30);
-    --topbar-bg:rgba(15,15,15,0.72);
-    --ps-card-1:#241F1A; --ps-card-2:#1F1A14;
-  } }
-  /* Static category colours (identical light & dark) — ring segments + row stripes. */
-  .app-phonespace { --ps-photos:#5EC46B; --ps-videos:#ED9433; --ps-contacts:#5999B8; --ps-files:#8C73B3; }
-
-  /* New York serif for CONTENT (English); chrome/eyebrows stay system sans.
-     Arabic keeps its own font (serif is Latin-only). */
-  html[lang="en"] body.app-phonespace .hero h1,
-  html[lang="en"] body.app-phonespace .section-title,
-  html[lang="en"] body.app-phonespace .hero-lede,
-  html[lang="en"] body.app-phonespace .section-sub,
-  html[lang="en"] body.app-phonespace .feature h3,
-  html[lang="en"] body.app-phonespace .feature p,
-  html[lang="en"] body.app-phonespace .checklist li,
-  html[lang="en"] body.app-phonespace .hb-name,
-  html[lang="en"] body.app-phonespace .btn,
-  html[lang="en"] body.app-phonespace .trust strong,
-  html[lang="en"] body.app-phonespace .trust p,
-  html[lang="en"] body.app-phonespace .ps-num,
-  html[lang="en"] body.app-phonespace .ps-leg,
-  html[lang="en"] body.app-phonespace .ps-row,
-  html[lang="en"] body.app-phonespace .ps-bar-cap,
-  html[lang="en"] body.app-phonespace .ps-try { font-family: var(--font-serif); }
-  body.app-phonespace .hero h1 { font-weight: 500; letter-spacing: -0.005em; }
-
-  /* Kill the amber: no hero wash, hero keyword = plain serif text (no gradient). */
-  body.app-phonespace .signal-field { background: none; }
-  body.app-phonespace .grad-text { background: none; -webkit-text-fill-color: currentColor; color: inherit; }
-
-  /* Hero screenshot swaps with the page theme. */
-  body.app-phonespace .ps-hero-shot { width: 100%; height: 100%; object-fit: cover; display: block; }
-  body.app-phonespace .ps-hero-dark { display: none; }
-  :root[data-theme="dark"] body.app-phonespace .ps-hero-light { display: none; }
-  :root[data-theme="dark"] body.app-phonespace .ps-hero-dark { display: block; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body.app-phonespace .ps-hero-light { display: none; }
-    :root:not([data-theme="light"]) body.app-phonespace .ps-hero-dark { display: block; } }
-
-  /* Category feature cards → the app's row recipe: 4px leading colour stripe +
-     monochrome (grey) icon (the stripe carries the colour). Flat, no shadow. */
-  body.app-phonespace .feature { position: relative; overflow: hidden; background: var(--surface);
-    border: 1px solid var(--hairline); border-radius: 12px; box-shadow: none; }
-  body.app-phonespace .feature::before { content: ""; position: absolute; inset-block: 0;
-    inset-inline-start: 0; width: 4px; background: var(--c, var(--text-3)); }
-  .ps-c-photos{--c:var(--ps-photos);} .ps-c-videos{--c:var(--ps-videos);}
-  .ps-c-contacts{--c:var(--ps-contacts);} .ps-c-files{--c:var(--ps-files);}
-  .ps-cat-ic { width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center;
-    margin-bottom: 14px; background: color-mix(in srgb, var(--text) 7%, var(--surface)); color: var(--text-2); }
-  .ps-cat-ic svg { width: 24px; height: 24px; }
-
-  /* ── Code-drawn home showcase — the signature visual ───────────────────── */
-  .ps-showcase { max-width: 460px; margin: 34px auto 0; display: grid; gap: 14px; }
-  /* Hero card = the one allowed warm cream gradient; 0.5px hairline; NO shadow. */
-  .ps-card { background: linear-gradient(180deg, var(--ps-card-1), var(--ps-card-2));
-    border: 1px solid var(--hairline); border-radius: 16px; padding: 22px; }
-  .ps-card-top { display: flex; align-items: center; gap: 20px; }
-  /* The glowing storage ring (conic glow per segment, butt caps, masked donut). */
-  .ps-ring { position: relative; width: 132px; height: 132px; flex: 0 0 auto; }
-  .ps-ring-track, .ps-ring-fill { position: absolute; inset: 0; border-radius: 50%;
-    -webkit-mask: radial-gradient(closest-side, #0000 76%, #000 77%);
-            mask: radial-gradient(closest-side, #0000 76%, #000 77%); }
-  .ps-ring-track { background: var(--hairline); }
-  .ps-ring-fill { background: conic-gradient(from 0deg,
-    color-mix(in srgb,var(--ps-photos) 55%,transparent) 0deg,
-    var(--ps-photos) 68.4deg,
-    color-mix(in srgb,var(--ps-photos) 55%,transparent) 136.8deg,
-    color-mix(in srgb,var(--ps-videos) 55%,transparent) 136.8deg,
-    var(--ps-videos) 190.8deg,
-    color-mix(in srgb,var(--ps-videos) 55%,transparent) 244.8deg,
-    color-mix(in srgb,var(--ps-contacts) 55%,transparent) 244.8deg,
-    var(--ps-contacts) 277.2deg,
-    color-mix(in srgb,var(--ps-contacts) 55%,transparent) 309.6deg,
-    color-mix(in srgb,var(--ps-files) 55%,transparent) 309.6deg,
-    var(--ps-files) 334.8deg,
-    color-mix(in srgb,var(--ps-files) 55%,transparent) 360deg); }
-  .ps-num { position: absolute; inset: 0; display: grid; place-items: center;
-    font-size: 30px; color: var(--text); font-variant-numeric: tabular-nums; }
-  .ps-leg { flex: 1; list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
-  .ps-leg li { display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: var(--text-2); }
-  .ps-leg .sw { width: 8px; height: 8px; border-radius: 2px; flex: 0 0 auto; }
-  .ps-leg .nm { color: var(--text); }
-  .ps-leg .val { margin-inline-start: auto; font-variant-numeric: tabular-nums; }
-  /* Monochrome (grey) device storage bar — deliberately NOT coloured. */
-  .ps-bar { margin-top: 18px; }
-  .ps-bar-track { height: 6px; border-radius: 999px; overflow: hidden;
-    background: color-mix(in srgb, var(--text) 10%, transparent); }
-  .ps-bar-fill { height: 100%; width: 53.5%; border-radius: 999px;
-    background: color-mix(in srgb, var(--text) 50%, transparent); }
-  .ps-bar-cap { margin-top: 9px; font-size: 12.5px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-  /* Gold "Try"/upgrade pill — one of the few gold touches. */
-  .ps-unlock { display: flex; align-items: center; gap: 12px; padding: 14px 16px;
-    background: var(--surface); border: 1px solid var(--hairline); border-radius: 14px; }
-  .ps-unlock .ut { flex: 1; }
-  .ps-unlock .ut b { font-weight: 600; color: var(--text); font-size: 14px; }
-  .ps-unlock .ut span { display: block; font-size: 12px; color: var(--text-3); }
-  .ps-try { background: var(--accent); color: #fff; border-radius: 999px;
-    padding: 7px 18px; font-weight: 600; font-size: 14px; }
-  /* Category rows — 4px colour stripe + monochrome icon + serif name/count. */
-  .ps-rows { background: var(--surface); border: 1px solid var(--hairline);
-    border-radius: 14px; overflow: hidden; }
-  .ps-row { position: relative; display: flex; align-items: center; gap: 13px;
-    padding: 14px 16px 14px 18px; border-top: 1px solid var(--hairline-2); }
-  .ps-row:first-child { border-top: none; }
-  .ps-row::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0;
-    width: 4px; background: var(--c, var(--text-3)); }
-  .ps-row .ric { width: 30px; height: 30px; flex: 0 0 auto; display: grid; place-items: center; color: var(--text-3); }
-  .ps-row .ric svg { width: 22px; height: 22px; }
-  .ps-row .rname { font-size: 15px; color: var(--text); }
-  .ps-row .rname .rsub { font-size: 12.5px; color: var(--text-3); }
-  .ps-row .rcount { margin-inline-start: auto; font-size: 14px; color: var(--text-2); font-variant-numeric: tabular-nums; }
-  .ps-row .chev { color: var(--text-3); }
-
-  /* ── Code-drawn drill-down mocks (Photos results / Compress+Convert tools) ── */
-  .app-phonespace { --ps-burgundy:#740031; --ps-mustard:#E7B636; }
-  .ps-mock { max-width: 360px; margin: 0 auto; display: grid; gap: 11px; font-family: var(--font-serif); }
-  .ps-mock-ey { display: block; font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--text-3); font-family: var(--font-sans); }
-  .ps-mock-ey::before { content: "— "; }
-  .ps-mock-h { font-size: 25px; color: var(--text); margin: 3px 0 6px; }
-  .ps-mlist { display: grid; gap: 9px; }
-  .ps-mrow { position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px;
-    padding: 11px 14px 11px 16px; background: var(--surface); border: 1px solid var(--hairline);
-    border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
-  .ps-mrow::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 4px; background: var(--c, var(--ps-photos)); }
-  .ps-mrow .mic { width: 26px; height: 26px; flex: 0 0 auto; color: var(--text-3); display: grid; place-items: center; }
-  .ps-mrow .mic svg { width: 21px; height: 21px; }
-  .ps-mrow .mname { font-size: 14.5px; color: var(--text); line-height: 1.25; }
-  .ps-mrow .mname b { font-weight: 600; }
-  .ps-mrow .msub { display: block; font-size: 11.5px; color: var(--text-3); }
-  .ps-mrow .msize { margin-inline-start: auto; font-size: 13px; color: var(--text-2); font-variant-numeric: tabular-nums; }
-  .ps-mfoot { font-size: 12.5px; color: var(--text-3); padding-inline-start: 4px; }
-  .ps-mfoot b { color: var(--ps-photos); font-weight: 600; }
-  /* Compress (burgundy) / Convert (mustard) tool cards */
-  .ps-tool { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--hairline);
-    border-radius: 14px; padding: 16px 16px 16px 18px; }
-  .ps-tool::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 4px; background: var(--tc); }
-  .ps-tool-h { font-size: 16px; font-weight: 600; color: var(--text); }
-  .ps-tool-est { font-size: 12.5px; color: var(--text-3); margin-top: 6px; }
-  .ps-tool-est b { display: block; font-size: 23px; color: var(--text); margin-top: 1px; }
-  .ps-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 14px; }
-  .ps-chip { font-family: var(--font-sans); font-size: 12.5px; padding: 6px 13px; border-radius: 12px;
-    border: 1px solid var(--hairline); color: var(--text-2); background: transparent; }
-  .ps-chip.on { background: var(--tc); color: var(--tc-ink, #fff); border-color: transparent; }
-  .ps-cta { display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box;
-    font-family: var(--font-serif); font-size: 15px; font-weight: 600; color: var(--tc-ink, #fff);
-    background: var(--tc); border: none; border-radius: 12px; padding: 12px 16px;
-    box-shadow: 0 4px 10px color-mix(in srgb, var(--tc) 28%, transparent); }
-  .ps-c-burgundy { --tc: var(--ps-burgundy); --tc-ink: #FFFFFF; }
-  .ps-c-mustard { --tc: var(--ps-mustard); --tc-ink: #2A2310; }
-
-  /* ══ Stage 3c — motion (app-page tier): editorial, chapter-like ═════════
-     Restrained entrance choreography + THE living signature (the storage
-     ring draws itself) + scroll reveals. No atmosphere, no cursor-follow.
-     From-only keyframes + fill:backwards; masked serif headline with clip
-     headroom; page-local reduced-motion block at the end. Adds NO new
-     painted gradients (the ring draw is an alpha mask on the existing conic). */
-  @property --ring-a { syntax: '<angle>'; inherits: false; initial-value: 360deg; }
-  body.app-phonespace { --rise3: 22px; }
-  @media (max-width: 480px) { body.app-phonespace { --rise3: 14px; } }
-
-  @keyframes ps-rise   { from { opacity: 0; transform: translateY(var(--rise3, 22px)); } }
-  @keyframes ps-fade   { from { opacity: 0; } }
-  @keyframes ps-pop    { from { opacity: 0; transform: translateY(12px) scale(.96); } }
-  @keyframes ps-grow   { from { transform: scaleX(0); } }
-  @keyframes ps-wm     { from { transform: translateY(112%); } }
-  @keyframes ps-device { from { opacity: 0; transform: translateY(30px) scale(.97); } }
-
-  /* — hero choreography (editorial pacing) — */
-  body.app-phonespace .hero-brand { animation: ps-fade .5s var(--ease-out) .05s backwards; }
-  body.app-phonespace .hero > .wrap .badge--live { animation: ps-fade .45s var(--ease-out) .26s backwards; }
-  html[lang="en"] body.app-phonespace .hero h1 [data-en] { display: block; }
-  html[lang="ar"] body.app-phonespace .hero h1 [data-ar] { display: block; }
-  body.app-phonespace .hero h1 .hl { display: block; overflow: clip; padding-block: .18em; margin-block: -.18em; }
-  body.app-phonespace .hero h1 .hli { display: inline-block; animation: ps-wm .8s cubic-bezier(.19, 1, .22, 1) backwards; }
-  body.app-phonespace .hero h1 .hl:nth-child(1) .hli { animation-delay: .16s; }
-  body.app-phonespace .hero h1 .hl:nth-child(2) .hli { animation-delay: .32s; }
-  body.app-phonespace .hero-lede { animation: ps-rise .65s cubic-bezier(.19, 1, .22, 1) .52s backwards; }
-  body.app-phonespace .hero .cred { animation: ps-fade .5s var(--ease-out) .68s backwards; }
-  body.app-phonespace .hero-actions .btn:nth-child(1) { animation: ps-pop .55s var(--ease-spring) .82s backwards; }
-  body.app-phonespace .hero-actions .btn:nth-child(2) { animation: ps-pop .55s var(--ease-spring) .92s backwards; }
-  body.app-phonespace .hero .device-wrap { animation: ps-device .85s cubic-bezier(.19, 1, .22, 1) .55s backwards; }
-  body.app-phonespace .badge--live .dot { animation-duration: 3.2s; }
-
-  /* — THE living signature: the storage ring DRAWS itself when the showcase
-       chapter reveals. The colourful conic moves to ::before (CSS-only) whose
-       own conic alpha mask sweeps 0→360° via the registered angle; the donut
-       radial mask stays on the parent and clips the child. CCW in RTL by
-       flipping the paint layers only (the number stays upright). — */
-  .ps-ring-fill { background: none; }
-  .ps-ring-fill::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
-    --ring-a: 360deg;
-    background: conic-gradient(from 0deg,
-      color-mix(in srgb,var(--ps-photos) 55%,transparent) 0deg,
-      var(--ps-photos) 68.4deg,
-      color-mix(in srgb,var(--ps-photos) 55%,transparent) 136.8deg,
-      color-mix(in srgb,var(--ps-videos) 55%,transparent) 136.8deg,
-      var(--ps-videos) 190.8deg,
-      color-mix(in srgb,var(--ps-videos) 55%,transparent) 244.8deg,
-      color-mix(in srgb,var(--ps-contacts) 55%,transparent) 244.8deg,
-      var(--ps-contacts) 277.2deg,
-      color-mix(in srgb,var(--ps-contacts) 55%,transparent) 309.6deg,
-      color-mix(in srgb,var(--ps-files) 55%,transparent) 309.6deg,
-      var(--ps-files) 334.8deg,
-      color-mix(in srgb,var(--ps-files) 55%,transparent) 360deg);
-    -webkit-mask: conic-gradient(#000 0 var(--ring-a), transparent var(--ring-a));
-            mask: conic-gradient(#000 0 var(--ring-a), transparent var(--ring-a));
-  }
-  html[dir="rtl"] .ps-ring-track, html[dir="rtl"] .ps-ring-fill { transform: scaleX(-1); }
-  @keyframes ps-ring-draw { from { --ring-a: 0deg; } }
-  section.in .ps-ring-fill::before { animation: ps-ring-draw 1.3s cubic-bezier(.33, 0, .2, 1) .25s backwards; }
-  section.in .ps-num { animation: ps-fade .6s var(--ease-out) .9s backwards; }
-  section.in .ps-leg li { animation: ps-fade .45s var(--ease-out) backwards; }
-  section.in .ps-leg li:nth-child(1) { animation-delay: .45s; }
-  section.in .ps-leg li:nth-child(2) { animation-delay: .55s; }
-  section.in .ps-leg li:nth-child(3) { animation-delay: .65s; }
-  section.in .ps-leg li:nth-child(4) { animation-delay: .75s; }
-  section.in .ps-bar-fill { transform-origin: var(--bo, left) center; animation: ps-grow .8s cubic-bezier(.19, 1, .22, 1) 1.0s backwards; }
-  html[dir="rtl"] .ps-bar-fill { --bo: right; }
-  section.in .ps-unlock { animation: ps-rise .55s var(--ease-out) 1.15s backwards; }
-  section.in .ps-rows .ps-row { animation: ps-fade .45s var(--ease-out) backwards; }
-  section.in .ps-rows .ps-row:nth-child(1) { animation-delay: 1.25s; }
-  section.in .ps-rows .ps-row:nth-child(2) { animation-delay: 1.33s; }
-  section.in .ps-rows .ps-row:nth-child(3) { animation-delay: 1.41s; }
-  section.in .ps-rows .ps-row:nth-child(4) { animation-delay: 1.49s; }
-  @keyframes ps-stripev { from { transform: scaleY(0); } }
-  section.in .ps-rows .ps-row::before { transform-origin: center top; animation: ps-stripev .4s var(--ease-out) backwards; }
-  section.in .ps-rows .ps-row:nth-child(1)::before { animation-delay: 1.35s; }
-  section.in .ps-rows .ps-row:nth-child(2)::before { animation-delay: 1.43s; }
-  section.in .ps-rows .ps-row:nth-child(3)::before { animation-delay: 1.51s; }
-  section.in .ps-rows .ps-row:nth-child(4)::before { animation-delay: 1.59s; }
-
-  /* — category feature cards: stripes draw + monochrome icons settle,
-       slot-keyed to the Stage-1 group stagger — */
-  body.app-phonespace .feature-grid > .feature:nth-child(2) { --slot: 1; }
-  body.app-phonespace .feature-grid > .feature:nth-child(3) { --slot: 2; }
-  body.app-phonespace .feature-grid > .feature:nth-child(4) { --slot: 3; }
-  body.app-phonespace .feature.in::before { transform-origin: center top; animation: ps-stripev .45s var(--ease-out) calc(var(--slot, 0) * var(--stagger-step) + .26s) backwards; }
-  body.app-phonespace .feature.in .ps-cat-ic { animation: ps-fade .5s var(--ease-out) calc(var(--slot, 0) * var(--stagger-step) + .32s) backwards; }
-
-  /* — code-drawn mocks: rows file in crisply as their chapter reveals — */
-  section.in .ps-mock .ps-mrow { animation: ps-pop .4s cubic-bezier(.2, 0, 0, 1) backwards; }
-  section.in .ps-mock .ps-mrow:nth-child(1) { animation-delay: .25s; }
-  section.in .ps-mock .ps-mrow:nth-child(2) { animation-delay: .33s; }
-  section.in .ps-mock .ps-mrow:nth-child(3) { animation-delay: .41s; }
-  section.in .ps-mock .ps-mrow:nth-child(4) { animation-delay: .49s; }
-  section.in .ps-mock .ps-mfoot { animation: ps-fade .45s var(--ease-out) .6s backwards; }
-  section.in .ps-mock .ps-tool { animation: ps-rise .55s var(--ease-out) backwards; }
-  section.in .ps-mock .ps-tool:nth-child(2) { animation-delay: .28s; }
-  section.in .ps-mock .ps-tool:nth-child(3) { animation-delay: .40s; }
-
-  /* — hover micro (editorial restraint) — */
-  body.app-phonespace .feature::before { transform-origin: var(--so, left) top; transition: transform .3s var(--ease-out); }
-  html[dir="rtl"] body.app-phonespace .feature::before { --so: right; }
-  body.app-phonespace .feature:hover::before { transform: scaleX(1.6); }
-
-  /* — reduced motion: composed, fully visible, static — */
-  @media (prefers-reduced-motion: reduce) {
-    body.app-phonespace .hero-brand, body.app-phonespace .hero > .wrap .badge--live,
-    body.app-phonespace .hero h1 .hli, body.app-phonespace .hero-lede,
-    body.app-phonespace .hero .cred, body.app-phonespace .hero-actions .btn,
-    body.app-phonespace .hero .device-wrap,
-    section.in .ps-ring-fill::before, section.in .ps-num,
-    section.in .ps-leg li, section.in .ps-bar-fill, section.in .ps-unlock,
-    section.in .ps-rows .ps-row, section.in .ps-rows .ps-row::before,
-    section.in .ps-mock :is(.ps-mrow, .ps-mfoot, .ps-tool),
-    body.app-phonespace .feature.in::before, body.app-phonespace .feature.in .ps-cat-ic {
-      animation: none !important; opacity: 1 !important; transform: none !important;
-    }
-    html[dir="rtl"] .ps-ring-track, html[dir="rtl"] .ps-ring-fill { transform: scaleX(-1) !important; }
-    body.app-phonespace .feature::before { transition: none !important; }
-  }
-</style>
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch1-v2">
+<link rel="stylesheet" href="/phonespace/product-cinema.css?v=batch1-v2">
 </head>
-<body class="app-phonespace">
+<body class="product-cinema-rollout pc-phonespace">
+<a class="pc-site-skip" href="#main">Skip to content</a>
 
-  <!-- ── Top bar ─────────────────────────────────────────────── -->
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a href="/" class="brand" aria-label="Saud Apps home">
-        <span class="brand-mark" aria-hidden="true">S</span>
-        <span><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></span>
-      </a>
-      <div class="topbar-tools">
-        <div class="seg seg--icon" role="group" aria-label="Theme">
-          <button type="button" data-theme-btn="light" aria-pressed="false" aria-label="Light theme" title="Light">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-          </button>
-          <button type="button" data-theme-btn="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>
-          </button>
-        </div>
-        <div class="seg" role="group" aria-label="Language">
-          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
-        </div>
-      </div>
+<header class="pc-site-header">
+  <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
+    <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+  </a>
+
+  <nav class="pc-site-nav" aria-label="Primary navigation">
+    <a href="/">Home</a>
+    <a href="/sshift/">SShift</a>
+    <a href="/phonespace/" aria-current="page">PhoneSpace</a>
+    <a href="/filed/">Filed</a>
+    <a href="/dufaat/">Dufaat</a>
+    <a href="/about/">About</a>
+    <a href="/support/">Support</a>
+    <a href="/legal/">Legal</a>
+  </nav>
+
+  <div class="pc-site-tools">
+    <div class="pc-site-theme" role="group" aria-label="Color theme">
+      <button type="button" data-pc-site-theme="light" aria-pressed="false">Day</button>
+      <button type="button" data-pc-site-theme="dark" aria-pressed="false">Night</button>
     </div>
-  </header>
-
-  <!-- breadcrumb -->
-  <div class="wrap">
-    <nav class="crumb" aria-label="Breadcrumb">
-      <a href="/"><span data-en>Saud Apps</span><span data-ar>تطبيقات سعود</span></a>
-      <span class="chev" aria-hidden="true">›</span>
-      <span>PhoneSpace</span>
-    </nav>
+    <details class="pc-site-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <a href="/">Home</a>
+        <a href="/sshift/">SShift</a>
+        <a href="/phonespace/" aria-current="page">PhoneSpace</a>
+        <a href="/filed/">Filed</a>
+        <a href="/dufaat/">Dufaat</a>
+        <a href="/about/">About</a>
+        <a href="/support/">Support</a>
+        <a href="/legal/">Legal</a>
+      </nav>
+    </details>
   </div>
+</header>
 
-  <!-- ────────────────── Hero ────────────────── -->
-  <section class="hero">
-    <div class="signal-field" aria-hidden="true"></div>
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <span class="hero-brand">
-            <img src="/assets/icon-phonespace.png" alt="PhoneSpace app icon" width="46" height="46">
-            <span class="hb-name">PhoneSpace</span>
-          </span>
-          <span class="badge badge--live" data-app="phonespace" data-field="status">
-            <span class="dot" aria-hidden="true"></span>
-            <span data-en>On the App Store</span>
-            <span data-ar>متوفّر على App Store</span>
-          </span>
+<main id="main" tabindex="-1">
+  <section class="ps-opening" aria-labelledby="phonespace-title" data-ps-depth>
+    <div class="ps-opening__edition" aria-hidden="true">
+      <span>Product film · 03</span><span>The Pressure Cut</span><span>PhoneSpace · iPhone</span>
+    </div>
 
-          <h1 style="margin-top:18px">
-            <span data-en><span class="hl"><span class="hli">PhoneSpace:</span></span><span class="hl"><span class="hli grad-text">Storage Cleaner.</span></span></span>
-            <span data-ar><span class="hl"><span class="hli">PhoneSpace:</span></span><span class="hl"><span class="hli grad-text">منظّف التخزين.</span></span></span>
-          </h1>
-          <p class="hero-lede">
-            <span data-en>A storage cleaner that respects your privacy. Everything runs on your iPhone — nothing is uploaded.</span>
-            <span data-ar>منظّف تخزين يحترم خصوصيتك. كل شيء يعمل على جهازك — لا شيء يُرفع إلى أي مكان.</span>
-          </p>
-
-          <div class="cred" style="margin-top:22px">
-            <span><span data-en>Made for iOS</span><span data-ar>مصمَّم لـ iOS</span></span>
-            <span class="sep" aria-hidden="true"></span>
-            <span><span data-en>On-device only</span><span data-ar>على الجهاز فقط</span></span>
-            <span class="sep" aria-hidden="true"></span>
-            <span><span data-en>No tracking</span><span data-ar>بلا تتبّع</span></span>
-            <span class="sep" aria-hidden="true"></span>
-            <span class="badge" data-app="phonespace" data-field="version">iOS · v1.1</span>
-            <span class="badge" data-app="phonespace" data-field="rating" style="display:none"></span>
-            <span class="badge" data-app="phonespace" data-field="updated" style="display:none"></span>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161">
-              <svg class="ic ic-apple" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.365 12.79c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.31-.13-2.56.77-3.23.77-.67 0-1.7-.75-2.8-.73-1.44.02-2.77.84-3.51 2.13-1.5 2.6-.38 6.45 1.07 8.56.71 1.04 1.55 2.19 2.66 2.15 1.07-.04 1.48-.69 2.78-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.08.82-1.19 1.16-2.36 1.18-2.43-.03-.01-2.26-.87-2.28-3.45zM14.5 6.34c.6-.72 1-1.72.89-2.72-.86.03-1.9.57-2.51 1.29-.55.63-1.04 1.65-.91 2.63.96.07 1.94-.49 2.53-1.2z"/></svg>
-              <span data-en>Download on the App Store</span>
-              <span data-ar>التحميل من App Store</span>
-            </a>
-            <a class="btn btn-ghost" href="/phonespace/privacy.html">
-              <span data-en>Privacy Policy</span>
-              <span data-ar>سياسة الخصوصية</span>
-              <span class="chev" aria-hidden="true">›</span>
-            </a>
-          </div>
+    <div class="ps-opening__layout">
+      <div class="ps-opening__copy">
+        <div class="ps-lockup">
+          <img src="/assets/product-cinema-v2/icon-phonespace-192.png" alt="PhoneSpace app icon" width="62" height="62">
+          <span><small>Saud Apps · Product 02</small><strong>PhoneSpace</strong></span>
         </div>
 
-        <div class="device-wrap">
-          <div class="device">
-            <div class="island" aria-hidden="true"></div>
-            <div class="screen">
-              <img class="ps-hero-shot ps-hero-light" src="/phonespace/assets/screenshots/home-light.jpg" alt="The PhoneSpace home — Your Library, with a glowing storage ring summarising Photos, Videos, Contacts and Files, a device storage bar, and colour-striped category rows">
-              <img class="ps-hero-shot ps-hero-dark" src="/phonespace/assets/screenshots/home-dark.jpg" alt="The PhoneSpace home in dark mode — Your Library with the glowing storage ring and colour-striped category rows on a near-black canvas">
-            </div>
-          </div>
+        <h1 id="phonespace-title"><span>Storage</span><span>under pressure.</span></h1>
+        <p class="ps-opening__lede">A storage cleaner that helps you understand and review what occupies your iPhone. Processing stays on your device, and you decide what happens next.</p>
+
+        <div class="ps-opening__metadata" role="group" aria-label="PhoneSpace App Store information">
+          <span data-app="phonespace" data-field="status">On the App Store</span>
+          <span data-app="phonespace" data-field="version">iOS · v1.1</span>
+          <span data-app="phonespace" data-field="rating" style="display:none"></span>
+          <span data-app="phonespace" data-field="updated" style="display:none"></span>
+          <span>On-device processing</span>
+        </div>
+
+        <div class="ps-opening__actions">
+          <a class="pc-site-action pc-site-action--gold" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161">View on the App Store <span aria-hidden="true">↗</span></a>
+          <a class="pc-site-action" href="#pressure-sequence">See how it works <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <div class="ps-opening__evidence" aria-label="Real PhoneSpace product screen">
+        <div class="ps-hero-boundary" aria-hidden="true"></div>
+        <span class="ps-hero-cluster ps-hero-cluster--photos" aria-hidden="true"><i></i>Photos</span>
+        <span class="ps-hero-cluster ps-hero-cluster--videos" aria-hidden="true"><i></i>Videos</span>
+        <span class="ps-hero-cluster ps-hero-cluster--contacts" aria-hidden="true"><i></i>Contacts</span>
+        <span class="ps-hero-cluster ps-hero-cluster--files" aria-hidden="true"><i></i>Files</span>
+        <figure class="ps-hero-device">
+          <img id="ps-hero-screen" data-pc-theme-image data-light-src="/phonespace/assets/screenshots/home-light.jpg" data-dark-src="/phonespace/assets/screenshots/home-dark.jpg" alt="PhoneSpace library showing its storage ring, Photos, Videos, Contacts, Files, and device storage overview" width="820" height="1781" fetchpriority="high" decoding="async">
+          <script>
+            (function () {
+              var image = document.getElementById('ps-hero-screen');
+              var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+              image.setAttribute('src', dark ? image.getAttribute('data-dark-src') : image.getAttribute('data-light-src'));
+            })();
+          </script>
+          <noscript>
+            <style>#ps-hero-screen{display:none}</style>
+            <img src="/phonespace/assets/screenshots/home-light.jpg" alt="PhoneSpace library showing its storage ring, Photos, Videos, Contacts, Files, and device storage overview" width="820" height="1781">
+          </noscript>
+        </figure>
+      </div>
+
+      <p class="ps-opening__index" aria-hidden="true">Density · awareness · separation · review · room</p>
+    </div>
+  </section>
+
+  <section class="ps-sequence" id="pressure-sequence" data-ps-sequence data-stage="3" aria-labelledby="pressure-title">
+    <div class="ps-sequence__sticky">
+      <header class="ps-sequence__heading" data-pc-site-reveal>
+        <p class="ps-kicker">Chapter 02 · The pressure resolves</p>
+        <h2 id="pressure-title">See what<br>takes space.</h2>
+        <p>PhoneSpace separates a crowded library into categories that can be understood and reviewed deliberately.</p>
+      </header>
+
+      <div class="ps-sequence__stage">
+        <div class="ps-pressure-visual" aria-hidden="true">
+          <div class="ps-pressure-visual__ring"></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--photos"><span>01 · Category</span><strong>Photos</strong><small>Similar, duplicates, large, old</small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--videos"><span>02 · Category</span><strong>Videos</strong><small>All videos and the largest files</small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--contacts"><span>03 · Category</span><strong>Contacts</strong><small>Duplicates and incomplete entries</small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--files"><span>04 · Category</span><strong>Files</strong><small>Folders and downloads to review</small></div>
+          <figure class="ps-pressure-visual__core">
+            <img src="/phonespace/assets/screenshots/home-light.jpg" data-pc-theme-image data-light-src="/phonespace/assets/screenshots/home-light.jpg" data-dark-src="/phonespace/assets/screenshots/home-dark.jpg" alt="" width="820" height="1781" loading="lazy" decoding="async">
+          </figure>
+        </div>
+
+        <div class="ps-sequence__steps">
+          <article class="ps-sequence__step">
+            <span>01 · Pressure</span>
+            <h3>A full library first feels like one problem.</h3>
+            <p>The opening state keeps categories close together: present, useful, but difficult to read as a system.</p>
+          </article>
+          <article class="ps-sequence__step">
+            <span>02 · Awareness</span>
+            <h3>The ring gives every category a boundary.</h3>
+            <p>Photos, videos, contacts, and files separate into a clear overview without leaving the device.</p>
+          </article>
+          <article class="ps-sequence__step">
+            <span>03 · Review</span>
+            <h3>Nothing happens before you choose.</h3>
+            <p>PhoneSpace surfaces material for review. It does not turn organization into an invisible destructive action.</p>
+          </article>
+          <article class="ps-sequence__step">
+            <span>04 · Room</span>
+            <h3>The interface emerges. The pressure recedes.</h3>
+            <p>A crowded device becomes an understandable library with clear places to look next.</p>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Categories overview ────────────────── -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div data-reveal>
-        <span class="eyebrow"><span data-en>What it scans</span><span data-ar>ما الذي يفحصه</span></span>
-        <h2 class="section-title">
-          <span data-en>Four places storage hides.</span>
-          <span data-ar>أربعة أماكن يختبئ فيها التخزين.</span>
-        </h2>
-        <p class="section-sub">
-          <span data-en>PhoneSpace looks across your library and surfaces what's worth reviewing — without ever moving your data off the device.</span>
-          <span data-ar>يفحص PhoneSpace مكتبتك ويُظهر ما يستحق المراجعة — دون أن تغادر بياناتك جهازك أبداً.</span>
-        </p>
+  <section class="ps-section" aria-labelledby="review-title">
+    <div class="ps-section__inner">
+      <header class="ps-chapter-heading" data-pc-site-reveal>
+        <p class="ps-kicker">Chapter 03 · Review before acting</p>
+        <h2 id="review-title">Decisions stay<br>with you.</h2>
+        <p>The product organizes what is worth reviewing. Selection and cleanup remain deliberate.</p>
+      </header>
+
+      <div class="ps-review-grid">
+        <article class="ps-review-card ps-review-card--photos" data-pc-site-reveal>
+          <p class="ps-review-card__index"><span>01</span><span>Photos</span></p>
+          <h3>Find the visual noise.</h3>
+          <p>Review screenshots, large photos, similar photos, duplicate groups, Live Photos, low-resolution media, and older items in separate lists.</p>
+        </article>
+        <article class="ps-review-card ps-review-card--videos" data-pc-site-reveal>
+          <p class="ps-review-card__index"><span>02</span><span>Videos</span></p>
+          <h3>Start with what is large.</h3>
+          <p>See all videos and the largest files together, with their size available before you decide what to do.</p>
+        </article>
+        <article class="ps-review-card ps-review-card--contacts" data-pc-site-reveal>
+          <p class="ps-review-card__index"><span>03</span><span>Contacts + files</span></p>
+          <h3>Bring order beyond media.</h3>
+          <p>Review duplicate or incomplete contacts, repeated numbers, and folders in your downloads. Contact cleanup includes backup and restore.</p>
+        </article>
       </div>
 
-      <div class="feature-grid" style="margin-top:34px" data-reveal-group>
-        <div class="feature ps-c-photos" data-reveal>
-          <span class="ps-cat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m4 17 5-5 5 5 3-3 3 3"/></svg></span>
-          <h3><span data-en>Photos</span><span data-ar>الصور</span></h3>
-          <p><span data-en>Screenshots, large, similar, live, low-res, duplicates, old.</span><span data-ar>لقطات الشاشة، الكبيرة، المتشابهة، الحية، منخفضة الدقة، المكرّرة، القديمة.</span></p>
+      <div class="ps-control-note" data-pc-site-reveal>
+        <p class="ps-rule-label">Control point</p>
+        <strong>Review first. Confirm next. Cleanup is never presented as automatic.</strong>
+        <p>Photo deletion follows Apple’s system confirmation. Processing remains on the iPhone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section ps-tools" aria-labelledby="tools-title">
+    <div class="ps-section__inner">
+      <header class="ps-chapter-heading" data-pc-site-reveal>
+        <p class="ps-kicker">Chapter 04 · Tools for reclaiming space</p>
+        <h2 id="tools-title">Reduce weight.<br>Keep control.</h2>
+        <p>PhoneSpace includes on-device compression and conversion tools alongside library review.</p>
+      </header>
+
+      <div class="ps-tool-board">
+        <div class="ps-tool-board__visual" aria-label="Abstract representations of PhoneSpace compression and conversion tools" data-pc-site-reveal>
+          <div class="ps-tool-row ps-tool-row--compress">
+            <span class="ps-tool-row__glyph" aria-hidden="true">↘</span>
+            <span><strong>Compress</strong><small>Choose a compression level before proceeding</small></span>
+            <b>On device</b>
+          </div>
+          <div class="ps-tool-row ps-tool-row--convert">
+            <span class="ps-tool-row__glyph" aria-hidden="true">⇄</span>
+            <span><strong>Convert</strong><small>Work with supported photo and video formats</small></span>
+            <b>Deliberate</b>
+          </div>
         </div>
-        <div class="feature ps-c-videos" data-reveal>
-          <span class="ps-cat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></span>
-          <h3><span data-en>Videos</span><span data-ar>الفيديو</span></h3>
-          <p><span data-en>All videos and the largest ones, sized for review.</span><span data-ar>جميع الفيديوهات والأكبر منها، مرتّبة للمراجعة.</span></p>
-        </div>
-        <div class="feature ps-c-contacts" data-reveal>
-          <span class="ps-cat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="8" r="2.5"/><path d="M21 18a5 5 0 0 0-3-4.6"/></svg></span>
-          <h3><span data-en>Contacts</span><span data-ar>جهات الاتصال</span></h3>
-          <p><span data-en>Duplicates, incomplete entries, repeated numbers. Backup &amp; restore.</span><span data-ar>التكرارات، المدخلات الناقصة، الأرقام المكرّرة. النسخ والاستعادة.</span></p>
-        </div>
-        <div class="feature ps-c-files" data-reveal>
-          <span class="ps-cat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-          <h3><span data-en>Files</span><span data-ar>الملفات</span></h3>
-          <p><span data-en>Browse and review folders in your downloads.</span><span data-ar>تصفّح ومراجعة المجلدات في تنزيلاتك.</span></p>
+        <div class="ps-tool-board__copy" data-pc-site-reveal>
+          <p class="ps-rule-label">Abstract product diagram</p>
+          <h3>Tools, not promises.</h3>
+          <p>The diagrams describe supported actions without inventing a guaranteed saving, automatic result, or fictional intelligence.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── A look inside (code-drawn home) ────────────────── -->
-  <section class="section section--tight" data-reveal>
-    <div class="wrap">
-      <div class="center">
-        <span class="eyebrow" style="display:inline-flex"><span data-en>A look inside</span><span data-ar>نظرة من الداخل</span></span>
-        <h2 class="section-title"><span data-en>Your whole library, at a glance.</span><span data-ar>مكتبتك كاملةً، بنظرة واحدة.</span></h2>
+  <section class="ps-section" aria-labelledby="evidence-title">
+    <div class="ps-section__inner">
+      <header class="ps-chapter-heading" data-pc-site-reveal>
+        <p class="ps-kicker">Chapter 05 · Real product evidence</p>
+        <h2 id="evidence-title">One library.<br>Two environments.</h2>
+        <p>These are real PhoneSpace screens. Decorative category systems elsewhere on the page remain visibly abstract.</p>
+      </header>
+
+      <div class="ps-evidence-grid">
+        <figure class="ps-evidence-card" data-pc-site-reveal>
+          <div class="ps-evidence-card__frame">
+            <img src="/phonespace/assets/screenshots/home-light.jpg" alt="PhoneSpace library in light mode with storage overview and four category rows" width="820" height="1781" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span>Real interface · 01</span><strong>Library · Day</strong></figcaption>
+        </figure>
+        <figure class="ps-evidence-card" data-pc-site-reveal>
+          <div class="ps-evidence-card__frame">
+            <img src="/phonespace/assets/screenshots/home-dark.jpg" alt="PhoneSpace library in dark mode with storage overview and four category rows" width="820" height="1781" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span>Real interface · 02</span><strong>Library · Night</strong></figcaption>
+        </figure>
       </div>
+    </div>
+  </section>
 
-      <div class="ps-showcase" aria-hidden="true">
-        <!-- Hero card: glowing storage ring + legend + monochrome storage bar -->
-        <div class="ps-card">
-          <div class="ps-card-top">
-            <div class="ps-ring">
-              <div class="ps-ring-track"></div>
-              <div class="ps-ring-fill"></div>
-              <span class="ps-num">8,744</span>
-            </div>
-            <ul class="ps-leg">
-              <li><span class="sw" style="background:var(--ps-photos)"></span><span class="nm"><span data-en>Photos</span><span data-ar>الصور</span></span><span class="val">64 GB</span></li>
-              <li><span class="sw" style="background:var(--ps-videos)"></span><span class="nm"><span data-en>Videos</span><span data-ar>الفيديو</span></span><span class="val">48 GB</span></li>
-              <li><span class="sw" style="background:var(--ps-contacts)"></span><span class="nm"><span data-en>Contacts</span><span data-ar>جهات الاتصال</span></span><span class="val">1,284</span></li>
-              <li><span class="sw" style="background:var(--ps-files)"></span><span class="nm"><span data-en>Files</span><span data-ar>الملفات</span></span><span class="val">12 GB</span></li>
-            </ul>
-          </div>
-          <div class="ps-bar">
-            <div class="ps-bar-track"><div class="ps-bar-fill"></div></div>
-            <div class="ps-bar-cap"><span data-en>137 GB used · 119 GB free of 256 GB</span><span data-ar>مُستخدَم ١٣٧ غٕب · متبقٍّ ١١٩ غٕب من ٢٥٦ غٕب</span></div>
-          </div>
+  <section class="ps-section ps-releases" aria-labelledby="release-title">
+    <div class="ps-section__inner">
+      <header class="ps-chapter-heading" data-pc-site-reveal>
+        <p class="ps-kicker">Chapter 06 · What changed</p>
+        <h2 id="release-title">The product<br>keeps moving.</h2>
+        <p>Release history is rendered from the existing Saud Apps release record.</p>
+      </header>
+
+      <div class="ps-release-layout">
+        <div class="ps-release-copy" data-pc-site-reveal>
+          <p class="ps-rule-label">Current fallback · iOS v1.1</p>
+          <p>Live App Store metadata enhances the page when available. The truthful static version remains visible when it is not.</p>
         </div>
-
-        <!-- Upgrade row with the gold Try pill -->
-        <div class="ps-unlock">
-          <div class="ut"><b><span data-en>Unlock everything</span><span data-ar>افتح كل المزايا</span></b><span><span data-en>7-day free trial</span><span data-ar>تجربة مجانية ٧ أيام</span></span></div>
-          <span class="ps-try"><span data-en>Try</span><span data-ar>جرّب</span></span>
-        </div>
-
-        <!-- Category rows: 4px colour stripe + monochrome icon + serif name/count -->
-        <div class="ps-rows">
-          <div class="ps-row ps-c-photos">
-            <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m4 17 5-5 5 5 3-3 3 3"/></svg></span>
-            <span class="rname">8,432 <span data-en>Photos</span><span data-ar>صورة</span><br><span class="rsub"><span data-en>64 GB total</span><span data-ar>٦٤ غٕب إجمالاً</span></span></span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
-          <div class="ps-row ps-c-videos">
-            <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></span>
-            <span class="rname">312 <span data-en>Videos</span><span data-ar>فيديو</span><br><span class="rsub"><span data-en>All videos · 48 GB</span><span data-ar>كل الفيديو · ٤٨ غٕب</span></span></span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
-          <div class="ps-row ps-c-contacts">
-            <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="8" r="2.5"/><path d="M21 18a5 5 0 0 0-3-4.6"/></svg></span>
-            <span class="rname">1,284 <span data-en>My Contacts</span><span data-ar>جهة اتصال</span></span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
-          <div class="ps-row ps-c-files">
-            <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-            <span class="rname">2,156 <span data-en>Files</span><span data-ar>ملف</span><br><span class="rsub"><span data-en>8 folders · 12 GB total</span><span data-ar>٨ مجلدات · ١٢ غٕب إجمالاً</span></span></span>
-            <span class="chev" aria-hidden="true">›</span>
-          </div>
+        <div class="ps-release-wall" data-pc-site-reveal>
+          <div data-releases="phonespace"></div>
+          <noscript><p>PhoneSpace is currently represented here as iOS version 1.1. JavaScript is required to display the full release history.</p></noscript>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ────────────────── Photos drill-down ────────────────── -->
-  <section class="section" data-reveal>
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <span class="eyebrow"><span data-en>Photo cleaning</span><span data-ar>تنظيف الصور</span></span>
-          <h2 class="section-title">
-            <span data-en>Find what you don't need.</span>
-            <span data-ar>اعثر على ما لا تحتاجه.</span>
-          </h2>
-          <p class="section-sub">
-            <span data-en>Photos are sorted into the categories that actually waste space — so you can review and decide, not dig.</span>
-            <span data-ar>تُصنَّف الصور إلى الفئات التي تستهلك المساحة فعلاً — لتراجع وتقرّر، لا لتبحث.</span>
-          </p>
-          <ul class="checklist">
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en><b>Screenshots</b> and <b>Large Photos</b> grouped for quick review.</span><span data-ar><b>لقطات الشاشة</b> و<b>الصور الكبيرة</b> مجمّعة للمراجعة السريعة.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en><b>Similar Photos</b> and <b>Duplicate Groups</b> with reclaimable size shown.</span><span data-ar><b>الصور المتشابهة</b> و<b>مجموعات التكرار</b> مع إظهار المساحة القابلة للاسترداد.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en><b>Live Photos</b>, <b>Low Resolution</b>, and <b>Old Media</b> as separate lists.</span><span data-ar><b>الصور الحيّة</b>، و<b>منخفضة الدقة</b>، و<b>الوسائط القديمة</b> كقوائم منفصلة.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en>Deleting always goes through Apple's system confirmation first.</span><span data-ar>الحذف يمرّ دائماً عبر تأكيد نظام Apple أولاً.</span></li>
-          </ul>
-        </div>
-        <div class="device-wrap">
-          <div class="ps-mock" aria-hidden="true">
-            <div><span class="ps-mock-ey">Library</span><div class="ps-mock-h">Photos</div></div>
-            <div class="ps-mlist">
-              <div class="ps-mrow ps-c-photos">
-                <span class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M9 5 7.5 3.5h-1"/><circle cx="9" cy="11" r="1.4"/><path d="m5 17 4-4 4 4 2-2 4 4"/></svg></span>
-                <span class="mname"><b>421</b> Screenshots<span class="msub">Screenshots</span></span><span class="msize">353 MB</span>
-              </div>
-              <div class="ps-mrow ps-c-photos">
-                <span class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m4 17 5-5 5 5 3-3 3 3"/></svg></span>
-                <span class="mname"><b>62</b> Large Photos<span class="msub">&gt; 10 MB</span></span><span class="msize">856 MB</span>
-              </div>
-              <div class="ps-mrow ps-c-photos">
-                <span class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="13" height="11" rx="2"/><path d="M4 15V6a2 2 0 0 1 2-2h9"/></svg></span>
-                <span class="mname"><b>77</b> Similar Photos<span class="msub">~ reclaimable</span></span><span class="msize">240 MB</span>
-              </div>
-              <div class="ps-mrow ps-c-photos">
-                <span class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></span>
-                <span class="mname"><b>7</b> Duplicate Groups<span class="msub">~ reclaimable</span></span><span class="msize">6 MB</span>
-              </div>
-            </div>
-            <div class="ps-mfoot">Reclaimable · <b>~246 MB</b></div>
-          </div>
-        </div>
+  <section class="ps-coda" aria-labelledby="coda-title">
+    <div class="ps-coda__content" data-pc-site-reveal>
+      <p class="ps-kicker">Chapter 07 · Breathing room</p>
+      <h2 id="coda-title">Make space<br>understandable.</h2>
+      <p>PhoneSpace runs its review and processing tools on your iPhone. Nothing is uploaded, and the final decision stays with you.</p>
+      <div class="ps-coda__actions">
+        <a class="pc-site-action pc-site-action--gold" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161">View on the App Store <span aria-hidden="true">↗</span></a>
+        <a class="pc-site-action" href="/">All Saud Apps <span aria-hidden="true">→</span></a>
       </div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Tools (Compress / Convert) ────────────────── -->
-  <section class="section" data-reveal>
-    <div class="wrap">
-      <div class="split reverse">
-        <div class="device-wrap">
-          <div class="ps-mock" aria-hidden="true">
-            <div class="ps-tool ps-c-burgundy">
-              <span class="ps-mock-ey">Media tools</span>
-              <div class="ps-tool-h" style="margin-top:3px">Compress</div>
-              <div class="ps-tool-est">Reclaim up to <b>6.5 GB</b></div>
-              <div class="ps-chips"><span class="ps-chip on">Balanced</span><span class="ps-chip">Light</span><span class="ps-chip">Maximum</span></div>
-              <button class="ps-cta" type="button" tabindex="-1">Compress · reclaim ~6.5 GB</button>
-            </div>
-            <div class="ps-tool ps-c-mustard">
-              <div class="ps-tool-h">Convert</div>
-              <div class="ps-tool-est">1,072 photos · 119 videos</div>
-              <div class="ps-chips"><span class="ps-chip on">JPEG</span><span class="ps-chip">HEIC</span><span class="ps-chip">PNG</span><span class="ps-chip">PDF</span></div>
-              <button class="ps-cta" type="button" tabindex="-1">Convert selected</button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <span class="eyebrow"><span data-en>Media tools</span><span data-ar>أدوات الوسائط</span></span>
-          <h2 class="section-title">
-            <span data-en>Compress &amp; convert, on your device.</span>
-            <span data-ar>اضغط وحوّل، على جهازك.</span>
-          </h2>
-          <p class="section-sub">
-            <span data-en>Reclaim space without deleting your memories — or change formats for sharing. Originals are kept unless you choose otherwise.</span>
-            <span data-ar>استعِد المساحة دون حذف ذكرياتك — أو غيّر الصيغ للمشاركة. تُحفظ النسخ الأصلية ما لم تختر غير ذلك.</span>
-          </p>
-          <ul class="checklist">
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en><b>Compress</b> photos and videos with a clear "reclaim up to" estimate.</span><span data-ar><b>ضغط</b> الصور والفيديو مع تقدير واضح للمساحة القابلة للاسترداد.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en><b>Convert</b> to a destination — sharing, compatibility, or quality.</span><span data-ar><b>تحويل</b> إلى وجهة — مشاركة، توافقية، أو جودة.</span></li>
-            <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span data-en>Originals stay put unless you tell PhoneSpace otherwise.</span><span data-ar>تبقى النسخ الأصلية كما هي ما لم تخبر PhoneSpace بغير ذلك.</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ────────────────── What's New ────────────────── -->
-  <section class="section section--tight" data-reveal>
-    <div class="wrap">
-      <div>
-        <span class="eyebrow"><span data-en>Release history</span><span data-ar>سجل التحديثات</span></span>
-        <h2 class="section-title">
-          <span data-en>What's New</span>
-          <span data-ar>ما الجديد</span>
-        </h2>
-      </div>
-      <div data-releases="phonespace" data-reveal="fade" style="margin-top:24px"></div>
-    </div>
-  </section>
-
-  <!-- ────────────────── Privacy / trust ────────────────── -->
-  <section class="section--tight" data-reveal>
-    <div class="wrap">
-      <div class="trust">
-        <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-        <div class="t-text">
-          <strong><span data-en>Your photos never leave your iPhone.</span><span data-ar>صورك لا تغادر جهازك.</span></strong>
-          <p>
-            <span data-en>All scanning happens entirely on your device. There are no servers, no analytics, no sign-in, and nothing gets uploaded. Deleting anything always requires Apple's own system confirmation.</span>
-            <span data-ar>كل الفحص يجري على جهازك بالكامل. لا توجد خوادم ولا تحليلات ولا تسجيل دخول، ولا يُرفع أي شيء. الحذف يتطلّب دائماً تأكيد نظام Apple.</span>
-          </p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
-            <span class="badge"><span data-en>On-device only</span><span data-ar>على الجهاز فقط</span></span>
-            <span class="badge"><span data-en>No accounts</span><span data-ar>بلا حسابات</span></span>
-            <span class="badge"><span data-en>No tracking</span><span data-ar>بلا تتبّع</span></span>
-            <span class="badge"><span data-en>No uploads</span><span data-ar>بلا رفع</span></span>
-          </div>
-        </div>
-        <a class="btn btn-ghost" href="/phonespace/privacy.html"><span data-en>Privacy Policy</span><span data-ar>سياسة الخصوصية</span> <span class="chev" aria-hidden="true">›</span></a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ── Footer ──────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="wrap sf-inner">
-      <div class="sf-bar" data-reveal="fade">
-        <a class="sf-brand" href="/" aria-label="Saud Apps home">
-          <span class="brand-mark" aria-hidden="true">S</span>
-          <span class="sf-name">Saud Apps</span>
-        </a>
-        <nav class="sf-links" aria-label="Footer">
-          <a href="/sshift/">SShift</a>
-          <a href="/phonespace/">PhoneSpace</a>
-          <a href="/promptbook/">Promptbook</a>
-          <a href="/filed/">Filed</a>
-          <a href="/dufaat/">Dufaat</a>
-          <span class="sf-dot" aria-hidden="true"></span>
-          <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
-          <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
-          <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
-        </nav>
-      </div>
-      <div class="sf-base" data-reveal="fade">
-        <span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span>
+      <nav class="ps-coda__links" aria-label="PhoneSpace support and legal links">
+        <a href="/phonespace/privacy.html">Privacy policy</a>
+        <a href="/phonespace/terms.html">Terms of use</a>
+        <a href="/support/">Support</a>
         <a href="mailto:support@saud.im">support@saud.im</a>
-      </div>
+      </nav>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script src="/assets/saud.js?v=20260705-1" defer></script>
-  <script src="/app-data.js" defer></script>
-  <script src="/releases-loader.js" defer></script>
+<footer class="pc-site-footer">
+  <div class="pc-site-footer__identity"><strong>PHONESPACE · SAUD APPS</strong><span>Storage pressure, made understandable.</span></div>
+  <nav aria-label="Footer navigation">
+    <a href="/">Home</a>
+    <a href="/sshift/">SShift</a>
+    <a href="/phonespace/" aria-current="page">PhoneSpace</a>
+    <a href="/filed/">Filed</a>
+    <a href="/dufaat/">Dufaat</a>
+    <a href="/about/">About</a>
+    <a href="/support/">Support</a>
+    <a href="/legal/">Legal</a>
+  </nav>
+  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+</footer>
+
+<script src="/assets/product-cinema-core.js?v=batch1-v2" defer></script>
+<script src="/phonespace/product-cinema.js?v=batch1-v2" defer></script>
+<script src="/app-data.js" defer></script>
+<script src="/releases-loader.js" defer></script>
 </body>
 </html>
