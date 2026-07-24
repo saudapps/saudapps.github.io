@@ -1,33 +1,58 @@
 # Saud Apps — Public App Index
 
-Master index of all Saud Apps as represented on the public website. Public-safe:
-no private source, no bundle IDs, no local machine paths.
+This is the public-safe index of products represented on `saud.im`. It contains
+no private repository details, private identifiers, or internal product names.
 
-| App | Private repo | Website page | Privacy | Terms | App Store status |
-|---|---|---|---|---|---|
-| SShift | https://github.com/saudapps/SShift | https://saud.im/sshift/ | https://saud.im/sshift/privacy/ | not present yet | Live (App Store ID 6751362215) |
-| PhoneSpace | https://github.com/saudapps/PhoneSpace | https://saud.im/phonespace/ | https://saud.im/phonespace/privacy.html | https://saud.im/phonespace/terms.html | Live (App Store ID 6765632161) |
-| Promptbook | https://github.com/saudapps/Promptbook | https://saud.im/promptbook/ | https://saud.im/promptbook/privacy/ | https://saud.im/promptbook/terms/ | Coming soon / in development — parked: hidden from the landing (card + footer link commented out, code retained); page still reachable at /promptbook/ |
-| Filed | private (internal name withheld — see notes) | https://saud.im/filed/ | https://saud.im/filed/privacy/ | https://saud.im/filed/terms/ | Live (App Store ID 6781196551) — https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551 |
-| Dufaat | https://github.com/saudapps/Dufaat | https://saud.im/dufaat/ | https://saud.im/dufaat/privacy/ | https://saud.im/dufaat/terms/ | Live (App Store ID 6780440703) — https://apps.apple.com/ae/app/dufaat/id6780440703 |
+## Active public products
 
-## Naming anomaly notes (public-safe)
-- **PhoneSpace** — the public brand and website use **PhoneSpace**. Its private repo
-  carries legacy folder/bundle naming from an earlier name; that is an internal
-  detail only and does not affect the public site. Always present the app as PhoneSpace.
-- **Filed** — the public/site brand is **Filed**. The app's internal repo/project
-  name must never appear anywhere in this public repo or on the site. Always use
-  the public brand "Filed"; the internal name is internal only.
-- **SShift** — there is a known internal identifier anomaly in its private repo. It is
-  internal only and intentionally not documented here; the public site uses "SShift".
+| App | Website | Privacy | Terms | Public App Store state |
+|---|---|---|---|---|
+| SShift | [saud.im/sshift](https://saud.im/sshift/) | [Privacy](https://saud.im/sshift/privacy/) | Not currently published | Live · App Store ID `6751362215` |
+| PhoneSpace | [saud.im/phonespace](https://saud.im/phonespace/) | [Privacy](https://saud.im/phonespace/privacy.html) | [Terms](https://saud.im/phonespace/terms.html) | Live · App Store ID `6765632161` |
+| Filed | [saud.im/filed](https://saud.im/filed/) | [Privacy](https://saud.im/filed/privacy/) | [Terms](https://saud.im/filed/terms/) | Live · App Store ID `6781196551` |
+| Dufaat | [saud.im/dufaat](https://saud.im/dufaat/) | [Privacy](https://saud.im/dufaat/privacy/) | [Terms](https://saud.im/dufaat/terms/) | Live · App Store ID `6780440703` |
 
-## Notes
-- "Live" apps have an App Store ID and a public listing; keep version/links in sync
-  via Docs/WEBSITE_RELEASE_SYNC.md.
-- "Coming soon / in development" apps have website pages but no App Store ID yet.
-  Keep them in the "Coming soon" state until their App Store release is approved.
-- **Promptbook** is parked: hidden from the landing, `noindex` on all 3 pages, and
-  out of `sitemap.xml`. At launch, reverse all three — un-hide the card + footer
-  link, remove the noindex metas, and re-add its URLs to the sitemap with fresh lastmod.
-- Bundle IDs and other internal identifiers are intentionally omitted here to keep
-  this index public-safe; they live in each app's private repo.
+The four active products are present in both public data systems:
+
+- the public iTunes badge map in `app-data.js`;
+- the App Store Connect release map in
+  `scripts/fetch-releases.mjs`.
+
+Their primary routes contain the required `data-app`, `data-field`, and
+`data-releases` hooks.
+
+## Promptbook
+
+| Field | Current state |
+|---|---|
+| Lifecycle | `Stopped / Parked` |
+| Active roadmap | None |
+| Main page | [saud.im/promptbook](https://saud.im/promptbook/) |
+| Privacy | [saud.im/promptbook/privacy](https://saud.im/promptbook/privacy/) |
+| Terms | [saud.im/promptbook/terms](https://saud.im/promptbook/terms/) |
+| Indexing | All three pages use `noindex`; all are absent from `sitemap.xml` |
+| Active discovery | Absent from the Product Cinema landing and generated Product Cinema navigation |
+| Release data | Not wired into either release-data system |
+
+Promptbook is preserved as inactive historical public material. Do not delete,
+index, feature, wire, or revive it without Saud's explicit approval and a
+dedicated work order.
+
+## Naming rule
+
+Use public product names only. In particular:
+
+- always use `PhoneSpace`;
+- always use `Filed`;
+- never publish internal or legacy repository, project, target, storage, or
+  identifier names.
+
+## Maintenance rules
+
+- A public app release, positioning change, pricing change, screenshot change,
+  or legal/support change must follow
+  [`WEBSITE_RELEASE_SYNC.md`](WEBSITE_RELEASE_SYNC.md).
+- `releases.json` is generated; never edit it by hand.
+- App Store state in this index must be reverified before a release decision.
+- A live badge does not verify generated release history, and generated release
+  history does not verify the live badge.

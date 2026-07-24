@@ -1,372 +1,263 @@
-# Saud Apps Website — Design System
+# saud.im — Product Cinema Design System
 
-The site's visual language: the homepage identity, each app's colour identity,
-the shared hero pattern, and — most importantly — the **app-faithful re-skin
-recipe** used to make each app page feel like you're inside that app. Companion
-to CLAUDE.md (roles, discipline), ARCHITECTURE.md (how the site is built),
-ADD_NEW_APP.md (adding an app) and RELEASES_PIPELINE.md (release-notes sync).
-This file is the "how the site looks and how we make it look that way" reference.
+Product Cinema is the current visual contract for the Saud Apps website. This
+document describes what the current code implements; it does not invent
+meaning beyond the visible interface and committed design structure.
 
-> ⚠️ PUBLIC REPOSITORY. Public-safe only: no secrets, no API keys, no private
-> source, no local machine paths, no internal app names. Use public brand names
-> only (e.g. "Filed", "PhoneSpace") — internal repo/project names stay out.
+> This is a public repository. Use public product names only and keep private
+> product, repository, and machine information out of this document.
 
-## How theming works (the mechanics)
-- Shared base + per-app accent live in `assets/saud.css`. Each app sets its
-  identity via `body.app-<name> { --accent; --accent-2; --accent-ink }`.
-- **Each app page also has an inline `<style>` block for page-local recipes**
-  (gradients, the storage-ring, glass cards, day-cell recipes, etc.). Inline
-  styles are higher-specificity, so **the page's own inline rules win over the
-  `saud.css` accent line**. In several apps the real, shipped identity lives in
-  the page's inline style; the `saud.css` line is the base/fallback. Keep the
-  `saud.css` line *truthful* anyway (don't leave a stale colour that contradicts
-  the page) — but the page inline is the source of the rendered look.
-- Dark mode is keyed off both `:root[data-theme="dark"]` and
-  `@media (prefers-color-scheme: dark)`. Every identity below is defined for
-  light **and** dark.
+## Current versus historical guidance
 
-## Motion (Stage 1 foundation)
-Shipped as infrastructure in `assets/saud.css` (+ the existing observer in
-`assets/saud.js`); consumed by pages starting Stage 2. Adding it changed no
-rendered pixel — the tokens/variants were unused on existing pages.
+The earlier Stage 1/2/3 system—living-grid homepage, app-faithful motion pages,
+quiet studio pages, and its associated design recipes—remains recoverable in
+Git history and pre-cinematic baseline tags.
 
-**Tokens** (in `:root` only — durations/easings are theme-independent, so no
-dark-path duplication). A richer scale that coexists with the older
-`--t-fast/-mid/-slow` (.16/.24/.4s):
-- Durations: `--dur-xs: 120ms`, `--dur-s: 200ms`, `--dur-m: 320ms`, `--dur-l: 560ms`.
-- Easings: `--ease-out` (reused: `cubic-bezier(0.16,1,0.3,1)`),
-  `--ease-in-out: cubic-bezier(0.42,0,0.58,1)`,
-  `--ease-spring: cubic-bezier(0.34,1.56,0.64,1)` (gentle overshoot).
-- Reveal inputs: `--reveal-distance: 14px`, `--stagger-step: 60ms`.
+It is `SUPERSEDED` as current design guidance.
 
-**Reveal attribute API** (extends the existing `[data-reveal]` +
-IntersectionObserver; the observer just adds `.in` and is unchanged):
-- `data-reveal` — value optional. `up` (default) · `fade` · `scale` · `left` · `right`.
-  Plain `data-reveal` and `data-reveal="up"` behave EXACTLY as before
-  (`translateY(14px)`, `.6s`, `--ease-out`).
-- `data-reveal-group` on a parent — its direct `[data-reveal]` children get an
-  incremental `transition-delay` of `n × --stagger-step` (60ms each), **capped
-  at child 8** (the 9th onward hold the cap, `7 × step`). Pure CSS (`nth-child`);
-  direct children are expected to be the reveal items.
-- `data-reveal-delay="1".."4"` — per-element delay multiplier for standalone reveals.
-- **Mechanism:** each variant only sets one custom property, `--reveal-t` (the
-  START transform). The base rule is
-  `transform: var(--reveal-t, translateY(var(--reveal-distance)))`; the revealed
-  state (`.in`) sets `transform: none` and is shared by all variants — so there
-  is no per-variant specificity war.
-- **RTL:** `left`/`right` are physical, so their start offset mirrors under **any**
-  `[dir="rtl"]` ancestor (the site sets `dir` on `<html>`, but nested RTL
-  containers work too).
+Do not copy pre-Product-Cinema layout, motion, color, typography, or language
+assumptions into current work unless a new approved design explicitly restores
+them.
 
-**Reduced-motion guarantee.** The global `@media (prefers-reduced-motion: reduce)`
-block forces `[data-reveal]` **and** `[data-reveal-group] > [data-reveal]` to the
-final visible state — `opacity:1; transform:none; transition:none;
-transition-delay:0` — so every variant and every staggered child appears
-instantly with no motion and no delay. Any NEW animation added later must stay
-covered by this block (extend it explicitly; don't assume).
+## Product Cinema structure
 
-**Cache-busting convention.** Both shared files are referenced with a query
-version: `assets/saud.css?v=YYYYMMDD-N` and `assets/saud.js?v=YYYYMMDD-N` (current:
-`?v=20260705-1`), on all 18 pages (root pages use the relative `assets/…`, nested
-pages the absolute `/assets/…` — only the query string carries the version).
-**Deploy ritual: bump `N` (or the date) whenever the CONTENT of `saud.css` or
-`saud.js` changes**, so returning visitors fetch the new file instead of a cached
-one. `app-data.js` / `releases-loader.js` are deliberately NOT versioned yet.
+The current site has three presentation tiers:
 
-## Homepage identity (Stage 2 — bold motion landing)
-The landing is a **choreographed, atmosphere-first page**: neutral graphite
-canvas, cinematic entrance, living background — and the coloured app cards as
-the only colour voices. Everything below lives page-locally in `index.html`'s
-inline `<style>`/inline scripts (saud.css/saud.js untouched); all of it is
-transform/opacity (plus the sanctioned small-moment techniques noted below),
-dual-theme, RTL-mirrored, and fully neutralized by the page's
-reduced-motion block.
+1. **Homepage / Product Film** — the visible `PRODUCT FILM 02` opening, four
+   product cast cards, a directed sequence, SShift arrival, and studio
+   continuity.
+2. **Product chapters** — one distinct marketing chapter for SShift,
+   PhoneSpace, Filed, and Dufaat.
+3. **Information tier** — reading-first About, Support, Legal, 404, and legal
+   document presentation.
 
-- **Accent:** neutral **graphite** — `#3A3F4A` / `#23272F`. Dark-mode hero
-  wordmark: `.grad-text` uses a lifted graphite ramp (`#8A92A0 → #5A6270`) via
-  `background-image`, preserving `background-clip:text`.
+All tiers share the public Saud Apps identity but do not collapse the four
+products into one visual treatment.
 
-- **Atmosphere layer ("living grid").** A fixed, negative-z decorative layer
-  behind the whole page (`.atm`, aria-hidden): a fine 56px neutral grid with
-  micro-parallax, a slow diagonal light band sweeping over 18s
-  (ease-in-out alternate), and a cursor luminance spot. Pointer physics:
-  a tiny inline script writes raw `--pxr/--pyr` percentages on pointermove;
-  each layer maps them to its own registered `@property` `--px/--py` with a
-  different CSS transition duration (1.5s spot / 1.9s grid) — soft lagged
-  follow and depth with **no rAF loop**. Gated to `(pointer:fine)` and off
-  under reduced motion (layer freezes to its designed static state — never
-  removed). Strictly **graphite/ink + white alpha luminance** on both theme
-  paths — no new hues, ever. Vertical falloff mask keeps it strongest in the
-  upper third. It blooms in with the page's 0s stage-light beat.
+## Shared site shell
 
-- **Entrance choreography** (~1.6s tail, overlapping musical beats; headline
-  readable by ~1s; never blocks scroll/clicks): signal-field + atmosphere
-  bloom (0s, opacity-only so `field-drift` survives) → **the wordmark moment**:
-  per-line masked rise through `overflow:clip` line wrappers (`.hl`/`.hli`,
-  with `.18em` clip headroom so Arabic diacritics never shear), expo-out →
-  eyebrow fades in above with its dash drawing (scaleX, RTL-mirrored origin)
-  → lede rises → buttons pop (spring) → stats strip lands as the tail.
-  **Pattern rule:** every entrance keyframe is *from-only with
-  `fill: backwards`* — elements animate TO their natural styles, so hover
-  transforms stay alive afterwards.
+The current shared shell includes:
 
-- **Cards as an event.** The grid uses the Stage-1 system verbatim
-  (`data-reveal-group` + `data-reveal="scale"`); a `transition-timing-function`
-  longhand injects `--ease-spring` into the reveal transform without touching
-  the group's stagger delays. Each card carries `--slot`/`--sig-d` so its
-  signature plays right as it lands. Hover/focus expression is shadow +
-  accent border + inner glow + icon tilt (RTL-mirrored) — no card-level hover
-  transform (nothing fights the reveal transition); `:focus-within` gets the
-  full hover treatment.
+- a skip link;
+- the four-part Saud Apps brand mark;
+- Saud Apps identity text;
+- desktop and mobile navigation;
+- Day/Night controls;
+- responsive header and footer;
+- visible keyboard focus;
+- public support contact.
 
-- **Card signature elements** (medium identity dose — one motif per Live app,
-  drawn from each app's documented character; entrance + hover both):
-  - **SShift** — a 7-cell week strip in the real day-cell recipe (gradient
-    fill + 3px top strip, real DayType hexes, today-blue cell). Entrance:
-    cells cascade/pop in sequence; hover: ripple wave.
-  - **PhoneSpace** — serif card title + the conic category ring
-    (edge-soft glow stops; paint on `::before`, masked by a registered
-    `@property --ring-a` conic) + monochrome storage capsule. Entrance: the
-    ring **draws itself** (sweep; falls back to a full ring where
-    unsupported), the capsule fill grows; hover: ring rotates. The whole ring
-    is flipped in RTL so segments and the draw sweep counter-clockwise.
-  - **Filed** — strictly flat: 6 folder-palette tiles + a "PDF" tag-chip
-    capsule (15% fill + dot, no border). Entrance: tiles file into place with
-    crisp sharp timing (position/opacity only); hover: tiles lift in
-    sequence. **No gradients, no glow, no glass — ever.**
-  - **Dufaat** — the only glass/aurora card: static teal+gold aurora
-    (`::after`, blurred, RTL-mirrored corners, per-theme opacity var) behind a
-    true glass meta panel (backdrop-blur, luminous teal hairline,
-    fit-content). Entrance: the aurora blooms up from dark; hover: it
-    brightens.
-  - **Promptbook** (parked, commented card) — neutral treatment, violet
-    `#8A6CFF` accent; markup kept in the new card shape so the documented
-    un-hide still works.
+The shell uses a warm paper/ink foundation in light mode and a near-black,
+warm-ink foundation in dark mode. Shared tokens live in
+`assets/product-cinema-site.css`.
 
-## App-page motion tier (Stage 3)
-The contract for every app page (SShift, Dufaat, PhoneSpace, Filed) — one tier
-CALMER than the landing. Each page gets:
-- **Entrance choreography** in the landing's family (~1.2s tail): brand lockup
-  settles → eyebrow + dash draw → masked per-line headline rise (Arabic clip
-  headroom) → lede → buttons pop → badges fade → the device screenshot arrives
-  as its own beat.
-- **Living signature elements**: the page's own identity motifs animate on
-  reveal (scroll-triggered), drawn ONLY from that app's documented character.
-- **Scroll reveals** via the Stage-1 system (variants + group stagger) and
-  **hover micro-interactions** that echo the motifs.
-- **NO atmosphere layer, NO cursor-follow** — those are the landing's grand-gate
-  treatment; app pages are faster, focused reading experiences.
-- Pattern rules inherited from Stage 2: from-only keyframes + `fill:backwards`
-  (hovers stay alive), signature-moment allowances only (clip-path /
-  registered `@property` / stroke draws), no layout-property animation, no rAF
-  loops, page-local styles/scripts only, both theme paths, full RTL mirrors,
-  a page-local reduced-motion block forcing the final composed state, and
-  What's-New animated at CONTAINER level only (the releases loader owns and
-  re-renders its inside on every language switch).
+The brand mark, favicon, and Apple touch icon are site-level identity elements.
+Do not replace them as incidental cleanup.
 
-## Quiet tier (Final Stage) — studio pages + 404
-The third and lowest motion tier, for the graphite app-home pages
-(about/, support/, legal/, 404.html): a **brief entrance only** (≤0.8s tail
-— breadcrumb fade → eyebrow → title rise → lede, from-only +
-`fill:backwards`, page-local reduced-motion block) over the pages' existing
-Stage-1 scroll reveals, plus footer fades for consistency. **No signature
-elements, no masked-wordmark theatrics, no atmosphere, no new colours** —
-identity on these pages is calm consistency with the redesigned site.
-Support's FAQ `<details>` keep native open/close behaviour (sections reveal
-as blocks; never animate inside a disclosure). The 404 page follows this
-tier with a dimmed graphite "404" figure and absolute asset paths (it can be
-served at any URL depth).
+## Typography
 
-## Social preview (OG) assets
-`assets/og/` holds five designed 1200×630 cards — `og-home.png` (graphite
-studio card) and `og-<app>.png` for sshift / phonespace / dufaat / filed,
-each in its app's documented identity with a STATIC hint of its signature
-motif (week strip, category ring, aurora + settle tick, flat folder tiles +
-chip — Filed's card is gradient/glow-free like everything Filed). Wired on
-the **5 marketing pages only** (landing + 4 app pages): `og:image` (absolute
-URL) + `og:image:width/height` (1200/630) + `twitter:image` +
-`twitter:card=summary_large_image`. Legal/studio pages keep the favicon
-meta; **promptbook is deliberately excluded** (parked + noindex). The build
-templates are throwaway — only the PNGs are committed; regenerate by
-rebuilding a 1200×630 template in the app's identity if a card ever needs
-updating.
+The shared Product Cinema tokens provide:
 
-## Per-app colour identities (final)
-Each app leads with its own accent; **the identity comes from that app's own
-source, not from a shared template**. Values are the `saud.css` base line; the
-page inline `<style>` may refine them per theme (and wins).
+- a system sans-serif stack for interface and body copy;
+- an editorial serif stack;
+- a narrow/display stack for large directed typography.
 
-| App        | Accent (light) | Accent-2 | Character (see below) |
-|------------|----------------|----------|-----------------------|
-| SShift     | `#5B57E0` indigo (dark lift `#8B88F2`) | `#3F39B8` | gradient leave-type cells |
-| PhoneSpace | `#B28A29` gold | `#94701E` | cream + serif, editorial |
-| Filed      | `#2563EB` blue | `#1D4ED8` | flat, multi-colour folders |
-| Dufaat     | `#10A37F` emerald | `#0B7357` | "Luminous Calm" glass/aurora |
+Routes combine these stacks according to their current chapter. Do not
+standardize every route onto one family without a Design gate and visual
+proof.
 
-(SShift also uses its real in-app leave-type palette as data-viz colour, not
-just the indigo accent — see its character note.)
+## Homepage / Product Film
 
-## Shared hero pattern
-All four app pages use the same two-column hero (it originated on PhoneSpace):
-`.hero > .wrap > .split > [text column] + [.device-wrap]`.
-- Left: text column with a **brand lockup** (`.hero-brand` = app icon + name) on
-  its own line at the top, then eyebrow, headline, lede, cred/badges, buttons.
-- Right: a **real simulator screenshot** in a `.device` frame (often theme-
-  swapped — a light capture in light mode, a dark capture in dark mode).
-- Collapses to a single column on mobile. RTL + the EN/AR language toggle are
-  preserved on every page.
-- `.hero-brand` is a shared, additive component in `saud.css`; only the pages
-  that opt in reference it.
+The homepage currently presents:
 
-## Each app's character (and WHY they differ)
-The guiding rule: **each app's look is extracted from that app's own design — we
-do NOT copy one app's style onto another.** The apps look different on the site
-because the apps themselves are different. Reproduce the app's *real* rendering
-recipes (gradients, opacity, borders, shapes), not just flat colour values.
+- an edition line with `PRODUCT FILM 02`, four live products, and location/year
+  copy;
+- a large Saud Apps opening;
+- four product cast cards;
+- a directed sequence that resolves into a visible SShift week;
+- a mobile-specific edit of that sequence;
+- a studio section about the independent maker;
+- links to the four product chapters, About, Support, and Legal.
 
-- **Dufaat — "Luminous Calm, warmed."** Warm editorial finance look. Teal accent
-  `#1F9E75`/`#67DDC5`, gold `#B07D33`/`#E3BE86`, terracotta alert; canvas
-  `#F6F3EC`/`#0B0D14`; two soft blurred **aurora glows** (teal top-leading, gold
-  bottom-trailing; static, reduced-motion-safe); **glass cards** (translucent +
-  `backdrop-filter` blur, 1px luminous hairline, 18px radius); Amiri for Arabic
-  headings. Dufaat is the only app that uses glass/blur + aurora.
-  **Stage-3 motion (shipped):** hero choreography per the app-page tier (the
-  hero aurora wash blooms in as the opening beat; Amiri headline gets .22em
-  clip headroom for its diacritics); THE living signature is the settle
-  moment — as the receipt card reveals, header/note fade in, the receipt chip
-  rises, the Settled stamp pops (spring + tiny rotation, mirrored in RTL) and
-  its tick DRAWS itself (stroke-dashoffset, static fallback = drawn). Glass
-  features rise via the Stage-1 group with slot-keyed icon pops; gallery
-  devices reveal as a staggered scale group; hovers stay calm (device breathe,
-  receipt-card lift).
-- **SShift — real leave-type colour, gradient cells.** Indigo lead `#6680F2`
-  (page) / `#5B57E0` (saud.css base). The signature is the **day-cell recipe**
-  (NOT flat): `linear-gradient(180deg, BASE@18% → BASE@10%)` over the surface +
-  a solid ~4px top accent strip + 1px `BASE@~18%` border + radius 11; today cell
-  is the app's blue (`#ADD1FF→#61A6FF`, `#3373D9` strip). Leave-type palette
-  (1:1 from the app's `DayType.colorHex`, single hex per type, identical in
-  light & dark — opacity does the adapting): Work `#4CAF50`, Rest `#9E9E9E`,
-  Long Cycle `#5C6BC0`, National Service `#2196F3`, Annual `#FF9800`, Sick
-  `#F44336`, Force Majeure `#9C27B0`, Training `#009688`, Escort `#E91E63`,
-  Business `#795548`, Special Event `#00BCD4`, Other `#757575`. The legend uses
-  the app's "edit-day" chip style (type@12% fill + type border + dot). An "edge
-  strip" motif (a coloured rounded-leading left strip) appears on feature cards.
-  **Stage-3 motion (shipped):** hero choreography per the app-page tier; THE
-  living signature is the week strip — tiles cascade in with their real
-  DayType colours (spring pops, 55ms steps), each tile's 4px top strip draws
-  itself (scaleX, RTL-mirrored origin) a beat after its tile, and the
-  today-blue cell lands with a distinct deeper beat; legend chips pop in
-  staggered. Feature cards: edge strip draws down (scaleY) + icon chip pops as
-  each card lands (slot-keyed); hover widens the strip (scaleX 1.6, mirrored).
-  Week hover = ripple (tiles rise in sequence). Gallery devices reveal as a
-  staggered scale group with gentle hover scale.
-- **Filed — flat by design.** Filed uses **flat full-strength icon tints, ~15%
-  tag-chip fills, solid hairline cards, and NO gradients anywhere** — do not add
-  gradients/aurora/glass to Filed; that would betray its identity. Drive-style
-  accent `#2D6CDF`/`#5B8DEF`. Real folder palette (`SectionColor`, light/dark
-  pairs): blue `#1A73E8`/`#6BA5F5`, red `#E5484D`/`#FF6166`, green
-  `#1E8E3E`/`#4CC76A`, yellow `#E8B400`/`#F2C744`, orange `#E8710A`/`#F59E42`,
-  purple `#7A5AF8`/`#9B82FF`, teal `#0E9F9A`/`#37C7C0`, pink `#D01884`/`#E072B8`,
-  gray `#5F6368`/`#9AA0A6`. Tag chip = capsule, colour@15% fill + colour dot +
-  colour text, no border. Cards = solid surface + 0.5px hairline + radius 14.
-  **Stage-3 motion (shipped):** hero choreography per the app-page tier, in
-  Filed's own voice — strictly flat motion: position/opacity with crisp,
-  sharp-timed curves (cubic-bezier(.2,0,0,1) filings + expo-out), NO spring
-  bounce, and audited zero new gradients/blur/glow. The tag chips pop in
-  filed one after another (the signature motif); section feature cards land
-  crisply via the Stage-1 group with slot-keyed flat icon-tint pops; gallery
-  scale group; hover = small position shifts only (chip row ripple, device
-  lift).
-- **PhoneSpace — cream + serif, editorial.** Neutral canvas `#FCFBFA`/`#0F0F0F`
-  + **New York / serif** content type (sans for chrome/eyebrows); gold `#B28A29`
-  used only as a small accent (App Store button + "Try" pill). The signature is
-  a **glowing storage ring** (code-drawn): a 4-segment proportional donut where
-  each segment is a **conic gradient** with stops `colour@55%(edge) →
-  colour@100%(centre) → colour@55%(edge)`, butt caps, 12 o'clock clockwise —
-  giving an edge-soft, centre-bright glow. Category colours: Photos `#5EC46B`,
-  Videos `#ED9433`, Contacts `#5999B8`, Files `#8C73B3`; tool accents Compress
-  burgundy `#740031`, Convert mustard `#E7B636`, upgrade gold `#B28A29`.
-  Category rows = 4px colour stripe + monochrome icon + serif text; the device
-  storage bar is a deliberately monochrome capsule. The ONLY gradients on the
-  page are the ring conic + one warm cream hero-card linear; everything else is
-  flat. No blur/glass.
-  **Stage-3 motion (shipped):** hero choreography per the app-page tier (masked
-  serif headline); THE living signature is the storage ring DRAWING itself at
-  page scale when the showcase chapter reveals (the conic paint moved to a
-  ::before whose alpha conic mask sweeps 0→360° via a registered @property —
-  no new painted gradients; paint layers flipped in RTL so the draw runs
-  counter-clockwise while the number stays upright), followed by the count
-  fading in, legend items, the monochrome bar growing (origin-mirrored), the
-  gold Try pill, and the category rows filing in with their 4px stripes
-  drawing. Category feature cards: stripes draw + monochrome icons settle,
-  slot-keyed. Code-drawn mocks (Photos rows, Compress/Convert tools) file in
-  crisply per chapter. Hover: stripe widen only — editorial restraint.
+The homepage is not a generic card grid. Its order, sequence, labels, static
+fallback, and mobile edit are part of the current composition.
 
-## The app-faithful re-skin recipe (five stages)
-Proven across Dufaat (v2), SShift, Filed, PhoneSpace. To re-skin an app page so
-it feels like the app:
+Visible film/chapter phrases are interface copy. Their presence does not create
+an undocumented product taxonomy or formal operating model.
 
-1. **Extract — in the app project (Code terminal on the iOS app, not the site).**
-   Pull the app's **full design language**, not just colour values: exact
-   *recipes* (gradient stops + opacity, borders, radii, shapes, shadows),
-   typography, and any signature motif (storage ring, day cell, folder glyph,
-   etc.), for **light AND dark**. ALSO generate **clean screenshots from the iOS
-   Simulator** (6.9" iPhone 16 Pro Max, clean 9:41 status bar via
-   `xcrun simctl status_bar … override`, fake/demo data only, EN + Arabic/RTL +
-   light/dark where the app supports them). Seed demo data throwaway-style
-   (DEBUG-gated) and revert it; commit nothing to the app repo.
-2. **Transfer.** The owner copies the screenshots into the site repo under
-   `<app>/_v2src/` (a temporary source folder). For paths with spaces, copy with
-   a trailing `/.` and quotes.
-3. **Website prompt.** Claude writes a *preview-only* spec for Code (on the site
-   repo) that reproduces the extracted recipes faithfully + swaps in the
-   screenshots (optimized to ~820px JPGs, ~60–120KB, used **as-is**, never
-   redrawn), keeping the shared hero/layout and the app's data hooks.
-4. **Preview.** Code renders screenshots (desktop + mobile, light + dark) to
-   `/tmp`; the owner opens them locally and approves. **Preview before commit is
-   non-negotiable** — anything not seen (e.g. a newly code-drawn section) gets
-   its own preview before it ships.
-5. **Apply + clean up.** On approval, Code commits + pushes, then **deletes
-   `<app>/_v2src/`**. Claude independently verifies the commit by cloning the
-   public repo and running grep/Python checks (filenames-only diff, forbidden
-   files absent, data hooks intact, `_v2src` not committed).
+## Product chapter identities
 
-## Hard-won lessons
-- **Asset-catalog colours are often dormant.** In SShift, Dufaat, Filed AND
-  PhoneSpace, the asset-catalog colours were unused; the app rendered from
-  code-defined `Color` tokens / system colours. **Extract from the code the app
-  actually uses, not the asset catalog.** Confirm live-vs-dormant every time.
-- **Extract recipes, not flat colours.** The first SShift pass captured flat
-  hex and rendered flat tiles — wrong. The real cells were gradient + strip +
-  border. Always capture *how* a colour is rendered.
-- **Each app from its own source.** Don't reuse one app's treatment on another.
-  Filed must stay flat even though SShift/Dufaat are not; PhoneSpace is cream +
-  serif, not glassy. Different apps, different looks — on purpose.
-- **Simulator > real-phone screenshots.** Simulator captures (clean status bar,
-  demo data, correct 6.9" size) look professional; real-phone shots look messy.
-  Always use the Simulator, with clean demo data (including a fake populated
-  calendar for SShift-style apps).
-- **`_v2src/` is always temporary** — deleted after the owner verifies.
-- **Live apps:** never touch the version / "What's New" / `data-releases` hook /
-  `app-data.js` / `releases-loader.js` during a re-skin (they're auto-managed;
-  see RELEASES_PIPELINE.md). Coming-soon apps (e.g. Promptbook) have no data hooks —
-  don't add any.
-- **`releases.json` is generated — never hand-edit.** The landing stats strip
-  (`div.cred`) is hardcoded — update it by hand when app counts change
-  (see ARCHITECTURE.md / ADD_NEW_APP.md).
+### SShift
 
-## Special cases worth remembering
-- **PhoneSpace was an identity *correction*, not just a re-skin.** Its old site
-  accent (amber `#E0A23B`) did not exist in the app at all; the real app is
-  cream + serif. The re-skin replaced the wrong identity with the true one, and
-  flipped the dormant `saud.css` amber line to the truthful gold `#B28A29`.
-- **PhoneSpace has limited assets:** the app has no Arabic localization, so its
-  screenshots are English-only (the page copy is still bilingual — that's fine,
-  don't fake an Arabic screenshot). Only the home screen could be cleanly
-  captured (the Photos/Compress screens need real-device photo permission), so
-  its drill-down sections are **code-drawn** in the app's style rather than
-  screenshots.
-- **Filed stays flat** — documented above, but it bears repeating: no gradients.
+SShift uses the shared Product Cinema chapter files and an icy calendar field:
 
-## Open / future (optional)
-- Auto-compute the hardcoded landing stats numbers (currently manual).
+- indigo depth and cyan light;
+- week/day structures;
+- shift-calendar screenshots;
+- time and calendar progression;
+- a directed but readable motion chapter.
+
+### PhoneSpace
+
+PhoneSpace uses its route-local Product Cinema files:
+
+- warm cream and amber atmosphere;
+- storage pressure opening into room and clarity;
+- category rows, storage measures, and tool chapters;
+- fine-pointer effects only where supported;
+- a static resolved layout and reduced-motion alternative.
+
+### Filed
+
+Filed uses its route-local Product Cinema files and must remain visually flat
+and disciplined:
+
+- cool document-network atmosphere;
+- filing, organization, reading, signature, sharing, and privacy chapters;
+- crisp panels, restrained borders, and document evidence;
+- no generic glass/aurora treatment copied from another product;
+- static readable and reduced-motion alternatives.
+
+Filed's public identity is `Filed`. No internal name belongs in this public
+repository.
+
+### Dufaat
+
+Dufaat uses its route-local Product Cinema files:
+
+- mint-to-copper settlement atmosphere;
+- progression from plan to due, paid, proof, and record;
+- Pay Soon, progress, proof, reports, reminders, backup, and privacy chapters;
+- diagonal/progressive motion where supported;
+- static readable and reduced-motion alternatives.
+
+## Information tier
+
+About, Support, Legal, and 404 use a calmer reading-first tier:
+
+- the shared Product Cinema shell;
+- restrained information surfaces;
+- existing bilingual content;
+- minimal enhancement rather than product-film sequences;
+- the same theme controls and public brand mark.
+
+The information shell is generated at runtime over preserved document markup.
+Changes must be tested with JavaScript enabled and disabled because the raw
+source and runtime shell are not identical.
+
+## Theme behavior
+
+The site supports light and dark themes:
+
+- stored choice uses `localStorage`;
+- absent a stored choice, the system color preference is used;
+- route images may switch through theme-specific data attributes;
+- theme color metadata updates with the selected theme;
+- route-specific atmospheres include dark variants.
+
+Every visual change must be reviewed in both themes.
+
+## Motion and progressive enhancement
+
+Product Cinema uses motion as progressive enhancement:
+
+- shared and route-local reveal observers;
+- scroll-directed sequences;
+- fine-pointer effects;
+- theme-aware atmosphere;
+- requestAnimationFrame only in supported enhanced paths.
+
+The required contract:
+
+- meaningful content exists in HTML before enhancement;
+- static layout remains readable;
+- reduced-motion media queries remove or simplify animation;
+- coarse-pointer and mobile layouts do not depend on hover;
+- no content or action may be available only through motion.
+
+## Responsive behavior
+
+Product Cinema contains explicit desktop, tablet, phone, narrow-phone, and
+coarse-pointer adjustments. The homepage includes a separately directed mobile
+edit rather than merely shrinking the desktop sequence.
+
+Review at minimum:
+
+- wide desktop;
+- standard desktop/laptop;
+- tablet;
+- mobile;
+- narrow mobile;
+- fine and coarse pointers;
+- light and dark themes;
+- default and reduced motion.
+
+## Language and direction
+
+The current route split must be documented honestly:
+
+- the homepage and four primary Product Cinema app routes are English-only and
+  initialize as LTR;
+- information and legal routes contain English/Arabic pairs and language
+  controls;
+- Arabic selection in the older controller applies RTL;
+- Product Cinema core initialization also applies English/LTR;
+- full-site Arabic/RTL parity is not a current verified capability.
+
+Do not add Arabic labels, claim RTL parity, remove bilingual support, or change
+initial language behavior without a separate approved Scope and Design task.
+
+## Product imagery and social identity
+
+- Public app screenshots live under route-local asset folders.
+- Shared Product Cinema icons/field art live under
+  `assets/product-cinema-v2/`.
+- The homepage and four primary app routes use designed 1200×630 Open Graph
+  cards under `assets/og/`.
+- The site uses `assets/favicon.svg` and
+  `assets/saudapps-favicon.png`.
+
+Use only clean public/demo imagery. Never introduce personal or user data.
+
+## Protected implementation hooks
+
+Design work must preserve:
+
+- `data-app` and `data-field` badge hooks;
+- `data-releases` targets;
+- App Store and public legal/support links;
+- theme controls and theme-image hooks;
+- reveal attributes and reduced-motion fallbacks;
+- sitemap, robots, CNAME, workflow, and generated release contracts;
+- static HTML fallbacks.
+
+Visual approval does not authorize changing release data, public identifiers,
+language behavior, legal content, or deployment configuration.
+
+## Design workflow
+
+1. Inspect the current route and its shared/route-local Product Cinema files.
+2. Define a public-safe work order and exact route scope.
+3. Obtain Scope approval.
+4. Produce previews for affected viewports, themes, motion settings, and
+   languages where applicable.
+5. Obtain Design approval.
+6. Implement only on an isolated branch/worktree.
+7. Validate content, hooks, links, accessibility, theme, motion, and responsive
+   behavior.
+8. Obtain independent QA and code review.
+9. Obtain Release approval before `main` or Pages changes.
+10. Verify the live route after publication and synchronize knowledge.
+
+## Non-goals
+
+Product Cinema does not authorize:
+
+- making all app pages visually identical;
+- applying another app's atmosphere to Filed;
+- treating animation as required content;
+- restoring pre-cinematic design by default;
+- changing primary-route language behavior;
+- reviving Promptbook;
+- editing generated release data;
+- exposing private app information.
