@@ -1,5 +1,9 @@
 # Saud Apps Website — Claude Operating Context
 
+> Current entry point: read [`AGENTS.md`](AGENTS.md) and
+> [`Docs/STATE.md`](Docs/STATE.md) first. They take precedence if this older
+> stable context conflicts with current code or Product Cinema documentation.
+
 Always-loaded context for Claude Code. STABLE facts only.
 Running session state lives in Docs/SESSION_LOG.md.
 
