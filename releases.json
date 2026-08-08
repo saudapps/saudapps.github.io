@@ -1,9 +1,18 @@
 {
-  "updatedAt": "2026-08-07T04:51:49.824Z",
+  "updatedAt": "2026-08-08T04:09:05.312Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "5.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-06T11:13:08-07:00",
+          "whatsNew": {
+            "en": "Version 5.0\n\n• Add SShift Widgets for your Home Screen and Lock Screen, so you can see today’s shift and the days ahead at a glance.\n• Add Academic Leave as a clear, dedicated leave type.\n• Refine Calendar navigation and add a custom date range to Dashboard.\n• Improve reliability and polish across schedule updates, backup compatibility, and the bilingual experience.",
+            "ar": "الإصدار 5.0\n\n• أضفنا أدوات SShift للشاشة الرئيسية وشاشة القفل لعرض وردية اليوم والأيام القادمة بنظرة واحدة.\n• أضفنا إجازة دراسية كنوع إجازة واضح ومستقل.\n• حسّنا التنقل في التقويم وأضفنا نطاق تاريخ مخصصاً في اللوحة.\n• تحسينات في الموثوقية واللمسات النهائية لتحديثات الجدول وتوافق النسخ الاحتياطي والتجربة الثنائية اللغة."
+          }
+        },
         {
           "version": "4.2",
           "state": "READY_FOR_SALE",
