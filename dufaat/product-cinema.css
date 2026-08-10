@@ -431,13 +431,44 @@ body.pc-dufaat {
 .df-record__grid article:nth-child(3) { border-top: 5px solid var(--df-teal); }
 .df-record__grid article:nth-child(4) { border-top: 5px solid var(--df-gold); }
 
-/* Four-screen product record. */
+/* Dufaat Plus — optional, one-time In-App Purchase. */
+.df-plus { background: var(--df-navy); color: #edf5f0; }
+.df-plus .df-kicker { color: #67d8c6; }
+.df-plus .df-chapter-heading > p:last-child { border-color: rgba(237,245,240,.38); border-left-color: var(--df-gold); color: rgba(237,245,240,.72); }
+.df-plus__purchase {
+  margin-top: 42px;
+  padding: clamp(22px, 3vw, 38px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 30px;
+  align-items: center;
+  border: 1px solid rgba(237,245,240,.38);
+  border-top: 7px solid #67d8c6;
+  background: rgba(237,245,240,.045);
+}
+.df-plus__purchase > div:first-child { display: grid; }
+.df-plus__purchase > div:first-child > span { color: #67d8c6; font-size: 8px; font-weight: 900; letter-spacing: .14em; }
+.df-plus__purchase > div:first-child > strong { margin-top: 8px; font-family: var(--pc-serif); font-size: clamp(38px, 4.6vw, 68px); font-weight: 600; letter-spacing: -.05em; }
+.df-plus__purchase p { margin-top: 8px; color: rgba(237,245,240,.68); font-size: 13px; line-height: 1.55; }
+.df-plus__price { min-width: 220px; padding-left: 28px; display: grid; border-left: 1px solid rgba(237,245,240,.3); text-align: right; }
+.df-plus__price strong { color: var(--df-gold); font-family: var(--pc-serif); font-size: clamp(32px, 3.8vw, 52px); font-weight: 600; letter-spacing: -.04em; }
+.df-plus__price span { max-width: 260px; margin-top: 5px; color: rgba(237,245,240,.6); font-size: 9px; font-weight: 780; letter-spacing: .07em; line-height: 1.5; text-transform: uppercase; }
+.df-plus__grid { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgba(237,245,240,.3); }
+.df-plus__grid article { position: relative; min-height: 330px; padding: 26px; display: grid; align-content: space-between; border-right: 1px solid rgba(237,245,240,.2); }
+.df-plus__grid article:last-child { border-right: 0; }
+.df-plus__grid article > span { color: #67d8c6; font-size: 8px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.df-plus__grid h3 { font-family: var(--pc-serif); font-size: clamp(34px, 3.2vw, 49px); font-weight: 600; letter-spacing: -.05em; line-height: .93; }
+.df-plus__grid p { color: rgba(237,245,240,.68); font-size: 13px; line-height: 1.58; }
+.df-plus__grid article > b { position: absolute; top: 24px; right: 22px; color: rgba(237,245,240,.52); font-size: 8px; letter-spacing: .12em; }
+.df-plus__free { margin-top: 22px; color: rgba(237,245,240,.68); font-size: 13px; line-height: 1.6; }
+.df-plus__free strong { color: #edf5f0; }
+
+/* Six-screen product record. */
 .df-gallery { background: var(--df-paper-soft); }
 .df-gallery__grid { margin-top: 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(18px, 2.2vw, 34px); align-items: start; }
-.df-gallery-card--lead { grid-column: 1 / 5; width: 75%; }
-.df-gallery-card--major { grid-column: span 3; width: 94%; margin-top: 64px; justify-self: center; }
-.df-gallery-card--compact { grid-column: 9 / 11; width: 88%; margin-top: -18%; justify-self: end; }
-.df-gallery-card:nth-child(3) { grid-column: 8 / 11; margin-top: 12px; }
+.df-gallery-card { grid-column: span 4; width: 82%; justify-self: center; }
+.df-gallery-card:nth-child(2),
+.df-gallery-card:nth-child(5) { margin-top: 58px; }
 .df-gallery-card img { width: 100%; height: auto; border: 0; border-radius: 25px; background: #03070b; box-shadow: 0 0 0 5px #03070b, 0 0 0 6px var(--df-line-strong); }
 
 /* Release history with complete static fallback. */
@@ -472,16 +503,19 @@ body.pc-dufaat {
 
 @media (hover: hover) and (pointer: fine) {
   .df-progress__ledger article,
-  .df-record__grid article { transition: background-color .24s ease; }
+  .df-record__grid article,
+  .df-plus__grid article { transition: background-color .24s ease; }
   .df-progress__ledger article:hover,
   .df-record__grid article:hover { background: color-mix(in srgb, var(--df-teal) 7%, transparent); }
+  .df-plus__grid article:hover { background: rgba(103,221,197,.07); }
 }
 
 @media (max-width: 1180px) {
   .df-opening__copy { grid-column: 1 / 7; }
   .df-opening__evidence { grid-column: 7 / -1; }
   .df-device--hero { width: min(29vw, 320px); }
-  .df-gallery-card--compact { margin-top: 0; }
+  .df-gallery-card:nth-child(2),
+  .df-gallery-card:nth-child(5) { margin-top: 34px; }
 }
 
 @media (max-width: 900px) {
@@ -515,10 +549,10 @@ body.pc-dufaat {
   .df-proof__copy { grid-column: 8 / -1; }
   .df-record__grid { grid-template-columns: repeat(2, 1fr); }
   .df-record__grid article:nth-child(2) { border-right: 0; }
-  .df-gallery-card--lead { grid-column: span 5; width: 82%; }
-  .df-gallery-card--major { grid-column: span 3; }
-  .df-gallery-card:nth-child(3) { grid-column: span 4; }
-  .df-gallery-card--compact { grid-column: span 3; }
+  .df-plus__grid { grid-template-columns: 1fr; }
+  .df-plus__grid article { min-height: 250px; border-right: 0; border-bottom: 1px solid rgba(237,245,240,.2); }
+  .df-plus__grid article:last-child { border-bottom: 0; }
+  .df-gallery-card { grid-column: span 4; width: 90%; }
 }
 
 @media (max-width: 700px) {
@@ -578,11 +612,13 @@ body.pc-dufaat {
   .df-proof__copy { margin-top: 12px; }
   .df-record__grid { display: block; }
   .df-record__grid article { min-height: 230px; border-right: 0; }
+  .df-plus__purchase { grid-template-columns: 1fr; gap: 22px; }
+  .df-plus__price { min-width: 0; padding: 20px 0 0; border-top: 1px solid rgba(237,245,240,.3); border-left: 0; text-align: left; }
+  .df-plus__grid article { min-height: 230px; padding-inline: 0; }
   .df-gallery__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 14px; }
-  .df-gallery-card--lead { grid-column: span 2; width: min(72vw, 300px); }
-  .df-gallery-card--major,
-  .df-gallery-card:nth-child(3),
-  .df-gallery-card--compact { grid-column: span 1; width: 100%; margin-top: 0; }
+  .df-gallery-card { grid-column: span 1; width: 100%; margin-top: 0; }
+  .df-gallery-card:nth-child(2),
+  .df-gallery-card:nth-child(5) { margin-top: 0; }
   .df-gallery-card figcaption { display: grid; gap: 4px; }
   .df-gallery-card figcaption strong { text-align: left; }
   .df-release-layout { display: block; }
