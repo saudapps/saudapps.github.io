@@ -23,6 +23,23 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-08-11 — Dufaat 2.2 website sync
+- Done: Published the approved Dufaat 2.2 Product Cinema update, six optimized
+  screenshots, clear one-time Dufaat Plus messaging, and synchronized privacy
+  and terms content. Preserved workflow ownership of release versions and
+  notes.
+- Decisions: Static fallback copy stays release-neutral until App Store 2.2 is
+  public; the live release systems remain the source for version and What's
+  New content.
+- Open / next: After Apple publishes Dufaat 2.2, verify the automated version
+  and release-note refresh on the live Dufaat page.
+- Deploy state: Published to GitHub Pages from `main`; release-sync descendant
+  completed as expected.
+- Live-check: Homepage, Dufaat, privacy, terms, and all six Dufaat screenshot
+  routes passed; Pages run `31453049991` succeeded.
+- ChatGPT review: Independent pre-publication findings were closed; final
+  structural, content, privacy, and live checks passed.
+
 ## 2026-07-06 — Final Stage: studio pages + 404 + OG images (+ site check)
 - Done: The redesign's closing stage, owner-reviewed per item. (1) Quiet
   tier (a third, lowest motion tier — brief ≤0.8s entrance over existing

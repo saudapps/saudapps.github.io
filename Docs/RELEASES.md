@@ -4,6 +4,21 @@ This document records verified Git lineage and the current safe release
 process. It does not claim App Store or GitHub Pages state unless separately
 verified.
 
+## 2026-08-11 Dufaat 2.2 website publication
+
+- `855e955` prepared the Dufaat 2.2 product page, six approved screenshots,
+  updated privacy and terms content, and explicit one-time Dufaat Plus
+  positioning.
+- `d9444ef` kept static fallback status truthful while App Store version 2.2
+  remains unpublished.
+- Saud approved the production publication. The reviewed branch was pushed,
+  fast-forwarded into `main`, and published by GitHub Pages.
+- Pages deployment `31453049991` succeeded and the affected live routes were
+  verified separately.
+- The expected release-sync descendant `c6b155b` changed only the generated
+  timestamp in `releases.json`. Release versions and notes remain automation
+  owned.
+
 ## Current baseline
 
 | Field | Status | Value |

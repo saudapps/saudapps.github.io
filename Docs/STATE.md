@@ -4,6 +4,23 @@ This is the first current-state reference for the public Saud Apps website. It
 separates verified repository and network facts from reported state and
 unknowns.
 
+## 2026-08-11 Dufaat 2.2 website sync
+
+- `VERIFIED`: The Dufaat Product Cinema page now presents the 2.2 feature
+  chapters, six approved screenshots, and clear Dufaat Plus positioning as a
+  one-time in-app purchase with no subscription.
+- `VERIFIED`: Dufaat privacy and terms pages describe the local-only data
+  model, StoreKit purchase handling, and App Lock behavior.
+- `VERIFIED`: The approved site commits were published through `main`; the
+  Pages deployment completed successfully and the homepage, Dufaat, privacy,
+  terms, and six screenshot routes returned successful live responses.
+- `VERIFIED`: `releases.json` remains workflow-owned. The post-push release
+  sync changed only its generated timestamp; no release version or notes were
+  edited manually.
+- `VERIFIED`: Static fallback copy does not claim that 2.2 is the current App
+  Store release before Apple publishes it. Runtime version and release notes
+  continue to come from the existing release-data systems.
+
 ## Baseline
 
 | Field | Status | Value |

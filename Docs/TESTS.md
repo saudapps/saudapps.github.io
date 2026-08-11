@@ -3,6 +3,23 @@
 This document records the current validation reality and the minimum review
 matrix for website changes. It does not claim an unexecuted check passed.
 
+## 2026-08-11 Dufaat 2.2 publication evidence
+
+- `git diff --check` passed for the reviewed site range.
+- `releases.json` was verified unchanged by the feature branch.
+- The local homepage, Dufaat, privacy, terms, and six screenshot routes
+  returned HTTP 200 before publication.
+- The six Dufaat screenshots were verified as 820 x 1781 JPEG assets without
+  alpha.
+- Public-safety scans found no personal filesystem paths and no static claim
+  that 2.2 was already the current App Store release.
+- GitHub Pages deployment run `31453049991` completed successfully.
+- Live checks passed for the homepage, Dufaat, privacy, terms, and all six
+  screenshot routes. Live Dufaat content exposed the one-time purchase, SAR
+  24.99 base price, no-subscription wording, StoreKit, and App Lock details.
+- The release-sync workflow completed successfully and its descendant changed
+  only the generated `updatedAt` value in `releases.json`.
+
 ## Current automated-test reality
 
 ### Verified present
