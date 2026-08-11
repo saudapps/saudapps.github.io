@@ -323,5 +323,15 @@ This evidence is time-bound and must be repeated before a future release.
 - `VERIFIED`: Saud accepted the temporary feature-copy/binary timing difference
   and approved immediate publication while the automated version label remains
   tied to Apple's current public App Store version.
-- `PENDING`: Owner-approved publication, GitHub Pages completion, and live route,
-  asset, and automatic-version checks remain.
+- `VERIFIED`: Release sync run `31495780955` and Pages deployment
+  `31495798046` completed successfully. The expected sync descendant `9250eaa`
+  changed only `releases.json`.
+- `VERIFIED`: At `2026-08-11T13:26:05Z`, the homepage, PhoneSpace page, privacy
+  page, route CSS, three new screenshots, `app-data.js`, and `releases.json`
+  returned HTTP 200 with the expected content types. The changed HTML, CSS, and
+  image responses matched repository bytes.
+- `VERIFIED`: The live 1280 × 720 browser session rendered the PhoneSpace hero,
+  dark Tools chapter, four-screen evidence gallery, and homepage without
+  horizontal overflow or console warnings/errors. All four gallery images
+  loaded at 820 × 1781. PhoneSpace showed `iOS · v1.1` on both the app page and
+  homepage, and generated release history also remained at 1.1 as expected.

@@ -43,8 +43,8 @@ Trigger the sync when ANY of these is true for an app:
 - [x] Follow-up review of `9f20d06` confirmed seven of eight checks and found
       one Night-theme contrast blocker; the candidate was corrected again.
 - [x] Corrected candidate `d79a972` received final independent `PASS`.
-- [ ] Candidate published through `main` and GitHub Pages completed.
-- [ ] Live PhoneSpace and privacy routes, screenshots, and automatic version
+- [x] Candidate published through `main` and GitHub Pages completed.
+- [x] Live PhoneSpace and privacy routes, screenshots, and automatic version
       behavior verified.
 - [x] Original publication hold recorded and independently reviewed.
 - [x] Saud explicitly superseded that timing hold and approved immediate

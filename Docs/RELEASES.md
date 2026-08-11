@@ -189,5 +189,10 @@ markers retroactively.
   approved immediate website publication on 2026-08-11. The existing automated
   version systems remain unchanged and are expected to keep showing Apple's
   current public version until the App Store release changes.
-- `PROPOSED`: Merge to `main`, Pages verification, and live route checks are
-  still pending. This is not yet a live-release claim.
+- `VERIFIED`: Publication commit `aa0df4c` was fast-forwarded to `main`.
+  Release sync run `31495780955` succeeded and its descendant `9250eaa`
+  changed only generated `releases.json`; Pages run `31495798046` succeeded.
+- `VERIFIED`: Live HTTP and browser checks passed for the homepage, PhoneSpace,
+  privacy, route CSS, and all three new screenshots. Approved site files matched
+  their live responses, all inspected images loaded at 820 × 1781, and both
+  automated surfaces continued to show Apple's current public PhoneSpace 1.1.

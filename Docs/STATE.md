@@ -26,9 +26,16 @@ unknowns.
   existing App Store-driven version automation unchanged, so the feature copy
   may precede the binary while the visible version remains the public App Store
   version.
-- `PROPOSED`: Merge to `main`, GitHub Pages completion, and live verification
-  are the remaining website-release actions. This section does not yet claim
-  the candidate is live.
+- `VERIFIED`: Approved publication commit `aa0df4c` was fast-forwarded to
+  `main`. Release sync run `31495780955` succeeded and created descendant
+  `9250eaa`, changing only generated `releases.json`; Pages deployment
+  `31495798046` then succeeded.
+- `VERIFIED`: At `2026-08-11T13:26:05Z`, the live homepage, PhoneSpace page,
+  privacy page, route stylesheet, three new screenshots, `app-data.js`, and
+  `releases.json` returned HTTP 200. The changed site files matched the approved
+  repository bytes, the browser showed no console warnings/errors or horizontal
+  overflow, and both the homepage and app page correctly remained on Apple's
+  public `v1.1` until the automated sources observe a newer public release.
 
 ## 2026-08-11 Dufaat 2.2 website sync
 
