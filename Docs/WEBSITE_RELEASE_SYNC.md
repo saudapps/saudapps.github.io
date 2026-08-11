@@ -42,9 +42,9 @@ Trigger the sync when ANY of these is true for an app:
       were recorded for correction.
 - [x] Follow-up review of `9f20d06` confirmed seven of eight checks and found
       one Night-theme contrast blocker; the candidate was corrected again.
-- [ ] Corrected candidate receives a follow-up independent `PASS`.
+- [x] Corrected candidate `d79a972` received final independent `PASS`.
 - [ ] Candidate published through `main` and GitHub Pages completed.
 - [ ] Live PhoneSpace and privacy routes, screenshots, and automatic version
       behavior verified.
-- [ ] Publication held until Apple makes PhoneSpace 1.2 available; do not expose
+- [x] Publication held until Apple makes PhoneSpace 1.2 available; do not expose
       Resize/Convert 1.2 claims to users installing the current 1.1 build.

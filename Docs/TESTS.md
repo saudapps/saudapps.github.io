@@ -316,6 +316,9 @@ This evidence is time-bound and must be repeated before a future release.
 - `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`, including
   publication-ordering, privacy-scope, contact-trash, screenshot, responsive
   gallery, and pre-existing light-theme contrast findings.
-- `PENDING`: Corrected candidate requires follow-up independent review. The site
-  remains unpublished until that review passes and Apple publishes 1.2; live
-  route and asset checks follow GitHub Pages completion.
+- `VERIFIED`: Final independent review of corrected candidate `d79a972`
+  returned `PASS`. Computed-style and WCAG measurements covered Day and Night at
+  901, 1280, and 1500 px; all tested text, badge, glyph, and border contrasts
+  passed their applicable thresholds.
+- `PENDING`: The site remains unpublished until Apple publishes 1.2; live route
+  and asset checks follow GitHub Pages completion.

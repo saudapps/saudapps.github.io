@@ -181,8 +181,10 @@ markers retroactively.
   PhoneSpace 1.2.
 - `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`; its reported
   content/design findings were corrected in `9f20d06`. Follow-up review then
-  found one Night-theme Tools contrast regression, now corrected in the current
-  unpublished candidate.
-- `PROPOSED`: A follow-up `PASS`, Apple publication of PhoneSpace 1.2, merge to
-  `main`, Pages verification, and live route checks are still pending. This is
-  not a live-release claim.
+  found one Night-theme Tools contrast regression, corrected in `d79a972`.
+- `VERIFIED`: Final independent follow-up returned `PASS` for `d79a972` with no
+  blocker. Two low-risk stylesheet-maintenance notes remain deferred so the
+  reviewed candidate is not changed before release.
+- `PROPOSED`: Apple publication of PhoneSpace 1.2, merge to `main`, Pages
+  verification, and live route checks are still pending. This is not a
+  live-release claim.

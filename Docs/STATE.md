@@ -18,11 +18,11 @@ unknowns.
 - `VERIFIED`: `releases.json`, `app-data.js`, `releases-loader.js`, GitHub Pages
   configuration, and other app routes are outside this candidate and unchanged.
 - `VERIFIED`: Independent reviews of `cacbdc8` and `9f20d06` returned `BLOCK`;
-  the first findings were resolved, and the remaining Night-theme Tools
-  contrast regression is corrected in the current unpublished candidate.
+  their findings were resolved in the reviewed candidate `d79a972`.
+- `VERIFIED`: Final independent follow-up of `d79a972` returned `PASS`. It
+  measured both themes at 901, 1280, and 1500 px and found no release blocker.
 - `PROPOSED`: Publication to `main` is held until Apple makes PhoneSpace 1.2
-  available and a follow-up independent review returns `PASS`. This section
-  does not claim the candidate is live.
+  available. This section does not claim the candidate is live.
 
 ## 2026-08-11 Dufaat 2.2 website sync
 
