@@ -7,8 +7,8 @@ unknowns.
 ## 2026-08-11 PhoneSpace 1.2 release candidate
 
 - `VERIFIED`: The local PhoneSpace Product Cinema candidate replaces obsolete
-  Compress positioning with the shipped Resize and Convert workflows, adds four
-  current 1.2 interface captures, and updates the privacy page to match the
+  Compress positioning with the release-candidate Resize and Convert workflows,
+  adds current interface captures, and updates the privacy page to match the
   app's on-device processing, metadata choice, Files access, deletion, and local
   usage-counter behavior.
 - `VERIFIED`: The page preserves its `v1.1` static fallback and the existing
@@ -17,9 +17,11 @@ unknowns.
   existing App Store-backed systems observe Apple's published release.
 - `VERIFIED`: `releases.json`, `app-data.js`, `releases-loader.js`, GitHub Pages
   configuration, and other app routes are outside this candidate and unchanged.
-- `PROPOSED`: Publication to `main` and live verification remain gated on an
-  independent review of this branch. This section does not claim the candidate
-  is live.
+- `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`; the candidate
+  is being corrected and remains unpublished.
+- `PROPOSED`: Publication to `main` is held until Apple makes PhoneSpace 1.2
+  available and a follow-up independent review returns `PASS`. This section
+  does not claim the candidate is live.
 
 ## 2026-08-11 Dufaat 2.2 website sync
 

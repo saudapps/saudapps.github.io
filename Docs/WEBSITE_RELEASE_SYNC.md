@@ -38,7 +38,11 @@ Trigger the sync when ANY of these is true for an app:
 - [x] App Store, support, privacy, and terms links checked in the candidate.
 - [x] Privacy copy synchronized with the current app behavior.
 - [x] Desktop and 390 × 844 mobile layouts checked with no console errors.
-- [ ] Independent review completed with no release blocker.
+- [x] Independent review completed; `cacbdc8` returned `BLOCK` and the findings
+      were recorded for correction.
+- [ ] Corrected candidate receives a follow-up independent `PASS`.
 - [ ] Candidate published through `main` and GitHub Pages completed.
 - [ ] Live PhoneSpace and privacy routes, screenshots, and automatic version
       behavior verified.
+- [ ] Publication held until Apple makes PhoneSpace 1.2 available; do not expose
+      Resize/Convert 1.2 claims to users installing the current 1.1 build.

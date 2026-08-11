@@ -291,6 +291,7 @@ release JSON, sitemap, and robots. Selected route/config responses matched the
 current foundation files byte-for-byte.
 
 This evidence is time-bound and must be repeated before a future release.
+
 ## 2026-08-11 PhoneSpace 1.2 website candidate
 
 - `VERIFIED`: Desktop local preview rendered the updated Product Cinema hero,
@@ -299,13 +300,21 @@ This evidence is time-bound and must be repeated before a future release.
 - `VERIFIED`: The English privacy copy rendered and the paired Arabic source
   remained present; canonical, App Store, privacy, terms, support, stylesheet,
   script, and screenshot targets were checked against repository paths.
-- `VERIFIED`: All six PhoneSpace screenshot assets are 820 × 1781 JPEG files;
-  cache-busting was added for the changed route CSS and reused Home image URLs.
+- `VERIFIED`: The candidate screenshot assets are 820 × 1781 JPEG files and the
+  changed route CSS is cache-busted.
 - `VERIFIED`: `git diff --check` passed and no manual change to
   `releases.json` or the release-data JavaScript was present.
 - `VERIFIED`: A 390 × 844 browser viewport rendered the compact Menu header,
   responsive hero, Resize/Convert tool cards, and alternating real-screen
   gallery without console errors or horizontal clipping in the inspected
   states.
-- `PENDING`: Independent review is recorded before publication, then the live
-  route and assets are rechecked after GitHub Pages completes.
+- `VERIFIED`: The corrected gallery rendered two readable columns at 901 px,
+  three at 1280 px, and four at 1500 px. The corrected Tools chapter rendered
+  as a dark, high-contrast section in the Day theme; no console errors were
+  recorded during these checks.
+- `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`, including
+  publication-ordering, privacy-scope, contact-trash, screenshot, responsive
+  gallery, and pre-existing light-theme contrast findings.
+- `PENDING`: Corrected candidate requires follow-up independent review. The site
+  remains unpublished until that review passes and Apple publishes 1.2; live
+  route and asset checks follow GitHub Pages completion.
