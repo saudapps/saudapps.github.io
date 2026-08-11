@@ -185,6 +185,9 @@ markers retroactively.
 - `VERIFIED`: Final independent follow-up returned `PASS` for `d79a972` with no
   blocker. Two low-risk stylesheet-maintenance notes remain deferred so the
   reviewed candidate is not changed before release.
-- `PROPOSED`: Apple publication of PhoneSpace 1.2, merge to `main`, Pages
-  verification, and live route checks are still pending. This is not a
-  live-release claim.
+- `VERIFIED`: Saud explicitly superseded the earlier publication-order hold and
+  approved immediate website publication on 2026-08-11. The existing automated
+  version systems remain unchanged and are expected to keep showing Apple's
+  current public version until the App Store release changes.
+- `PROPOSED`: Merge to `main`, Pages verification, and live route checks are
+  still pending. This is not yet a live-release claim.

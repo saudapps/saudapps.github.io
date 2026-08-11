@@ -320,5 +320,8 @@ This evidence is time-bound and must be repeated before a future release.
   returned `PASS`. Computed-style and WCAG measurements covered Day and Night at
   901, 1280, and 1500 px; all tested text, badge, glyph, and border contrasts
   passed their applicable thresholds.
-- `PENDING`: The site remains unpublished until Apple publishes 1.2; live route
-  and asset checks follow GitHub Pages completion.
+- `VERIFIED`: Saud accepted the temporary feature-copy/binary timing difference
+  and approved immediate publication while the automated version label remains
+  tied to Apple's current public App Store version.
+- `PENDING`: Owner-approved publication, GitHub Pages completion, and live route,
+  asset, and automatic-version checks remain.

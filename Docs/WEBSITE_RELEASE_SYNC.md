@@ -46,5 +46,7 @@ Trigger the sync when ANY of these is true for an app:
 - [ ] Candidate published through `main` and GitHub Pages completed.
 - [ ] Live PhoneSpace and privacy routes, screenshots, and automatic version
       behavior verified.
-- [x] Publication held until Apple makes PhoneSpace 1.2 available; do not expose
-      Resize/Convert 1.2 claims to users installing the current 1.1 build.
+- [x] Original publication hold recorded and independently reviewed.
+- [x] Saud explicitly superseded that timing hold and approved immediate
+      website publication, accepting that Resize/Convert copy may appear before
+      the binary while the existing App Store-driven version stays automatic.

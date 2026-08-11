@@ -21,8 +21,14 @@ unknowns.
   their findings were resolved in the reviewed candidate `d79a972`.
 - `VERIFIED`: Final independent follow-up of `d79a972` returned `PASS`. It
   measured both themes at 901, 1280, and 1500 px and found no release blocker.
-- `PROPOSED`: Publication to `main` is held until Apple makes PhoneSpace 1.2
-  available. This section does not claim the candidate is live.
+- `VERIFIED`: On 2026-08-11 Saud explicitly superseded the earlier timing hold
+  and approved immediate website publication. The approved release keeps the
+  existing App Store-driven version automation unchanged, so the feature copy
+  may precede the binary while the visible version remains the public App Store
+  version.
+- `PROPOSED`: Merge to `main`, GitHub Pages completion, and live verification
+  are the remaining website-release actions. This section does not yet claim
+  the candidate is live.
 
 ## 2026-08-11 Dufaat 2.2 website sync
 
