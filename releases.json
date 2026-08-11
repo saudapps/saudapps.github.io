@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T13:26:58.553Z",
+  "updatedAt": "2026-08-11T16:55:00.279Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -113,6 +113,15 @@
     "dufaat": {
       "appStoreId": "6780440703",
       "versions": [
+        {
+          "version": "2.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-10T11:29:53-07:00",
+          "whatsNew": {
+            "en": "Dufaat 2.2 brings a Saudi-first experience and stronger privacy:\n\n• Faster access to SAR and AED when adding payments\n• Instant switching between Arabic and English\n• App Lock with Face ID, Touch ID, or your device passcode\n• Cleaner PDF statements that follow your device calendar\n• Redesigned Settings\n• New Dufaat Plus: professional PDF Studio, a 30/60/90-day financial outlook, and smart reminders with a one-time purchase\n• Reliability and localization improvements",
+            "ar": "يقدّم دُفعات 2.2 تجربة أقرب للمستخدم في السعودية وخصوصية أفضل:\n\n• وصول أسرع إلى الريال السعودي والدرهم عند إضافة الدفعات\n• تبديل فوري بين العربية والإنجليزية\n• قفل التطبيق عبر Face ID أو Touch ID أو رمز دخول الجهاز\n• كشوف PDF أوضح تتبع تقويم جهازك\n• تصميم جديد للإعدادات\n• دُفعات Plus الجديد: استوديو PDF احترافي، نظرة مالية لـ30 و60 و90 يومًا، وتنبيهات ذكية بشراء مرة واحدة\n• تحسينات في الموثوقية والترجمة"
+          }
+        },
         {
           "version": "2.1",
           "state": "READY_FOR_SALE",
