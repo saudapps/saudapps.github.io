@@ -29,3 +29,16 @@ Trigger the sync when ANY of these is true for an app:
   privacy/terms pages, assets) is release-sensitive — plan and get approval first.
 - Do not change GitHub Pages / Jekyll configuration as part of a routine release sync.
 - For per-app status and links, see Docs/APPS.md.
+
+## 2026-08-11 PhoneSpace 1.2 run
+
+- [x] Local app page copy and current screenshots prepared.
+- [x] Existing automated version and release-history hooks preserved; no manual
+      `releases.json` edit.
+- [x] App Store, support, privacy, and terms links checked in the candidate.
+- [x] Privacy copy synchronized with the current app behavior.
+- [x] Desktop and 390 × 844 mobile layouts checked with no console errors.
+- [ ] Independent review completed with no release blocker.
+- [ ] Candidate published through `main` and GitHub Pages completed.
+- [ ] Live PhoneSpace and privacy routes, screenshots, and automatic version
+      behavior verified.

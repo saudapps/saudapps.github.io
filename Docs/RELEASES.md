@@ -170,3 +170,13 @@ markers retroactively.
 - A visual rollback must preserve public data hooks and release configuration.
 - A release-data rollback must account for the bot's generated descendants and
   must never hand-edit `releases.json`.
+## 2026-08-11 — PhoneSpace 1.2 website candidate
+
+- `VERIFIED`: Prepared accurate Resize/Convert positioning, current product
+  screenshots, a synchronized privacy policy, sitemap dates, and cache-busted
+  changed assets on `codex/phonespace-1-2-site-sync`.
+- `VERIFIED`: Kept the version fallback at 1.1 and left both automated release
+  systems untouched so the public version changes only after Apple publishes
+  PhoneSpace 1.2.
+- `PROPOSED`: Independent review, merge to `main`, Pages verification, and live
+  route checks are still pending; this is not a live-release claim.

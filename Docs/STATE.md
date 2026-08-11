@@ -4,6 +4,23 @@ This is the first current-state reference for the public Saud Apps website. It
 separates verified repository and network facts from reported state and
 unknowns.
 
+## 2026-08-11 PhoneSpace 1.2 release candidate
+
+- `VERIFIED`: The local PhoneSpace Product Cinema candidate replaces obsolete
+  Compress positioning with the shipped Resize and Convert workflows, adds four
+  current 1.2 interface captures, and updates the privacy page to match the
+  app's on-device processing, metadata choice, Files access, deletion, and local
+  usage-counter behavior.
+- `VERIFIED`: The page preserves its `v1.1` static fallback and the existing
+  `data-app="phonespace"` / release-loader hooks. Public version and release
+  history therefore remain automated and will move to 1.2 only when their
+  existing App Store-backed systems observe Apple's published release.
+- `VERIFIED`: `releases.json`, `app-data.js`, `releases-loader.js`, GitHub Pages
+  configuration, and other app routes are outside this candidate and unchanged.
+- `PROPOSED`: Publication to `main` and live verification remain gated on an
+  independent review of this branch. This section does not claim the candidate
+  is live.
+
 ## 2026-08-11 Dufaat 2.2 website sync
 
 - `VERIFIED`: The Dufaat Product Cinema page now presents the 2.2 feature
