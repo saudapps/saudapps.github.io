@@ -19,6 +19,12 @@ matrix for website changes. It does not claim an unexecuted check passed.
   24.99 base price, no-subscription wording, StoreKit, and App Lock details.
 - The release-sync workflow completed successfully and its descendant changed
   only the generated `updatedAt` value in `releases.json`.
+- After Apple publication, the public Saudi App Store lookup returned version
+  2.2 with release timestamp `2026-08-11T14:00:45Z` and the approved English
+  What's New text. This independently verifies the live badge source.
+- The generated release-history source remains workflow-owned; the next
+  GitHub Pages publication triggers its normal App Store Connect sync without
+  a manual `releases.json` edit.
 
 ## Current automated-test reality
 

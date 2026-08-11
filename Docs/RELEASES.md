@@ -10,7 +10,7 @@ verified.
   updated privacy and terms content, and explicit one-time Dufaat Plus
   positioning.
 - `d9444ef` kept static fallback status truthful while App Store version 2.2
-  remains unpublished.
+  was still unpublished.
 - Saud approved the production publication. The reviewed branch was pushed,
   fast-forwarded into `main`, and published by GitHub Pages.
 - Pages deployment `31453049991` succeeded and the affected live routes were
@@ -18,6 +18,9 @@ verified.
 - The expected release-sync descendant `c6b155b` changed only the generated
   timestamp in `releases.json`. Release versions and notes remain automation
   owned.
+- Apple published Dufaat 2.2 on 2026-08-11. The public Saudi App Store lookup
+  returned version 2.2 at `2026-08-11T14:00:45Z`; the following normal site
+  publication refreshes generated release history through the existing workflow.
 
 ## Current baseline
 

@@ -50,9 +50,11 @@ unknowns.
 - `VERIFIED`: `releases.json` remains workflow-owned. The post-push release
   sync changed only its generated timestamp; no release version or notes were
   edited manually.
-- `VERIFIED`: Static fallback copy does not claim that 2.2 is the current App
-  Store release before Apple publishes it. Runtime version and release notes
-  continue to come from the existing release-data systems.
+- `VERIFIED`: Apple published Dufaat 2.2 on 2026-08-11. The public Saudi App
+  Store lookup reports version 2.2, so the runtime badge can now correctly
+  present the new public version.
+- `VERIFIED`: Runtime release history remains independently workflow-owned;
+  its generated version and What's New data are never edited manually.
 
 ## Baseline
 

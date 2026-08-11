@@ -50,3 +50,14 @@ Trigger the sync when ANY of these is true for an app:
 - [x] Saud explicitly superseded that timing hold and approved immediate
       website publication, accepting that Resize/Convert copy may appear before
       the binary while the existing App Store-driven version stays automatic.
+
+## 2026-08-11 Dufaat 2.2 post-release run
+
+- [x] Apple published Dufaat 2.2; the public Saudi App Store lookup returned
+      version 2.2 at `2026-08-11T14:00:45Z`.
+- [x] Existing Dufaat product, privacy, terms, pricing, and six screenshot
+      materials were already published before review.
+- [x] The live App Store badge source now observes the public 2.2 version.
+- [x] No manual `releases.json` edit was made; this documentation publication
+      triggers the existing release-sync workflow to refresh generated What's
+      New history.

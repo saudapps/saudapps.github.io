@@ -23,6 +23,19 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-08-11 — Dufaat 2.2 App Store release confirmed
+- Done: Apple published Dufaat 2.2. The public Saudi App Store lookup returned
+  version 2.2 at `2026-08-11T14:00:45Z`; the existing site badge therefore has
+  a verified public source for the new version.
+- Decisions: Version and What's New remain separate automated systems. No
+  generated release data was edited manually.
+- Open / next: Confirm the workflow-generated Dufaat 2.2 release history after
+  this documentation publication triggers the normal sync.
+- Deploy state: Documentation-only publication approved by Saud; site feature,
+  pricing, screenshot, privacy, and terms material was already live.
+- Live-check: App Store lookup and the existing Dufaat public routes verified.
+- ChatGPT review: Post-release source check completed.
+
 ## 2026-08-11 — Dufaat 2.2 website sync
 - Done: Published the approved Dufaat 2.2 Product Cinema update, six optimized
   screenshots, clear one-time Dufaat Plus messaging, and synchronized privacy
