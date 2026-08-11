@@ -179,8 +179,10 @@ markers retroactively.
 - `VERIFIED`: Kept the version fallback at 1.1 and left both automated release
   systems untouched so the public version changes only after Apple publishes
   PhoneSpace 1.2.
-- `VERIFIED`: Independent review returned `BLOCK`; publication ordering and the
-  reported content/design findings are being corrected in a follow-up commit.
+- `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`; its reported
+  content/design findings were corrected in `9f20d06`. Follow-up review then
+  found one Night-theme Tools contrast regression, now corrected in the current
+  unpublished candidate.
 - `PROPOSED`: A follow-up `PASS`, Apple publication of PhoneSpace 1.2, merge to
   `main`, Pages verification, and live route checks are still pending. This is
   not a live-release claim.

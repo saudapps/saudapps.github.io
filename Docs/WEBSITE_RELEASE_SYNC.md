@@ -40,6 +40,8 @@ Trigger the sync when ANY of these is true for an app:
 - [x] Desktop and 390 × 844 mobile layouts checked with no console errors.
 - [x] Independent review completed; `cacbdc8` returned `BLOCK` and the findings
       were recorded for correction.
+- [x] Follow-up review of `9f20d06` confirmed seven of eight checks and found
+      one Night-theme contrast blocker; the candidate was corrected again.
 - [ ] Corrected candidate receives a follow-up independent `PASS`.
 - [ ] Candidate published through `main` and GitHub Pages completed.
 - [ ] Live PhoneSpace and privacy routes, screenshots, and automatic version

@@ -310,8 +310,9 @@ This evidence is time-bound and must be repeated before a future release.
   states.
 - `VERIFIED`: The corrected gallery rendered two readable columns at 901 px,
   three at 1280 px, and four at 1500 px. The corrected Tools chapter rendered
-  as a dark, high-contrast section in the Day theme; no console errors were
-  recorded during these checks.
+  with the same dark gradient and light text in both Day and Night themes; the
+  Resize badge color was raised above the 4.5:1 small-text threshold against
+  the darkest relevant gradient stop. No console errors were recorded.
 - `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`, including
   publication-ordering, privacy-scope, contact-trash, screenshot, responsive
   gallery, and pre-existing light-theme contrast findings.

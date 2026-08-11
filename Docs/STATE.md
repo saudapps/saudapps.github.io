@@ -17,8 +17,9 @@ unknowns.
   existing App Store-backed systems observe Apple's published release.
 - `VERIFIED`: `releases.json`, `app-data.js`, `releases-loader.js`, GitHub Pages
   configuration, and other app routes are outside this candidate and unchanged.
-- `VERIFIED`: Independent review of `cacbdc8` returned `BLOCK`; the candidate
-  is being corrected and remains unpublished.
+- `VERIFIED`: Independent reviews of `cacbdc8` and `9f20d06` returned `BLOCK`;
+  the first findings were resolved, and the remaining Night-theme Tools
+  contrast regression is corrected in the current unpublished candidate.
 - `PROPOSED`: Publication to `main` is held until Apple makes PhoneSpace 1.2
   available and a follow-up independent review returns `PASS`. This section
   does not claim the candidate is live.
