@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-13T04:48:19.213Z",
+  "updatedAt": "2026-08-14T04:46:06.944Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -90,6 +90,15 @@
     "phonespace": {
       "appStoreId": "6765632161",
       "versions": [
+        {
+          "version": "1.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-11T03:57:57-07:00",
+          "whatsNew": {
+            "en": "Compress is now Resize. Choose the size you want and see the result before you start.\n\nPick how much smaller, and the new size is right there before you commit. Resize won't promise a size it can't deliver — when a file can't go smaller, it says so and tells you which one is holding the rest back.\n\nConvert is simpler. One screen. Choose a format — that's the whole decision. Videos keep their original quality and resolution instead of being quietly downscaled.\n\nConverting a photo no longer removes its metadata or shrinks it. Photos keep their date, camera and location, stay at full resolution, and are written at very high quality — so converted copies are larger than before. Use Resize to make them smaller.\n\nRemoving location and metadata now works on every photo you convert. Before, it only took effect when the photo was also resized, so some conversions kept their location. Turn on \"Remove location & metadata\" on the Convert screen when you want it gone.\n\nRescan actually rescans. It used to say \"Scanned just now\" while returning an older count. Now it re-measures every time, and the button is big enough to hit.\n\nA rebuilt Home. Categories are cards with their sizes lined up in one column, so you can compare at a glance.",
+            "ar": ""
+          }
+        },
         {
           "version": "1.1",
           "state": "READY_FOR_SALE",
