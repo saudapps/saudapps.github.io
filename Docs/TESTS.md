@@ -364,3 +364,26 @@ This evidence is time-bound and must be repeated before a future release.
   contract instead.
 - `PENDING`: Independent QA + code review before any Release-gate approval;
   this candidate has not been merged or published.
+
+## 2026-08-25 Phase C SShift v5.0 fallback and sitemap remediation
+
+- `VERIFIED`: Exactly five stale visible SShift references were replaced at a
+  clean HEAD (`c675db0`): three homepage badge fallbacks (`index.html` lines
+  124, 242, 277), the SShift route edition line, and the SShift route badge
+  fallback (`sshift/index.html` lines 105 and 124). All now read `v5.0` /
+  `5.0`. No other occurrence of `4.2` remains in either file.
+- `VERIFIED`: `releases.json`, `app-data.js`, `releases-loader.js`, workflow
+  files, and app version/build sources were untouched; `git diff --stat`
+  confirmed only `index.html`, `sshift/index.html`, and `sitemap.xml` changed.
+- `VERIFIED`: Sitemap `lastmod` values were updated only for `/`,
+  `/phonespace/`, and `/dufaat/` to `2026-08-11`, each evidenced by Git
+  history as that route's latest product publication commit on `origin/main`
+  (homepage and Dufaat: `d9444ef`; PhoneSpace: `d79a972`). The 2026-08-25
+  bilingual candidate commit is unpublished and was not used as a publication
+  date. All twelve other sitemap entries are byte-identical.
+- `VERIFIED`: Static checks passed after the edit:
+  `scripts/check_bilingual.py` (16 routes OK), `xmllint --noout sitemap.xml`,
+  `node --check app-data.js`, `node --check releases-loader.js`, and
+  `git diff --check`.
+- `PENDING`: Live-route verification, independent review, and Release-gate
+  approval; no network access, commit, or push occurred in this phase.
