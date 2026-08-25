@@ -349,6 +349,7 @@ html.pc-site-observe [data-pc-site-reveal].is-visible { opacity: 1; transform: n
 @media (max-width: 340px) {
   .pc-site-header { padding-inline: 10px; gap: 4px; }
   .pc-site-brand { gap: 6px; }
+  .pc-site-brand > span:last-child { display: none; }
   .pc-site-brand__mark { width: 24px; height: 24px; }
   .pc-site-brand strong { font-size: 12px; letter-spacing: 0; }
   .pc-site-tools { gap: 3px; }

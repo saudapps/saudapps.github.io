@@ -420,3 +420,44 @@ This evidence is time-bound and must be repeated before a future release.
 - `PENDING`: Independent review and Release-gate approval; no commit or push
   occurred in this phase, so the workflow change has not yet run on GitHub
   Actions.
+
+## 2026-08-25 narrow-viewport header overflow remediation (340 px)
+
+- `REPORTED`: Browser QA at clean HEAD `c56b1d0` found `html scrollWidth=352`
+  at a 340 px English viewport on all five primary Product Cinema routes: the
+  `.pc-site-header` grid columns (brand track 61.1 px + 4 px gap +
+  `.pc-site-tools` 276.9 px inside 320 px of content width) overflowed the
+  viewport. Arabic reportedly passed at the same width.
+- `VERIFIED`: The smallest shared fix was applied in
+  `assets/product-cinema-site.css` inside the existing
+  `@media (max-width: 340px)` block:
+  `.pc-site-brand > span:last-child { display: none; }`. Only the brand text
+  span is hidden; the mark, the link, its `aria-label`, and the 44 px minimum
+  target remain intact, and the rule applies identically to the static no-JS
+  header and the JS-generated shell because both share the same markup shape.
+  Arithmetic against the reported measurements gives a right content edge of
+  ~315 px at 320 px and at 340 px viewports, inside both widths. This is
+  arithmetic against reported numbers, not a fresh browser measurement.
+- `VERIFIED`: The cache-bust query for `product-cinema-site.css` was bumped
+  from `?v=20260825-bilingual1` to `?v=20260825-narrowfix1` in all sixteen
+  routes that reference it. Other assets keep their existing queries because
+  their files did not change.
+- `VERIFIED`: `scripts/check_bilingual.py` gained two static contracts:
+  the ≤340 px block must hide the brand text span while keeping the mark and
+  link rules present, and every route must carry exactly one
+  `product-cinema-site.css` versioned reference with a consistent version
+  across all sixteen routes. The checker passed with `--git` (16 routes OK,
+  forbidden scope untouched).
+- `VERIFIED`: `node --check` passed for `app-data.js`,
+  `releases-loader.js`, `assets/product-cinema-core.js`,
+  `assets/product-cinema-info.js`, `assets/product-cinema.js`, and
+  `scripts/fetch-releases.mjs`; `node --test tests/*.test.mjs` passed
+  19/0.
+- `VERIFIED`: Independent supervisor-supplied browser QA covered all five
+  primary routes at both 320 × 760 and 340 × 760 in EN/LTR and AR/RTL,
+  20 cases total. Every case measured `scrollWidth <= clientWidth` (no
+  horizontal overflow), the correct `lang`/`dir` attributes, hidden narrow
+  brand text inside the ≤340 px block, and every theme/language/menu target
+  measuring at least 44 × 44 px.
+- `PENDING`: Independent review and Release-gate approval; no network access,
+  commit, or push occurred in this phase.

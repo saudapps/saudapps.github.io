@@ -170,6 +170,36 @@ def check_css_braces():
             fail(f"{path.relative_to(ROOT)}: unbalanced CSS braces")
 
 
+def check_narrow_header_contract():
+    css = (ROOT / "assets/product-cinema-site.css").read_text(encoding="utf-8")
+    match = re.search(r"@media \(max-width: 340px\)\s*\{(.*?)\n\}", css, re.DOTALL)
+    if not match:
+        fail("site.css: missing @media (max-width: 340px) block")
+        return
+    block = match.group(1)
+    if not re.search(
+        r"\.pc-site-brand > span:last-child\s*\{\s*display:\s*none;\s*\}", block
+    ):
+        fail("site.css: 340px block must hide the brand text span "
+             "(.pc-site-brand > span:last-child) to prevent header overflow")
+    if ".pc-site-brand__mark" not in block or ".pc-site-brand {" not in block:
+        fail("site.css: 340px block must keep the brand mark and link present")
+
+
+def check_site_css_cache_bust():
+    versions = set()
+    for route in SHELL_ROUTES:
+        html = (ROOT / route).read_text(encoding="utf-8")
+        refs = re.findall(r"product-cinema-site\.css\?v=([^\"\']+)", html)
+        if len(refs) != 1:
+            fail(f"{route}: expected exactly one product-cinema-site.css "
+                 f"versioned reference, found {len(refs)}")
+            continue
+        versions.add(refs[0])
+    if len(versions) > 1:
+        fail(f"site.css cache-bust versions differ across routes: {sorted(versions)}")
+
+
 def check_forbidden_scope():
     result = subprocess.run(
         ["git", "diff", "--name-only", "HEAD", "--", *FORBIDDEN_PATHS],
@@ -196,6 +226,8 @@ def main():
     check_info_shell_contract()
     check_theme_never_writes_lang()
     check_css_braces()
+    check_narrow_header_contract()
+    check_site_css_cache_bust()
     if args.git:
         check_forbidden_scope()
 
@@ -204,7 +236,8 @@ def main():
         return 1
     routes = len(SHELL_ROUTES)
     print(f"OK: {routes} routes, toggles, shells, promptbook, theme/lang separation, "
-          f"CSS balance{' + forbidden scope' if args.git else ''} all pass.")
+          f"CSS balance, narrow header contract, site.css cache-bust consistency"
+          f"{' + forbidden scope' if args.git else ''} all pass.")
     return 0
 
 
