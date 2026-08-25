@@ -30,6 +30,7 @@
 <script>
   (function () {
     try {
+      document.documentElement.classList.add('pc-site-js');
       var saved = localStorage.getItem('saudapps-theme');
       var theme = saved === 'light' || saved === 'dark' ? saved
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -39,46 +40,50 @@
     } catch (error) {}
   })();
 </script>
-<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch3">
-<link rel="stylesheet" href="/dufaat/product-cinema.css?v=batch3-v2">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-narrowfix1">
+<link rel="stylesheet" href="/dufaat/product-cinema.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-legal-bg-1">
 </head>
 <body class="product-cinema-rollout pc-dufaat">
-<a class="pc-site-skip" href="#main">Skip to content</a>
+<a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
 
 <header class="pc-site-header">
   <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
     <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+    <span><strong>Saud Apps</strong><small><span data-en>Independent · iOS</span><span data-ar>مستقل · iOS</span></small></span>
   </a>
 
   <nav class="pc-site-nav" aria-label="Primary navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/" aria-current="page">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
 
   <div class="pc-site-tools">
     <div class="pc-site-theme" role="group" aria-label="Color theme">
-      <button type="button" data-pc-site-theme="light" aria-pressed="false">Day</button>
-      <button type="button" data-pc-site-theme="dark" aria-pressed="false">Night</button>
+      <button type="button" data-pc-site-theme="light" aria-pressed="false"><span data-en>Day</span><span data-ar>نهار</span></button>
+      <button type="button" data-pc-site-theme="dark" aria-pressed="false"><span data-en>Night</span><span data-ar>ليل</span></button>
+    </div>
+    <div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
     </div>
     <details class="pc-site-menu">
-      <summary>Menu</summary>
+      <summary><span data-en>Menu</span><span data-ar>القائمة</span></summary>
       <nav aria-label="Mobile navigation">
-        <a href="/">Home</a>
+        <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
         <a href="/sshift/">SShift</a>
         <a href="/phonespace/">PhoneSpace</a>
         <a href="/filed/">Filed</a>
         <a href="/dufaat/" aria-current="page">Dufaat</a>
-        <a href="/about/">About</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/">Legal</a>
+        <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </nav>
     </details>
   </div>
@@ -87,40 +92,40 @@
 <main id="main" tabindex="-1">
   <section class="df-opening" aria-labelledby="dufaat-title">
     <div class="df-opening__edition" aria-hidden="true">
-      <span>Product film · 05</span><span>The Settlement Cut</span><span>Dufaat · iPhone</span>
+      <span><span data-en>Product film · 05</span><span data-ar>فيلم المنتج · ٠٥</span></span><span><span data-en>The Settlement Cut</span><span data-ar>مشهد السداد</span></span><span>Dufaat · iPhone</span>
     </div>
 
     <div class="df-opening__layout">
       <div class="df-opening__copy">
         <div class="df-lockup">
           <img src="/dufaat/assets/icon-dufaat.png" alt="Dufaat app icon" width="256" height="256">
-          <span><small>Saud Apps · Product 04</small><strong>Dufaat</strong></span>
+          <span><small><span data-en>Saud Apps · Product 04</span><span data-ar>تطبيقات سعود · المنتج ٠٤</span></small><strong>Dufaat</strong></span>
         </div>
 
-        <p class="df-opening__eyebrow">Personal installment record · Offline</p>
-        <h1 id="dufaat-title"><span>A calm path.</span><span>Due to settled.</span></h1>
-        <p class="df-opening__lede">Plan personal installments, put every due date in order, record what you have paid, and keep the proof beside it. Dufaat organizes your record on your iPhone or iPad; it never moves money.</p>
+        <p class="df-opening__eyebrow"><span data-en>Personal installment record · Offline</span><span data-ar>سجل أقساط شخصي · دون اتصال</span></p>
+        <h1 id="dufaat-title"><span><span data-en>A calm path.</span><span data-ar>مسار هادئ.</span></span><span><span data-en>Due to settled.</span><span data-ar>من الاستحقاق إلى السداد.</span></span></h1>
+        <p class="df-opening__lede"><span data-en>Plan personal installments, put every due date in order, record what you have paid, and keep the proof beside it. Dufaat organizes your record on your iPhone or iPad; it never moves money.</span><span data-ar>خطّط أقساطك الشخصية ورتّب كل تاريخ استحقاق وسجّل ما دفعته واحفظ الإثبات إلى جانبه. ينظّم Dufaat سجلّك على آيفونك أو آيبادك؛ ولا يحرّك المال أبدًا.</span></p>
 
         <div class="df-opening__metadata" role="group" aria-label="Dufaat App Store information">
-          <span data-app="dufaat" data-field="status">On the App Store</span>
+          <span data-app="dufaat" data-field="status"><span data-en>On the App Store</span><span data-ar>على آب ستور</span></span>
           <span data-app="dufaat" data-field="version">iOS · App Store</span>
           <span data-app="dufaat" data-field="rating" style="display:none"></span>
           <span data-app="dufaat" data-field="updated" style="display:none"></span>
-          <span>Private · on device</span>
+          <span><span data-en>Private · on device</span><span data-ar>خاص · على الجهاز</span></span>
         </div>
 
         <div class="df-opening__actions">
-          <a class="pc-site-action pc-site-action--dufaat" href="https://apps.apple.com/ae/app/dufaat/id6780440703">View on the App Store <span aria-hidden="true">↗</span></a>
-          <a class="pc-site-action" href="#settlement-sequence">Follow the path <span aria-hidden="true">↓</span></a>
+          <a class="pc-site-action pc-site-action--dufaat" href="https://apps.apple.com/ae/app/dufaat/id6780440703"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+          <a class="pc-site-action" href="#settlement-sequence"><span data-en>Follow the path </span><span data-ar>اتبع المسار </span><span aria-hidden="true">↓</span></a>
         </div>
       </div>
 
       <div class="df-opening__evidence" aria-label="Real Dufaat installment plan screen">
-        <div class="df-opening__rail" aria-hidden="true"><span>PLAN</span><span>DUE</span><span>PAID</span><span>PROOF</span></div>
+        <div class="df-opening__rail" aria-hidden="true"><span><span data-en>PLAN</span><span data-ar>خطة</span></span><span><span data-en>DUE</span><span data-ar>مستحق</span></span><span><span data-en>PAID</span><span data-ar>مدفوع</span></span><span><span data-en>PROOF</span><span data-ar>إثبات</span></span></div>
         <figure class="df-device df-device--hero">
           <img src="/dufaat/assets/screenshots/plans-2-2.jpg" alt="Dufaat Installments screen showing personal plans, progress, remaining amounts, and next payment dates" width="820" height="1781" fetchpriority="high" decoding="async">
         </figure>
-        <p class="df-opening__evidence-note" aria-hidden="true"><span>Real interface</span><strong>Installments · current view</strong></p>
+        <p class="df-opening__evidence-note" aria-hidden="true"><span><span data-en>Real interface</span><span data-ar>واجهة حقيقية</span></span><strong><span data-en>Installments · current view</span><span data-ar>الأقساط · العرض الحالي</span></strong></p>
       </div>
     </div>
   </section>
@@ -128,34 +133,34 @@
   <section class="df-settlement" id="settlement-sequence" data-df-settlement data-stage="6" aria-labelledby="settlement-title">
     <div class="df-settlement__sticky">
       <header class="df-chapter-heading df-settlement__heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 02 · Plan → due → paid → proof</p>
-        <h2 id="settlement-title">Put every due date<br>in its place.</h2>
-        <p>A scattered set of obligations becomes a visible path. Dufaat records the schedule, the next item, the payment you mark, and the proof you choose to keep.</p>
+        <p class="df-kicker"><span data-en>Chapter 02 · Plan → due → paid → proof</span><span data-ar>الفصل ٠٢ · خطة ← استحقاق ← سداد ← إثبات</span></p>
+        <h2 id="settlement-title"><span data-en class="blk">Put every due date</span><span data-ar class="blk">ضع كل تاريخ استحقاق</span><br><span data-en class="blk">in its place.</span><span data-ar class="blk">في مكانه.</span></h2>
+        <p><span data-en>A scattered set of obligations becomes a visible path. Dufaat records the schedule, the next item, the payment you mark, and the proof you choose to keep.</span><span data-ar>مجموعة التزامات مبعثرة تصبح مسارًا مرئيًا. يسجّل Dufaat الجدول والبند التالي والدفع الذي تعلّمه والإثبات الذي تختار حفظه.</span></p>
       </header>
 
       <div class="df-settlement__stage">
         <div class="df-path" aria-hidden="true">
           <div class="df-path__axis"><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="df-obligation df-obligation--one"><span>PLAN 01</span><strong>Scheduled</strong></div>
-          <div class="df-obligation df-obligation--two"><span>PLAN 02</span><strong>Pending</strong></div>
-          <div class="df-obligation df-obligation--soon"><span>PAY SOON</span><strong>Next</strong></div>
-          <div class="df-due-marker"><span>DUE</span><strong>Nearest item</strong></div>
-          <div class="df-paid-marker"><span>✓</span><strong>Recorded paid</strong></div>
-          <div class="df-proof-marker"><span>PROOF</span><strong>Receipt attached</strong></div>
-          <div class="df-settled-line"><span>PLANNED</span><span>DUE</span><span>PAID</span><span>SETTLED</span></div>
+          <div class="df-obligation df-obligation--one"><span><span data-en>PLAN 01</span><span data-ar>خطة ٠١</span></span><strong><span data-en>Scheduled</span><span data-ar>مجدولة</span></strong></div>
+          <div class="df-obligation df-obligation--two"><span><span data-en>PLAN 02</span><span data-ar>خطة ٠٢</span></span><strong><span data-en>Pending</span><span data-ar>معلّقة</span></strong></div>
+          <div class="df-obligation df-obligation--soon"><span><span data-en>PAY SOON</span><span data-ar>ادفع قريبًا</span></span><strong><span data-en>Next</span><span data-ar>التالي</span></strong></div>
+          <div class="df-due-marker"><span><span data-en>DUE</span><span data-ar>مستحق</span></span><strong><span data-en>Nearest item</span><span data-ar>أقرب بند</span></strong></div>
+          <div class="df-paid-marker"><span>✓</span><strong><span data-en>Recorded paid</span><span data-ar>مدفوع مسجَّل</span></strong></div>
+          <div class="df-proof-marker"><span><span data-en>PROOF</span><span data-ar>إثبات</span></span><strong><span data-en>Receipt attached</span><span data-ar>إيصال مرفق</span></strong></div>
+          <div class="df-settled-line"><span><span data-en>PLANNED</span><span data-ar>مخطط</span></span><span><span data-en>DUE</span><span data-ar>مستحق</span></span><span><span data-en>PAID</span><span data-ar>مدفوع</span></span><span><span data-en>SETTLED</span><span data-ar>مسدَّد</span></span></div>
           <figure class="df-path__product">
             <img src="/dufaat/assets/screenshots/plan-detail.jpg" alt="" width="820" height="1781" loading="lazy" decoding="async">
           </figure>
         </div>
 
         <div class="df-settlement__steps">
-          <article><span>01 · Gather</span><h3>Several obligations enter the same view.</h3><p>Plans and near-term items are recorded without pretending to connect to a bank.</p></article>
-          <article><span>02 · Order</span><h3>Dates and plans gain a sequence.</h3><p>A schedule makes the next step legible and keeps long-term installments distinct.</p></article>
-          <article><span>03 · Pay Soon</span><h3>The nearest item comes forward.</h3><p>Short-term amounts receive calm priority, with due, paid, and overdue states.</p></article>
-          <article><span>04 · Mark</span><h3>You record the payment as paid.</h3><p>The tick is a personal record you make after paying; Dufaat does not process it.</p></article>
-          <article><span>05 · Attach</span><h3>Proof stays beside the payment.</h3><p>Add a receipt photo or PDF when you want factual context later.</p></article>
-          <article><span>06 · Understand</span><h3>The whole path becomes visible.</h3><p>Pending, paid, deferred, and completed states remain understandable at a glance.</p></article>
-          <article><span>07 · Resolve</span><h3>The real Dufaat record takes the frame.</h3><p>The interface remains the evidence; the milestone path simply explains it.</p></article>
+          <article><span><span data-en>01 · Gather</span><span data-ar>٠١ · تجميع</span></span><h3><span data-en>Several obligations enter the same view.</span><span data-ar>التزامات عدة تدخل العرض نفسه.</span></h3><p><span data-en>Plans and near-term items are recorded without pretending to connect to a bank.</span><span data-ar>تُسجَّل الخطط والبنود القريبة دون تظاهر بالاتصال بأي بنك.</span></p></article>
+          <article><span><span data-en>02 · Order</span><span data-ar>٠٢ · ترتيب</span></span><h3><span data-en>Dates and plans gain a sequence.</span><span data-ar>تكسب التواريخ والخطط تسلسلًا.</span></h3><p><span data-en>A schedule makes the next step legible and keeps long-term installments distinct.</span><span data-ar>يجعل الجدول الخطوة التالية واضحة ويُبقي الأقساط طويلة الأمد مميزة.</span></p></article>
+          <article><span><span data-en>03 · Pay Soon</span><span data-ar>٠٣ · ادفع قريبًا</span></span><h3><span data-en>The nearest item comes forward.</span><span data-ar>يتقدّم أقرب بند إلى الواجهة.</span></h3><p><span data-en>Short-term amounts receive calm priority, with due, paid, and overdue states.</span><span data-ar>تحصل المبالغ قصيرة الأمد على أولوية هادئة، بحالات مستحق ومدفوع ومتأخر.</span></p></article>
+          <article><span><span data-en>04 · Mark</span><span data-ar>٠٤ · تعليم</span></span><h3><span data-en>You record the payment as paid.</span><span data-ar>أنت من يسجّل الدفعة كمدفوعة.</span></h3><p><span data-en>The tick is a personal record you make after paying; Dufaat does not process it.</span><span data-ar>علامة الصح سجل شخصي تدوّنه بعد الدفع؛ وDufaat لا يعالجها.</span></p></article>
+          <article><span><span data-en>05 · Attach</span><span data-ar>٠٥ · إرفاق</span></span><h3><span data-en>Proof stays beside the payment.</span><span data-ar>يبقى الإثبات إلى جانب الدفعة.</span></h3><p><span data-en>Add a receipt photo or PDF when you want factual context later.</span><span data-ar>أضف صورة إيصال أو ملف PDF عندما تريد سياقًا واقعيًا لاحقًا.</span></p></article>
+          <article><span><span data-en>06 · Understand</span><span data-ar>٠٦ · فهم</span></span><h3><span data-en>The whole path becomes visible.</span><span data-ar>يصبح المسار كله مرئيًا.</span></h3><p><span data-en>Pending, paid, deferred, and completed states remain understandable at a glance.</span><span data-ar>تبقى حالات معلّق ومدفوع ومؤجَّل ومكتمل مفهومة بنظرة واحدة.</span></p></article>
+          <article><span><span data-en>07 · Resolve</span><span data-ar>٠٧ · وضوح</span></span><h3><span data-en>The real Dufaat record takes the frame.</span><span data-ar>يملأ سجل Dufaat الحقيقي الإطار.</span></h3><p><span data-en>The interface remains the evidence; the milestone path simply explains it.</span><span data-ar>تبقى الواجهة هي الدليل؛ ومسار المحطات يشرحها فحسب.</span></p></article>
         </div>
       </div>
     </div>
@@ -165,16 +170,16 @@
     <div class="df-section__inner">
       <div class="df-paysoon__layout">
         <div class="df-paysoon__copy" data-pc-site-reveal>
-          <p class="df-kicker">Chapter 03 · Pay Soon</p>
-          <h2 id="paysoon-title">Near-term,<br>not alarming.</h2>
-          <p>Pay Soon keeps short-term amounts separate from longer installment plans. Add the amount and due date, then see what is paid, still due, or overdue—without implying automatic payment.</p>
+          <p class="df-kicker"><span data-en>Chapter 03 · Pay Soon</span><span data-ar>الفصل ٠٣ · ادفع قريبًا</span></p>
+          <h2 id="paysoon-title"><span data-en class="blk">Near-term,</span><span data-ar class="blk">قريب الأمد،</span><br><span data-en class="blk">not alarming.</span><span data-ar class="blk">لا مُقلق.</span></h2>
+          <p><span data-en>Pay Soon keeps short-term amounts separate from longer installment plans. Add the amount and due date, then see what is paid, still due, or overdue—without implying automatic payment.</span><span data-ar>يفصل «ادفع قريبًا» المبالغ قصيرة الأمد عن خطط الأقساط الأطول. أضف المبلغ وتاريخ الاستحقاق ثم شاهد ما دُفع وما لا يزال مستحقًا أو تأخر—دون أي إيحاء بالدفع التلقائي.</span></p>
           <div class="df-status-rail" aria-label="Pay Soon states">
-            <span><b>01</b>Due</span><span><b>02</b>Paid</span><span><b>03</b>Overdue</span>
+            <span><b>01</b><span data-en>Due</span><span data-ar>مستحق</span></span><span><b>02</b><span data-en>Paid</span><span data-ar>مدفوع</span></span><span><b>03</b><span data-en>Overdue</span><span data-ar>متأخر</span></span>
           </div>
         </div>
         <figure class="df-product-figure df-product-figure--paysoon" data-pc-site-reveal>
           <div class="df-device"><img src="/dufaat/assets/screenshots/pay-soon-2-2.jpg" alt="Dufaat Pay Soon screen with a monthly progress summary and short-term amounts" width="820" height="1781" loading="lazy" decoding="async"></div>
-          <figcaption><span>Real interface · Pay Soon</span><strong>Due and paid, separated clearly</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · Pay Soon</span><span data-ar>واجهة حقيقية · ادفع قريبًا</span></span><strong><span data-en>Due and paid, separated clearly</span><span data-ar>مستحق ومدفوع، بفصل واضح</span></strong></figcaption>
         </figure>
       </div>
     </div>
@@ -183,21 +188,21 @@
   <section class="df-section df-progress" aria-labelledby="progress-title">
     <div class="df-section__inner">
       <header class="df-chapter-heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 04 · Mark progress</p>
-        <h2 id="progress-title">Progress becomes<br>visible.</h2>
-        <p>Dufaat generates the schedule for a plan, keeps paid and pending installments in order, and lets you defer a payment when the current app supports it.</p>
+        <p class="df-kicker"><span data-en>Chapter 04 · Mark progress</span><span data-ar>الفصل ٠٤ · علّم التقدّم</span></p>
+        <h2 id="progress-title"><span data-en class="blk">Progress becomes</span><span data-ar class="blk">التقدّم يصبح</span><br><span data-en class="blk">visible.</span><span data-ar class="blk">مرئيًا.</span></h2>
+        <p><span data-en>Dufaat generates the schedule for a plan, keeps paid and pending installments in order, and lets you defer a payment when the current app supports it.</span><span data-ar>يولّد Dufaat جدول الخطة ويحافظ على ترتيب الأقساط المدفوعة والمعلّقة، ويتيح تأجيل دفعة عندما يدعم التطبيق الحالي ذلك.</span></p>
       </header>
 
       <div class="df-progress__layout">
         <figure class="df-product-figure df-product-figure--plan" data-pc-site-reveal>
           <div class="df-device"><img src="/dufaat/assets/screenshots/plan-detail.jpg" alt="Dufaat plan detail showing a twelve-payment schedule with seven payments marked paid and the next installment highlighted" width="820" height="1781" loading="lazy" decoding="async"></div>
-          <figcaption><span>Real interface · Plan detail</span><strong>Paid and pending in order</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · Plan detail</span><span data-ar>واجهة حقيقية · تفاصيل الخطة</span></span><strong><span data-en>Paid and pending in order</span><span data-ar>مدفوع ومعلّق بالترتيب</span></strong></figcaption>
         </figure>
         <div class="df-progress__ledger" data-pc-site-reveal aria-label="Installment progress explanation">
-          <article><span>01</span><div><strong>Scheduled</strong><p>Months and amounts are generated from the plan you enter.</p></div><b>PLAN</b></article>
-          <article><span>02</span><div><strong>Paid</strong><p>A settled tick records the payment you already made.</p></div><b>✓</b></article>
-          <article><span>03</span><div><strong>Pending</strong><p>The next unpaid item stays visible without manufactured urgency.</p></div><b>NEXT</b></article>
-          <article><span>04</span><div><strong>Deferred</strong><p>Supported plans can move a deferred payment to the end of the schedule.</p></div><b>LATER</b></article>
+          <article><span>01</span><div><strong><span data-en>Scheduled</span><span data-ar>مجدولة</span></strong><p><span data-en>Months and amounts are generated from the plan you enter.</span><span data-ar>تُولَّد الشهور والمبالغ من الخطة التي تُدخلها.</span></p></div><b><span data-en>PLAN</span><span data-ar>خطة</span></b></article>
+          <article><span>02</span><div><strong><span data-en>Paid</span><span data-ar>مدفوعة</span></strong><p><span data-en>A settled tick records the payment you already made.</span><span data-ar>علامة سداد تسجّل الدفعة التي دفعتها فعلًا.</span></p></div><b>✓</b></article>
+          <article><span>03</span><div><strong><span data-en>Pending</span><span data-ar>معلّقة</span></strong><p><span data-en>The next unpaid item stays visible without manufactured urgency.</span><span data-ar>يبقى البند التالي غير المدفوع ظاهرًا دون استعجال مصطنع.</span></p></div><b><span data-en>NEXT</span><span data-ar>تالٍ</span></b></article>
+          <article><span>04</span><div><strong><span data-en>Deferred</span><span data-ar>مؤجَّلة</span></strong><p><span data-en>Supported plans can move a deferred payment to the end of the schedule.</span><span data-ar>الخطط المدعومة يمكنها نقل الدفعة المؤجلة إلى نهاية الجدول.</span></p></div><b><span data-en>LATER</span><span data-ar>لاحقًا</span></b></article>
         </div>
       </div>
     </div>
@@ -206,22 +211,22 @@
   <section class="df-section df-proof" aria-labelledby="proof-title">
     <div class="df-section__inner">
       <header class="df-chapter-heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 05 · Keep the proof</p>
-        <h2 id="proof-title">The receipt stays<br>with the record.</h2>
-        <p>Attach up to three receipt photos or PDFs to a payment. They remain in Dufaat’s on-device storage as your personal record—not bank verification.</p>
+        <p class="df-kicker"><span data-en>Chapter 05 · Keep the proof</span><span data-ar>الفصل ٠٥ · احفظ الإثبات</span></p>
+        <h2 id="proof-title"><span data-en class="blk">The receipt stays</span><span data-ar class="blk">الإيصال يبقى</span><br><span data-en class="blk">with the record.</span><span data-ar class="blk">مع السجل.</span></h2>
+        <p><span data-en>Attach up to three receipt photos or PDFs to a payment. They remain in Dufaat’s on-device storage as your personal record—not bank verification.</span><span data-ar>أرفق حتى ثلاث صور إيصالات أو ملفات PDF بالدفعة. تبقى في تخزين Dufaat على الجهاز كسجل شخصي لك—لا كتحقق بنكي.</span></p>
       </header>
 
       <div class="df-proof__layout">
         <div class="df-proof-sheet" data-pc-site-reveal aria-label="Receipt attachment concept">
-          <div class="df-proof-sheet__head"><span>PERSONAL RECORD</span><strong>Proof attached</strong></div>
-          <div class="df-proof-sheet__line"><span>Payment note</span><b>Kept locally</b></div>
-          <div class="df-proof-sheet__attachment"><i>PDF</i><span><strong>Receipt or photo</strong><small>Up to three attachments</small></span><b>✓</b></div>
-          <div class="df-proof-sheet__foot"><span>On device</span><span>No upload</span><span>You control the file</span></div>
+          <div class="df-proof-sheet__head"><span><span data-en>PERSONAL RECORD</span><span data-ar>سجل شخصي</span></span><strong><span data-en>Proof attached</span><span data-ar>إثبات مرفق</span></strong></div>
+          <div class="df-proof-sheet__line"><span><span data-en>Payment note</span><span data-ar>ملاحظة الدفعة</span></span><b><span data-en>Kept locally</span><span data-ar>محفوظ محليًا</span></b></div>
+          <div class="df-proof-sheet__attachment"><i>PDF</i><span><strong><span data-en>Receipt or photo</span><span data-ar>إيصال أو صورة</span></strong><small><span data-en>Up to three attachments</span><span data-ar>حتى ثلاث مرفقات</span></small></span><b>✓</b></div>
+          <div class="df-proof-sheet__foot"><span><span data-en>On device</span><span data-ar>على الجهاز</span></span><span><span data-en>No upload</span><span data-ar>لا رفع</span></span><span><span data-en>You control the file</span><span data-ar>أنت تتحكم بالملف</span></span></div>
         </div>
         <div class="df-proof__copy" data-pc-site-reveal>
-          <p class="df-rule-label">Proof is context</p>
-          <h3>Keep the fact beside the payment.</h3>
-          <p>Notes, the date you recorded, and any attachment stay together so the record is easier to understand later.</p>
+          <p class="df-rule-label"><span data-en>Proof is context</span><span data-ar>الإثبات سياق</span></p>
+          <h3><span data-en>Keep the fact beside the payment.</span><span data-ar>احفظ الواقعة إلى جانب الدفعة.</span></h3>
+          <p><span data-en>Notes, the date you recorded, and any attachment stay together so the record is easier to understand later.</span><span data-ar>تبقى الملاحظات وتاريخ التسجيل وأي مرفق معًا ليكون السجل أسهل فهمًا لاحقًا.</span></p>
         </div>
       </div>
     </div>
@@ -230,16 +235,16 @@
   <section class="df-section df-record" aria-labelledby="understand-title">
     <div class="df-section__inner">
       <header class="df-chapter-heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 06 · Understand the record</p>
-        <h2 id="understand-title">Your record<br>stays yours.</h2>
-        <p>Reports, local reminders, and user-controlled backup files help you carry the record forward without an account, a backend, or cloud synchronization.</p>
+        <p class="df-kicker"><span data-en>Chapter 06 · Understand the record</span><span data-ar>الفصل ٠٦ · افهم السجل</span></p>
+        <h2 id="understand-title"><span data-en class="blk">Your record</span><span data-ar class="blk">سجلك</span><br><span data-en class="blk">stays yours.</span><span data-ar class="blk">يبقى ملكك.</span></h2>
+        <p><span data-en>Reports, local reminders, and user-controlled backup files help you carry the record forward without an account, a backend, or cloud synchronization.</span><span data-ar>التقارير والتذكيرات المحلية وملفات النسخ الاحتياطي التي تتحكم بها تساعدك على مواصلة السجل دون حساب أو خادم خلفي أو مزامنة سحابية.</span></p>
       </header>
 
       <div class="df-record__grid">
-        <article data-pc-site-reveal><span>01 · Report</span><h3>A standard PDF.</h3><p>Export a complete report using your device calendar. More PDF controls are available in Dufaat Plus.</p><b>PDF</b></article>
-        <article data-pc-site-reveal><span>02 · Remind</span><h3>Scheduled locally.</h3><p>Optional notifications are created by iOS on your device and can be turned off.</p><b>DUE</b></article>
-        <article data-pc-site-reveal><span>03 · Back up</span><h3>A file you control.</h3><p>Create a backup when you choose, save it where you choose, and restore from a file you provide.</p><b>FILE</b></article>
-        <article data-pc-site-reveal><span>04 · Private</span><h3>No account system.</h3><p>Dufaat stores personal records on device and does not connect to banks or lenders.</p><b>LOCAL</b></article>
+        <article data-pc-site-reveal><span><span data-en>01 · Report</span><span data-ar>٠١ · تقرير</span></span><h3><span data-en>A standard PDF.</span><span data-ar>ملف PDF قياسي.</span></h3><p><span data-en>Export a complete report using your device calendar. More PDF controls are available in Dufaat Plus.</span><span data-ar>صدّر تقريرًا كاملًا بتقويم جهازك. المزيد من أدوات تحكم PDF متاح في Dufaat Plus.</span></p><b>PDF</b></article>
+        <article data-pc-site-reveal><span><span data-en>02 · Remind</span><span data-ar>٠٢ · تذكير</span></span><h3><span data-en>Scheduled locally.</span><span data-ar>مجدول محليًا.</span></h3><p><span data-en>Optional notifications are created by iOS on your device and can be turned off.</span><span data-ar>الإشعارات الاختيارية ينشئها iOS على جهازك ويمكن إيقافها.</span></p><b><span data-en>DUE</span><span data-ar>مستحق</span></b></article>
+        <article data-pc-site-reveal><span><span data-en>03 · Back up</span><span data-ar>٠٣ · نسخ احتياطي</span></span><h3><span data-en>A file you control.</span><span data-ar>ملف تتحكم به.</span></h3><p><span data-en>Create a backup when you choose, save it where you choose, and restore from a file you provide.</span><span data-ar>أنشئ نسخة احتياطية متى شئت، واحفظها حيث تختار، واستعد من ملف تقدمه أنت.</span></p><b><span data-en>FILE</span><span data-ar>ملف</span></b></article>
+        <article data-pc-site-reveal><span><span data-en>04 · Private</span><span data-ar>٠٤ · خصوصية</span></span><h3><span data-en>No account system.</span><span data-ar>بلا نظام حسابات.</span></h3><p><span data-en>Dufaat stores personal records on device and does not connect to banks or lenders.</span><span data-ar>يخزّن Dufaat السجلات الشخصية على الجهاز ولا يتصل بالبنوك أو المقرضين.</span></p><b><span data-en>LOCAL</span><span data-ar>محلي</span></b></article>
       </div>
     </div>
   </section>
@@ -247,48 +252,48 @@
   <section class="df-section df-plus" aria-labelledby="plus-title">
     <div class="df-section__inner">
       <header class="df-chapter-heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 07 · Dufaat Plus</p>
-        <h2 id="plus-title">One purchase.<br>Three focused upgrades.</h2>
-        <p>Dufaat Plus is an optional, one-time In-App Purchase. There is no monthly or recurring subscription, and the core tracker remains available without Plus.</p>
+        <p class="df-kicker"><span data-en>Chapter 07 · Dufaat Plus</span><span data-ar>الفصل ٠٧ · دفعات بلس</span></p>
+        <h2 id="plus-title"><span data-en class="blk">One purchase.</span><span data-ar class="blk">شراء واحد.</span><br><span data-en class="blk">Three focused upgrades.</span><span data-ar class="blk">ثلاث ترقيات مركّزة.</span></h2>
+        <p><span data-en>Dufaat Plus is an optional, one-time In-App Purchase. There is no monthly or recurring subscription, and the core tracker remains available without Plus.</span><span data-ar>«دفعات بلس» شراء واحد اختياري داخل التطبيق. لا اشتراك شهري ولا متجدد، ويبقى المتتبع الأساسي متاحًا دون بلس.</span></p>
       </header>
 
       <div class="df-plus__purchase" data-pc-site-reveal>
         <div>
-          <span>OPTIONAL IN-APP PURCHASE</span>
+          <span><span data-en>OPTIONAL IN-APP PURCHASE</span><span data-ar>شراء اختياري داخل التطبيق</span></span>
           <strong>Dufaat Plus</strong>
-          <p>Buy once through Apple. Restore on devices using the same Apple Account.</p>
+          <p><span data-en>Buy once through Apple. Restore on devices using the same Apple Account.</span><span data-ar>اشترِ مرة عبر آبل. واستعد على الأجهزة التي تستخدم حساب آبل نفسه.</span></p>
         </div>
         <div class="df-plus__price">
           <strong>SAR 24.99</strong>
-          <span>Saudi Arabia · Apple shows the final local price before purchase</span>
+          <span><span data-en>Saudi Arabia · Apple shows the final local price before purchase</span><span data-ar>السعودية · تعرض آبل السعر المحلي النهائي قبل الشراء</span></span>
         </div>
       </div>
 
       <div class="df-plus__grid">
-        <article data-pc-site-reveal><span>01 · PDF Studio</span><h3>Make the report yours.</h3><p>Choose from four professional templates, add identity, logo, color, and footer, include attachments, and export Gregorian, Umm al-Qura Hijri, or dual dates.</p><b>PDF</b></article>
-        <article data-pc-site-reveal><span>02 · Financial Outlook</span><h3>See what lies ahead.</h3><p>Review unpaid amounts for the next 30, 60, or 90 days, kept clearly separated by currency.</p><b>90D</b></article>
-        <article data-pc-site-reveal><span>03 · Smart Reminders</span><h3>Follow up calmly.</h3><p>Use due-day reminders and an optional next-day follow-up, delivered at the global reminder time you choose.</p><b>DUE</b></article>
+        <article data-pc-site-reveal><span><span data-en>01 · PDF Studio</span><span data-ar>٠١ · استوديو PDF</span></span><h3><span data-en>Make the report yours.</span><span data-ar>اجعل التقرير بطابعك.</span></h3><p><span data-en>Choose from four professional templates, add identity, logo, color, and footer, include attachments, and export Gregorian, Umm al-Qura Hijri, or dual dates.</span><span data-ar>اختر من أربعة قوالب احترافية، وأضف الهوية والشعار واللون والتذييل، وأدرج المرفقات، وصدّر تواريخ ميلادية أو هجرية أم القرى أو مزدوجة.</span></p><b>PDF</b></article>
+        <article data-pc-site-reveal><span><span data-en>02 · Financial Outlook</span><span data-ar>٠٢ · الأفق المالي</span></span><h3><span data-en>See what lies ahead.</span><span data-ar>شاهد ما هو قادم.</span></h3><p><span data-en>Review unpaid amounts for the next 30, 60, or 90 days, kept clearly separated by currency.</span><span data-ar>راجع المبالغ غير المدفوعة للثلاثين أو الستين أو التسعين يومًا القادمة، بفصل واضح حسب العملة.</span></p><b>90D</b></article>
+        <article data-pc-site-reveal><span><span data-en>03 · Smart Reminders</span><span data-ar>٠٣ · تذكيرات ذكية</span></span><h3><span data-en>Follow up calmly.</span><span data-ar>تابع بهدوء.</span></h3><p><span data-en>Use due-day reminders and an optional next-day follow-up, delivered at the global reminder time you choose.</span><span data-ar>استخدم تذكيرات يوم الاستحقاق ومتابعة اختيارية في اليوم التالي، تصلك في وقت التذكير العام الذي تختاره.</span></p><b><span data-en>DUE</span><span data-ar>مستحق</span></b></article>
       </div>
 
-      <p class="df-plus__free" data-pc-site-reveal><strong>Still included without Plus:</strong> installment tracking, Pay Soon, App Lock, backup and restore, local reminders, and the standard PDF report.</p>
+      <p class="df-plus__free" data-pc-site-reveal><strong><span data-en>Still included without Plus:</span><span data-ar>ما يبقى متاحًا دون بلس:</span></strong> <span data-en class="blk">installment tracking, Pay Soon, App Lock, backup and restore, local reminders, and the standard PDF report.</span><span data-ar class="blk">تتبع الأقساط، و«ادفع قريبًا»، وقفل التطبيق، والنسخ الاحتياطي والاستعادة، والتذكيرات المحلية، وتقرير PDF القياسي.</span></p>
     </div>
   </section>
 
   <section class="df-section df-gallery" aria-labelledby="gallery-title">
     <div class="df-section__inner">
       <header class="df-chapter-heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 08 · Real product record</p>
-        <h2 id="gallery-title">Six screens.<br>One calm system.</h2>
-        <p>Every image is a real Dufaat 2.2 capture using sample records. The first two show the free core; the next three show Dufaat Plus; Settings keeps control close.</p>
+        <p class="df-kicker"><span data-en>Chapter 08 · Real product record</span><span data-ar>الفصل ٠٨ · سجل منتج حقيقي</span></p>
+        <h2 id="gallery-title"><span data-en class="blk">Six screens.</span><span data-ar class="blk">ست شاشات.</span><br><span data-en class="blk">One calm system.</span><span data-ar class="blk">نظام واحد هادئ.</span></h2>
+        <p><span data-en>Every image is a real Dufaat 2.2 capture using sample records. The first two show the free core; the next three show Dufaat Plus; Settings keeps control close.</span><span data-ar>كل صورة لقطة حقيقية من دفعات 2.2 بسجلات تجريبية. أول صورتان تظهران النواة المجانية؛ والثلاث التالية تظهر «دفعات بلس»؛ والإعدادات تبقي التحكم قريبًا.</span></p>
       </header>
 
       <div class="df-gallery__grid">
-        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/plans-2-2.jpg" alt="Dufaat Installments overview with sample plans and progress" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>01 · Free core</span><strong>Installments</strong></figcaption></figure>
-        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/pay-soon-2-2.jpg" alt="Dufaat Pay Soon overview with sample short-term amounts" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>02 · Free core</span><strong>Pay Soon</strong></figcaption></figure>
-        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/pdf-studio-2-2.jpg" alt="Dufaat Plus PDF Studio with professional report options" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>03 · Plus</span><strong>PDF Studio</strong></figcaption></figure>
-        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/financial-outlook-2-2.jpg" alt="Dufaat Plus Financial Outlook showing upcoming unpaid amounts" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>04 · Plus</span><strong>Financial Outlook</strong></figcaption></figure>
-        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/smart-reminders-2-2.jpg" alt="Dufaat Plus Smart Reminders settings" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>05 · Plus</span><strong>Smart Reminders</strong></figcaption></figure>
-        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/settings-2-2.jpg" alt="Dufaat Settings with privacy, language, notifications, and backup controls" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>06 · Control</span><strong>Settings</strong></figcaption></figure>
+        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/plans-2-2.jpg" alt="Dufaat Installments overview with sample plans and progress" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>01 · Free core</span><span data-ar>٠١ · النواة المجانية</span></span><strong><span data-en>Installments</span><span data-ar>الأقساط</span></strong></figcaption></figure>
+        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/pay-soon-2-2.jpg" alt="Dufaat Pay Soon overview with sample short-term amounts" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>02 · Free core</span><span data-ar>٠٢ · النواة المجانية</span></span><strong><span data-en>Pay Soon</span><span data-ar>ادفع قريبًا</span></strong></figcaption></figure>
+        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/pdf-studio-2-2.jpg" alt="Dufaat Plus PDF Studio with professional report options" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>03 · Plus</span><span data-ar>٠٣ · بلس</span></span><strong><span data-en>PDF Studio</span><span data-ar>استوديو PDF</span></strong></figcaption></figure>
+        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/financial-outlook-2-2.jpg" alt="Dufaat Plus Financial Outlook showing upcoming unpaid amounts" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>04 · Plus</span><span data-ar>٠٤ · بلس</span></span><strong><span data-en>Financial Outlook</span><span data-ar>الأفق المالي</span></strong></figcaption></figure>
+        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/smart-reminders-2-2.jpg" alt="Dufaat Plus Smart Reminders settings" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>05 · Plus</span><span data-ar>٠٥ · بلس</span></span><strong><span data-en>Smart Reminders</span><span data-ar>التذكيرات الذكية</span></strong></figcaption></figure>
+        <figure class="df-gallery-card" data-pc-site-reveal><img src="/dufaat/assets/screenshots/settings-2-2.jpg" alt="Dufaat Settings with privacy, language, notifications, and backup controls" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>06 · Control</span><span data-ar>٠٦ · تحكم</span></span><strong><span data-en>Settings</span><span data-ar>الإعدادات</span></strong></figcaption></figure>
       </div>
     </div>
   </section>
@@ -296,45 +301,45 @@
   <section class="df-section df-releases" aria-labelledby="release-title">
     <div class="df-section__inner">
       <header class="df-chapter-heading" data-pc-site-reveal>
-        <p class="df-kicker">Chapter 09 · Releases and continuity</p>
-        <h2 id="release-title">Version history.<br>A clearer record.</h2>
-        <p>Version 2.2 adds faster everyday entry, stronger privacy controls, refined reports, and the optional Dufaat Plus one-time In-App Purchase.</p>
+        <p class="df-kicker"><span data-en>Chapter 09 · Releases and continuity</span><span data-ar>الفصل ٠٩ · الإصدارات والاستمرارية</span></p>
+        <h2 id="release-title"><span data-en class="blk">Version history.</span><span data-ar class="blk">سجل الإصدارات.</span><br><span data-en class="blk">A clearer record.</span><span data-ar class="blk">سجل أوضح.</span></h2>
+        <p><span data-en>Version 2.2 adds faster everyday entry, stronger privacy controls, refined reports, and the optional Dufaat Plus one-time In-App Purchase.</span><span data-ar>يضيف الإصدار 2.2 إدخالًا يوميًا أسرع وأدوات خصوصية أقوى وتقارير مصقولة وشراء «دفعات بلس» الاختياري لمرة واحدة داخل التطبيق.</span></p>
       </header>
 
       <div class="df-release-layout">
         <div class="df-release-copy" data-pc-site-reveal>
-          <p class="df-rule-label">Release fallback · iOS v2.2</p>
-          <p>Core records remain on device. App Store product information, purchase, and restoration for Dufaat Plus are handled by Apple.</p>
+          <p class="df-rule-label"><span data-en>Release fallback · iOS v2.2</span><span data-ar>النسخة الاحتياطية · iOS v2.2</span></p>
+          <p><span data-en>Core records remain on device. App Store product information, purchase, and restoration for Dufaat Plus are handled by Apple.</span><span data-ar>تبقى السجلات الأساسية على الجهاز. ومعلومات المنتج في آب ستور والشراء والاستعادة لـ«دفعات بلس» تتولاها آبل.</span></p>
         </div>
         <div class="df-release-wall" data-pc-site-reveal>
           <div class="df-release-static">
             <article class="df-release-entry">
-              <header><h3>Version 2.2</h3><span>Latest product chapter</span></header>
-              <p>Choose SAR and AED faster, switch app language immediately, protect private records with Face ID, Touch ID, or the device passcode, and use a clearer Settings experience.</p>
-              <p>Standard PDFs are cleaner and follow the device calendar. Dufaat Plus adds PDF Studio, Financial Outlook, and Smart Reminders as an optional one-time In-App Purchase with no subscription.</p>
+              <header><h3><span data-en>Version 2.2</span><span data-ar>الإصدار ٢٫٢</span></h3><span><span data-en>Latest product chapter</span><span data-ar>أحدث فصل في المنتج</span></span></header>
+              <p><span data-en>Choose SAR and AED faster, switch app language immediately, protect private records with Face ID, Touch ID, or the device passcode, and use a clearer Settings experience.</span><span data-ar>اختر الريال والدرهم أسرع، وبدّل لغة التطبيق فورًا، واحمِ السجلات الخاصة ببصمة الوجه أو بصمة الإصبع أو رمز الجهاز، واستخدم تجربة إعدادات أوضح.</span></p>
+              <p><span data-en>Standard PDFs are cleaner and follow the device calendar. Dufaat Plus adds PDF Studio, Financial Outlook, and Smart Reminders as an optional one-time In-App Purchase with no subscription.</span><span data-ar>ملفات PDF القياسية أنظف وتتبع تقويم الجهاز. ويضيف «دفعات بلس» استوديو PDF والأفق المالي والتذكيرات الذكية كشراء اختياري داخل التطبيق لمرة واحدة دون اشتراك.</span></p>
             </article>
             <details class="df-release-history">
-              <summary>Show earlier releases (3)</summary>
+              <summary><span data-en>Show earlier releases (3)</span><span data-ar>اعرض الإصدارات الأقدم (٣)</span></summary>
               <article class="df-release-entry">
-                <header><h4>Version 2.1</h4><span>Earlier release</span></header>
-                <p>Added Pay Soon for short-term amounts, improved PDF reports, and delivered performance and reliability refinements.</p>
+                <header><h4><span data-en>Version 2.1</span><span data-ar>الإصدار ٢٫١</span></h4><span><span data-en>Earlier release</span><span data-ar>إصدار أقدم</span></span></header>
+                <p><span data-en>Added Pay Soon for short-term amounts, improved PDF reports, and delivered performance and reliability refinements.</span><span data-ar>أضاف «ادفع قريبًا» للمبالغ قصيرة الأمد، وحسّن تقارير PDF، وقدّم تحسينات أداء وموثوقية.</span></p>
               </article>
               <article class="df-release-entry">
-                <header><h4>Version 2.0</h4><span>Earlier release</span></header>
-                <p>A whole new look</p>
-                <p>Dufaat is calmer and more beautiful — a warm new visual identity with luminous touches that makes tracking your installments a relaxed experience.</p>
-                <p>What's new:</p>
+                <header><h4><span data-en>Version 2.0</span><span data-ar>الإصدار ٢٫٠</span></h4><span><span data-en>Earlier release</span><span data-ar>إصدار أقدم</span></span></header>
+                <p><span data-en>A whole new look</span><span data-ar>مظهر جديد كليًا</span></p>
+                <p><span data-en>Dufaat is calmer and more beautiful — a warm new visual identity with luminous touches that makes tracking your installments a relaxed experience.</span><span data-ar>أصبح دفعات أكثر هدوءًا وجمالًا — هوية بصرية دافئة جديدة بلمسات مضيئة تجعل تتبع أقساطك تجربة مريحة.</span></p>
+                <p><span data-en>What's new:</span><span data-ar>الجديد:</span></p>
                 <ul>
-                  <li>A completely redesigned, warm and refined look in both light and dark mode</li>
-                  <li>Defer payments: officially postpone any payment — it shows as "Deferred" instead of "Overdue," moves to the end of the schedule, and your plan's end date updates automatically</li>
-                  <li>The Completed plans list is now open by default</li>
-                  <li>Polish and refinements across every screen</li>
+                  <li><span data-en>A completely redesigned, warm and refined look in both light and dark mode</span><span data-ar>مظهر دافئ ومصقول معاد تصميمه بالكامل في الوضعين الفاتح والداكن</span></li>
+                  <li><span data-en>Defer payments: officially postpone any payment — it shows as "Deferred" instead of "Overdue," moves to the end of the schedule, and your plan's end date updates automatically</span><span data-ar>تأجيل الدفعات: أجّل أي دفعة رسميًا — تظهر «مؤجلة» بدل «متأخرة»، وتنتقل إلى نهاية الجدول، ويتحدث تاريخ انتهاء خطتك تلقائيًا</span></li>
+                  <li><span data-en>The Completed plans list is now open by default</span><span data-ar>قائمة الخطط المكتملة مفتوحة افتراضيًا الآن</span></li>
+                  <li><span data-en>Polish and refinements across every screen</span><span data-ar>صقل وتحسينات في كل الشاشات</span></li>
                 </ul>
-                <p>Thank you for using Dufaat</p>
+                <p><span data-en>Thank you for using Dufaat</span><span data-ar>شكرًا لاستخدامك دفعات</span></p>
               </article>
               <article class="df-release-entry">
-                <header><h4>Version 1.0</h4><span>Initial release</span></header>
-                <p>No release notes provided.</p>
+                <header><h4><span data-en>Version 1.0</span><span data-ar>الإصدار ١٫٠</span></h4><span><span data-en>Initial release</span><span data-ar>الإصدار الأول</span></span></header>
+                <p><span data-en>No release notes provided.</span><span data-ar>لا توجد ملاحظات إصدار.</span></p>
               </article>
             </details>
           </div>
@@ -347,17 +352,17 @@
   <section class="df-coda" aria-labelledby="coda-title">
     <div class="df-coda__path" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="df-coda__content" data-pc-site-reveal>
-      <p class="df-kicker">Dufaat · The Settlement Cut</p>
-      <h2 id="coda-title">Know what is next.<br>Keep what is settled.</h2>
-      <p>Plan the schedule, follow the next due item, record progress, and keep proof under your own control—a calm personal record on iPhone.</p>
+      <p class="df-kicker"><span data-en>Dufaat · The Settlement Cut</span><span data-ar>دفعات · مشهد السداد</span></p>
+      <h2 id="coda-title"><span data-en class="blk">Know what is next.</span><span data-ar class="blk">اعرف ما هو تالٍ.</span><br><span data-en class="blk">Keep what is settled.</span><span data-ar class="blk">واحفظ ما سُدِّد.</span></h2>
+      <p><span data-en>Plan the schedule, follow the next due item, record progress, and keep proof under your own control—a calm personal record on iPhone.</span><span data-ar>خطّط الجدول وتابع بند الاستحقاق التالي وسجّل التقدّم واحفظ الإثبات تحت تحكمك—سجل شخصي هادئ على الآيفون.</span></p>
       <div class="df-coda__actions">
-        <a class="pc-site-action pc-site-action--dufaat" href="https://apps.apple.com/ae/app/dufaat/id6780440703">View on the App Store <span aria-hidden="true">↗</span></a>
-        <a class="pc-site-action" href="/">All Saud Apps <span aria-hidden="true">→</span></a>
+        <a class="pc-site-action pc-site-action--dufaat" href="https://apps.apple.com/ae/app/dufaat/id6780440703"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+        <a class="pc-site-action" href="/"><span data-en>All Saud Apps </span><span data-ar>كل تطبيقات سعود </span><span aria-hidden="true">→</span></a>
       </div>
       <nav class="df-coda__links" aria-label="Dufaat support and legal links">
-        <a href="/dufaat/privacy/">Privacy policy</a>
-        <a href="/dufaat/terms/">Terms of use</a>
-        <a href="/support/">Support</a>
+        <a href="/dufaat/privacy/"><span data-en>Privacy policy</span><span data-ar>سياسة الخصوصية</span></a>
+        <a href="/dufaat/terms/"><span data-en>Terms of use</span><span data-ar>شروط الاستخدام</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </nav>
     </div>
@@ -365,21 +370,21 @@
 </main>
 
 <footer class="pc-site-footer">
-  <div class="pc-site-footer__identity"><strong>DUFAAT · SAUD APPS</strong><span>Plan · due · paid · proof · record</span></div>
+  <div class="pc-site-footer__identity"><strong>DUFAAT · SAUD APPS</strong><span><span data-en>Plan · due · paid · proof · record</span><span data-ar>خطة · استحقاق · سداد · إثبات · سجل</span></span></div>
   <nav aria-label="Footer navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/" aria-current="page">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
-  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+  <div class="pc-site-footer__base"><span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span><a href="mailto:support@saud.im">support@saud.im</a></div>
 </footer>
 
-<script src="/assets/product-cinema-core.js?v=batch3" defer></script>
+<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
 <script src="/dufaat/product-cinema.js?v=batch3" defer></script>
 <script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>

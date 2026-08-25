@@ -198,6 +198,7 @@ remains useful without the API.
 Files:
 
 - `.github/workflows/sync-releases.yml`
+- `package.json` and `package-lock.json` (release-workflow dependency only)
 - `scripts/fetch-releases.mjs`
 - `releases.json`
 - `releases-loader.js`
@@ -206,11 +207,14 @@ Flow:
 
 1. The workflow runs on pushes to `main`, daily at `03:00 UTC`, or by an
    explicitly approved manual dispatch.
-2. The workflow provides Node.js 22 and calls the authenticated App Store
-   Connect API for the four live apps.
+2. The workflow provides Node.js 22, installs the single pinned runtime
+   dependency from the committed lockfile with `npm ci --ignore-scripts`, runs
+   serialized under a non-cancelling concurrency group, and calls the
+   authenticated App Store Connect API for the four live apps.
 3. The fetcher writes a fresh `releases.json`.
 4. If the generated file changed, the workflow commits only that file with
-   `chore: sync releases [skip ci]` and pushes it using the workflow token.
+   `chore: sync releases [skip ci]`, rebases onto a freshly fetched `main`,
+   and pushes explicitly to `main` using the workflow token (never forced).
 5. `releases-loader.js` fetches the JSON and renders:
 
 ```html

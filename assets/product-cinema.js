@@ -32,8 +32,6 @@
 
   function applyTheme(theme, persist) {
     root.setAttribute('data-theme', theme);
-    root.setAttribute('lang', 'en');
-    root.setAttribute('dir', 'ltr');
 
     document.querySelectorAll('[data-pc-theme]').forEach(function (button) {
       button.setAttribute('aria-pressed', button.getAttribute('data-pc-theme') === theme ? 'true' : 'false');
@@ -95,7 +93,7 @@
       sequence.style.setProperty('--pc-arrival-opacity', '1');
       sequence.style.setProperty('--pc-arrival-y', '0px');
       if (meter) meter.style.transform = 'scaleX(1)';
-      if (phaseLabel) phaseLabel.textContent = 'ARRIVAL · 07';
+      if (phaseLabel) phaseLabel.textContent = root.getAttribute('lang') === 'ar' ? 'الوصول · ٠٧' : 'ARRIVAL · 07';
     }
 
     function render() {
@@ -152,13 +150,14 @@
 
       var phaseName;
       var label;
-      if (progress < .13) { phaseName = 'forces'; label = 'THE CAST · 01'; }
-      else if (progress < .27) { phaseName = 'logic'; label = 'PRODUCT LOGIC · 02'; }
-      else if (progress < .40) { phaseName = 'converge'; label = 'CONVERGENCE · 03'; }
-      else if (progress < .54) { phaseName = 'select'; label = 'SELECT · 04'; }
-      else if (progress < .68) { phaseName = 'week'; label = 'FORMATION · 05'; }
-      else if (progress < .84) { phaseName = 'interface'; label = 'INTERFACE · 06'; }
-      else { phaseName = 'arrival'; label = 'ARRIVAL · 07'; }
+      var ar = root.getAttribute('lang') === 'ar';
+      if (progress < .13) { phaseName = 'forces'; label = ar ? 'العرض · ٠١' : 'THE CAST · 01'; }
+      else if (progress < .27) { phaseName = 'logic'; label = ar ? 'منطق المنتج · ٠٢' : 'PRODUCT LOGIC · 02'; }
+      else if (progress < .40) { phaseName = 'converge'; label = ar ? 'التقارب · ٠٣' : 'CONVERGENCE · 03'; }
+      else if (progress < .54) { phaseName = 'select'; label = ar ? 'الاختيار · ٠٤' : 'SELECT · 04'; }
+      else if (progress < .68) { phaseName = 'week'; label = ar ? 'التكوين · ٠٥' : 'FORMATION · 05'; }
+      else if (progress < .84) { phaseName = 'interface'; label = ar ? 'الواجهة · ٠٦' : 'INTERFACE · 06'; }
+      else { phaseName = 'arrival'; label = ar ? 'الوصول · ٠٧' : 'ARRIVAL · 07'; }
       sequence.setAttribute('data-phase', phaseName);
       if (phaseLabel) phaseLabel.textContent = label;
     }
@@ -173,6 +172,7 @@
     render();
     window.addEventListener('scroll', requestRender, { passive: true });
     window.addEventListener('resize', requestRender, { passive: true });
+    document.addEventListener('saudapps:langchange', requestRender);
 
     if (reduceQuery) {
       var followMotionPreference = function () {

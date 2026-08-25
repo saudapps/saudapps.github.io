@@ -134,26 +134,26 @@ public content.
 ### Verified
 
 - The homepage and four primary Product Cinema app routes are authored as
-  English-only pages with `<html lang="en" dir="ltr">`.
-- Those primary routes do not contain the shared `data-en`, `data-ar`, or
-  `data-lang-btn` bilingual controls.
-- Full-site Arabic/RTL parity is not implemented on the five primary Product
-  Cinema routes; their current markup is English/LTR and does not include the
-  shared bilingual controls.
+  bilingual English/Arabic pages with `<html lang="en" dir="ltr">` as the
+  served default.
+- Every primary route carries paired `data-en`/`data-ar` content, a static
+  `.pc-site-lang` control in its header, and a static `.pc-site-skip` link.
+- Arabic selection swaps visible pairs via CSS under `html[lang="ar"]`,
+  applies `dir="rtl"` with mirrored rails/arrows per route stylesheet, and is
+  persisted in `localStorage['saudapps-lang']`.
 - About, support, legal, 404, and the preserved Promptbook pages contain paired
   English/Arabic content and language controls.
 - `assets/saud.js` can set `lang="ar"` and `dir="rtl"` when Arabic is selected.
-- `assets/product-cinema-core.js` applies the Product Cinema theme and resets
-  its initialized shell to English/LTR.
+- `assets/product-cinema-core.js` applies the saved theme and saved language,
+  dispatches `saudapps:langchange`, and swaps `data-aria-en`/`data-aria-ar`
+  labels; an early inline head script adds `pc-site-js` so non-functional
+  language controls stay hidden without JavaScript.
 
 ### Unknown
 
-- The intended future language contract for the primary Product Cinema routes
-  is not yet decided.
-- The initialization and persistence contract for supporting Product Cinema
-  routes requires a dedicated review; current code contains both the bilingual
-  controller and an English/LTR initialization.
-- Future visual RTL parity, if implemented, has not been designed or tested.
+- Deep visual RTL parity for decorative compositions (hero art, grids beyond
+  mirrored rails) has not been exhaustively designed or tested; the shipped
+  RTL blocks cover text-bearing components and reading-direction cues.
 
 Do not change or reinterpret this behavior in a documentation-only task.
 

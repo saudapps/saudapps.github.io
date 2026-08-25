@@ -94,7 +94,11 @@ The repository contains no committed:
 - browser automation suite;
 - visual-regression suite;
 - full-site RTL regression suite;
-- `package.json` test runner.
+
+Since 2026-08-25 the repository has a committed `package.json` with a
+`node --test` runner for static offline tests (`npm test`), covering the
+release-pipeline behavior and the release supply-chain contract. The browser
+suites above remain absent.
 
 The release workflow synchronizes public release data; it is not a website test
 suite. Current site validation depends on structural checks and a manual browser

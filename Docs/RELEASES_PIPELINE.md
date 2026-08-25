@@ -27,9 +27,16 @@ silently frozen.)
    (JWT/ES256) for every app in its `APPS` array (currently `sshift`,
    `phonespace`, `dufaat`, `filed`) and reads each version's `whatsNew` in en + ar.
    Auth = GitHub secrets `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY`.
-   Runner: Node 22, `actions/checkout@v6` + `actions/setup-node@v6`.
+   Runner: Node 22, `actions/checkout@v6` + `actions/setup-node@v6`. The single
+   runtime dependency (`jsonwebtoken`) is pinned exactly in the committed
+   `package.json` / `package-lock.json` and installed with `npm ci
+   --ignore-scripts`, so builds use only registry-locked versions and never run
+   third-party install scripts.
 3. **Commit** — writes `releases.json` (always a fresh `updatedAt`); if changed,
-   commits + pushes `chore: sync releases [skip ci]`.
+   commits `chore: sync releases [skip ci]`, then re-fetches `main`, rebases onto
+   it, and pushes explicitly to `main`. The workflow declares a `sync-releases`
+   concurrency group with `cancel-in-progress: false`, so overlapping runs queue
+   instead of cancelling an in-flight sync.
 4. **Publish** — that push rebuilds GitHub Pages; `releases-loader.js` fetches
    the new `releases.json` and renders it.
 

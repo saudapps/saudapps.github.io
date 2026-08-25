@@ -27,7 +27,7 @@
 <meta name="twitter:image" content="https://saud.im/assets/og/og-sshift.png">
 <meta name="twitter:image:alt" content="SShift app icon">
 
-<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch3-header-v3">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-narrowfix1">
 <style>
   body.product-cinema {
     --pc-paper: var(--paper);
@@ -40,11 +40,12 @@
     --pc-signal: var(--signal);
   }
 </style>
-<link rel="stylesheet" href="/assets/product-cinema.css?v=phase2f-1">
+<link rel="stylesheet" href="/assets/product-cinema.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-legal-bg-1">
 <script>
   (function () {
     try {
+      document.documentElement.classList.add('pc-site-js');
       var saved = localStorage.getItem('saudapps-theme');
       var theme = saved === 'light' || saved === 'dark' ? saved
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -54,41 +55,45 @@
 </script>
 </head>
 <body class="product-cinema pc-sshift">
-<a class="pc-site-skip" href="#main">Skip to content</a>
+<a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
 
 <header class="pc-site-header">
   <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
     <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+    <span><strong>Saud Apps</strong><small><span data-en>Independent · iOS</span><span data-ar>مستقل · iOS</span></small></span>
   </a>
 
   <nav class="pc-site-nav" aria-label="Primary navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/" aria-current="page">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
 
   <div class="pc-site-tools">
     <div class="pc-site-theme" role="group" aria-label="Color theme">
-      <button type="button" data-pc-site-theme="light" data-pc-theme="light" aria-pressed="false">Day</button>
-      <button type="button" data-pc-site-theme="dark" data-pc-theme="dark" aria-pressed="false">Night</button>
+      <button type="button" data-pc-site-theme="light" data-pc-theme="light" aria-pressed="false"><span data-en>Day</span><span data-ar>نهار</span></button>
+      <button type="button" data-pc-site-theme="dark" data-pc-theme="dark" aria-pressed="false"><span data-en>Night</span><span data-ar>ليل</span></button>
+    </div>
+    <div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
     </div>
     <details class="pc-site-menu">
-      <summary>Menu</summary>
+      <summary><span data-en>Menu</span><span data-ar>القائمة</span></summary>
       <nav aria-label="Mobile navigation">
-        <a href="/">Home</a>
+        <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
         <a href="/sshift/" aria-current="page">SShift</a>
         <a href="/phonespace/">PhoneSpace</a>
         <a href="/filed/">Filed</a>
         <a href="/dufaat/">Dufaat</a>
-        <a href="/about/">About</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/">Legal</a>
+        <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </nav>
     </details>
   </div>
@@ -97,130 +102,130 @@
 <main id="main" tabindex="-1">
   <section class="pc-product-opening" aria-labelledby="product-title">
     <div class="pc-product-opening__field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <p class="pc-product-opening__edition"><span>CHAPTER 01 / 05</span><span>SSHIFT · 4.2</span><span>SHIFT CALENDAR</span></p>
+    <p class="pc-product-opening__edition"><span><span data-en>CHAPTER 01 / 05</span><span data-ar>الفصل ٠١ / ٠٥</span></span><span>SSHIFT · 5.0</span><span><span data-en>SHIFT CALENDAR</span><span data-ar>تقويم الورديات</span></span></p>
 
     <div class="pc-product-opening__lockup">
       <img src="/assets/product-cinema-v2/icon-sshift-192.png" alt="SShift app icon" width="88" height="88">
-      <span><small>Saud Apps · Signal 01</small><strong>SShift</strong></span>
+      <span><small><span data-en>Saud Apps · Signal 01</span><span data-ar>تطبيقات سعود · الإشارة ٠١</span></small><strong>SShift</strong></span>
     </div>
 
-    <h1 id="product-title"><span>Time</span><span>You can</span><span>See.</span></h1>
+    <h1 id="product-title"><span><span data-en>Time</span><span data-ar>الوقت</span></span><span><span data-en>You can</span><span data-ar>يمكنك</span></span><span><span data-en>See.</span><span data-ar>رؤيته.</span></span></h1>
 
     <figure class="pc-product-hero-screen pc-screen-frame">
-      <span class="pc-product-hero-screen__day" aria-hidden="true">MON · TUE · WED · THU · FRI · SAT · SUN</span>
+      <span class="pc-product-hero-screen__day" aria-hidden="true"><span data-en>MON · TUE · WED · THU · FRI · SAT · SUN</span><span data-ar>الاثنين · الثلاثاء · الأربعاء · الخميس · الجمعة · السبت · الأحد</span></span>
       <img src="/sshift/assets/screenshots/calendar-light.jpg" data-theme-image data-light-src="/sshift/assets/screenshots/calendar-light.jpg" data-dark-src="/sshift/assets/screenshots/calendar-dark.jpg" alt="SShift month calendar showing color-coded work, rest, training, and leave days" width="820" height="1781" fetchpriority="high" decoding="async">
-      <figcaption><span>REAL PRODUCT SCREEN</span><span>01 / 07</span></figcaption>
+      <figcaption><span><span data-en>REAL PRODUCT SCREEN</span><span data-ar>شاشة منتج حقيقية</span></span><span>01 / 07</span></figcaption>
     </figure>
 
     <div class="pc-product-opening__statement">
-      <p>Plan work, rest, training, and leave in a calendar built around the reality of shift life.</p>
+      <p><span data-en>Plan work, rest, training, and leave in a calendar built around the reality of shift life.</span><span data-ar>خطّط العمل والراحة والتدريب والإجازة في تقويم مبني على واقع حياة الورديات.</span></p>
       <div class="pc-product-meta" aria-label="SShift App Store information">
-        <span data-app="sshift" data-field="status">On the App Store</span>
-        <span data-app="sshift" data-field="version">iOS · v4.2</span>
+        <span data-app="sshift" data-field="status"><span data-en>On the App Store</span><span data-ar>على آب ستور</span></span>
+        <span data-app="sshift" data-field="version">iOS · v5.0</span>
         <span data-app="sshift" data-field="rating" style="display:none"></span>
         <span data-app="sshift" data-field="updated" style="display:none"></span>
       </div>
       <div class="pc-actions">
-        <a class="pc-action pc-action--signal" href="https://apps.apple.com/us/app/sshift/id6751362215">View on the App Store <span aria-hidden="true">↗</span></a>
-        <a class="pc-action pc-action--text" href="/">All Saud Apps</a>
+        <a class="pc-action pc-action--signal" href="https://apps.apple.com/us/app/sshift/id6751362215"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+        <a class="pc-action pc-action--text" href="/"><span data-en>All Saud Apps</span><span data-ar>كل تطبيقات سعود</span></a>
       </div>
     </div>
   </section>
 
   <section class="pc-week-system" aria-labelledby="week-title">
     <div class="pc-chapter-heading" data-pc-reveal>
-      <p class="pc-kicker">Chapter 02 · The scheduling score</p>
-      <h2 id="week-title">Seven days.<br>Different meaning.</h2>
-      <p>SShift gives every kind of day a stable visual identity, then carries it through the calendar, dashboard, reminders, and export.</p>
+      <p class="pc-kicker"><span data-en>Chapter 02 · The scheduling score</span><span data-ar>الفصل ٠٢ · نتيجة الجدولة</span></p>
+      <h2 id="week-title"><span data-en class="blk">Seven days.</span><span data-ar class="blk">سبعة أيام.</span><br><span data-en class="blk">Different meaning.</span><span data-ar class="blk">بمعانٍ مختلفة.</span></h2>
+      <p><span data-en>SShift gives every kind of day a stable visual identity, then carries it through the calendar, dashboard, reminders, and export.</span><span data-ar>يمنح SShift كل نوع يوم هوية بصرية ثابتة، ويحملها عبر التقويم ولوحة الملخص والتذكيرات والتصدير.</span></p>
     </div>
 
     <div class="pc-week-system__score" aria-label="Example SShift week" data-pc-reveal>
-      <div style="--day:#4CAF50"><span>MON</span><strong>15</strong><small>Work · W</small></div>
-      <div style="--day:#4CAF50"><span>TUE</span><strong>16</strong><small>Work · W</small></div>
-      <div style="--day:#009688"><span>WED</span><strong>17</strong><small>Training · TR</small></div>
-      <div style="--day:#FF9800"><span>THU</span><strong>18</strong><small>Annual leave · AL</small></div>
-      <div style="--day:#F44336"><span>FRI</span><strong>19</strong><small>Sick leave · SL</small></div>
-      <div style="--day:#5C6BC0"><span>SAT</span><strong>20</strong><small>Long cycle · LCL</small></div>
-      <div style="--day:#9E9E9E"><span>SUN</span><strong>21</strong><small>Rest · R</small></div>
+      <div style="--day:#4CAF50"><span><span data-en>MON</span><span data-ar>اثنين</span></span><strong>15</strong><small><span data-en>Work · W</span><span data-ar>عمل · W</span></small></div>
+      <div style="--day:#4CAF50"><span><span data-en>TUE</span><span data-ar>ثلاثاء</span></span><strong>16</strong><small><span data-en>Work · W</span><span data-ar>عمل · W</span></small></div>
+      <div style="--day:#009688"><span><span data-en>WED</span><span data-ar>أربعاء</span></span><strong>17</strong><small><span data-en>Training · TR</span><span data-ar>تدريب · TR</span></small></div>
+      <div style="--day:#FF9800"><span><span data-en>THU</span><span data-ar>خميس</span></span><strong>18</strong><small><span data-en>Annual leave · AL</span><span data-ar>إجازة سنوية · AL</span></small></div>
+      <div style="--day:#F44336"><span><span data-en>FRI</span><span data-ar>جمعة</span></span><strong>19</strong><small><span data-en>Sick leave · SL</span><span data-ar>إجازة مرضية · SL</span></small></div>
+      <div style="--day:#5C6BC0"><span><span data-en>SAT</span><span data-ar>سبت</span></span><strong>20</strong><small><span data-en>Long cycle · LCL</span><span data-ar>دورة طويلة · LCL</span></small></div>
+      <div style="--day:#9E9E9E"><span><span data-en>SUN</span><span data-ar>أحد</span></span><strong>21</strong><small><span data-en>Rest · R</span><span data-ar>راحة · R</span></small></div>
     </div>
 
     <div class="pc-week-system__notes">
-      <p data-pc-reveal><span>01 / PATTERN</span><strong>Cycles repeat without hiding exceptions.</strong><small>Work, rest, training, and leave retain their own names and colors.</small></p>
-      <p data-pc-reveal><span>02 / NOTICE</span><strong>Reminders follow the days that matter.</strong><small>Choose the shift types that should notify you and how far ahead.</small></p>
-      <p data-pc-reveal><span>03 / HANDOFF</span><strong>The same logic leaves the screen cleanly.</strong><small>Export a fixed-light PDF in English or Arabic when the plan must travel.</small></p>
+      <p data-pc-reveal><span><span data-en>01 / PATTERN</span><span data-ar>٠١ / النمط</span></span><strong><span data-en>Cycles repeat without hiding exceptions.</span><span data-ar>الدورات تتكرر دون إخفاء الاستثناءات.</span></strong><small><span data-en>Work, rest, training, and leave retain their own names and colors.</span><span data-ar>يحتفظ العمل والراحة والتدريب والإجازة بأسمائها وألوانها.</span></small></p>
+      <p data-pc-reveal><span><span data-en>02 / NOTICE</span><span data-ar>٠٢ / التنبيه</span></span><strong><span data-en>Reminders follow the days that matter.</span><span data-ar>التذكيرات تتبع الأيام التي تهمك.</span></strong><small><span data-en>Choose the shift types that should notify you and how far ahead.</span><span data-ar>اختر أنواع الورديات التي تريد تنبيهًا عنها ومدى التقدّم الزمني.</span></small></p>
+      <p data-pc-reveal><span><span data-en>03 / HANDOFF</span><span data-ar>٠٣ / التسليم</span></span><strong><span data-en>The same logic leaves the screen cleanly.</span><span data-ar>المنطق نفسه يغادر الشاشة بانسيابية.</span></strong><small><span data-en>Export a fixed-light PDF in English or Arabic when the plan must travel.</span><span data-ar>صدّر ملف PDF بإضاءة ثابتة بالإنجليزية أو العربية عندما تحتاج الخطة إلى التنقل.</span></small></p>
     </div>
   </section>
 
   <section class="pc-product-motion" aria-labelledby="motion-title">
     <header class="pc-chapter-heading pc-chapter-heading--motion" data-pc-reveal>
-      <p class="pc-kicker">Chapter 03 · The product in motion</p>
-      <h2 id="motion-title">Plan. Read.<br>Adjust.</h2>
-      <p>Three real screens carry the story. The copy points to product evidence instead of describing imaginary controls.</p>
+      <p class="pc-kicker"><span data-en>Chapter 03 · The product in motion</span><span data-ar>الفصل ٠٣ · المنتج في الحركة</span></p>
+      <h2 id="motion-title"><span data-en class="blk">Plan. Read.</span><span data-ar class="blk">خطّط. اقرأ.</span><br><span data-en class="blk">Adjust.</span><span data-ar class="blk">عدّل.</span></h2>
+      <p><span data-en>Three real screens carry the story. The copy points to product evidence instead of describing imaginary controls.</span><span data-ar>ثلاث شاشات حقيقية تحمل الحكاية. النص يشير إلى دليل المنتج بدل وصف أزرار متخيَّلة.</span></p>
     </header>
 
     <article class="pc-story pc-story--pattern" data-pc-reveal>
-      <div class="pc-story__index"><span>01</span><small>SEE THE PATTERN</small></div>
+      <div class="pc-story__index"><span>01</span><small><span data-en>SEE THE PATTERN</span><span data-ar>شاهد النمط</span></small></div>
       <figure>
         <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/dashboard.jpg" alt="SShift dashboard summarizing the month with work, rest, and leave counts" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>02 / 07 · DASHBOARD</span><strong>Your month, summed up before the next shift begins.</strong></figcaption>
+        <figcaption><span><span data-en>02 / 07 · DASHBOARD</span><span data-ar>٠٢ / ٠٧ · لوحة الملخص</span></span><strong><span data-en>Your month, summed up before the next shift begins.</span><span data-ar>شهرك ملخّصًا قبل أن تبدأ ورديتك التالية.</span></strong></figcaption>
       </figure>
       <div class="pc-story__copy">
-        <p class="pc-story__annotation"><span>MONTH TOTALS</span><span>TYPE BREAKDOWN</span><span>NEXT EVENT</span></p>
-        <h3>The cycle becomes legible.</h3>
-        <p>At a glance, the dashboard turns individual dates into a useful view of the month—how much you worked, rested, trained, or took leave.</p>
+        <p class="pc-story__annotation"><span><span data-en>MONTH TOTALS</span><span data-ar>إجماليات الشهر</span></span><span><span data-en>TYPE BREAKDOWN</span><span data-ar>تفصيل الأنواع</span></span><span><span data-en>NEXT EVENT</span><span data-ar>الحدث التالي</span></span></p>
+        <h3><span data-en>The cycle becomes legible.</span><span data-ar>الدورة تصبح مقروءة.</span></h3>
+        <p><span data-en>At a glance, the dashboard turns individual dates into a useful view of the month—how much you worked, rested, trained, or took leave.</span><span data-ar>بنظرة واحدة، تحوّل لوحة الملخص التواريخ المتفرقة إلى عرض مفيد للشهر: كم عملت، واسترحت، وتدرّبت، وأخذت إجازة.</span></p>
       </div>
     </article>
 
     <article class="pc-story pc-story--edit" data-pc-reveal>
-      <div class="pc-story__index"><span>02</span><small>SHAPE A DAY</small></div>
+      <div class="pc-story__index"><span>02</span><small><span data-en>SHAPE A DAY</span><span data-ar>شكّل يومًا</span></small></div>
       <figure>
         <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/day-detail.jpg" alt="Editing a day in SShift with color-coded shift and leave types" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>03 / 07 · DAY DETAIL</span><strong>Exceptions stay part of the same visual language.</strong></figcaption>
+        <figcaption><span><span data-en>03 / 07 · DAY DETAIL</span><span data-ar>٠٣ / ٠٧ · تفاصيل اليوم</span></span><strong><span data-en>Exceptions stay part of the same visual language.</span><span data-ar>الاستثناءات تبقى جزءًا من اللغة البصرية نفسها.</span></strong></figcaption>
       </figure>
       <div class="pc-story__copy">
-        <p class="pc-story__annotation"><span>TYPE</span><span>COLOR</span><span>NOTE</span></p>
-        <h3>Change the date, not the system.</h3>
-        <p>Tap a day, choose the correct shift or leave type, and keep the calendar coherent. The detail view is direct because the schedule is already complex enough.</p>
+        <p class="pc-story__annotation"><span><span data-en>TYPE</span><span data-ar>النوع</span></span><span><span data-en>COLOR</span><span data-ar>اللون</span></span><span><span data-en>NOTE</span><span data-ar>ملاحظة</span></span></p>
+        <h3><span data-en>Change the date, not the system.</span><span data-ar>غيّر التاريخ، لا النظام.</span></h3>
+        <p><span data-en>Tap a day, choose the correct shift or leave type, and keep the calendar coherent. The detail view is direct because the schedule is already complex enough.</span><span data-ar>اضغط على يوم، واختر نوع الوردية أو الإجازة الصحيح، وحافظ على تماسك التقويم. عرض التفاصيل مباشر لأن الجدولة معقّدة بما يكفي.</span></p>
       </div>
     </article>
 
     <article class="pc-story pc-story--control" data-pc-reveal>
-      <div class="pc-story__index"><span>03</span><small>DIRECT THE SYSTEM</small></div>
+      <div class="pc-story__index"><span>03</span><small><span data-en>DIRECT THE SYSTEM</span><span data-ar>وجّه النظام</span></small></div>
       <figure>
         <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/settings.jpg" alt="SShift settings for schedule, reminders, PDF export, backup, language, and about" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>05 / 07 · SETTINGS</span><strong>Reminders, export, backup, and language stay within reach.</strong></figcaption>
+        <figcaption><span><span data-en>05 / 07 · SETTINGS</span><span data-ar>٠٥ / ٠٧ · الإعدادات</span></span><strong><span data-en>Reminders, export, backup, and language stay within reach.</span><span data-ar>التذكيرات والتصدير والنسخ الاحتياطي واللغة تبقى في المتناول.</span></strong></figcaption>
       </figure>
       <div class="pc-story__copy">
-        <p class="pc-story__annotation"><span>REMINDERS</span><span>EXPORT</span><span>LANGUAGE</span></p>
-        <h3>Control without an account.</h3>
-        <p>SShift is native, bilingual, private, and offline. Configuration lives with the product—not behind a profile, cloud dashboard, or tracking layer.</p>
+        <p class="pc-story__annotation"><span><span data-en>REMINDERS</span><span data-ar>التذكيرات</span></span><span><span data-en>EXPORT</span><span data-ar>التصدير</span></span><span><span data-en>LANGUAGE</span><span data-ar>اللغة</span></span></p>
+        <h3><span data-en>Control without an account.</span><span data-ar>تحكّم بلا حساب.</span></h3>
+        <p><span data-en>SShift is native, bilingual, private, and offline. Configuration lives with the product—not behind a profile, cloud dashboard, or tracking layer.</span><span data-ar>SShift أصلي، ثنائي اللغة، خاص، ويعمل دون اتصال. الإعدادات تسكن مع المنتج—لا خلف ملف شخصي أو لوحة سحابية أو طبقة تتبّع.</span></p>
       </div>
     </article>
   </section>
 
   <section class="pc-real-screens" aria-labelledby="screens-title">
     <header class="pc-chapter-heading" data-pc-reveal>
-      <p class="pc-kicker">Chapter 04 · The complete cut</p>
-      <h2 id="screens-title">Four more views.<br>No filler.</h2>
-      <p>The remaining screens complete the seven-piece record: light, dark, Arabic, and the calendar after hours.</p>
+      <p class="pc-kicker"><span data-en>Chapter 04 · The complete cut</span><span data-ar>الفصل ٠٤ · المونتاج الكامل</span></p>
+      <h2 id="screens-title"><span data-en class="blk">Four more views.</span><span data-ar class="blk">أربعة مشاهد أخرى.</span><br><span data-en class="blk">No filler.</span><span data-ar class="blk">بلا حشو.</span></h2>
+      <p><span data-en>The remaining screens complete the seven-piece record: light, dark, Arabic, and the calendar after hours.</span><span data-ar>تكمل الشاشات المتبقية السجل السباعي: الفاتح، والداكن، والعربي، والتقويم بعد الدوام.</span></p>
     </header>
 
     <div class="pc-real-screens__grid">
       <figure data-pc-reveal>
         <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/calendar-light.jpg" alt="SShift calendar in light mode showing color-coded shift types" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>01 / 07</span><strong>Calendar · Light</strong></figcaption>
+        <figcaption><span>01 / 07</span><strong><span data-en>Calendar · Light</span><span data-ar>التقويم · فاتح</span></strong></figcaption>
       </figure>
       <figure data-pc-reveal>
         <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/dashboard-dark.jpg" alt="SShift dashboard in dark mode with the monthly summary and type breakdown" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>04 / 07</span><strong>Dashboard · Dark</strong></figcaption>
+        <figcaption><span>04 / 07</span><strong><span data-en>Dashboard · Dark</span><span data-ar>لوحة الملخص · داكن</span></strong></figcaption>
       </figure>
       <figure data-pc-reveal>
         <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/calendar-ar.jpg" alt="SShift calendar in Arabic with a complete right-to-left interface" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>06 / 07</span><strong>Calendar · Arabic</strong></figcaption>
+        <figcaption><span>06 / 07</span><strong><span data-en>Calendar · Arabic</span><span data-ar>التقويم · عربي</span></strong></figcaption>
       </figure>
       <figure data-pc-reveal>
         <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/calendar-dark.jpg" alt="SShift calendar in dark mode showing the real seven-day shift pattern" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>07 / 07</span><strong>Calendar · Dark</strong></figcaption>
+        <figcaption><span>07 / 07</span><strong><span data-en>Calendar · Dark</span><span data-ar>التقويم · داكن</span></strong></figcaption>
       </figure>
     </div>
   </section>
@@ -228,9 +233,9 @@
   <section class="pc-continuity" aria-labelledby="continuity-title">
     <div class="pc-continuity__release">
       <header data-pc-reveal>
-        <p class="pc-kicker">Chapter 05 · Releases and continuity</p>
-        <h2 id="continuity-title">What changed,<br>and what stays true.</h2>
-        <p>Release history is rendered from the existing Saud Apps release record.</p>
+        <p class="pc-kicker"><span data-en>Chapter 05 · Releases and continuity</span><span data-ar>الفصل ٠٥ · الإصدارات والاستمرارية</span></p>
+        <h2 id="continuity-title"><span data-en class="blk">What changed,</span><span data-ar class="blk">ما تغيّر،</span><br><span data-en class="blk">and what stays true.</span><span data-ar class="blk">وما يبقى صادقًا.</span></h2>
+        <p><span data-en>Release history is rendered from the existing Saud Apps release record.</span><span data-ar>سجل الإصدارات يُعرض من سجل إصدارات تطبيقات سعود القائم.</span></p>
       </header>
       <div class="pc-continuity__release-wall" data-pc-reveal><div data-releases="sshift"></div></div>
     </div>
@@ -238,35 +243,35 @@
     <div class="pc-continuity__coda">
       <div class="pc-continuity__week" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="pc-continuity__statement" data-pc-reveal>
-        <p class="pc-kicker">Private by default</p>
-        <h2>Your schedule stays on your iPhone.</h2>
-        <p>No servers. No analytics. No sign-in. SShift works offline and keeps its focus on the week in front of you.</p>
+        <p class="pc-kicker"><span data-en>Private by default</span><span data-ar>خاص افتراضيًا</span></p>
+        <h2><span data-en>Your schedule stays on your iPhone.</span><span data-ar>جدولك يبقى على آيفونك.</span></h2>
+        <p><span data-en>No servers. No analytics. No sign-in. SShift works offline and keeps its focus on the week in front of you.</span><span data-ar>بلا خوادم. بلا تحليلات. بلا تسجيل دخول. يعمل SShift دون اتصال ويحافظ على تركيزه على الأسبوع أمامك.</span></p>
       </div>
       <div class="pc-continuity__action" data-pc-reveal>
-        <a class="pc-coda-link" href="https://apps.apple.com/us/app/sshift/id6751362215"><span>GET SSHIFT</span><strong>View on the<br>App Store</strong><i aria-hidden="true">↗</i></a>
-        <nav aria-label="SShift support links"><a href="/support/">Support</a><a href="/sshift/privacy/">Privacy policy</a><a href="/">All Saud Apps</a></nav>
+        <a class="pc-coda-link" href="https://apps.apple.com/us/app/sshift/id6751362215"><span><span data-en>GET SSHIFT</span><span data-ar>احصل على SSHIFT</span></span><strong><span data-en class="blk">View on the</span><span data-ar class="blk">اعرض على</span><br><span data-en class="blk">App Store</span><span data-ar class="blk">آب ستور</span></strong><i aria-hidden="true">↗</i></a>
+        <nav aria-label="SShift support links"><a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a><a href="/sshift/privacy/"><span data-en>Privacy policy</span><span data-ar>سياسة الخصوصية</span></a><a href="/"><span data-en>All Saud Apps</span><span data-ar>كل تطبيقات سعود</span></a></nav>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="pc-site-footer">
-  <div class="pc-site-footer__identity"><strong>SSHIFT · SAUD APPS</strong><span>Shift patterns, made visible.</span></div>
+  <div class="pc-site-footer__identity"><strong>SSHIFT · SAUD APPS</strong><span><span data-en>Shift patterns, made visible.</span><span data-ar>أنماط الورديات، مرئية.</span></span></div>
   <nav aria-label="Footer navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/" aria-current="page">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/sshift/privacy/">Privacy</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/sshift/privacy/"><span data-en>Privacy</span><span data-ar>الخصوصية</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
-  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+  <div class="pc-site-footer__base"><span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span><a href="mailto:support@saud.im">support@saud.im</a></div>
 </footer>
 
-<script src="/assets/product-cinema.js?v=phase2f-1" defer></script>
-<script src="/assets/product-cinema-core.js?v=batch3" defer></script>
+<script src="/assets/product-cinema.js?v=20260825-bilingual1" defer></script>
+<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
 <script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>
 <script src="/releases-loader.js" defer></script>

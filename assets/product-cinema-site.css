@@ -15,9 +15,9 @@
   --pc-gold: #b28a29;
   --pc-max: 1600px;
   --pc-pad: clamp(20px, 3.25vw, 58px);
-  --pc-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --pc-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --pc-display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --pc-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Arabic", "Geeza Pro", Tahoma, sans-serif;
+  --pc-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "SF Arabic", "Geeza Pro", serif;
+  --pc-display: "Arial Narrow", "Helvetica Neue", Arial, "SF Arabic", "Geeza Pro", sans-serif;
   --pc-shadow: 0 32px 90px rgba(38, 31, 20, .18), 0 6px 22px rgba(38, 31, 20, .12);
 }
 
@@ -167,7 +167,7 @@ body.product-cinema-rollout figure { margin: 0; }
 .pc-site-nav a[aria-current="page"] { color: var(--pc-ink); }
 .pc-site-nav a[aria-current="page"] { box-shadow: inset 0 -2px var(--pc-signal); }
 
-.pc-site-tools { justify-self: end; }
+.pc-site-tools { justify-self: end; display: inline-flex; align-items: center; gap: 10px; }
 
 .pc-site-theme {
   padding: 3px;
@@ -192,6 +192,29 @@ body.product-cinema-rollout figure { margin: 0; }
 }
 
 .pc-site-theme button[aria-pressed="true"] { background: var(--pc-ink); color: var(--pc-paper); }
+
+.pc-site-lang {
+  padding: 3px;
+  display: inline-flex;
+  border: 1px solid var(--pc-line-strong);
+  border-radius: 999px;
+}
+
+.pc-site-lang button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pc-muted);
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .1em;
+}
+
+.pc-site-lang button[aria-pressed="true"] { background: var(--pc-ink); color: var(--pc-paper); }
 
 .pc-site-menu { display: none; }
 
@@ -315,6 +338,8 @@ html.pc-site-observe [data-pc-site-reveal].is-visible { opacity: 1; transform: n
   .pc-site-tools { gap: 5px; }
   .pc-site-theme { padding: 1px; }
   .pc-site-theme button { min-width: 44px; min-height: 44px; padding-inline: 6px; }
+  .pc-site-lang { padding: 1px; }
+  .pc-site-lang button { min-width: 44px; min-height: 44px; padding-inline: 8px; }
   .pc-site-menu summary { min-width: 48px; min-height: 44px; padding-inline: 9px; }
   .pc-site-footer { grid-template-columns: 1fr; }
   .pc-site-footer nav { justify-content: flex-start; }
@@ -324,10 +349,12 @@ html.pc-site-observe [data-pc-site-reveal].is-visible { opacity: 1; transform: n
 @media (max-width: 340px) {
   .pc-site-header { padding-inline: 10px; gap: 4px; }
   .pc-site-brand { gap: 6px; }
+  .pc-site-brand > span:last-child { display: none; }
   .pc-site-brand__mark { width: 24px; height: 24px; }
   .pc-site-brand strong { font-size: 12px; letter-spacing: 0; }
   .pc-site-tools { gap: 3px; }
   .pc-site-theme button { padding-inline: 4px; font-size: 8px; }
+  .pc-site-lang button { padding-inline: 5px; font-size: 8px; }
   .pc-site-menu summary { min-width: 46px; padding-inline: 6px; font-size: 8px; }
 }
 
@@ -337,3 +364,47 @@ html.pc-site-observe [data-pc-site-reveal].is-visible { opacity: 1; transform: n
   html.pc-site-observe [data-pc-site-reveal] { opacity: 1; transform: none; }
   .pc-site-action:hover { transform: none; }
 }
+
+/* ── Bilingual EN/AR content pairs.
+   English markup is the static source of truth; the paired Arabic spans
+   activate when the document language is Arabic (JS or stored preference). */
+[data-en], [data-ar] { display: none; }
+html[lang="en"] [data-en] { display: inline; }
+html[lang="ar"] [data-ar] { display: inline; }
+html[lang="en"] [data-ar],
+html[lang="ar"] [data-en] { display: none !important; }
+html[lang="en"] [data-en].blk { display: block; }
+html[lang="ar"] [data-ar].blk { display: block; }
+[data-ar].blk + br { display: none; }
+
+/* ── Arabic typography adaptations for the shared shell. */
+html[lang="ar"] body.product-cinema,
+html[lang="ar"] body.product-cinema-rollout { line-height: 1.65; }
+html[lang="ar"] .pc-site-skip,
+html[lang="ar"] .pc-site-brand small,
+html[lang="ar"] .pc-site-nav a,
+html[lang="ar"] .pc-site-theme button,
+html[lang="ar"] .pc-site-lang button,
+html[lang="ar"] .pc-site-menu summary,
+html[lang="ar"] .pc-site-action,
+html[lang="ar"] .pc-site-footer__identity span,
+html[lang="ar"] .pc-site-footer nav a,
+html[lang="ar"] .pc-site-footer__base {
+  letter-spacing: 0;
+  text-transform: none;
+}
+html[lang="ar"] .pc-site-brand strong,
+html[lang="ar"] .pc-site-footer__identity strong { letter-spacing: 0; }
+
+/* ── RTL directional adaptations for the shared shell. */
+html[dir="rtl"] .pc-site-skip { left: auto; right: 12px; }
+html[dir="rtl"] .pc-site-menu nav { right: auto; left: 0; }
+html[dir="rtl"] .chev,
+html[dir="rtl"] .lr-chev { transform: scaleX(-1); }
+html[dir="rtl"] body.pc-info .lr-chev { margin-left: 0; margin-right: auto; }
+
+/* Without JavaScript the language controls cannot work, so they stay out of
+   the static fallback shells (both the Product Cinema header and the
+   preserved source-shell segment group). */
+html:not(.pc-site-js) .pc-site-lang { display: none; }
+html:not(.pc-site-js) .seg[aria-label="Language"] { display: none; }

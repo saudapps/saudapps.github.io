@@ -332,7 +332,7 @@ body.product-cinema figure { margin: 0; }
   text-transform: uppercase;
 }
 
-.pc-opening__cue span { color: var(--signal); font-size: 18px; }
+.pc-opening__cue > span[aria-hidden="true"] { color: var(--signal); font-size: 18px; }
 
 .pc-cast { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
 .pc-cast__item {
@@ -1124,4 +1124,46 @@ html.pc-reduced .pc-sequence__chapters { opacity: 0; }
 @media (max-width: 720px) {
   html.pc-reduced .pc-sequence { min-height: 0; }
   html.pc-reduced .pc-sequence__sticky { display: none; }
+}
+
+/* ── RTL adaptations for the bilingual homepage / SShift routes.
+   Decorative aria-hidden art keeps its composition; text-bearing
+   components and reading-direction cues mirror in Arabic. */
+html[dir="rtl"] .pc-opening__thesis { padding-right: 20px; padding-left: 0; border-left: 0; border-right: 1px solid var(--line-strong); }
+html[dir="rtl"] .pc-opening__cue { right: 0; left: auto; letter-spacing: 0; text-transform: none; }
+html[dir="rtl"] .pc-cast__facts a { margin-left: 0; margin-right: auto; }
+html[dir="rtl"] .pc-week-score > span { border-left: 0; border-right: 1px solid rgba(255,255,255,.2); }
+html[dir="rtl"] .pc-week-score > span:last-child { border-right: 0; border-left: 1px solid rgba(255,255,255,.2); }
+html[dir="rtl"] .pc-studio__copy > p:first-child { padding-left: 0; padding-right: 20px; border-left: 0; border-right: 1px solid var(--line-strong); }
+html[dir="rtl"] .pc-product-opening__statement > p { padding-left: 0; padding-right: 18px; border-left: 0; border-right: 1px solid var(--line-strong); }
+html[dir="rtl"] .pc-chapter-heading > p:last-child { padding-left: 0; padding-right: 18px; border-left: 0; border-right: 1px solid var(--line-strong); }
+html[dir="rtl"] .pc-week-system__score > div { border-right: 0; border-left: 1px solid var(--line); }
+html[dir="rtl"] .pc-week-system__score > div:last-child { border-left: 0; }
+html[dir="rtl"] .pc-continuity__week i { border-left: 0; border-right: 1px solid var(--line-strong); }
+html[dir="rtl"] .pc-continuity__week i:last-child { border-right: 0; border-left: 1px solid var(--line-strong); }
+html[dir="rtl"] .release-notes,
+html[dir="rtl"] .df-release-entry ul { padding-left: 0; padding-right: 20px; }
+html[dir="rtl"] .pc-actions .pc-action span[aria-hidden="true"],
+html[dir="rtl"] .pc-mobile-cut__turn i,
+html[dir="rtl"] .pc-coda-link i { display: inline-block; transform: scaleX(-1); }
+html[lang="ar"] .pc-edition,
+html[lang="ar"] .pc-kicker,
+html[lang="ar"] .pc-sequence__label span,
+html[lang="ar"] .pc-sequence__chapters small,
+html[lang="ar"] .pc-force__head small,
+html[lang="ar"] .pc-story__index,
+html[lang="ar"] .pc-story__annotation span,
+html[lang="ar"] .pc-screen-frame figcaption span,
+html[lang="ar"] .pc-arrival__identity small,
+html[lang="ar"] .pc-arrival__metadata span,
+html[lang="ar"] .pc-studio__rail span,
+html[lang="ar"] .pc-studio__promise span,
+html[lang="ar"] .pc-mobile-cut .pc-kicker,
+html[lang="ar"] .pc-product-opening__edition span,
+html[lang="ar"] .pc-product-opening__lockup small,
+html[lang="ar"] .pc-product-hero-screen__day,
+html[lang="ar"] .pc-real-screens__grid figcaption span,
+html[lang="ar"] .pc-cast__number {
+  letter-spacing: 0;
+  text-transform: none;
 }

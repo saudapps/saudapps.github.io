@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: sync-releases
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -24,7 +28,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install jsonwebtoken
+        run: npm ci --ignore-scripts
 
       - name: Fetch releases from App Store Connect
         env:
@@ -42,5 +46,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "chore: sync releases [skip ci]"
-            git push
+            git fetch origin main --no-tags --prune
+            git rebase origin/main
+            git push origin HEAD:main
           fi
