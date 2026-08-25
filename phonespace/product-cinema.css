@@ -647,3 +647,35 @@ body.product-cinema-rollout.pc-phonespace:not(.pc-info) .ps-tools {
   .ps-pressure-visual__core,
   .ps-pressure-cluster { transition: none; }
 }
+
+/* ── RTL adaptations for the bilingual PhoneSpace route.
+   Decorative aria-hidden art keeps its composition; text-bearing
+   components and reading-direction cues mirror in Arabic. */
+html[dir="rtl"] .ps-opening h1 span:nth-child(2) { margin-left: 0; margin-right: clamp(24px, 4vw, 72px); }
+html[dir="rtl"] p.ps-opening__lede { padding-left: 0; padding-right: 18px; border-left: 0; border-right: 1px solid var(--pc-line-strong); }
+html[dir="rtl"] .ps-opening__metadata [data-field="status"]::before { margin-right: 0; margin-left: 7px; }
+html[dir="rtl"] .ps-hero-cluster i { margin-right: 0; margin-left: 7px; }
+html[dir="rtl"] .ps-sequence__heading > p:last-child,
+html[dir="rtl"] .ps-chapter-heading > p:last-child { padding-left: 0; padding-right: 16px; border-left: 0; border-right: 1px solid var(--pc-line-strong); }
+html[dir="rtl"] .ps-pressure-visual { border-right: 0; border-left: 1px solid var(--pc-line-strong); }
+html[dir="rtl"] .ps-review-card { border-right: 0; border-left: 1px solid var(--pc-line); }
+html[dir="rtl"] .ps-review-card:first-child { border-left: 0; }
+html[dir="rtl"] .ps-tool-board__visual { border-right: 0; border-left: 1px solid color-mix(in srgb, var(--pc-paper) 28%, transparent); }
+html[dir="rtl"] .ps-coda__links a span[aria-hidden="true"] { display: inline-block; transform: scaleX(-1); }
+html[lang="ar"] .ps-kicker,
+html[lang="ar"] .ps-rule-label,
+html[lang="ar"] .ps-review-card__index,
+html[lang="ar"] .ps-opening__metadata span,
+html[lang="ar"] .ps-opening__edition span,
+html[lang="ar"] .ps-opening__lockup small,
+html[lang="ar"] .ps-sequence__step > span,
+html[lang="ar"] .ps-evidence figcaption span,
+html[lang="ar"] .ps-hero-cluster strong,
+html[lang="ar"] .ps-hero-cluster small,
+html[lang="ar"] .ps-pressure-cluster strong,
+html[lang="ar"] .ps-pressure-cluster small,
+html[lang="ar"] .ps-control-note,
+html[lang="ar"] .ps-coda__links a {
+  letter-spacing: 0;
+  text-transform: none;
+}

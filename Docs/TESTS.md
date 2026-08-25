@@ -341,3 +341,26 @@ This evidence is time-bound and must be repeated before a future release.
   horizontal overflow or console warnings/errors. All four gallery images
   loaded at 820 × 1781. PhoneSpace showed `iOS · v1.1` on both the app page and
   homepage, and generated release history also remained at 1.1 as expected.
+
+## 2026-08-25 bilingual Product Cinema candidate
+
+- `VERIFIED`: Static bilingual contract checks (see
+  `scripts/check_bilingual.py`, standard library only) must pass on all sixteen routes: paired
+  `data-en`/`data-ar` balance, one `.pc-site-lang` group with EN/AR buttons per
+  primary header, one static skip link plus `<main id="main">` per route, early
+  `pc-site-js` head class, and balanced CSS braces in every touched stylesheet.
+- `VERIFIED`: Local in-app Chromium checks at 1280 px and 340 px covered all
+  five primary routes plus all eleven information/legal routes in Arabic.
+  Language persisted across navigation/reload, EN restored `ltr`, theme changes
+  did not change language, direct header/main/footer landmark counts stayed at
+  one on enhanced information routes, horizontal overflow stayed at zero, and
+  the browser console remained empty. Representative homepage, PhoneSpace,
+  Dufaat, and Support captures were inspected visually in Arabic.
+- `VERIFIED (static fallback)`: With scripts absent, source markup retains one
+  visible topbar, footer, skip link, navigation, and `<main id="main">`; dead
+  language buttons are hidden by `html:not(.pc-site-js)`. The in-app browser did
+  not expose its optional CDP capability, so script execution could not be
+  disabled for a second visual run; the permanent checker enforces this source
+  contract instead.
+- `PENDING`: Independent QA + code review before any Release-gate approval;
+  this candidate has not been merged or published.

@@ -81,14 +81,20 @@ must be applied and verified independently in both systems.
 
 ## WEB-007 — language contract
 
-- Primary Product Cinema routes are currently English-only and LTR.
-- Information/legal routes contain English/Arabic pairs and controls.
-- Current scripts contain both Arabic/RTL switching and Product Cinema
-  English/LTR initialization.
-- No document or agent may claim full-site RTL parity from this mixed state.
+- Primary Product Cinema routes are bilingual English/Arabic. The served
+  default is `<html lang="en" dir="ltr">`; Arabic swaps `data-en`/`data-ar`
+  pairs, sets `dir="rtl"` with mirrored text-bearing components, and persists
+  in `localStorage['saudapps-lang']`.
+- Information and legal routes keep their preserved source shells with paired
+  content and language segments; both shell families share one language key.
+- Without JavaScript the language controls are hidden (`html:not(.pc-site-js)`
+  guards) and every route still serves a complete readable fallback with a
+  static skip link and a real `<main id="main">` target.
+- Decorative compositions remain non-mirrored by design; no document may claim
+  exhaustive full-site RTL parity for decorative art.
 
-A future language unification needs Scope, Design, accessibility, and regression
-review.
+A deeper RTL redesign (decorative mirroring, new compositions) needs Scope,
+Design, accessibility, and regression review.
 
 ## WEB-008 — Promptbook
 

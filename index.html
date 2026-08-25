@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="A small software studio building private, on-device iOS apps. No accounts, no tracking.">
 <meta name="twitter:image" content="https://saud.im/assets/og/og-home.png">
 
-<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch3-header-v3">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-bilingual1">
 <style>
   body.product-cinema {
     --pc-paper: var(--paper);
@@ -39,12 +39,13 @@
     --pc-signal: var(--signal);
   }
 </style>
-<link rel="stylesheet" href="/assets/product-cinema.css?v=box-scenes-1">
+<link rel="stylesheet" href="/assets/product-cinema.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-about-bg-1">
-<link rel="stylesheet" href="/assets/product-cinema-info.css?v=info-home-2">
+<link rel="stylesheet" href="/assets/product-cinema-info.css?v=20260825-bilingual1">
 <script>
   (function () {
     try {
+      document.documentElement.classList.add('pc-site-js');
       var saved = localStorage.getItem('saudapps-theme');
       var theme = saved === 'light' || saved === 'dark' ? saved
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -54,41 +55,45 @@
 </script>
 </head>
 <body class="product-cinema pc-home">
-<a class="pc-site-skip" href="#main">Skip to content</a>
+<a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
 
 <header class="pc-site-header">
   <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
     <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+    <span><strong>Saud Apps</strong><small><span data-en>Independent · iOS</span><span data-ar>مستقل · iOS</span></small></span>
   </a>
 
   <nav class="pc-site-nav" aria-label="Primary navigation">
-    <a href="/" aria-current="page">Home</a>
+    <a href="/" aria-current="page"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
 
   <div class="pc-site-tools">
     <div class="pc-site-theme" role="group" aria-label="Color theme">
-      <button type="button" data-pc-site-theme="light" data-pc-theme="light" aria-pressed="false">Day</button>
-      <button type="button" data-pc-site-theme="dark" data-pc-theme="dark" aria-pressed="false">Night</button>
+      <button type="button" data-pc-site-theme="light" data-pc-theme="light" aria-pressed="false"><span data-en>Day</span><span data-ar>نهار</span></button>
+      <button type="button" data-pc-site-theme="dark" data-pc-theme="dark" aria-pressed="false"><span data-en>Night</span><span data-ar>ليل</span></button>
+    </div>
+    <div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
     </div>
     <details class="pc-site-menu">
-      <summary>Menu</summary>
+      <summary><span data-en>Menu</span><span data-ar>القائمة</span></summary>
       <nav aria-label="Mobile navigation">
-        <a href="/" aria-current="page">Home</a>
+        <a href="/" aria-current="page"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
         <a href="/sshift/">SShift</a>
         <a href="/phonespace/">PhoneSpace</a>
         <a href="/filed/">Filed</a>
         <a href="/dufaat/">Dufaat</a>
-        <a href="/about/">About</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/">Legal</a>
+        <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </nav>
     </details>
   </div>
@@ -97,13 +102,13 @@
 <main id="main" tabindex="-1">
   <section class="pc-opening" aria-labelledby="opening-title">
     <div class="pc-opening__mast">
-      <p class="pc-edition"><span>PRODUCT FILM 02</span><span>FOUR LIVE PRODUCTS</span><span>DUBAI · 2026</span></p>
+      <p class="pc-edition"><span><span data-en>PRODUCT FILM 02</span><span data-ar>فيلم المنتج ٠٢</span></span><span><span data-en>FOUR LIVE PRODUCTS</span><span data-ar>أربعة منتجات حيّة</span></span><span>DUBAI · 2026</span></p>
       <h1 id="opening-title"><span>Saud</span><span>Apps</span></h1>
       <div class="pc-opening__thesis">
-        <p class="pc-kicker">One independent maker</p>
-        <p>Four focused iPhone apps. Different systems, one standard: useful, private, and made with care.</p>
+        <p class="pc-kicker"><span data-en>One independent maker</span><span data-ar>صانع مستقل واحد</span></p>
+        <p><span data-en class="blk">Four focused iPhone apps. Different systems, one standard: useful, private, and made with care.</span><span data-ar class="blk">أربعة تطبيقات آيفون مركّزة. أنظمة مختلفة، ومعيار واحد: مفيدة، خاصة، ومصنوعة بعناية.</span></p>
       </div>
-      <p class="pc-opening__cue"><span aria-hidden="true">↓</span> Four forces become one week</p>
+      <p class="pc-opening__cue"><span aria-hidden="true">↓</span> <span data-en>Four forces become one week</span><span data-ar>أربع قوى تتحوّل إلى أسبوع واحد</span></p>
     </div>
 
     <div class="pc-cast" aria-label="Four live Saud Apps products">
@@ -111,11 +116,11 @@
         <a class="pc-cast__route" href="/sshift/">
           <span class="pc-cast__number">01</span>
           <img src="/assets/product-cinema-v2/icon-sshift-192.png" alt="SShift app icon" width="64" height="64">
-          <span class="pc-cast__identity"><strong>SShift</strong><small>Shift calendar</small></span>
+          <span class="pc-cast__identity"><strong>SShift</strong><small><span data-en>Shift calendar</span><span data-ar>تقويم الورديات</span></small></span>
           <span class="pc-mark pc-mark--sshift" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         </a>
         <div class="pc-cast__facts">
-          <span data-app="sshift" data-field="status">Live</span>
+          <span data-app="sshift" data-field="status"><span data-en>Live</span><span data-ar>متاح</span></span>
           <span data-app="sshift" data-field="version">iOS · v4.2</span>
           <span data-app="sshift" data-field="rating" style="display:none"></span>
           <a href="https://apps.apple.com/us/app/sshift/id6751362215" aria-label="SShift on the App Store">↗</a>
@@ -126,11 +131,11 @@
         <a class="pc-cast__route" href="/phonespace/">
           <span class="pc-cast__number">02</span>
           <img src="/assets/product-cinema-v2/icon-phonespace-192.png" alt="PhoneSpace app icon" width="64" height="64">
-          <span class="pc-cast__identity"><strong>PhoneSpace</strong><small>Storage clarity</small></span>
+          <span class="pc-cast__identity"><strong>PhoneSpace</strong><small><span data-en>Storage clarity</span><span data-ar>وضوح التخزين</span></small></span>
           <span class="pc-mark pc-mark--phonespace" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         </a>
         <div class="pc-cast__facts">
-          <span data-app="phonespace" data-field="status">Live</span>
+          <span data-app="phonespace" data-field="status"><span data-en>Live</span><span data-ar>متاح</span></span>
           <span data-app="phonespace" data-field="version">iOS · v1.1</span>
           <span data-app="phonespace" data-field="rating" style="display:none"></span>
           <a href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161" aria-label="PhoneSpace on the App Store">↗</a>
@@ -141,11 +146,11 @@
         <a class="pc-cast__route" href="/filed/">
           <span class="pc-cast__number">03</span>
           <img src="/assets/product-cinema-v2/icon-filed-192.png" alt="Filed app icon" width="64" height="64">
-          <span class="pc-cast__identity"><strong>Filed</strong><small>PDF organizer</small></span>
+          <span class="pc-cast__identity"><strong>Filed</strong><small><span data-en>PDF organizer</span><span data-ar>منظّم PDF</span></small></span>
           <span class="pc-mark pc-mark--filed" aria-hidden="true"><i></i><i></i><i></i></span>
         </a>
         <div class="pc-cast__facts">
-          <span data-app="filed" data-field="status">Live</span>
+          <span data-app="filed" data-field="status"><span data-en>Live</span><span data-ar>متاح</span></span>
           <span data-app="filed" data-field="version">iOS · v1.0</span>
           <span data-app="filed" data-field="rating" style="display:none"></span>
           <a href="https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551" aria-label="Filed on the App Store">↗</a>
@@ -156,11 +161,11 @@
         <a class="pc-cast__route" href="/dufaat/">
           <span class="pc-cast__number">04</span>
           <img src="/assets/product-cinema-v2/icon-dufaat-192.png" alt="Dufaat app icon" width="64" height="64">
-          <span class="pc-cast__identity"><strong>Dufaat</strong><small>Installment tracker</small></span>
+          <span class="pc-cast__identity"><strong>Dufaat</strong><small><span data-en>Installment tracker</span><span data-ar>متتبّع الأقساط</span></small></span>
           <span class="pc-mark pc-mark--dufaat" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </a>
         <div class="pc-cast__facts">
-          <span data-app="dufaat" data-field="status">Live</span>
+          <span data-app="dufaat" data-field="status"><span data-en>Live</span><span data-ar>متاح</span></span>
             <span data-app="dufaat" data-field="version">iOS · App Store</span>
           <span data-app="dufaat" data-field="rating" style="display:none"></span>
           <a href="https://apps.apple.com/ae/app/dufaat/id6780440703" aria-label="Dufaat on the App Store">↗</a>
@@ -171,76 +176,76 @@
 
   <section class="pc-sequence" data-pc-sequence aria-labelledby="sequence-title" data-phase="arrival">
     <div class="pc-sequence__intro pc-sr-only">
-      <h2 id="sequence-title">Four product systems resolve into the seven-day SShift calendar.</h2>
-      <p>Scheduling rhythm, storage density, document order, and payment milestones converge on SShift and reveal a real product screen.</p>
+      <h2 id="sequence-title"><span data-en>Four product systems resolve into the seven-day SShift calendar.</span><span data-ar>أربعة أنظمة منتجات تتجمع في تقويم SShift الأسبوعي.</span></h2>
+      <p><span data-en>Scheduling rhythm, storage density, document order, and payment milestones converge on SShift and reveal a real product screen.</span><span data-ar>إيقاع الجدولة وكثافة التخزين وترتيب المستندات ومحطات الدفع تلتقي في SShift وتكشف شاشة منتج حقيقية.</span></p>
     </div>
 
     <div class="pc-sequence__sticky">
       <div class="pc-sequence__grid" aria-hidden="true"></div>
       <div class="pc-sequence__meter" aria-hidden="true"><span data-pc-progress></span></div>
-      <p class="pc-sequence__label"><span>DIRECTOR’S SEQUENCE</span><span data-pc-phase-label>ARRIVAL · 07</span></p>
+      <p class="pc-sequence__label"><span><span data-en>DIRECTOR’S SEQUENCE</span><span data-ar>تتابع المخرج</span></span><span data-pc-phase-label>ARRIVAL · 07</span></p>
 
       <div class="pc-sequence__chapters" aria-hidden="true">
-        <p data-chapter="forces"><small>01 / THE CAST</small><strong>FOUR SYSTEMS.<br>FOUR BEHAVIORS.</strong></p>
-        <p data-chapter="logic"><small>02 / PRODUCT LOGIC</small><strong>COLOR IS<br>NOT IDENTITY.</strong></p>
-        <p data-chapter="converge"><small>03 / CONVERGENCE</small><strong>FOUR FORCES.<br>ONE FOCUS.</strong></p>
-        <p data-chapter="select"><small>04 / SELECT</small><strong>FOLLOW<br>THE CYCLE.</strong></p>
-        <p data-chapter="week"><small>05 / FORMATION</small><strong>SEVEN DAYS.<br>DIFFERENT MEANING.</strong></p>
-        <p data-chapter="interface"><small>06 / INTERFACE</small><strong>THE WEEK<br>BECOMES VISIBLE.</strong></p>
-        <p data-chapter="arrival"><small>07 / ARRIVAL</small><strong>TIME,<br>MADE VISIBLE.</strong></p>
+        <p data-chapter="forces"><small><span data-en>01 / THE CAST</span><span data-ar>٠١ / الطاقم</span></small><strong><span data-en class="blk">FOUR SYSTEMS.<br>FOUR BEHAVIORS.</span><span data-ar class="blk">أربعة أنظمة.<br>أربعة سلوكيات.</span></strong></p>
+        <p data-chapter="logic"><small><span data-en>02 / PRODUCT LOGIC</span><span data-ar>٠٢ / منطق المنتج</span></small><strong><span data-en class="blk">COLOR IS<br>NOT IDENTITY.</span><span data-ar class="blk">اللون ليس<br>هوية.</span></strong></p>
+        <p data-chapter="converge"><small><span data-en>03 / CONVERGENCE</span><span data-ar>٠٣ / التقارب</span></small><strong><span data-en class="blk">FOUR FORCES.<br>ONE FOCUS.</span><span data-ar class="blk">أربع قوى.<br>بؤرة واحدة.</span></strong></p>
+        <p data-chapter="select"><small><span data-en>04 / SELECT</span><span data-ar>٠٤ / الاختيار</span></small><strong><span data-en class="blk">FOLLOW<br>THE CYCLE.</span><span data-ar class="blk">اتبع<br>الدورة.</span></strong></p>
+        <p data-chapter="week"><small><span data-en>05 / FORMATION</span><span data-ar>٠٥ / التشكّل</span></small><strong><span data-en class="blk">SEVEN DAYS.<br>DIFFERENT MEANING.</span><span data-ar class="blk">سبعة أيام.<br>معانٍ مختلفة.</span></strong></p>
+        <p data-chapter="interface"><small><span data-en>06 / INTERFACE</span><span data-ar>٠٦ / الواجهة</span></small><strong><span data-en class="blk">THE WEEK<br>BECOMES VISIBLE.</span><span data-ar class="blk">الأسبوع يصبح<br>مرئيًا.</span></strong></p>
+        <p data-chapter="arrival"><small><span data-en>07 / ARRIVAL</span><span data-ar>٠٧ / الوصول</span></small><strong><span data-en class="blk">TIME,<br>MADE VISIBLE.</span><span data-ar class="blk">الوقت،<br>مرئي.</span></strong></p>
       </div>
 
       <div class="pc-forces" aria-hidden="true">
         <div class="pc-force pc-force--sshift" data-force-card="sshift">
-          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-sshift-192.png" alt="" width="64" height="64"><span><b>01</b><strong>SShift</strong><small>Scheduling rhythm</small></span></div>
+          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-sshift-192.png" alt="" width="64" height="64"><span><b>01</b><strong>SShift</strong><small><span data-en>Scheduling rhythm</span><span data-ar>إيقاع الجدولة</span></small></span></div>
           <div class="pc-force__logic pc-force__logic--sshift"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
         <div class="pc-force pc-force--phonespace" data-force-card="phonespace">
-          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-phonespace-192.png" alt="" width="64" height="64"><span><b>02</b><strong>PhoneSpace</strong><small>Capacity + density</small></span></div>
+          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-phonespace-192.png" alt="" width="64" height="64"><span><b>02</b><strong>PhoneSpace</strong><small><span data-en>Capacity + density</span><span data-ar>السعة والكثافة</span></small></span></div>
           <div class="pc-force__logic pc-force__logic--phonespace"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
         <div class="pc-force pc-force--filed" data-force-card="filed">
-          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-filed-192.png" alt="" width="64" height="64"><span><b>03</b><strong>Filed</strong><small>Document order</small></span></div>
+          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-filed-192.png" alt="" width="64" height="64"><span><b>03</b><strong>Filed</strong><small><span data-en>Document order</span><span data-ar>ترتيب المستندات</span></small></span></div>
           <div class="pc-force__logic pc-force__logic--filed"><i></i><i></i><i></i></div>
         </div>
         <div class="pc-force pc-force--dufaat" data-force-card="dufaat">
-          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-dufaat-192.png" alt="" width="64" height="64"><span><b>04</b><strong>Dufaat</strong><small>Payment milestones</small></span></div>
+          <div class="pc-force__head"><img src="/assets/product-cinema-v2/icon-dufaat-192.png" alt="" width="64" height="64"><span><b>04</b><strong>Dufaat</strong><small><span data-en>Payment milestones</span><span data-ar>محطات الدفع</span></small></span></div>
           <div class="pc-force__logic pc-force__logic--dufaat"><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
 
       <div class="pc-week-score" aria-hidden="true">
-        <span style="--day:#4CAF50"><b>MON</b><i>W</i><small>WORK</small></span>
-        <span style="--day:#4CAF50"><b>TUE</b><i>W</i><small>WORK</small></span>
-        <span style="--day:#009688"><b>WED</b><i>TR</i><small>TRAINING</small></span>
-        <span style="--day:#FF9800"><b>THU</b><i>AL</i><small>LEAVE</small></span>
-        <span style="--day:#F44336"><b>FRI</b><i>SL</i><small>SICK</small></span>
-        <span style="--day:#5C6BC0"><b>SAT</b><i>LCL</i><small>CYCLE</small></span>
-        <span style="--day:#9E9E9E"><b>SUN</b><i>R</i><small>REST</small></span>
+        <span style="--day:#4CAF50"><b><span data-en>MON</span><span data-ar>اثنين</span></b><i>W</i><small><span data-en>WORK</span><span data-ar>عمل</span></small></span>
+        <span style="--day:#4CAF50"><b><span data-en>TUE</span><span data-ar>ثلاثاء</span></b><i>W</i><small><span data-en>WORK</span><span data-ar>عمل</span></small></span>
+        <span style="--day:#009688"><b><span data-en>WED</span><span data-ar>أربعاء</span></b><i>TR</i><small><span data-en>TRAINING</span><span data-ar>تدريب</span></small></span>
+        <span style="--day:#FF9800"><b><span data-en>THU</span><span data-ar>خميس</span></b><i>AL</i><small><span data-en>LEAVE</span><span data-ar>إجازة</span></small></span>
+        <span style="--day:#F44336"><b><span data-en>FRI</span><span data-ar>جمعة</span></b><i>SL</i><small><span data-en>SICK</span><span data-ar>مرض</span></small></span>
+        <span style="--day:#5C6BC0"><b><span data-en>SAT</span><span data-ar>سبت</span></b><i>LCL</i><small><span data-en>CYCLE</span><span data-ar>دورة</span></small></span>
+        <span style="--day:#9E9E9E"><b><span data-en>SUN</span><span data-ar>أحد</span></b><i>R</i><small><span data-en>REST</span><span data-ar>راحة</span></small></span>
       </div>
 
       <figure class="pc-sequence__screen pc-screen-frame">
         <span class="pc-screen-frame__edge" aria-hidden="true"></span>
         <img src="/sshift/assets/screenshots/calendar-light.jpg" data-theme-image data-light-src="/sshift/assets/screenshots/calendar-light.jpg" data-dark-src="/sshift/assets/screenshots/calendar-dark.jpg" alt="SShift month calendar showing a real seven-day shift pattern" width="820" height="1781" loading="lazy" decoding="async">
-        <figcaption><span>REAL INTERFACE</span><span>01 / 07</span></figcaption>
+        <figcaption><span><span data-en>REAL INTERFACE</span><span data-ar>واجهة حقيقية</span></span><span>01 / 07</span></figcaption>
       </figure>
 
       <div class="pc-arrival">
         <div class="pc-arrival__identity">
           <img src="/assets/product-cinema-v2/icon-sshift-192.png" alt="SShift app icon" width="80" height="80">
-          <span><small>SAUD APPS · SIGNAL 01</small><strong>SShift</strong></span>
+          <span><small><span data-en>SAUD APPS · SIGNAL 01</span><span data-ar>تطبيقات سعود · الإشارة ٠١</span></small><strong>SShift</strong></span>
         </div>
-        <h2><span>TIME,</span><span>MADE</span><span>VISIBLE.</span></h2>
-        <p class="pc-arrival__copy">A private shift calendar that gives work, rest, training, and leave a clear place in the week.</p>
+        <h2><span><span data-en>TIME,</span><span data-ar>الوقت،</span></span><span><span data-en>MADE</span><span data-ar>أصبح</span></span><span><span data-en>VISIBLE.</span><span data-ar>مرئيًا.</span></span></h2>
+        <p class="pc-arrival__copy"><span data-en>A private shift calendar that gives work, rest, training, and leave a clear place in the week.</span><span data-ar>تقويم ورديات خاص يمنح العمل والراحة والتدريب والإجازة مكانًا واضحًا في الأسبوع.</span></p>
         <div class="pc-arrival__metadata" aria-label="SShift App Store information">
-          <span data-app="sshift" data-field="status">On the App Store</span>
+          <span data-app="sshift" data-field="status"><span data-en>On the App Store</span><span data-ar>على آب ستور</span></span>
           <span data-app="sshift" data-field="version">iOS · v4.2</span>
           <span data-app="sshift" data-field="rating" style="display:none"></span>
           <span data-app="sshift" data-field="updated" style="display:none"></span>
         </div>
         <div class="pc-actions">
-          <a class="pc-action pc-action--signal" href="/sshift/">Enter the SShift chapter <span aria-hidden="true">→</span></a>
-          <a class="pc-action pc-action--text" href="https://apps.apple.com/us/app/sshift/id6751362215">App Store <span aria-hidden="true">↗</span></a>
+          <a class="pc-action pc-action--signal" href="/sshift/"><span data-en>Enter the SShift chapter </span><span data-ar>ادخل فصل SShift </span><span aria-hidden="true">→</span></a>
+          <a class="pc-action pc-action--text" href="https://apps.apple.com/us/app/sshift/id6751362215"><span data-en>App Store </span><span data-ar>آب ستور </span><span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
@@ -248,33 +253,33 @@
     <div class="pc-mobile-cut" aria-hidden="false">
       <div class="pc-mobile-cut__head" data-pc-reveal>
         <p class="pc-kicker">04 → 01 → 07</p>
-        <h2>Four product systems.<br>One visible week.</h2>
+        <h2><span data-en class="blk">Four product systems.</span><span data-ar class="blk">أربعة أنظمة منتجات.</span><br><span data-en class="blk">One visible week.</span><span data-ar class="blk">أسبوع واحد مرئي.</span></h2>
       </div>
       <ol class="pc-mobile-cut__forces" aria-label="Four product forces">
-        <li data-pc-reveal><span>01</span><strong>SShift</strong><small>Repeated shift cycles</small></li>
-        <li data-pc-reveal><span>02</span><strong>PhoneSpace</strong><small>Storage density</small></li>
-        <li data-pc-reveal><span>03</span><strong>Filed</strong><small>Document order</small></li>
-        <li data-pc-reveal><span>04</span><strong>Dufaat</strong><small>Payment milestones</small></li>
+        <li data-pc-reveal><span>01</span><strong>SShift</strong><small><span data-en>Repeated shift cycles</span><span data-ar>دورات ورديات متكررة</span></small></li>
+        <li data-pc-reveal><span>02</span><strong>PhoneSpace</strong><small><span data-en>Storage density</span><span data-ar>كثافة التخزين</span></small></li>
+        <li data-pc-reveal><span>03</span><strong>Filed</strong><small><span data-en>Document order</span><span data-ar>ترتيب المستندات</span></small></li>
+        <li data-pc-reveal><span>04</span><strong>Dufaat</strong><small><span data-en>Payment milestones</span><span data-ar>محطات الدفع</span></small></li>
       </ol>
-      <div class="pc-mobile-cut__turn" data-pc-reveal><span>FOUR</span><i aria-hidden="true">→</i><span>ONE CYCLE</span></div>
+      <div class="pc-mobile-cut__turn" data-pc-reveal><span><span data-en>FOUR</span><span data-ar>أربع</span></span><i aria-hidden="true">→</i><span><span data-en>ONE CYCLE</span><span data-ar>دورة واحدة</span></span></div>
       <div class="pc-mobile-week" aria-label="A seven-day SShift pattern" data-pc-reveal>
         <span style="--day:#4CAF50"><b>M</b><i>W</i></span><span style="--day:#4CAF50"><b>T</b><i>W</i></span><span style="--day:#009688"><b>W</b><i>TR</i></span><span style="--day:#FF9800"><b>T</b><i>AL</i></span><span style="--day:#F44336"><b>F</b><i>SL</i></span><span style="--day:#5C6BC0"><b>S</b><i>LC</i></span><span style="--day:#9E9E9E"><b>S</b><i>R</i></span>
       </div>
       <div class="pc-mobile-arrival" data-pc-reveal>
-        <p class="pc-kicker">The week becomes interface</p>
-        <h2>Time,<br>made visible.</h2>
+        <p class="pc-kicker"><span data-en>The week becomes interface</span><span data-ar>الأسبوع يصبح واجهة</span></p>
+        <h2><span data-en class="blk">Time,</span><span data-ar class="blk">الوقت،</span><br><span data-en class="blk">made visible.</span><span data-ar class="blk">مرئي.</span></h2>
         <div class="pc-mobile-arrival__screen pc-screen-frame">
           <img src="/sshift/assets/screenshots/calendar-light.jpg" data-theme-image data-light-src="/sshift/assets/screenshots/calendar-light.jpg" data-dark-src="/sshift/assets/screenshots/calendar-dark.jpg" alt="SShift month calendar showing a real seven-day shift pattern" width="820" height="1781" loading="lazy" decoding="async">
         </div>
-        <p>Plan shifts, rest, training, and leave in a private calendar built around rotating work.</p>
+        <p><span data-en>Plan shifts, rest, training, and leave in a private calendar built around rotating work.</span><span data-ar>خطّط الورديات والراحة والتدريب والإجازة في تقويم خاص مبني على العمل المتناوب.</span></p>
         <div class="pc-arrival__metadata" aria-label="SShift App Store information">
-          <span data-app="sshift" data-field="status">On the App Store</span>
+          <span data-app="sshift" data-field="status"><span data-en>On the App Store</span><span data-ar>على آب ستور</span></span>
           <span data-app="sshift" data-field="version">iOS · v4.2</span>
           <span data-app="sshift" data-field="rating" style="display:none"></span>
           <span data-app="sshift" data-field="updated" style="display:none"></span>
         </div>
         <div class="pc-actions">
-          <a class="pc-action pc-action--signal" href="/sshift/">Enter SShift <span aria-hidden="true">→</span></a>
+          <a class="pc-action pc-action--signal" href="/sshift/"><span data-en>Enter SShift </span><span data-ar>ادخل SShift </span><span aria-hidden="true">→</span></a>
           <a class="pc-action pc-action--text" href="https://apps.apple.com/us/app/sshift/id6751362215">App Store <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -282,40 +287,40 @@
   </section>
 
   <section class="pc-studio" aria-labelledby="studio-title">
-    <div class="pc-studio__rail" aria-hidden="true"><i></i><i></i><i></i><i></i><span>01—04 / CONTINUITY</span></div>
+    <div class="pc-studio__rail" aria-hidden="true"><i></i><i></i><i></i><i></i><span><span data-en>01—04 / CONTINUITY</span><span data-ar>٠١—٠٤ / الاستمرارية</span></span></div>
     <div class="pc-studio__lead" data-pc-reveal>
-      <p class="pc-kicker">The maker behind the system</p>
-      <h2 id="studio-title">One person.<br>Four disciplines.<br>No attention economy.</h2>
+      <p class="pc-kicker"><span data-en>The maker behind the system</span><span data-ar>الصانع خلف النظام</span></p>
+      <h2 id="studio-title"><span data-en class="blk">One person.</span><span data-ar class="blk">شخص واحد.</span><br><span data-en class="blk">Four disciplines.</span><span data-ar class="blk">أربع تخصصات.</span><br><span data-en class="blk">No attention economy.</span><span data-ar class="blk">بلا اقتصاد انتباه.</span></h2>
     </div>
     <div class="pc-studio__copy" data-pc-reveal>
-      <p>Saud Apps is an independent iOS studio by Saud Ismail. Every product begins with a practical problem and stays focused on solving it well.</p>
-      <p class="pc-studio__promise"><span>NO ACCOUNTS</span><span>NO TRACKING</span><span>ON-DEVICE</span></p>
+      <p><span data-en>Saud Apps is an independent iOS studio by Saud Ismail. Every product begins with a practical problem and stays focused on solving it well.</span><span data-ar>تطبيقات سعود استوديو iOS مستقل بقلم سعود إسماعيل. كل منتج يبدأ من مشكلة عملية ويظل مركّزًا على حلها جيدًا.</span></p>
+      <p class="pc-studio__promise"><span><span data-en>NO ACCOUNTS</span><span data-ar>بلا حسابات</span></span><span><span data-en>NO TRACKING</span><span data-ar>بلا تتبّع</span></span><span><span data-en>ON-DEVICE</span><span data-ar>على الجهاز</span></span></p>
       <div class="pc-actions">
-        <a class="pc-action pc-action--dark" href="/about/">Meet the maker <span aria-hidden="true">→</span></a>
-        <a class="pc-action pc-action--text" href="/support/">Get support</a>
-        <a class="pc-action pc-action--text" href="/legal/">Legal</a>
+        <a class="pc-action pc-action--dark" href="/about/"><span data-en>Meet the maker </span><span data-ar>تعرّف على الصانع </span><span aria-hidden="true">→</span></a>
+        <a class="pc-action pc-action--text" href="/support/"><span data-en>Get support</span><span data-ar>احصل على دعم</span></a>
+        <a class="pc-action pc-action--text" href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="pc-site-footer">
-  <div class="pc-site-footer__identity"><strong>SAUD APPS</strong><span>Four focused apps for iPhone.</span></div>
+  <div class="pc-site-footer__identity"><strong>SAUD APPS</strong><span><span data-en>Four focused apps for iPhone.</span><span data-ar>أربعة تطبيقات آيفون مركّزة.</span></span></div>
   <nav aria-label="Footer navigation">
-    <a href="/" aria-current="page">Home</a>
+    <a href="/" aria-current="page"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
-  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+  <div class="pc-site-footer__base"><span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span><a href="mailto:support@saud.im">support@saud.im</a></div>
 </footer>
 
-<script src="/assets/product-cinema.js?v=box-hover-1" defer></script>
-<script src="/assets/product-cinema-core.js?v=batch3" defer></script>
+<script src="/assets/product-cinema.js?v=20260825-bilingual1" defer></script>
+<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
 <script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>
 </body>

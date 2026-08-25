@@ -30,6 +30,7 @@
 <script>
   (function () {
     try {
+      document.documentElement.classList.add('pc-site-js');
       var saved = localStorage.getItem('saudapps-theme');
       var theme = saved === 'light' || saved === 'dark' ? saved
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -39,46 +40,50 @@
     } catch (error) {}
   })();
 </script>
-<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch2">
-<link rel="stylesheet" href="/filed/product-cinema.css?v=batch2">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-bilingual1">
+<link rel="stylesheet" href="/filed/product-cinema.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-legal-bg-1">
 </head>
 <body class="product-cinema-rollout pc-filed">
-<a class="pc-site-skip" href="#main">Skip to content</a>
+<a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
 
 <header class="pc-site-header">
   <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
     <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+    <span><strong>Saud Apps</strong><small><span data-en>Independent · iOS</span><span data-ar>مستقل · iOS</span></small></span>
   </a>
 
   <nav class="pc-site-nav" aria-label="Primary navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/" aria-current="page">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
 
   <div class="pc-site-tools">
     <div class="pc-site-theme" role="group" aria-label="Color theme">
-      <button type="button" data-pc-site-theme="light" aria-pressed="false">Day</button>
-      <button type="button" data-pc-site-theme="dark" aria-pressed="false">Night</button>
+      <button type="button" data-pc-site-theme="light" aria-pressed="false"><span data-en>Day</span><span data-ar>نهار</span></button>
+      <button type="button" data-pc-site-theme="dark" aria-pressed="false"><span data-en>Night</span><span data-ar>ليل</span></button>
+    </div>
+    <div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
     </div>
     <details class="pc-site-menu">
-      <summary>Menu</summary>
+      <summary><span data-en>Menu</span><span data-ar>القائمة</span></summary>
       <nav aria-label="Mobile navigation">
-        <a href="/">Home</a>
+        <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
         <a href="/sshift/">SShift</a>
         <a href="/phonespace/">PhoneSpace</a>
         <a href="/filed/" aria-current="page">Filed</a>
         <a href="/dufaat/">Dufaat</a>
-        <a href="/about/">About</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/">Legal</a>
+        <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </nav>
     </details>
   </div>
@@ -87,30 +92,30 @@
 <main id="main" tabindex="-1">
   <section class="fl-opening" aria-labelledby="filed-title">
     <div class="fl-opening__edition" aria-hidden="true">
-      <span>Product film · 04</span><span>The Filing Cut</span><span>Filed · iPhone</span>
+      <span><span data-en>Product film · 04</span><span data-ar>فيلم المنتج · ٠٤</span></span><span><span data-en>The Filing Cut</span><span data-ar>مشهد الأرشفة</span></span><span>Filed · iPhone</span>
     </div>
 
     <div class="fl-opening__layout">
       <div class="fl-opening__copy">
         <div class="fl-lockup">
           <img src="/filed/assets/app-icon.png" alt="Filed app icon" width="64" height="64">
-          <span><small>Saud Apps · Product 03</small><strong>Filed</strong></span>
+          <span><small><span data-en>Saud Apps · Product 03</span><span data-ar>تطبيقات سعود · المنتج ٠٣</span></small><strong>Filed</strong></span>
         </div>
 
-        <h1 id="filed-title"><span>Loose documents.</span><span>Clearly filed.</span></h1>
-        <p class="fl-opening__lede">A private, local-first home for PDFs on your iPhone. Receive them, organize them into colored folders, read, sign, and share—without an account or a remote library.</p>
+        <h1 id="filed-title"><span><span data-en>Loose documents.</span><span data-ar>مستندات مبعثرة.</span></span><span><span data-en>Clearly filed.</span><span data-ar>مؤرشفة بوضوح.</span></span></h1>
+        <p class="fl-opening__lede"><span data-en>A private, local-first home for PDFs on your iPhone. Receive them, organize them into colored folders, read, sign, and share—without an account or a remote library.</span><span data-ar>بيت خاص لمستندات PDF على آيفونك يضع الجهاز أولًا. استقبلها ونظّمها في مجلدات ملونة واقرأها ووقّعها وشاركها—بلا حساب وبلا مكتبة بعيدة.</span></p>
 
         <div class="fl-opening__metadata" role="group" aria-label="Filed App Store information">
-          <span data-app="filed" data-field="status">On the App Store</span>
+          <span data-app="filed" data-field="status"><span data-en>On the App Store</span><span data-ar>على آب ستور</span></span>
           <span data-app="filed" data-field="version">iOS · v1.0</span>
           <span data-app="filed" data-field="rating" style="display:none"></span>
           <span data-app="filed" data-field="updated" style="display:none"></span>
-          <span>Local-first PDF library</span>
+          <span><span data-en>Local-first PDF library</span><span data-ar>مكتبة PDF محلية أولًا</span></span>
         </div>
 
         <div class="fl-opening__actions">
-          <a class="pc-site-action pc-site-action--filed" href="https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551">View on the App Store <span aria-hidden="true">↗</span></a>
-          <a class="pc-site-action" href="#filing-sequence">See the filing system <span aria-hidden="true">↓</span></a>
+          <a class="pc-site-action pc-site-action--filed" href="https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+          <a class="pc-site-action" href="#filing-sequence"><span data-en>See the filing system </span><span data-ar>شاهد نظام الأرشفة </span><span aria-hidden="true">↓</span></a>
         </div>
       </div>
 
@@ -135,30 +140,30 @@
   <section class="fl-filing" id="filing-sequence" data-fl-filing data-stage="5" aria-labelledby="filing-title">
     <div class="fl-filing__sticky">
       <header class="fl-chapter-heading fl-filing__heading" data-pc-site-reveal>
-        <p class="fl-kicker">Chapter 02 · Receive → organize</p>
-        <h2 id="filing-title">Every file<br>finds an address.</h2>
-        <p>A PDF arrives as a loose page. Boundaries, a rail, and a folder turn it into something easy to find again.</p>
+        <p class="fl-kicker"><span data-en>Chapter 02 · Receive → organize</span><span data-ar>الفصل ٠٢ · استقبال ← تنظيم</span></p>
+        <h2 id="filing-title"><span data-en class="blk">Every file</span><span data-ar class="blk">كل ملف</span><br><span data-en class="blk">finds an address.</span><span data-ar class="blk">يجد عنوانه.</span></h2>
+        <p><span data-en>A PDF arrives as a loose page. Boundaries, a rail, and a folder turn it into something easy to find again.</span><span data-ar>يصل ملف PDF صفحةً مبعثرة. حدود وسكة ومجلد تحوّله إلى شيء سهل العثور عليه مجددًا.</span></p>
       </header>
 
       <div class="fl-filing__stage">
         <div class="fl-file-system" aria-hidden="true">
-          <div class="fl-rail"><span>RECEIVE</span><span>ORGANIZE</span><span>LIBRARY</span></div>
+          <div class="fl-rail"><span><span data-en>RECEIVE</span><span data-ar>استقبال</span></span><span><span data-en>ORGANIZE</span><span data-ar>تنظيم</span></span><span><span data-en>LIBRARY</span><span data-ar>مكتبة</span></span></div>
           <div class="fl-sheet fl-sheet--one"><i></i><i></i><i></i><b>PDF</b></div>
           <div class="fl-sheet fl-sheet--two"><i></i><i></i><b>02</b></div>
           <div class="fl-sheet fl-sheet--three"><i></i><i></i><i></i><b>03</b></div>
-          <div class="fl-folder-plane"><span>INVOICES</span><i></i></div>
+          <div class="fl-folder-plane"><span><span data-en>INVOICES</span><span data-ar>فواتير</span></span><i></i></div>
           <figure class="fl-file-system__library">
             <img src="/filed/assets/screenshots/library-light.jpg" data-pc-theme-image data-light-src="/filed/assets/screenshots/library-light.jpg" data-dark-src="/filed/assets/screenshots/library-dark.jpg" alt="" width="820" height="1781" loading="lazy" decoding="async">
           </figure>
         </div>
 
         <div class="fl-filing__steps">
-          <article class="fl-filing__step"><span>01 · Receive</span><h3>A PDF enters from another app or Files.</h3><p>Filed copies the document into its own on-device library.</p></article>
-          <article class="fl-filing__step"><span>02 · Bound</span><h3>The loose page gains a visible edge.</h3><p>A clear document plane replaces an undefined attachment.</p></article>
-          <article class="fl-filing__step"><span>03 · Align</span><h3>Pages settle against one filing rail.</h3><p>Order is communicated through position, not decoration.</p></article>
-          <article class="fl-filing__step"><span>04 · Address</span><h3>A colored folder gives the file a home.</h3><p>Names, sections, and filters make the library legible.</p></article>
-          <article class="fl-filing__step"><span>05 · Resolve</span><h3>The real Filed library becomes clear.</h3><p>The interface stays readable as the abstract system recedes.</p></article>
-          <article class="fl-filing__step"><span>06 · Continue</span><h3>Open it. Read it. Sign it. Share it.</h3><p>The filing system leads into the work the document needs next.</p></article>
+          <article class="fl-filing__step"><span><span data-en>01 · Receive</span><span data-ar>٠١ · استقبال</span></span><h3><span data-en>A PDF enters from another app or Files.</span><span data-ar>يدخل ملف PDF من تطبيق آخر أو من «الملفات».</span></h3><p><span data-en>Filed copies the document into its own on-device library.</span><span data-ar>ينسخ Filed المستند إلى مكتبته الخاصة على الجهاز.</span></p></article>
+          <article class="fl-filing__step"><span><span data-en>02 · Bound</span><span data-ar>٠٢ · تحديد</span></span><h3><span data-en>The loose page gains a visible edge.</span><span data-ar>تكسب الصفحة المبعثرة حدًّا مرئيًا.</span></h3><p><span data-en>A clear document plane replaces an undefined attachment.</span><span data-ar>مستوى مستند واضح يحل محل مرفق مبهم.</span></p></article>
+          <article class="fl-filing__step"><span><span data-en>03 · Align</span><span data-ar>٠٣ · اصطفاف</span></span><h3><span data-en>Pages settle against one filing rail.</span><span data-ar>تستقر الصفحات على سكة أرشفة واحدة.</span></h3><p><span data-en>Order is communicated through position, not decoration.</span><span data-ar>يتحدّث الترتيب عبر الموضع، لا الزخرفة.</span></p></article>
+          <article class="fl-filing__step"><span><span data-en>04 · Address</span><span data-ar>٠٤ · عنوان</span></span><h3><span data-en>A colored folder gives the file a home.</span><span data-ar>مجلد ملون يمنح الملف بيتًا.</span></h3><p><span data-en>Names, sections, and filters make the library legible.</span><span data-ar>الأسماء والأقسام والمرشحات تجعل المكتبة مقروءة.</span></p></article>
+          <article class="fl-filing__step"><span><span data-en>05 · Resolve</span><span data-ar>٠٥ · وضوح</span></span><h3><span data-en>The real Filed library becomes clear.</span><span data-ar>تتضح مكتبة Filed الحقيقية.</span></h3><p><span data-en>The interface stays readable as the abstract system recedes.</span><span data-ar>تبقى الواجهة مقروءة بينما يتراجع النظام المجرد.</span></p></article>
+          <article class="fl-filing__step"><span><span data-en>06 · Continue</span><span data-ar>٠٦ · متابعة</span></span><h3><span data-en>Open it. Read it. Sign it. Share it.</span><span data-ar>افتحه. اقرأه. وقّعه. شاركه.</span></h3><p><span data-en>The filing system leads into the work the document needs next.</span><span data-ar>يقودك نظام الأرشفة إلى العمل الذي يحتاجه المستند تاليًا.</span></p></article>
         </div>
       </div>
     </div>
@@ -167,22 +172,22 @@
   <section class="fl-section" aria-labelledby="organize-title">
     <div class="fl-section__inner">
       <header class="fl-chapter-heading" data-pc-site-reveal>
-        <p class="fl-kicker">Chapter 03 · Give every file an address</p>
-        <h2 id="organize-title">Structure you<br>can see.</h2>
-        <p>Colored folders, file names, search, list or grid views, and filter tags keep documents findable without automatic classification.</p>
+        <p class="fl-kicker"><span data-en>Chapter 03 · Give every file an address</span><span data-ar>الفصل ٠٣ · امنح كل ملف عنوانًا</span></p>
+        <h2 id="organize-title"><span data-en class="blk">Structure you</span><span data-ar class="blk">بنية</span><br><span data-en class="blk">can see.</span><span data-ar class="blk">تراها بعينك.</span></h2>
+        <p><span data-en>Colored folders, file names, search, list or grid views, and filter tags keep documents findable without automatic classification.</span><span data-ar>المجلدات الملونة وأسماء الملفات والبحث وعروض القائمة أو الشبكة ووسوم المرشحات تحافظ على قابلية العثور على المستندات دون تصنيف تلقائي.</span></p>
       </header>
 
       <div class="fl-organize">
         <div class="fl-organize__system" data-pc-site-reveal aria-label="Abstract folder organization diagram">
-          <div class="fl-folder-row fl-folder-row--blue"><span>01</span><strong>Invoices</strong><small>3 files</small></div>
-          <div class="fl-folder-row fl-folder-row--green"><span>02</span><strong>Contracts</strong><small>2 files</small></div>
-          <div class="fl-folder-row fl-folder-row--red"><span>03</span><strong>Tax 2026</strong><small>3 files</small></div>
-          <div class="fl-folder-row fl-folder-row--orange"><span>04</span><strong>Receipts</strong><small>2 files</small></div>
-          <p>Manual structure · clear names · visible filters</p>
+          <div class="fl-folder-row fl-folder-row--blue"><span>01</span><strong><span data-en>Invoices</span><span data-ar>الفواتير</span></strong><small><span data-en>3 files</span><span data-ar>٣ ملفات</span></small></div>
+          <div class="fl-folder-row fl-folder-row--green"><span>02</span><strong><span data-en>Contracts</span><span data-ar>العقود</span></strong><small><span data-en>2 files</span><span data-ar>ملفان</span></small></div>
+          <div class="fl-folder-row fl-folder-row--red"><span>03</span><strong><span data-en>Tax 2026</span><span data-ar>ضرائب ٢٠٢٦</span></strong><small><span data-en>3 files</span><span data-ar>٣ ملفات</span></small></div>
+          <div class="fl-folder-row fl-folder-row--orange"><span>04</span><strong><span data-en>Receipts</span><span data-ar>الإيصالات</span></strong><small><span data-en>2 files</span><span data-ar>ملفان</span></small></div>
+          <p><span data-en>Manual structure · clear names · visible filters</span><span data-ar>بنية يدوية · أسماء واضحة · مرشحات ظاهرة</span></p>
         </div>
         <figure class="fl-product-figure fl-product-figure--folder" data-pc-site-reveal>
           <div class="fl-device"><img src="/filed/assets/screenshots/folder.jpg" alt="Filed Invoices folder showing three PDFs and All, Paid, Review, Signed, and Urgent filters" width="820" height="1781" loading="lazy" decoding="async"></div>
-          <figcaption><span>Real interface · Folder</span><strong>Files with an address</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · Folder</span><span data-ar>واجهة حقيقية · مجلد</span></span><strong><span data-en>Files with an address</span><span data-ar>ملفات لها عنوان</span></strong></figcaption>
         </figure>
       </div>
     </div>
@@ -193,16 +198,16 @@
       <div class="fl-reader__layout">
         <figure class="fl-product-figure fl-product-figure--viewer" data-pc-site-reveal>
           <div class="fl-device"><img src="/filed/assets/screenshots/viewer.jpg" alt="Filed full-screen PDF viewer displaying a March Invoice with share, sign, and delete controls" width="820" height="1781" loading="lazy" decoding="async"></div>
-          <figcaption><span>Real interface · Viewer</span><strong>March Invoice.pdf</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · Viewer</span><span data-ar>واجهة حقيقية · قارئ</span></span><strong>March Invoice.pdf</strong></figcaption>
         </figure>
         <div class="fl-reader__copy" data-pc-site-reveal>
-          <p class="fl-kicker">Chapter 04 · Read with clarity</p>
-          <h2 id="reader-title">The document<br>takes the frame.</h2>
-          <p>Filed uses Apple’s PDFKit for a focused, full-screen reading view. Pinch to zoom, move through pages, and use page thumbnails to navigate.</p>
+          <p class="fl-kicker"><span data-en>Chapter 04 · Read with clarity</span><span data-ar>الفصل ٠٤ · اقرأ بوضوح</span></p>
+          <h2 id="reader-title"><span data-en class="blk">The document</span><span data-ar class="blk">المستند</span><br><span data-en class="blk">takes the frame.</span><span data-ar class="blk">يملأ الإطار.</span></h2>
+          <p><span data-en>Filed uses Apple’s PDFKit for a focused, full-screen reading view. Pinch to zoom, move through pages, and use page thumbnails to navigate.</span><span data-ar>يستخدم Filed إطار PDFKit من آبل لعرض قراءة مركّز بملء الشاشة. اضغط بإصبعين للتكبير، وتنقّل بين الصفحات، واستخدم مصغرات الصفحات للتنقل.</span></p>
           <div class="fl-reader__index" aria-label="Filed reader capabilities">
-            <span><b>01</b>Full-screen PDF view</span>
-            <span><b>02</b>Zoom and page navigation</span>
-            <span><b>03</b>Page thumbnails</span>
+            <span><b>01</b><span data-en>Full-screen PDF view</span><span data-ar>عرض PDF بملء الشاشة</span></span>
+            <span><b>02</b><span data-en>Zoom and page navigation</span><span data-ar>التكبير والتنقل بين الصفحات</span></span>
+            <span><b>03</b><span data-en>Page thumbnails</span><span data-ar>مصغرات الصفحات</span></span>
           </div>
         </div>
       </div>
@@ -212,23 +217,23 @@
   <section class="fl-section fl-sign" aria-labelledby="sign-title">
     <div class="fl-section__inner">
       <header class="fl-chapter-heading" data-pc-site-reveal>
-        <p class="fl-kicker">Chapter 05 · Sign with intention</p>
-        <h2 id="sign-title">A mark placed<br>by hand.</h2>
-        <p>Draw a signature, choose its ink, place and size it on the page, then export a new signed copy on your device.</p>
+        <p class="fl-kicker"><span data-en>Chapter 05 · Sign with intention</span><span data-ar>الفصل ٠٥ · وقّع بقصد</span></p>
+        <h2 id="sign-title"><span data-en class="blk">A mark placed</span><span data-ar class="blk">توقيع يوضَع</span><br><span data-en class="blk">by hand.</span><span data-ar class="blk">باليد.</span></h2>
+        <p><span data-en>Draw a signature, choose its ink, place and size it on the page, then export a new signed copy on your device.</span><span data-ar>ارسم توقيعك واختر حبره وضعه وحجّمه على الصفحة، ثم صدّر نسخة موقعة جديدة على جهازك.</span></p>
       </header>
 
       <div class="fl-sign__layout">
         <div class="fl-signature-board" data-pc-site-reveal>
-          <p><span>Signature path</span><span>Place · size · export</span></p>
+          <p><span><span data-en>Signature path</span><span data-ar>مسار التوقيع</span></span><span><span data-en>Place · size · export</span><span data-ar>وضع · حجم · تصدير</span></span></p>
           <svg viewBox="0 0 720 240" role="img" aria-label="Abstract hand-drawn signature path">
             <path class="fl-signature-path" d="M45 169c62-12 83-118 118-118 31 0-35 145 2 145 24 0 59-105 82-105 20 0-10 84 18 84 22 0 40-59 59-59 17 0 5 47 28 47 24 0 41-35 64-35 22 0 21 36 48 36 22 0 50-22 72-22 24 0 35 28 67 28 25 0 48-10 70-22" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div class="fl-signature-baseline"><span>×</span></div>
-          <strong>Nothing is signed until you place it.</strong>
+          <strong><span data-en>Nothing is signed until you place it.</span><span data-ar>لا شيء يُوقَّع حتى تضعه بنفسك.</span></strong>
         </div>
         <figure class="fl-product-figure fl-product-figure--signature" data-pc-site-reveal>
           <div class="fl-device"><img src="/filed/assets/screenshots/signature.jpg" data-pc-theme-image data-light-src="/filed/assets/screenshots/signature.jpg" data-dark-src="/filed/assets/screenshots/signature-dark.jpg" alt="Filed signature screen with ink colors, drawing area, save option, and Add to page button" width="820" height="1781" loading="lazy" decoding="async"></div>
-          <figcaption><span>Real interface · Signature</span><strong>Day / Night</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · Signature</span><span data-ar>واجهة حقيقية · توقيع</span></span><strong><span data-en>Day / Night</span><span data-ar>نهار / ليل</span></strong></figcaption>
         </figure>
       </div>
     </div>
@@ -237,15 +242,15 @@
   <section class="fl-section fl-control" aria-labelledby="control-title">
     <div class="fl-section__inner">
       <header class="fl-chapter-heading" data-pc-site-reveal>
-        <p class="fl-kicker">Chapter 06 · Share and keep control</p>
-        <h2 id="control-title">Send the file.<br>Keep the library.</h2>
-        <p>Select one or several PDFs and share them through the iOS Share Sheet, or export them to Files. Filed’s own library remains local-first.</p>
+        <p class="fl-kicker"><span data-en>Chapter 06 · Share and keep control</span><span data-ar>الفصل ٠٦ · شارك وحافظ على التحكم</span></p>
+        <h2 id="control-title"><span data-en class="blk">Send the file.</span><span data-ar class="blk">أرسل الملف.</span><br><span data-en class="blk">Keep the library.</span><span data-ar class="blk">واحتفظ بالمكتبة.</span></h2>
+        <p><span data-en>Select one or several PDFs and share them through the iOS Share Sheet, or export them to Files. Filed’s own library remains local-first.</span><span data-ar>اختر ملف PDF واحدًا أو عدة ملفات وشاركها عبر ورقة المشاركة في iOS أو صدّرها إلى «الملفات». تبقى مكتبة Filed نفسها محلية أولًا.</span></p>
       </header>
 
       <div class="fl-control__grid">
-        <article data-pc-site-reveal><span>01 · Share</span><h3>One PDF or several.</h3><p>Use the system Share Sheet for the documents you choose.</p></article>
-        <article data-pc-site-reveal><span>02 · Export</span><h3>Move copies to Files.</h3><p>Export documents when they need to live outside Filed.</p></article>
-        <article data-pc-site-reveal><span>03 · Private</span><h3>No account. No tracking.</h3><p>Documents stay on the iPhone, with an optional Face ID or Touch ID app lock.</p></article>
+        <article data-pc-site-reveal><span><span data-en>01 · Share</span><span data-ar>٠١ · مشاركة</span></span><h3><span data-en>One PDF or several.</span><span data-ar>ملف واحد أو عدة ملفات.</span></h3><p><span data-en>Use the system Share Sheet for the documents you choose.</span><span data-ar>استخدم ورقة المشاركة النظامية للمستندات التي تختارها.</span></p></article>
+        <article data-pc-site-reveal><span><span data-en>02 · Export</span><span data-ar>٠٢ · تصدير</span></span><h3><span data-en>Move copies to Files.</span><span data-ar>انقل النسخ إلى «الملفات».</span></h3><p><span data-en>Export documents when they need to live outside Filed.</span><span data-ar>صدّر المستندات عندما تحتاج إلى العيش خارج Filed.</span></p></article>
+        <article data-pc-site-reveal><span><span data-en>03 · Private</span><span data-ar>٠٣ · خصوصية</span></span><h3><span data-en>No account. No tracking.</span><span data-ar>بلا حساب. بلا تتبّع.</span></h3><p><span data-en>Documents stay on the iPhone, with an optional Face ID or Touch ID app lock.</span><span data-ar>تبقى المستندات على الآيفون، مع قفل اختياري للتطبيق ببصمة الوجه أو بصمة الإصبع.</span></p></article>
       </div>
     </div>
   </section>
@@ -253,19 +258,19 @@
   <section class="fl-section fl-record" aria-labelledby="record-title">
     <div class="fl-section__inner">
       <header class="fl-chapter-heading" data-pc-site-reveal>
-        <p class="fl-kicker">Chapter 07 · Real product record</p>
-        <h2 id="record-title">Seven views.<br>One clear system.</h2>
-        <p>Every image below is a real Filed screen. The Arabic capture is product evidence only; this website remains English and left-to-right.</p>
+        <p class="fl-kicker"><span data-en>Chapter 07 · Real product record</span><span data-ar>الفصل ٠٧ · سجل منتج حقيقي</span></p>
+        <h2 id="record-title"><span data-en class="blk">Seven views.</span><span data-ar class="blk">سبعة مشاهد.</span><br><span data-en class="blk">One clear system.</span><span data-ar class="blk">نظام واحد واضح.</span></h2>
+        <p><span data-en>Every image below is a real Filed screen. The Arabic capture is product evidence captured from the app itself.</span><span data-ar>كل صورة أدناه شاشة حقيقية من Filed. واللقطة العربية دليل منتج مأخوذ من التطبيق نفسه.</span></p>
       </header>
 
       <div class="fl-record__grid">
-        <figure class="fl-record-card fl-record-card--lead" data-pc-site-reveal><img src="/filed/assets/screenshots/library-light.jpg" alt="Filed Library in light mode with six colored folders" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>01</span><strong>Library · Day</strong></figcaption></figure>
-        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/library-dark.jpg" alt="Filed Library in dark mode with six colored folders" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>02</span><strong>Library · Night</strong></figcaption></figure>
-        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/folder.jpg" alt="Filed folder with PDFs and colored filter tags" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>03</span><strong>Folder + filters</strong></figcaption></figure>
-        <figure class="fl-record-card fl-record-card--compact" data-pc-site-reveal><img src="/filed/assets/screenshots/viewer.jpg" alt="Filed PDF viewer showing an invoice" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>04</span><strong>Reader</strong></figcaption></figure>
-        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/signature.jpg" alt="Filed signature drawing screen in light mode" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>05</span><strong>Signature · Day</strong></figcaption></figure>
-        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/signature-dark.jpg" alt="Filed signature drawing screen in dark mode" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>06</span><strong>Signature · Night</strong></figcaption></figure>
-        <figure class="fl-record-card fl-record-card--arabic" data-pc-site-reveal><img src="/filed/assets/screenshots/library-ar.jpg" alt="Real Filed Library screen in Arabic and right-to-left layout" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>07 · Product evidence</span><strong>Library · Arabic RTL</strong></figcaption></figure>
+        <figure class="fl-record-card fl-record-card--lead" data-pc-site-reveal><img src="/filed/assets/screenshots/library-light.jpg" alt="Filed Library in light mode with six colored folders" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>01</span><strong><span data-en>Library · Day</span><span data-ar>المكتبة · نهار</span></strong></figcaption></figure>
+        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/library-dark.jpg" alt="Filed Library in dark mode with six colored folders" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>02</span><strong><span data-en>Library · Night</span><span data-ar>المكتبة · ليل</span></strong></figcaption></figure>
+        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/folder.jpg" alt="Filed folder with PDFs and colored filter tags" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>03</span><strong><span data-en>Folder + filters</span><span data-ar>مجلد + مرشحات</span></strong></figcaption></figure>
+        <figure class="fl-record-card fl-record-card--compact" data-pc-site-reveal><img src="/filed/assets/screenshots/viewer.jpg" alt="Filed PDF viewer showing an invoice" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>04</span><strong><span data-en>Reader</span><span data-ar>القارئ</span></strong></figcaption></figure>
+        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/signature.jpg" alt="Filed signature drawing screen in light mode" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>05</span><strong><span data-en>Signature · Day</span><span data-ar>التوقيع · نهار</span></strong></figcaption></figure>
+        <figure class="fl-record-card" data-pc-site-reveal><img src="/filed/assets/screenshots/signature-dark.jpg" alt="Filed signature drawing screen in dark mode" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span>06</span><strong><span data-en>Signature · Night</span><span data-ar>التوقيع · ليل</span></strong></figcaption></figure>
+        <figure class="fl-record-card fl-record-card--arabic" data-pc-site-reveal><img src="/filed/assets/screenshots/library-ar.jpg" alt="Real Filed Library screen in Arabic and right-to-left layout" width="820" height="1781" loading="lazy" decoding="async"><figcaption><span><span data-en>07 · Product evidence</span><span data-ar>٠٧ · دليل المنتج</span></span><strong><span data-en>Library · Arabic RTL</span><span data-ar>المكتبة · عربي RTL</span></strong></figcaption></figure>
       </div>
     </div>
   </section>
@@ -273,18 +278,18 @@
   <section class="fl-section fl-releases" aria-labelledby="release-title">
     <div class="fl-section__inner">
       <header class="fl-chapter-heading" data-pc-site-reveal>
-        <p class="fl-kicker">Chapter 08 · Release and continuity</p>
-        <h2 id="release-title">Filed begins<br>at version 1.0.</h2>
-        <p>Live App Store metadata and the existing release record enhance this truthful static baseline when available.</p>
+        <p class="fl-kicker"><span data-en>Chapter 08 · Release and continuity</span><span data-ar>الفصل ٠٨ · الإصدار والاستمرارية</span></p>
+        <h2 id="release-title"><span data-en class="blk">Filed begins</span><span data-ar class="blk">يبدأ Filed</span><br><span data-en class="blk">at version 1.0.</span><span data-ar class="blk">من الإصدار ١٫٠.</span></h2>
+        <p><span data-en>Live App Store metadata and the existing release record enhance this truthful static baseline when available.</span><span data-ar>بيانات آب ستور الحية وسجل الإصدارات القائم يُثريان هذا الأساس الثابت الصادق عند توفرهما.</span></p>
       </header>
 
       <div class="fl-release-layout">
         <div class="fl-release-copy" data-pc-site-reveal>
-          <p class="fl-rule-label">Current fallback · iOS v1.0</p>
-          <p>Filed is available on the App Store. Its first public release currently has no supplied release note.</p>
+          <p class="fl-rule-label"><span data-en>Current fallback · iOS v1.0</span><span data-ar>النسخة الاحتياطية الحالية · iOS v1.0</span></p>
+          <p><span data-en>Filed is available on the App Store. Its first public release currently has no supplied release note.</span><span data-ar>يتوفر Filed على آب ستور. ولا تتضمن إصداره العام الأول حاليًا ملاحظات إصدار.</span></p>
         </div>
         <div class="fl-release-wall" data-pc-site-reveal>
-          <article class="fl-release-static"><header><h3>Version 1.0</h3><span>Initial release</span></header><p>No release notes provided.</p></article>
+          <article class="fl-release-static"><header><h3><span data-en>Version 1.0</span><span data-ar>الإصدار ١٫٠</span></h3><span><span data-en>Initial release</span><span data-ar>الإصدار الأول</span></span></header><p><span data-en>No release notes provided.</span><span data-ar>لا توجد ملاحظات إصدار.</span></p></article>
           <div data-releases="filed"></div>
         </div>
       </div>
@@ -294,17 +299,17 @@
   <section class="fl-coda" aria-labelledby="coda-title">
     <div class="fl-coda__rail" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <div class="fl-coda__content" data-pc-site-reveal>
-      <p class="fl-kicker">Filed · The Filing Cut</p>
-      <h2 id="coda-title">A place for<br>every PDF.</h2>
-      <p>Receive documents from other apps or Files, organize them, read them, sign them, and share the copies you choose—all from a private library on your iPhone.</p>
+      <p class="fl-kicker"><span data-en>Filed · The Filing Cut</span><span data-ar>Filed · مشهد الأرشفة</span></p>
+      <h2 id="coda-title"><span data-en class="blk">A place for</span><span data-ar class="blk">مكان لكل</span><br><span data-en class="blk">every PDF.</span><span data-ar class="blk">ملف PDF.</span></h2>
+      <p><span data-en>Receive documents from other apps or Files, organize them, read them, sign them, and share the copies you choose—all from a private library on your iPhone.</span><span data-ar>استقبل المستندات من تطبيقات أخرى أو من «الملفات»، ونظّمها، واقرأها، ووقّعها، وشارك النسخ التي تختارها—كل ذلك من مكتبة خاصة على آيفونك.</span></p>
       <div class="fl-coda__actions">
-        <a class="pc-site-action pc-site-action--filed" href="https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551">View on the App Store <span aria-hidden="true">↗</span></a>
-        <a class="pc-site-action" href="/">All Saud Apps <span aria-hidden="true">→</span></a>
+        <a class="pc-site-action pc-site-action--filed" href="https://apps.apple.com/ae/app/filed-pdf-organizer/id6781196551"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+        <a class="pc-site-action" href="/"><span data-en>All Saud Apps </span><span data-ar>كل تطبيقات سعود </span><span aria-hidden="true">→</span></a>
       </div>
       <nav class="fl-coda__links" aria-label="Filed support and legal links">
-        <a href="/filed/privacy/">Privacy policy</a>
-        <a href="/filed/terms/">Terms of use</a>
-        <a href="/support/">Support</a>
+        <a href="/filed/privacy/"><span data-en>Privacy policy</span><span data-ar>سياسة الخصوصية</span></a>
+        <a href="/filed/terms/"><span data-en>Terms of use</span><span data-ar>شروط الاستخدام</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </nav>
     </div>
@@ -312,21 +317,21 @@
 </main>
 
 <footer class="pc-site-footer">
-  <div class="pc-site-footer__identity"><strong>FILED · SAUD APPS</strong><span>Receive · organize · read · sign · share</span></div>
+  <div class="pc-site-footer__identity"><strong>FILED · SAUD APPS</strong><span><span data-en>Receive · organize · read · sign · share</span><span data-ar>استقبل · نظّم · اقرأ · وقّع · شارك</span></span></div>
   <nav aria-label="Footer navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/">PhoneSpace</a>
     <a href="/filed/" aria-current="page">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
-  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+  <div class="pc-site-footer__base"><span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span><a href="mailto:support@saud.im">support@saud.im</a></div>
 </footer>
 
-<script src="/assets/product-cinema-core.js?v=batch2" defer></script>
+<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
 <script src="/filed/product-cinema.js?v=batch2" defer></script>
 <script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>

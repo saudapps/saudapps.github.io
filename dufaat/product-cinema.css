@@ -673,3 +673,37 @@ body.pc-dufaat {
   .df-path__product { opacity: 1; transform: none; }
   .df-path__product { transform: translateY(-50%); }
 }
+
+/* ── RTL adaptations for the bilingual Dufaat route.
+   Decorative aria-hidden art (path, markers) keeps its composition;
+   text-bearing components mirror in Arabic. */
+html[dir="rtl"] .df-opening__lede { padding: 15px 18px 0 0; border-top: 1px solid var(--df-line-strong); border-left: 0; border-right: 5px solid var(--df-gold); }
+html[dir="rtl"] .df-opening__metadata [data-field="status"]::before { margin-right: 0; margin-left: 7px; }
+html[dir="rtl"] .df-opening__evidence-note { right: auto; left: 0; text-align: left; }
+html[dir="rtl"] .df-chapter-heading > p:last-child { padding: 16px 16px 0 0; border-left: 0; border-right: 4px solid var(--df-gold); }
+html[dir="rtl"] .df-plus .df-chapter-heading > p:last-child { border-right-color: var(--df-gold); }
+html[dir="rtl"] .df-path { border-right: 0; border-left: 1px solid var(--df-line-strong); }
+html[dir="rtl"] .df-obligation { border-left: 0; border-right: 7px solid var(--df-teal); }
+html[dir="rtl"] .df-obligation--two { border-right-color: var(--df-gold); }
+html[dir="rtl"] .df-paysoon__copy > p:not(.df-kicker) { padding-left: 0; padding-right: 18px; border-left: 0; border-right: 4px solid var(--df-gold); }
+html[dir="rtl"] .df-record__grid article,
+html[dir="rtl"] .df-plus__grid article { border-right: 0; border-left: 1px solid var(--df-line); }
+html[dir="rtl"] .df-plus__grid article { border-left-color: rgba(237,245,240,.2); }
+html[dir="rtl"] .df-record__grid article:first-child,
+html[dir="rtl"] .df-plus__grid article:first-child { border-left: 0; }
+html[dir="rtl"] .df-plus__price { padding-left: 0; padding-right: 28px; border-left: 0; border-right: 1px solid rgba(237,245,240,.3); text-align: left; }
+html[dir="rtl"] .df-release-entry ul { padding-left: 0; padding-right: 20px; }
+html[dir="rtl"] .df-coda__links a span[aria-hidden="true"] { display: inline-block; transform: scaleX(-1); }
+html[lang="ar"] .df-kicker,
+html[lang="ar"] .df-rule-label,
+html[lang="ar"] .df-settlement__steps article > span,
+html[lang="ar"] .df-gallery-card figcaption span,
+html[lang="ar"] .df-opening__metadata span,
+html[lang="ar"] .df-opening__rail span,
+html[lang="ar"] .df-opening__evidence-note span,
+html[lang="ar"] .df-obligation span,
+html[lang="ar"] .df-progress__ledger article > b,
+html[lang="ar"] .df-coda__links a {
+  letter-spacing: 0;
+  text-transform: none;
+}

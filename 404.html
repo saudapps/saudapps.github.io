@@ -11,13 +11,14 @@
 <title>Page not found — Saud Apps</title>
 
 <link rel="stylesheet" href="/assets/saud.css?v=20260705-1">
-<link rel="stylesheet" href="/assets/product-cinema-site.css?v=info-1">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=info-1">
-<link rel="stylesheet" href="/assets/product-cinema-info.css?v=info-2">
+<link rel="stylesheet" href="/assets/product-cinema-info.css?v=20260825-bilingual1">
 <!-- anti-flash: set theme before first paint -->
 <script>
   (function () {
     try {
+      document.documentElement.classList.add('pc-site-js');
       var s = localStorage.getItem('saudapps-theme');
       var t = (s === 'light' || s === 'dark') ? s
             : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -51,6 +52,8 @@
 </style>
 </head>
 <body class="app-home product-cinema-rollout pc-info pc-home" data-pc-info="404" data-pc-title="Page not found">
+
+  <a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
 
   <!-- ── Top bar ─────────────────────────────────────────────── -->
   <header class="topbar">
@@ -121,8 +124,8 @@
   </footer>
 
   <script src="/assets/saud.js?v=20260705-1" defer></script>
-  <script src="/assets/product-cinema-info.js?v=info-1" defer></script>
-  <script src="/assets/product-cinema-core.js?v=info-1" defer></script>
+  <script src="/assets/product-cinema-info.js?v=20260825-bilingual1" defer></script>
+  <script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
   <script src="/assets/product-cinema-atmosphere.js?v=info-1" defer></script>
 </body>
 </html>

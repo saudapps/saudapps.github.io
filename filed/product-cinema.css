@@ -756,3 +756,32 @@ html.pc-site-observe .fl-signature-board.is-visible .fl-signature-path { stroke-
   .fl-folder-plane { transform: none; }
   html.pc-site-observe .fl-signature-path { stroke-dasharray: none; stroke-dashoffset: 0; transition: none; }
 }
+
+/* ── RTL adaptations for the bilingual Filed route.
+   Decorative aria-hidden art (index rail, signature path) keeps its
+   composition; text-bearing components mirror in Arabic. */
+html[dir="rtl"] .fl-opening__lede { padding: 16px 18px 0 0; border-top: 1px solid var(--fl-line-strong); border-left: 0; border-right: 5px solid var(--fl-blue); }
+html[dir="rtl"] .fl-opening__metadata [data-field="status"]::before { margin-right: 0; margin-left: 7px; }
+html[dir="rtl"] .fl-chapter-heading > p:last-child { padding: 16px 16px 0 0; border-left: 0; border-right: 4px solid var(--fl-blue); }
+html[dir="rtl"] .fl-file-system { border-right: 0; border-left: 1px solid var(--fl-line-strong); }
+html[dir="rtl"] .fl-folder-row { border-left: 0; border-right: 8px solid var(--folder); }
+html[dir="rtl"] .fl-reader__copy > p:not(.fl-kicker) { padding-left: 0; padding-right: 18px; border-left: 0; border-right: 4px solid var(--fl-blue); }
+html[dir="rtl"] .fl-control__grid article { border-right: 0; border-left: 1px solid var(--fl-line); }
+html[dir="rtl"] .fl-control__grid article:first-child { border-left: 0; }
+html[dir="rtl"] .fl-coda__rail span { border-right: 0; border-left: 1px solid var(--fl-line); }
+html[dir="rtl"] .fl-coda__rail span:first-child { border-left: 0; }
+html[dir="rtl"] .fl-record-card figcaption strong { text-align: left; }
+html[dir="rtl"] .fl-device--hero { margin-left: 0; margin-right: auto; }
+html[dir="rtl"] .fl-coda__links a span[aria-hidden="true"] { display: inline-block; transform: scaleX(-1); }
+html[lang="ar"] .fl-kicker,
+html[lang="ar"] .fl-rule-label,
+html[lang="ar"] .fl-filing__step > span,
+html[lang="ar"] .fl-folder-row small,
+html[lang="ar"] .fl-record-card figcaption span,
+html[lang="ar"] .fl-opening__metadata span,
+html[lang="ar"] .fl-opening__edition span,
+html[lang="ar"] .fl-reader__copy .fl-kicker,
+html[lang="ar"] .fl-coda__links a {
+  letter-spacing: 0;
+  text-transform: none;
+}

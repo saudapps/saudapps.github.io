@@ -4,6 +4,7 @@
 
   var root = document.documentElement;
   var themeKey = 'saudapps-theme';
+  var langKey = 'saudapps-lang';
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   var reduceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
@@ -29,8 +30,6 @@
 
   function applyTheme(theme, persist) {
     root.setAttribute('data-theme', theme);
-    root.setAttribute('lang', 'en');
-    root.setAttribute('dir', 'ltr');
     document.querySelectorAll('[data-pc-site-theme]').forEach(function (button) {
       button.setAttribute('aria-pressed', button.getAttribute('data-pc-site-theme') === theme ? 'true' : 'false');
     });
@@ -57,6 +56,58 @@
     else if (darkQuery.addListener) darkQuery.addListener(followSystem);
   }
 
+  /* ── Language (EN/AR + RTL, persisted). Theme logic never touches
+     lang/dir; only this subsystem may change document language. ── */
+  function storedLang() {
+    try {
+      var value = localStorage.getItem(langKey);
+      return value === 'en' || value === 'ar' ? value : null;
+    } catch (error) { return null; }
+  }
+
+  function initialLang() {
+    return storedLang() || ((navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en');
+  }
+
+  function localizeAttributes(lang) {
+    document.querySelectorAll('[data-alt-en]').forEach(function (element) {
+      var en = element.getAttribute('data-alt-en');
+      var ar = element.getAttribute('data-alt-ar');
+      var next = lang === 'ar' ? (ar || en) : en;
+      if (next != null && element.getAttribute('alt') !== next) element.setAttribute('alt', next);
+    });
+    document.querySelectorAll('[data-aria-en]').forEach(function (element) {
+      var en = element.getAttribute('data-aria-en');
+      var ar = element.getAttribute('data-aria-ar');
+      var next = lang === 'ar' ? (ar || en) : en;
+      if (next != null && element.getAttribute('aria-label') !== next) element.setAttribute('aria-label', next);
+    });
+  }
+
+  function applyLang(lang, persist) {
+    var previous = root.getAttribute('lang');
+    root.setAttribute('lang', lang);
+    root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.querySelectorAll('[data-lang-btn]').forEach(function (button) {
+      button.setAttribute('aria-pressed', button.getAttribute('data-lang-btn') === lang ? 'true' : 'false');
+    });
+    localizeAttributes(lang);
+    if (persist) {
+      try { localStorage.setItem(langKey, lang); } catch (error) {}
+    }
+    if (previous !== lang) {
+      try { document.dispatchEvent(new CustomEvent('saudapps:langchange', { detail: { lang: lang } })); } catch (error) {}
+    }
+  }
+
+  function wireLang() {
+    document.querySelectorAll('[data-lang-btn]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyLang(button.getAttribute('data-lang-btn'), true);
+      });
+    });
+  }
+
   function wireReveals() {
     var items = Array.prototype.slice.call(document.querySelectorAll('[data-pc-site-reveal]'));
     var reduced = !!(reduceQuery && reduceQuery.matches);
@@ -77,7 +128,9 @@
 
   function init() {
     applyTheme(resolvedTheme(), false);
+    applyLang(initialLang(), false);
     wireTheme();
+    wireLang();
     wireReveals();
     root.classList.add('pc-site-ready');
   }

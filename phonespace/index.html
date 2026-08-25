@@ -30,6 +30,7 @@
 <script>
   (function () {
     try {
+      document.documentElement.classList.add('pc-site-js');
       var saved = localStorage.getItem('saudapps-theme');
       var theme = saved === 'light' || saved === 'dark' ? saved
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -37,46 +38,50 @@
     } catch (error) {}
   })();
 </script>
-<link rel="stylesheet" href="/assets/product-cinema-site.css?v=batch1-v2">
-<link rel="stylesheet" href="/phonespace/product-cinema.css?v=phonespace-1-2-r4">
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-bilingual1">
+<link rel="stylesheet" href="/phonespace/product-cinema.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-legal-bg-1">
 </head>
 <body class="product-cinema-rollout pc-phonespace">
-<a class="pc-site-skip" href="#main">Skip to content</a>
+<a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
 
 <header class="pc-site-header">
   <a class="pc-site-brand" href="/" aria-label="Saud Apps home">
     <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span><strong>Saud Apps</strong><small>Independent · iOS</small></span>
+    <span><strong>Saud Apps</strong><small><span data-en>Independent · iOS</span><span data-ar>مستقل · iOS</span></small></span>
   </a>
 
   <nav class="pc-site-nav" aria-label="Primary navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/" aria-current="page">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
 
   <div class="pc-site-tools">
     <div class="pc-site-theme" role="group" aria-label="Color theme">
-      <button type="button" data-pc-site-theme="light" aria-pressed="false">Day</button>
-      <button type="button" data-pc-site-theme="dark" aria-pressed="false">Night</button>
+      <button type="button" data-pc-site-theme="light" aria-pressed="false"><span data-en>Day</span><span data-ar>نهار</span></button>
+      <button type="button" data-pc-site-theme="dark" aria-pressed="false"><span data-en>Night</span><span data-ar>ليل</span></button>
+    </div>
+    <div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
     </div>
     <details class="pc-site-menu">
-      <summary>Menu</summary>
+      <summary><span data-en>Menu</span><span data-ar>القائمة</span></summary>
       <nav aria-label="Mobile navigation">
-        <a href="/">Home</a>
+        <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
         <a href="/sshift/">SShift</a>
         <a href="/phonespace/" aria-current="page">PhoneSpace</a>
         <a href="/filed/">Filed</a>
         <a href="/dufaat/">Dufaat</a>
-        <a href="/about/">About</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/">Legal</a>
+        <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
       </nav>
     </details>
   </div>
@@ -85,39 +90,39 @@
 <main id="main" tabindex="-1">
   <section class="ps-opening" aria-labelledby="phonespace-title" data-ps-depth>
     <div class="ps-opening__edition" aria-hidden="true">
-      <span>Product film · 03</span><span>The Pressure Cut</span><span>PhoneSpace · iPhone</span>
+      <span><span data-en>Product film · 03</span><span data-ar>فيلم المنتج · ٠٣</span></span><span><span data-en>The Pressure Cut</span><span data-ar>مشهد الضغط</span></span><span>PhoneSpace · iPhone</span>
     </div>
 
     <div class="ps-opening__layout">
       <div class="ps-opening__copy">
         <div class="ps-lockup">
           <img src="/assets/product-cinema-v2/icon-phonespace-192.png" alt="PhoneSpace app icon" width="62" height="62">
-          <span><small>Saud Apps · Product 02</small><strong>PhoneSpace</strong></span>
+          <span><small><span data-en>Saud Apps · Product 02</span><span data-ar>تطبيقات سعود · المنتج ٠٢</span></small><strong>PhoneSpace</strong></span>
         </div>
 
-        <h1 id="phonespace-title"><span>Storage</span><span>under pressure.</span></h1>
-        <p class="ps-opening__lede">A storage cleaner that helps you understand and review what occupies your iPhone. Processing stays on your device, and you decide what happens next.</p>
+        <h1 id="phonespace-title"><span><span data-en>Storage</span><span data-ar>مساحة تخزين</span></span><span><span data-en>under pressure.</span><span data-ar>تحت الضغط.</span></span></h1>
+        <p class="ps-opening__lede"><span data-en>A storage cleaner that helps you understand and review what occupies your iPhone. Processing stays on your device, and you decide what happens next.</span><span data-ar>منظّف تخزين يساعدك على فهم ومراجعة ما يشغل آيفونك. المعالجة تبقى على جهازك، وأنت من يقرر الخطوة التالية.</span></p>
 
         <div class="ps-opening__metadata" role="group" aria-label="PhoneSpace App Store information">
-          <span data-app="phonespace" data-field="status">On the App Store</span>
+          <span data-app="phonespace" data-field="status"><span data-en>On the App Store</span><span data-ar>على آب ستور</span></span>
           <span data-app="phonespace" data-field="version">iOS · v1.1</span>
           <span data-app="phonespace" data-field="rating" style="display:none"></span>
           <span data-app="phonespace" data-field="updated" style="display:none"></span>
-          <span>On-device processing</span>
+          <span><span data-en>On-device processing</span><span data-ar>معالجة على الجهاز</span></span>
         </div>
 
         <div class="ps-opening__actions">
-          <a class="pc-site-action pc-site-action--gold" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161">View on the App Store <span aria-hidden="true">↗</span></a>
-          <a class="pc-site-action" href="#pressure-sequence">See how it works <span aria-hidden="true">↓</span></a>
+          <a class="pc-site-action pc-site-action--gold" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+          <a class="pc-site-action" href="#pressure-sequence"><span data-en>See how it works </span><span data-ar>شاهد كيف يعمل </span><span aria-hidden="true">↓</span></a>
         </div>
       </div>
 
       <div class="ps-opening__evidence" aria-label="Real PhoneSpace product screen">
         <div class="ps-hero-boundary" aria-hidden="true"></div>
-        <span class="ps-hero-cluster ps-hero-cluster--photos" aria-hidden="true"><i></i>Photos</span>
-        <span class="ps-hero-cluster ps-hero-cluster--videos" aria-hidden="true"><i></i>Videos</span>
-        <span class="ps-hero-cluster ps-hero-cluster--contacts" aria-hidden="true"><i></i>Contacts</span>
-        <span class="ps-hero-cluster ps-hero-cluster--files" aria-hidden="true"><i></i>Files</span>
+        <span class="ps-hero-cluster ps-hero-cluster--photos" aria-hidden="true"><i></i><span data-en>Photos</span><span data-ar>الصور</span></span>
+        <span class="ps-hero-cluster ps-hero-cluster--videos" aria-hidden="true"><i></i><span data-en>Videos</span><span data-ar>الفيديوهات</span></span>
+        <span class="ps-hero-cluster ps-hero-cluster--contacts" aria-hidden="true"><i></i><span data-en>Contacts</span><span data-ar>جهات الاتصال</span></span>
+        <span class="ps-hero-cluster ps-hero-cluster--files" aria-hidden="true"><i></i><span data-en>Files</span><span data-ar>الملفات</span></span>
         <figure class="ps-hero-device">
           <img id="ps-hero-screen" data-pc-theme-image data-light-src="/phonespace/assets/screenshots/home-light.jpg" data-dark-src="/phonespace/assets/screenshots/home-dark.jpg" alt="PhoneSpace library showing its storage ring, Photos, Videos, Contacts, Files, and device storage overview" width="820" height="1781" fetchpriority="high" decoding="async">
           <script>
@@ -134,25 +139,25 @@
         </figure>
       </div>
 
-      <p class="ps-opening__index" aria-hidden="true">Density · awareness · separation · review · room</p>
+      <p class="ps-opening__index" aria-hidden="true"><span data-en>Density · awareness · separation · review · room</span><span data-ar>كثافة · وعي · انفصال · مراجعة · متّسع</span></p>
     </div>
   </section>
 
   <section class="ps-sequence" id="pressure-sequence" data-ps-sequence data-stage="3" aria-labelledby="pressure-title">
     <div class="ps-sequence__sticky">
       <header class="ps-sequence__heading" data-pc-site-reveal>
-        <p class="ps-kicker">Chapter 02 · The pressure resolves</p>
-        <h2 id="pressure-title">See what<br>takes space.</h2>
-        <p>PhoneSpace separates a crowded library into categories that can be understood and reviewed deliberately.</p>
+        <p class="ps-kicker"><span data-en>Chapter 02 · The pressure resolves</span><span data-ar>الفصل ٠٢ · الضغط يتحلّل</span></p>
+        <h2 id="pressure-title"><span data-en class="blk">See what</span><span data-ar class="blk">شاهد ما</span><br><span data-en class="blk">takes space.</span><span data-ar class="blk">يأخذ المساحة.</span></h2>
+        <p><span data-en>PhoneSpace separates a crowded library into categories that can be understood and reviewed deliberately.</span><span data-ar>يفصل PhoneSpace مكتبة مزدحمة إلى فئات يمكن فهمها ومراجعتها بتمعّن.</span></p>
       </header>
 
       <div class="ps-sequence__stage">
         <div class="ps-pressure-visual" aria-hidden="true">
           <div class="ps-pressure-visual__ring"></div>
-          <div class="ps-pressure-cluster ps-pressure-cluster--photos"><span>01 · Category</span><strong>Photos</strong><small>Similar, duplicates, large, old</small></div>
-          <div class="ps-pressure-cluster ps-pressure-cluster--videos"><span>02 · Category</span><strong>Videos</strong><small>All videos and the largest files</small></div>
-          <div class="ps-pressure-cluster ps-pressure-cluster--contacts"><span>03 · Category</span><strong>Contacts</strong><small>Duplicates and incomplete entries</small></div>
-          <div class="ps-pressure-cluster ps-pressure-cluster--files"><span>04 · Category</span><strong>Files</strong><small>Folders and downloads to review</small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--photos"><span><span data-en>01 · Category</span><span data-ar>٠١ · فئة</span></span><strong><span data-en>Photos</span><span data-ar>الصور</span></strong><small><span data-en>Similar, duplicates, large, old</span><span data-ar>مشابهة، مكررة، كبيرة، قديمة</span></small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--videos"><span><span data-en>02 · Category</span><span data-ar>٠٢ · فئة</span></span><strong><span data-en>Videos</span><span data-ar>الفيديوهات</span></strong><small><span data-en>All videos and the largest files</span><span data-ar>كل الفيديوهات وأكبر الملفات</span></small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--contacts"><span><span data-en>03 · Category</span><span data-ar>٠٣ · فئة</span></span><strong><span data-en>Contacts</span><span data-ar>جهات الاتصال</span></strong><small><span data-en>Duplicates and incomplete entries</span><span data-ar>المكررات والمدخلات الناقصة</span></small></div>
+          <div class="ps-pressure-cluster ps-pressure-cluster--files"><span><span data-en>04 · Category</span><span data-ar>٠٤ · فئة</span></span><strong><span data-en>Files</span><span data-ar>الملفات</span></strong><small><span data-en>Folders and downloads to review</span><span data-ar>مجلدات وتنزيلات للمراجعة</span></small></div>
           <figure class="ps-pressure-visual__core">
             <img src="/phonespace/assets/screenshots/home-light.jpg" data-pc-theme-image data-light-src="/phonespace/assets/screenshots/home-light.jpg" data-dark-src="/phonespace/assets/screenshots/home-dark.jpg" alt="" width="820" height="1781" loading="lazy" decoding="async">
           </figure>
@@ -160,24 +165,24 @@
 
         <div class="ps-sequence__steps">
           <article class="ps-sequence__step">
-            <span>01 · Pressure</span>
-            <h3>A full library first feels like one problem.</h3>
-            <p>The opening state keeps categories close together: present, useful, but difficult to read as a system.</p>
+            <span><span data-en>01 · Pressure</span><span data-ar>٠١ · الضغط</span></span>
+            <h3><span data-en>A full library first feels like one problem.</span><span data-ar>المكتبة الممتلئة تبدو أولًا مشكلة واحدة.</span></h3>
+            <p><span data-en>The opening state keeps categories close together: present, useful, but difficult to read as a system.</span><span data-ar>تحافظ الحالة الافتتاحية على الفئات متقاربة: حاضرة ومفيدة، لكن يصعب قراءتها كنظام.</span></p>
           </article>
           <article class="ps-sequence__step">
-            <span>02 · Awareness</span>
-            <h3>The ring gives every category a boundary.</h3>
-            <p>Photos, videos, contacts, and files separate into a clear overview without leaving the device.</p>
+            <span><span data-en>02 · Awareness</span><span data-ar>٠٢ · الوعي</span></span>
+            <h3><span data-en>The ring gives every category a boundary.</span><span data-ar>الحلقة تمنح كل فئة حدًّا واضحًا.</span></h3>
+            <p><span data-en>Photos, videos, contacts, and files separate into a clear overview without leaving the device.</span><span data-ar>تنفصل الصور والفيديوهات وجهات الاتصال والملفات إلى نظرة عامة واضحة دون مغادرة الجهاز.</span></p>
           </article>
           <article class="ps-sequence__step">
-            <span>03 · Review</span>
-            <h3>Nothing happens before you choose.</h3>
-            <p>PhoneSpace surfaces material for review. It does not turn organization into an invisible destructive action.</p>
+            <span><span data-en>03 · Review</span><span data-ar>٠٣ · المراجعة</span></span>
+            <h3><span data-en>Nothing happens before you choose.</span><span data-ar>لا شيء يحدث قبل أن تختار.</span></h3>
+            <p><span data-en>PhoneSpace surfaces material for review. It does not turn organization into an invisible destructive action.</span><span data-ar>يُبرز PhoneSpace المحتوى للمراجعة، ولا يحوّل التنظيم إلى إجراء هدام غير مرئي.</span></p>
           </article>
           <article class="ps-sequence__step">
-            <span>04 · Room</span>
-            <h3>The interface emerges. The pressure recedes.</h3>
-            <p>A crowded device becomes an understandable library with clear places to look next.</p>
+            <span><span data-en>04 · Room</span><span data-ar>٠٤ · المتّسع</span></span>
+            <h3><span data-en>The interface emerges. The pressure recedes.</span><span data-ar>تظهر الواجهة. ويتراجع الضغط.</span></h3>
+            <p><span data-en>A crowded device becomes an understandable library with clear places to look next.</span><span data-ar>يتحوّل الجهاز المزدحم إلى مكتبة مفهومة بوجهات واضحة للخطوة التالية.</span></p>
           </article>
         </div>
       </div>
@@ -187,33 +192,33 @@
   <section class="ps-section" aria-labelledby="review-title">
     <div class="ps-section__inner">
       <header class="ps-chapter-heading" data-pc-site-reveal>
-        <p class="ps-kicker">Chapter 03 · Review before acting</p>
-        <h2 id="review-title">Decisions stay<br>with you.</h2>
-        <p>The product organizes what is worth reviewing. Selection and cleanup remain deliberate.</p>
+        <p class="ps-kicker"><span data-en>Chapter 03 · Review before acting</span><span data-ar>الفصل ٠٣ · راجع قبل أن تتصرف</span></p>
+        <h2 id="review-title"><span data-en class="blk">Decisions stay</span><span data-ar class="blk">القرارات تبقى</span><br><span data-en class="blk">with you.</span><span data-ar class="blk">معك.</span></h2>
+        <p><span data-en>The product organizes what is worth reviewing. Selection and cleanup remain deliberate.</span><span data-ar>ينظّم المنتج ما يستحق المراجعة. يبقى التحديد والتنظيف أمرًا متعمّدًا.</span></p>
       </header>
 
       <div class="ps-review-grid">
         <article class="ps-review-card ps-review-card--photos" data-pc-site-reveal>
-          <p class="ps-review-card__index"><span>01</span><span>Photos</span></p>
-          <h3>Find the visual noise.</h3>
-          <p>Review screenshots, large photos, similar photos, duplicate groups, Live Photos, low-resolution media, and older items in separate lists.</p>
+          <p class="ps-review-card__index"><span>01</span><span><span data-en>Photos</span><span data-ar>الصور</span></span></p>
+          <h3><span data-en>Find the visual noise.</span><span data-ar>اعثر على الضجيج البصري.</span></h3>
+          <p><span data-en>Review screenshots, large photos, similar photos, duplicate groups, Live Photos, low-resolution media, and older items in separate lists.</span><span data-ar>راجع لقطات الشاشة والصور الكبيرة والمتشابهة ومجموعات التكرار وصور لايف والوسائط منخفضة الدقة والعناصر الأقدم في قوائم منفصلة.</span></p>
         </article>
         <article class="ps-review-card ps-review-card--videos" data-pc-site-reveal>
-          <p class="ps-review-card__index"><span>02</span><span>Videos</span></p>
-          <h3>Start with what is large.</h3>
-          <p>See all videos and the largest files together, with their size available before you decide what to do.</p>
+          <p class="ps-review-card__index"><span>02</span><span><span data-en>Videos</span><span data-ar>الفيديوهات</span></span></p>
+          <h3><span data-en>Start with what is large.</span><span data-ar>ابدأ بما هو كبير.</span></h3>
+          <p><span data-en>See all videos and the largest files together, with their size available before you decide what to do.</span><span data-ar>شاهد كل الفيديوهات وأكبر الملفات معًا، بحجمها متاحًا قبل أن تقرر ماذا تفعل.</span></p>
         </article>
         <article class="ps-review-card ps-review-card--contacts" data-pc-site-reveal>
-          <p class="ps-review-card__index"><span>03</span><span>Contacts + files</span></p>
-          <h3>Bring order beyond media.</h3>
-          <p>Review duplicate or incomplete contacts, repeated numbers, and folders in your downloads. Contact cleanup includes backup and restore.</p>
+          <p class="ps-review-card__index"><span>03</span><span><span data-en>Contacts + files</span><span data-ar>جهات الاتصال + الملفات</span></span></p>
+          <h3><span data-en>Bring order beyond media.</span><span data-ar>أحضر النظام إلى ما وراء الوسائط.</span></h3>
+          <p><span data-en>Review duplicate or incomplete contacts, repeated numbers, and folders in your downloads. Contact cleanup includes backup and restore.</span><span data-ar>راجع جهات الاتصال المكررة أو الناقصة والأرقام المتكررة ومجلدات التنزيلات. تنظيف جهات الاتصال يشمل النسخ الاحتياطي والاستعادة.</span></p>
         </article>
       </div>
 
       <div class="ps-control-note" data-pc-site-reveal>
-        <p class="ps-rule-label">Control point</p>
-        <strong>Review first. Confirm next. Cleanup is never presented as automatic.</strong>
-        <p>Photo deletion follows Apple’s system confirmation. Processing remains on the iPhone.</p>
+        <p class="ps-rule-label"><span data-en>Control point</span><span data-ar>نقطة تحكّم</span></p>
+        <strong><span data-en>Review first. Confirm next. Cleanup is never presented as automatic.</span><span data-ar>راجع أولًا. ثم أكّد. التنظيف لا يُقدَّم أبدًا كإجراء تلقائي.</span></strong>
+        <p><span data-en>Photo deletion follows Apple’s system confirmation. Processing remains on the iPhone.</span><span data-ar>حذف الصور يتبع تأكيد نظام آبل. تبقى المعالجة على الآيفون.</span></p>
       </div>
     </div>
   </section>
@@ -221,28 +226,28 @@
   <section class="ps-section ps-tools" aria-labelledby="tools-title">
     <div class="ps-section__inner">
       <header class="ps-chapter-heading" data-pc-site-reveal>
-        <p class="ps-kicker">Chapter 04 · Tools for reclaiming space</p>
-        <h2 id="tools-title">Reduce weight.<br>Keep control.</h2>
-        <p>PhoneSpace includes on-device resizing and format conversion alongside deliberate library review.</p>
+        <p class="ps-kicker"><span data-en>Chapter 04 · Tools for reclaiming space</span><span data-ar>الفصل ٠٤ · أدوات لاستعادة المساحة</span></p>
+        <h2 id="tools-title"><span data-en class="blk">Reduce weight.</span><span data-ar class="blk">خفّف الحمل.</span><br><span data-en class="blk">Keep control.</span><span data-ar class="blk">وحافظ على التحكم.</span></h2>
+        <p><span data-en>PhoneSpace includes on-device resizing and format conversion alongside deliberate library review.</span><span data-ar>يتضمن PhoneSpace تغيير الأبعاد وتحويل الصيغ على الجهاز إلى جانب مراجعة المكتبة بتمعّن.</span></p>
       </header>
 
       <div class="ps-tool-board">
         <div class="ps-tool-board__visual" aria-label="Abstract representations of PhoneSpace Resize and Convert tools" data-pc-site-reveal>
           <div class="ps-tool-row ps-tool-row--resize">
             <span class="ps-tool-row__glyph" aria-hidden="true">↘</span>
-            <span><strong>Resize</strong><small>Choose a target size and preview what is achievable</small></span>
-            <b>Preview first</b>
+            <span><strong><span data-en>Resize</span><span data-ar>تغيير الحجم</span></strong><small><span data-en>Choose a target size and preview what is achievable</span><span data-ar>اختر حجمًا مستهدفًا واعرض ما يمكن تحقيقه</span></small></span>
+            <b><span data-en>Preview first</span><span data-ar>العرض أولًا</span></b>
           </div>
           <div class="ps-tool-row ps-tool-row--convert">
             <span class="ps-tool-row__glyph" aria-hidden="true">⇄</span>
-            <span><strong>Convert</strong><small>Choose a photo or video format; converted photos keep metadata by default</small></span>
-            <b>On device</b>
+            <span><strong><span data-en>Convert</span><span data-ar>تحويل الصيغة</span></strong><small><span data-en>Choose a photo or video format; converted photos keep metadata by default</span><span data-ar>اختر صيغة صورة أو فيديو؛ الصور المحوَّلة تحتفظ بالبيانات الوصفية افتراضيًا</span></small></span>
+            <b><span data-en>On device</span><span data-ar>على الجهاز</span></b>
           </div>
         </div>
         <div class="ps-tool-board__copy" data-pc-site-reveal>
-          <p class="ps-rule-label">Abstract product diagram</p>
-          <h3>See the result before you start.</h3>
-          <p>Resize shows the requested size, achievable limit, and estimated saving. Convert Photos keeps photo resolution and metadata by default, with its own visible option to remove location and metadata.</p>
+          <p class="ps-rule-label"><span data-en>Abstract product diagram</span><span data-ar>مخطط منتج تجريدي</span></p>
+          <h3><span data-en>See the result before you start.</span><span data-ar>شاهد النتيجة قبل أن تبدأ.</span></h3>
+          <p><span data-en>Resize shows the requested size, achievable limit, and estimated saving. Convert Photos keeps photo resolution and metadata by default, with its own visible option to remove location and metadata.</span><span data-ar>يعرض تغيير الحجم الحجم المطلوب والحد القابل للتحقيق والوفر المقدَّر. يحافظ تحويل الصور على دقة الصورة وبياناتها الوصفية افتراضيًا، مع خيار ظاهر خاص به لإزالة الموقع والبيانات الوصفية.</span></p>
         </div>
       </div>
     </div>
@@ -251,9 +256,9 @@
   <section class="ps-section" aria-labelledby="evidence-title">
     <div class="ps-section__inner">
       <header class="ps-chapter-heading" data-pc-site-reveal>
-        <p class="ps-kicker">Chapter 05 · Real product evidence</p>
-        <h2 id="evidence-title">Real screens.<br>Clear choices.</h2>
-        <p>These are real PhoneSpace release-candidate screens showing Home, Resize, and Convert workflows. Decorative systems elsewhere on the page remain visibly abstract.</p>
+        <p class="ps-kicker"><span data-en>Chapter 05 · Real product evidence</span><span data-ar>الفصل ٠٥ · دليل منتج حقيقي</span></p>
+        <h2 id="evidence-title"><span data-en class="blk">Real screens.</span><span data-ar class="blk">شاشات حقيقية.</span><br><span data-en class="blk">Clear choices.</span><span data-ar class="blk">خيارات واضحة.</span></h2>
+        <p><span data-en>These are real PhoneSpace release-candidate screens showing Home, Resize, and Convert workflows. Decorative systems elsewhere on the page remain visibly abstract.</span><span data-ar>هذه شاشات حقيقية من نسخة PhoneSpace المرشّحة للإصدار تعرض مسارات الرئيسية وتغيير الحجم والتحويل. تبقى الأنظمة الزخرفية في مواضع أخرى من الصفحة مجردة بوضوح.</span></p>
       </header>
 
       <div class="ps-evidence-grid">
@@ -261,25 +266,25 @@
           <div class="ps-evidence-card__frame">
             <img src="/phonespace/assets/screenshots/home-dark.jpg" alt="PhoneSpace library in dark mode with its storage overview and category rows" width="820" height="1781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span>Real interface · 01</span><strong>Library · Night</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · 01</span><span data-ar>واجهة حقيقية · ٠١</span></span><strong><span data-en>Library · Night</span><span data-ar>المكتبة · ليلي</span></strong></figcaption>
         </figure>
         <figure class="ps-evidence-card" data-pc-site-reveal>
           <div class="ps-evidence-card__frame">
             <img src="/phonespace/assets/screenshots/resize.jpg" alt="PhoneSpace Resize screen showing selected photos, target size, achievable limit, estimated savings, and the Delete originals after resizing toggle" width="820" height="1781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span>Real interface · 02</span><strong>Resize · Preview</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · 02</span><span data-ar>واجهة حقيقية · ٠٢</span></span><strong><span data-en>Resize · Preview</span><span data-ar>تغيير الحجم · معاينة</span></strong></figcaption>
         </figure>
         <figure class="ps-evidence-card" data-pc-site-reveal>
           <div class="ps-evidence-card__frame">
             <img src="/phonespace/assets/screenshots/convert-photos.jpg" alt="PhoneSpace Convert screen with photo formats and the Remove location and metadata option" width="820" height="1781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span>Real interface · 03</span><strong>Convert · Photos</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · 03</span><span data-ar>واجهة حقيقية · ٠٣</span></span><strong><span data-en>Convert · Photos</span><span data-ar>تحويل · صور</span></strong></figcaption>
         </figure>
         <figure class="ps-evidence-card" data-pc-site-reveal>
           <div class="ps-evidence-card__frame">
             <img src="/phonespace/assets/screenshots/convert-videos.jpg" alt="PhoneSpace Convert screen with MP4 and MOV video format choices" width="820" height="1781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span>Real interface · 04</span><strong>Convert · Videos</strong></figcaption>
+          <figcaption><span><span data-en>Real interface · 04</span><span data-ar>واجهة حقيقية · ٠٤</span></span><strong><span data-en>Convert · Videos</span><span data-ar>تحويل · فيديوهات</span></strong></figcaption>
         </figure>
       </div>
     </div>
@@ -288,19 +293,19 @@
   <section class="ps-section ps-releases" aria-labelledby="release-title">
     <div class="ps-section__inner">
       <header class="ps-chapter-heading" data-pc-site-reveal>
-        <p class="ps-kicker">Chapter 06 · What changed</p>
-        <h2 id="release-title">The product<br>keeps moving.</h2>
-        <p>Release history is rendered from the existing Saud Apps release record.</p>
+        <p class="ps-kicker"><span data-en>Chapter 06 · What changed</span><span data-ar>الفصل ٠٦ · ما تغيّر</span></p>
+        <h2 id="release-title"><span data-en class="blk">The product</span><span data-ar class="blk">المنتج</span><br><span data-en class="blk">keeps moving.</span><span data-ar class="blk">يواصل التقدّم.</span></h2>
+        <p><span data-en>Release history is rendered from the existing Saud Apps release record.</span><span data-ar>سجل الإصدارات يُعرض من سجل إصدارات تطبيقات سعود القائم.</span></p>
       </header>
 
       <div class="ps-release-layout">
         <div class="ps-release-copy" data-pc-site-reveal>
-          <p class="ps-rule-label">Current fallback · iOS v1.1</p>
-          <p>Live App Store metadata enhances the page when available. The truthful static version remains visible when it is not.</p>
+          <p class="ps-rule-label"><span data-en>Current fallback · iOS v1.1</span><span data-ar>النسخة الاحتياطية الحالية · iOS v1.1</span></p>
+          <p><span data-en>Live App Store metadata enhances the page when available. The truthful static version remains visible when it is not.</span><span data-ar>بيانات آب ستور الحية تُثري الصفحة عند توفرها. وتبقى النسخة الثابتة الصادقة ظاهرة عند عدم توفرها.</span></p>
         </div>
         <div class="ps-release-wall" data-pc-site-reveal>
           <div data-releases="phonespace"></div>
-          <noscript><p>PhoneSpace is currently represented here as iOS version 1.1. JavaScript is required to display the full release history.</p></noscript>
+          <noscript><p><span data-en>PhoneSpace is currently represented here as iOS version 1.1. JavaScript is required to display the full release history.</span><span data-ar>يُمثَّل PhoneSpace هنا حاليًا بالإصدار iOS 1.1. يتطلب عرض سجل الإصدارات الكامل تمكين جافاسكربت.</span></p></noscript>
         </div>
       </div>
     </div>
@@ -308,17 +313,17 @@
 
   <section class="ps-coda" aria-labelledby="coda-title">
     <div class="ps-coda__content" data-pc-site-reveal>
-      <p class="ps-kicker">Chapter 07 · Breathing room</p>
-      <h2 id="coda-title">Make space<br>understandable.</h2>
-      <p>PhoneSpace runs its review and processing tools on your iPhone. Nothing is uploaded, and the final decision stays with you.</p>
+      <p class="ps-kicker"><span data-en>Chapter 07 · Breathing room</span><span data-ar>الفصل ٠٧ · متّسع للتنفّس</span></p>
+      <h2 id="coda-title"><span data-en class="blk">Make space</span><span data-ar class="blk">اجعل المساحة</span><br><span data-en class="blk">understandable.</span><span data-ar class="blk">مفهومة.</span></h2>
+      <p><span data-en>PhoneSpace runs its review and processing tools on your iPhone. Nothing is uploaded, and the final decision stays with you.</span><span data-ar>يشغّل PhoneSpace أدوات المراجعة والمعالجة على آيفونك. لا يُرفع أي شيء، والقرار النهائي يبقى لك.</span></p>
       <div class="ps-coda__actions">
-        <a class="pc-site-action pc-site-action--gold" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161">View on the App Store <span aria-hidden="true">↗</span></a>
-        <a class="pc-site-action" href="/">All Saud Apps <span aria-hidden="true">→</span></a>
+        <a class="pc-site-action pc-site-action--gold" href="https://apps.apple.com/us/app/phonespace-storage-cleaner/id6765632161"><span data-en>View on the App Store </span><span data-ar>اعرض على آب ستور </span><span aria-hidden="true">↗</span></a>
+        <a class="pc-site-action" href="/"><span data-en>All Saud Apps </span><span data-ar>كل تطبيقات سعود </span><span aria-hidden="true">→</span></a>
       </div>
       <nav class="ps-coda__links" aria-label="PhoneSpace support and legal links">
-        <a href="/phonespace/privacy.html">Privacy policy</a>
-        <a href="/phonespace/terms.html">Terms of use</a>
-        <a href="/support/">Support</a>
+        <a href="/phonespace/privacy.html"><span data-en>Privacy policy</span><span data-ar>سياسة الخصوصية</span></a>
+        <a href="/phonespace/terms.html"><span data-en>Terms of use</span><span data-ar>شروط الاستخدام</span></a>
+        <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
         <a href="mailto:support@saud.im">support@saud.im</a>
       </nav>
     </div>
@@ -326,21 +331,21 @@
 </main>
 
 <footer class="pc-site-footer">
-  <div class="pc-site-footer__identity"><strong>PHONESPACE · SAUD APPS</strong><span>Storage pressure, made understandable.</span></div>
+  <div class="pc-site-footer__identity"><strong>PHONESPACE · SAUD APPS</strong><span><span data-en>Storage pressure, made understandable.</span><span data-ar>ضغط التخزين، صار مفهومًا.</span></span></div>
   <nav aria-label="Footer navigation">
-    <a href="/">Home</a>
+    <a href="/"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="/sshift/">SShift</a>
     <a href="/phonespace/" aria-current="page">PhoneSpace</a>
     <a href="/filed/">Filed</a>
     <a href="/dufaat/">Dufaat</a>
-    <a href="/about/">About</a>
-    <a href="/support/">Support</a>
-    <a href="/legal/">Legal</a>
+    <a href="/about/"><span data-en>About</span><span data-ar>عن المطوّر</span></a>
+    <a href="/support/"><span data-en>Support</span><span data-ar>الدعم</span></a>
+    <a href="/legal/"><span data-en>Legal</span><span data-ar>الشؤون القانونية</span></a>
   </nav>
-  <div class="pc-site-footer__base"><span>© 2026 Saud Apps · by Saud Ismail</span><a href="mailto:support@saud.im">support@saud.im</a></div>
+  <div class="pc-site-footer__base"><span><span data-en>© 2026 Saud Apps · by Saud Ismail</span><span data-ar>© 2026 تطبيقات سعود · بقلم سعود إسماعيل</span></span><a href="mailto:support@saud.im">support@saud.im</a></div>
 </footer>
 
-<script src="/assets/product-cinema-core.js?v=batch1-v2" defer></script>
+<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
 <script src="/phonespace/product-cinema.js?v=batch1-v2" defer></script>
 <script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>

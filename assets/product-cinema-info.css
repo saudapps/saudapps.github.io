@@ -20,8 +20,10 @@ body.pc-info.pc-dufaat { --brand-mark-accent: #287f73; }
 :root[data-theme="dark"] body.pc-info.pc-filed { --brand-mark-accent: #78bfd8; }
 :root[data-theme="dark"] body.pc-info.pc-dufaat { --brand-mark-accent: #73d4c2; }
 
-body.pc-info > .topbar,
-body.pc-info > .site-footer { display: none; }
+/* The preserved source shell stays visible for no-JS visitors; it is hidden
+   only after the enhanced Product Cinema shell has fully replaced it. */
+html.pc-info-shell body.pc-info > .topbar,
+html.pc-info-shell body.pc-info > .site-footer { display: none; }
 body.pc-info .pc-site-header { position: relative; background: color-mix(in srgb, var(--pc-paper) 87%, transparent); }
 body.pc-info > main {
   width: min(100% - (var(--pc-pad) * 2), 920px);
