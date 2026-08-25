@@ -387,3 +387,36 @@ This evidence is time-bound and must be repeated before a future release.
   `git diff --check`.
 - `PENDING`: Live-route verification, independent review, and Release-gate
   approval; no network access, commit, or push occurred in this phase.
+
+## 2026-08-25 Phase E release supply-chain hardening
+
+- `VERIFIED`: `jsonwebtoken` was confirmed at exactly `9.0.3` (latest stable)
+  against the official npm registry before pinning.
+- `VERIFIED`: A minimal private-root `package.json` was added with the single
+  exact dependency `jsonwebtoken` `9.0.3`, a `node --test` script, and a
+  Node `>=22` engine floor. The website itself remains static; the dependency
+  serves only the release-sync workflow.
+- `VERIFIED`: `package-lock.json` (lockfileVersion 3) was generated only by the
+  official npm CLI (12.0.2, downloaded from `registry.npmjs.org` into a
+  temporary worktree-local directory). All 15 locked packages resolve from
+  `https://registry.npmjs.org/` with sha512 integrity hashes. No `node_modules`
+  directory was created or committed in the repository root.
+- `VERIFIED`: `.github/workflows/sync-releases.yml` now installs with
+  `npm ci --ignore-scripts` (no ad-hoc `npm install jsonwebtoken`), declares a
+  `sync-releases` concurrency group with `cancel-in-progress: false`, and on
+  change re-fetches `main`, rebases onto it, and pushes explicitly with
+  `git push origin HEAD:main`. No force-push flags are present. Protected site,
+  data hooks, `releases.json`, and fetcher logic were untouched.
+- `VERIFIED`: New static offline tests in `tests/supply-chain.test.mjs`
+  enforce the pin, lockfile registry/integrity coverage, the `npm ci
+  --ignore-scripts` step, the serialized concurrency setting, and the safe
+  no-force push sequence. Full suite (`npm test`) passed: 19 tests, 0 failures,
+  run entirely offline.
+- `VERIFIED`: An isolated `npm ci --ignore-scripts` from the generated
+  lockfile ran in the worktree-local `.phase-e-tmp/ci-check` sandbox and
+  succeeded (15 packages); `jsonwebtoken` 9.0.3 signed and verified a token
+  in that sandbox, which was removed afterwards along with its
+  `node_modules`.
+- `PENDING`: Independent review and Release-gate approval; no commit or push
+  occurred in this phase, so the workflow change has not yet run on GitHub
+  Actions.
