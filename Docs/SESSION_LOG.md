@@ -23,6 +23,28 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-08-26 — Product typography inheritance follow-up
+- Done: Fixed the final cascade issue that allowed bilingual wrapper spans to
+  override the intended heading and body-copy sizes on Product Cinema app
+  pages. Aligned PhoneSpace, Filed, and Dufaat compact labels with the SShift
+  scale and advanced the shared stylesheet cache version on all four app
+  routes. Retained the existing product images after verifying that they still
+  represent the visible interfaces accurately.
+- Decisions: Bilingual wrappers inherit only the component font size at the end
+  of the shared readability cascade; Arabic weight, spacing, transform, and
+  line-height remain independently protected. Desktop labels follow the SShift
+  scale while route-specific mobile composition stays intact.
+- Open / next: Publish the approved candidate to `main`, verify the Pages
+  deployment, and spot-check the four live app routes.
+- Deploy state: Owner approved immediate publication; candidate validation is
+  complete and publication is pending.
+- Live-check: Pending publication. Local English/light and Arabic/dark checks
+  passed for PhoneSpace, Filed, and Dufaat with no wrapper mismatch, horizontal
+  overflow, or browser error.
+- ChatGPT review: Independent review initially blocked overly broad wrapper and
+  desktop-label rules. Both findings were corrected; the follow-up review
+  returned PASS with no remaining P0-P3 findings.
+
 ## 2026-08-26 — Product-page readability and SShift 5.1 screenshots
 - Done: Prepared an isolated candidate that raises meaningful card copy,
   captions, metadata, and product labels across the four Product Cinema app

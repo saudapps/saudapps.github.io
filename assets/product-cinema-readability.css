@@ -246,3 +246,38 @@ html[lang="ar"] :where(.pc-week-system__notes small, .ps-review-card p, .ps-tool
   .pc-dufaat .df-record__grid p,
   .pc-dufaat .df-plus__grid p { font-size: 14px; }
 }
+
+/* Bring route-local labels onto SShift's readable desktop scale without
+   overriding the deliberately tighter mobile compositions in route CSS. */
+@media (min-width: 721px) {
+  .pc-phonespace .ps-opening__edition,
+  .pc-filed .fl-opening__edition,
+  .pc-dufaat .df-opening__edition { font-size: 10px; line-height: 1.35; }
+
+  .pc-phonespace .ps-lockup small,
+  .pc-filed .fl-lockup small,
+  .pc-dufaat .df-lockup small { font-size: 9px; line-height: 1.45; }
+
+  .pc-phonespace :where(.ps-kicker, .ps-rule-label),
+  .pc-filed :where(.fl-kicker, .fl-rule-label),
+  .pc-dufaat :where(.df-kicker, .df-rule-label) { font-size: 10px; line-height: 1.45; }
+
+  .pc-phonespace .ps-hero-cluster { font-size: 10px; }
+  .pc-filed .fl-folder-plane > span { font-size: 10px; }
+  .pc-filed .fl-rail > span { font-size: 8px; }
+  .pc-dufaat .df-opening__eyebrow { font-size: 10px; line-height: 1.45; }
+  .pc-dufaat .df-opening__rail > span,
+  .pc-dufaat .df-opening__evidence-note > span { font-size: 9px; line-height: 1.4; }
+  .pc-dufaat .df-proof-sheet__attachment > i { font-size: 10px; }
+
+  .pc-phonespace .release-date,
+  .pc-filed .release-date,
+  .pc-dufaat .release-date { font-size: 11px; line-height: 1.45; }
+}
+
+/* Bilingual wrappers must inherit the component's size even when a broad
+   route-local span selector appears later in the cascade. Arabic weight,
+   spacing, transform, and line-height remain owned by the rules above. */
+:where(.pc-sshift, .pc-phonespace, .pc-filed, .pc-dufaat) :where([data-en], [data-ar]) {
+  font-size: inherit !important;
+}

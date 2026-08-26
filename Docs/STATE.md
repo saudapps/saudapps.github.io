@@ -4,6 +4,21 @@ This is the first current-state reference for the public Saud Apps website. It
 separates verified repository and network facts from reported state and
 unknowns.
 
+## 2026-08-26 Product-page typography follow-up
+
+- `VERIFIED`: The four primary app pages share the final Product Cinema
+  readability layer. Bilingual `data-en` / `data-ar` wrappers are
+  typographically transparent, so route-local `span` rules cannot shrink
+  meaningful headings or body copy below their component scale.
+- `VERIFIED`: PhoneSpace, Filed, and Dufaat compact labels use the same
+  restrained desktop scale as SShift while route-specific mobile composition
+  and decorative notation remain intact.
+- `VERIFIED`: The current PhoneSpace, Filed, and Dufaat product captures remain
+  accurate for the visible interface. No duplicate screenshot replacement is
+  required for this site change.
+- `VERIFIED`: Release hooks, generated release data, public App Store links,
+  legal routes, and app copy are unchanged.
+
 ## 2026-08-11 PhoneSpace 1.2 release candidate
 
 - `VERIFIED`: The local PhoneSpace Product Cinema candidate replaces obsolete

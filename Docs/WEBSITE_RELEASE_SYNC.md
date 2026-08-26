@@ -30,6 +30,19 @@ Trigger the sync when ANY of these is true for an app:
 - Do not change GitHub Pages / Jekyll configuration as part of a routine release sync.
 - For per-app status and links, see Docs/APPS.md.
 
+## 2026-08-26 PhoneSpace, Filed, and Dufaat review-cycle sync
+
+- [x] Existing product pages and approved screenshot sets compared with the
+      visible app interfaces; no duplicate image replacement was required.
+- [x] Shared bilingual font-size inheritance corrected across all four app
+      routes, with PhoneSpace, Filed, and Dufaat desktop labels aligned to the
+      SShift scale and route-specific mobile sizing preserved.
+- [x] Existing App Store, release-history, support, privacy, and terms hooks
+      preserved; `releases.json` was not edited manually.
+- [x] English/light and Arabic/dark browser checks completed locally with no
+      horizontal overflow or console error.
+- [ ] GitHub Pages publication and live route spot-check.
+
 ## 2026-08-11 PhoneSpace 1.2 run
 
 - [x] Local app page copy and current screenshots prepared.

@@ -3,6 +3,26 @@
 This document records the current validation reality and the minimum review
 matrix for website changes. It does not claim an unexecuted check passed.
 
+## 2026-08-26 Product typography follow-up evidence
+
+- `git diff --check` passed.
+- `python3 scripts/check_bilingual.py --git` passed all 16 route, toggle,
+  shell, theme/language separation, CSS-balance, narrow-header, cache-version,
+  and forbidden-scope checks.
+- The Node test suite passed all 19 release-pipeline tests. JavaScript syntax
+  checks passed for the public runtime and release-sync files, and
+  `sitemap.xml` passed `xmllint` validation.
+- Local browser checks covered PhoneSpace, Filed, and Dufaat in English/light
+  and Arabic/dark. Every route reported zero bilingual typography-wrapper
+  mismatches, zero horizontal overflow, and zero browser console errors.
+- Meaningful headings and body copy inherited their component type scale after
+  the fix. Arabic display weight, spacing, and line-height protections remained
+  active. Remaining compact text is limited to chapter labels, product
+  lockups, and decorative evidence notation; route-specific mobile sizing is
+  preserved.
+- Current screenshot assets were retained because the app updates did not
+  change the visible layouts represented on the website.
+
 ## 2026-08-11 Dufaat 2.2 publication evidence
 
 - `git diff --check` passed for the reviewed site range.
