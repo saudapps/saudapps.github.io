@@ -29,11 +29,14 @@ Public repo: keep entries free of secrets and private local machine paths.
   pages while preserving compact decorative notation. Corrected localized
   wrapper spans so they inherit the intended component typography. Added the
   eight current SShift 5.1 iPhone captures as optimized web assets and made the
-  SShift imagery follow the selected English or Arabic site language.
+  SShift imagery follow the selected English or Arabic site language. Added a
+  self-hosted Arabic-only Alexandria variable-font subset for Product Cinema
+  headings, with its OFL license preserved in the public font asset directory.
 - Decisions: Readability changes are targeted rather than a global type scale
   increase. English uses the current light captures and Arabic uses the current
-  dark captures. Release-data hooks and generated release data remain
-  unchanged.
+  dark captures. Alexandria is limited to Arabic display headings and selected
+  title lines; body copy and English typography remain unchanged. Release-data
+  hooks and generated release data remain unchanged.
 - Open / next: Obtain owner release approval, then reconcile with current
   `origin/main`, publish the reviewed candidate, and verify all four live app
   routes.
@@ -42,7 +45,8 @@ Public repo: keep entries free of secrets and private local machine paths.
   desktop and mobile widths with no horizontal overflow or browser errors.
 - ChatGPT review: Independent read-only review approved the final candidate
   with no remaining P0-P3 findings after the initial image-load and no-JS
-  fallback findings were resolved.
+  fallback findings were resolved. A follow-up typography review also approved
+  Alexandria licensing, Arabic-only scoping, and the final mobile line spacing.
 
 ## 2026-08-11 — Dufaat 2.2 App Store release confirmed
 - Done: Apple published Dufaat 2.2. The public Saudi App Store lookup returned
