@@ -22,8 +22,14 @@
   }
 
   function updateImages(theme) {
+    var lang = root.getAttribute('lang') === 'ar' ? 'ar' : 'en';
     document.querySelectorAll('[data-pc-theme-image]').forEach(function (image) {
-      var source = image.getAttribute(theme === 'dark' ? 'data-dark-src' : 'data-light-src');
+      var localizedAttribute = 'data-' + lang + '-' + (theme === 'dark' ? 'dark' : 'light') + '-src';
+      var source = image.getAttribute(localizedAttribute) || image.getAttribute(theme === 'dark' ? 'data-dark-src' : 'data-light-src');
+      if (source && image.getAttribute('src') !== source) image.setAttribute('src', source);
+    });
+    document.querySelectorAll('[data-pc-lang-image]').forEach(function (image) {
+      var source = image.getAttribute(lang === 'ar' ? 'data-ar-src' : 'data-en-src');
       if (source && image.getAttribute('src') !== source) image.setAttribute('src', source);
     });
   }
@@ -92,6 +98,7 @@
       button.setAttribute('aria-pressed', button.getAttribute('data-lang-btn') === lang ? 'true' : 'false');
     });
     localizeAttributes(lang);
+    updateImages(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
     if (persist) {
       try { localStorage.setItem(langKey, lang); } catch (error) {}
     }

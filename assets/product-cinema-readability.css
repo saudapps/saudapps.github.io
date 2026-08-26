@@ -1,0 +1,156 @@
+/* Saud Apps — readable type pass for product pages.
+   Keeps decorative film notation compact while lifting product information,
+   card copy, captions, and interactive labels above micro-type sizes. */
+
+.pc-site-brand small { font-size: 10px; }
+.pc-site-nav a { font-size: 11px; }
+.pc-site-theme button,
+.pc-site-lang button,
+.pc-site-menu summary { font-size: 10px; }
+.pc-site-footer__identity > span { font-size: 13px; line-height: 1.5; }
+.pc-site-footer nav a { font-size: 11px; }
+.pc-site-footer__base { font-size: 11px; line-height: 1.5; }
+
+/* With JavaScript disabled, show the real English fallback from <noscript>
+   instead of the network-free bootstrap placeholder. */
+html:not(.pc-site-js) .pc-sshift .pc-product-hero-screen > img[data-pc-lang-image] { display: none; }
+
+/* Language spans are content wrappers, not a second typography layer. */
+.pc-sshift [data-en],
+.pc-sshift [data-ar],
+.pc-phonespace [data-en],
+.pc-phonespace [data-ar],
+.pc-filed [data-en],
+.pc-filed [data-ar],
+.pc-dufaat [data-en],
+.pc-dufaat [data-ar] {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+}
+
+/* SShift */
+.pc-sshift .pc-product-meta { font-size: 11px; line-height: 1.45; }
+.pc-sshift .pc-week-system__score > div > span { font-size: 11px; line-height: 1.4; }
+.pc-sshift .pc-week-system__score small { font-size: 12px; line-height: 1.35; }
+.pc-sshift .pc-week-system__notes p { padding: 28px; gap: 13px; }
+.pc-sshift .pc-week-system__notes p > span { font-size: 11px; line-height: 1.4; }
+.pc-sshift .pc-week-system__notes strong { line-height: 1.3; }
+.pc-sshift .pc-week-system__notes small { font-size: 15px; line-height: 1.65; }
+.pc-sshift .pc-story__index small,
+.pc-sshift .pc-story figcaption > span,
+.pc-sshift .pc-story__annotation > span { font-size: 10px; line-height: 1.45; }
+.pc-sshift .pc-story__copy > p:last-child { font-size: 15px; }
+.pc-sshift .pc-real-screens__grid figcaption > span { font-size: 10px; }
+.pc-sshift .pc-real-screens__grid figcaption strong { font-size: 13px; line-height: 1.4; }
+.pc-sshift .release-date,
+.pc-sshift .pc-coda-link > span { font-size: 11px; }
+.pc-sshift .release-notes { font-size: 14px; }
+.pc-sshift .release-history summary,
+.pc-sshift .pc-continuity__action nav a { font-size: 12px; }
+
+/* PhoneSpace */
+.pc-phonespace .ps-opening__metadata { font-size: 12px; line-height: 1.45; }
+.pc-phonespace .ps-pressure-cluster span,
+.pc-phonespace .ps-sequence__step > span,
+.pc-phonespace .ps-review-card__index,
+.pc-phonespace .ps-tool-row b { font-size: 10px; line-height: 1.4; }
+.pc-phonespace .ps-pressure-cluster small { font-size: 13px; line-height: 1.55; }
+.pc-phonespace .ps-sequence__step p { font-size: 14px; line-height: 1.65; }
+.pc-phonespace .ps-chapter-heading > p:last-child,
+.pc-phonespace .ps-review-card p { font-size: 15px; line-height: 1.65; }
+.pc-phonespace .ps-control-note p { font-size: 14px; line-height: 1.65; }
+.pc-phonespace .ps-tool-row small { font-size: 14px; line-height: 1.55; }
+.pc-phonespace .ps-evidence-card figcaption { font-size: 11px; line-height: 1.45; }
+.pc-phonespace .ps-coda__links a { font-size: 12px; }
+
+/* Filed */
+.pc-filed .fl-opening__metadata { font-size: 12px; line-height: 1.45; }
+.pc-filed .fl-filing__step > span,
+.pc-filed .fl-control__grid > article > span,
+.pc-filed .fl-signature-board > p { font-size: 10px; line-height: 1.4; }
+.pc-filed .fl-filing__step p { font-size: 14px; line-height: 1.65; }
+.pc-filed .fl-folder-row > span,
+.pc-filed .fl-folder-row small { font-size: 12px; line-height: 1.4; }
+.pc-filed .fl-organize__system > p { font-size: 11px; line-height: 1.5; }
+.pc-filed .fl-reader__index span { font-size: 13px; }
+.pc-filed .fl-reader__index b { font-size: 11px; }
+.pc-filed .fl-control__grid p { font-size: 15px; line-height: 1.65; }
+.pc-filed .fl-product-figure figcaption,
+.pc-filed .fl-record-card figcaption { font-size: 11px; line-height: 1.45; }
+.pc-filed .fl-release-static header span { font-size: 11px; }
+.pc-filed .fl-coda__links a { font-size: 12px; }
+
+/* Dufaat */
+.pc-dufaat .df-opening__metadata { font-size: 12px; line-height: 1.45; }
+.pc-dufaat .df-obligation > span,
+.pc-dufaat .df-due-marker > span,
+.pc-dufaat .df-proof-marker > span,
+.pc-dufaat .df-settlement__steps span,
+.pc-dufaat .df-record__grid article > span,
+.pc-dufaat .df-plus__purchase > div:first-child > span,
+.pc-dufaat .df-plus__grid article > span { font-size: 10px; line-height: 1.4; }
+.pc-dufaat .df-due-marker strong,
+.pc-dufaat .df-paid-marker strong,
+.pc-dufaat .df-proof-marker strong { font-size: 13px; }
+.pc-dufaat .df-settled-line { font-size: 10px; line-height: 1.4; }
+.pc-dufaat .df-settlement__steps p,
+.pc-dufaat .df-progress__ledger p { font-size: 14px; line-height: 1.6; }
+.pc-dufaat .df-status-rail span { font-size: 13px; }
+.pc-dufaat .df-status-rail b,
+.pc-dufaat .df-progress__ledger article > span { font-size: 11px; }
+.pc-dufaat .df-progress__ledger article > b { font-size: 10px; }
+.pc-dufaat .df-proof-sheet__head,
+.pc-dufaat .df-proof-sheet__foot { font-size: 10px; line-height: 1.45; }
+.pc-dufaat .df-proof-sheet__line { font-size: 12px; }
+.pc-dufaat .df-proof-sheet__attachment small { font-size: 13px; line-height: 1.45; }
+.pc-dufaat .df-record__grid p,
+.pc-dufaat .df-plus__purchase p,
+.pc-dufaat .df-plus__grid p,
+.pc-dufaat .df-plus__free { font-size: 15px; line-height: 1.65; }
+.pc-dufaat .df-record__grid article > b,
+.pc-dufaat .df-plus__grid article > b { font-size: 10px; }
+.pc-dufaat .df-plus__price span { font-size: 12px; line-height: 1.55; }
+.pc-dufaat .df-product-figure figcaption,
+.pc-dufaat .df-gallery-card figcaption { font-size: 11px; line-height: 1.45; }
+.pc-dufaat .df-release-entry header span { font-size: 11px; }
+.pc-dufaat .df-coda__links a { font-size: 12px; }
+
+/* Arabic glyphs need natural spacing and a little more breathing room. */
+html[lang="ar"] :where(.pc-sshift, .pc-phonespace, .pc-filed, .pc-dufaat) [data-ar] {
+  letter-spacing: 0;
+  text-transform: none;
+}
+html[lang="ar"] :where(.pc-week-system__notes small, .ps-review-card p, .ps-tool-row small, .fl-control__grid p, .df-record__grid p, .df-plus__grid p) {
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .pc-sshift .pc-week-system__score small { font-size: 12px; }
+  .pc-sshift .pc-week-system__notes p { padding: 24px; }
+  .pc-phonespace .ps-pressure-cluster small { font-size: 12px; }
+}
+
+@media (max-width: 720px) {
+  .pc-site-brand small { font-size: 9px; }
+  .pc-site-theme button,
+  .pc-site-lang button,
+  .pc-site-menu summary { font-size: 9px; }
+
+  .pc-sshift .pc-week-system__score > div > span { font-size: 11px; }
+  .pc-sshift .pc-week-system__score small { font-size: 11.5px; overflow-wrap: anywhere; }
+  .pc-sshift .pc-week-system__notes small { font-size: 14px; }
+  .pc-sshift .pc-story__copy > p:last-child { font-size: 14px; }
+
+  .pc-phonespace .ps-opening__metadata,
+  .pc-filed .fl-opening__metadata,
+  .pc-dufaat .df-opening__metadata { font-size: 11.5px; line-height: 1.4; }
+
+  .pc-phonespace .ps-review-card p,
+  .pc-filed .fl-control__grid p,
+  .pc-dufaat .df-record__grid p,
+  .pc-dufaat .df-plus__grid p { font-size: 14px; }
+}

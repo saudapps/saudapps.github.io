@@ -42,6 +42,7 @@
 </style>
 <link rel="stylesheet" href="/assets/product-cinema.css?v=20260825-bilingual1">
 <link rel="stylesheet" href="/assets/product-cinema-atmosphere.css?v=atmosphere-legal-bg-1">
+<link rel="stylesheet" href="/assets/product-cinema-readability.css?v=20260826-1">
 <script>
   (function () {
     try {
@@ -113,8 +114,21 @@
 
     <figure class="pc-product-hero-screen pc-screen-frame">
       <span class="pc-product-hero-screen__day" aria-hidden="true"><span data-en>MON · TUE · WED · THU · FRI · SAT · SUN</span><span data-ar>الاثنين · الثلاثاء · الأربعاء · الخميس · الجمعة · السبت · الأحد</span></span>
-      <img src="/sshift/assets/screenshots/calendar-light.jpg" data-theme-image data-light-src="/sshift/assets/screenshots/calendar-light.jpg" data-dark-src="/sshift/assets/screenshots/calendar-dark.jpg" alt="SShift month calendar showing color-coded work, rest, training, and leave days" width="820" height="1781" fetchpriority="high" decoding="async">
-      <figcaption><span><span data-en>REAL PRODUCT SCREEN</span><span data-ar>شاشة منتج حقيقية</span></span><span>01 / 07</span></figcaption>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/01-en-light-calendar.jpg" data-ar-src="/sshift/assets/screenshots/5-1/01-ar-dark-calendar.jpg" data-alt-en="SShift calendar in English showing the current shift pattern" data-alt-ar="تقويم SShift بالعربية يعرض نمط الورديات الحالي" alt="SShift calendar in English showing the current shift pattern" width="819" height="1781" fetchpriority="high" decoding="async">
+      <script>
+        (function () {
+          var image = document.currentScript.previousElementSibling;
+          var lang = null;
+          try { lang = localStorage.getItem('saudapps-lang'); } catch (error) {}
+          if (lang !== 'ar' && lang !== 'en') lang = (navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en';
+          document.documentElement.setAttribute('lang', lang);
+          document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+          image.setAttribute('src', image.getAttribute(lang === 'ar' ? 'data-ar-src' : 'data-en-src'));
+          image.setAttribute('alt', image.getAttribute(lang === 'ar' ? 'data-alt-ar' : 'data-alt-en'));
+        })();
+      </script>
+      <noscript><img src="/sshift/assets/screenshots/5-1/01-en-light-calendar.jpg" alt="SShift calendar in English showing the current shift pattern" width="819" height="1781"></noscript>
+      <figcaption><span><span data-en>REAL PRODUCT SCREEN</span><span data-ar>شاشة منتج حقيقية</span></span><span>01 / 04</span></figcaption>
     </figure>
 
     <div class="pc-product-opening__statement">
@@ -166,8 +180,8 @@
     <article class="pc-story pc-story--pattern" data-pc-reveal>
       <div class="pc-story__index"><span>01</span><small><span data-en>SEE THE PATTERN</span><span data-ar>شاهد النمط</span></small></div>
       <figure>
-        <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/dashboard.jpg" alt="SShift dashboard summarizing the month with work, rest, and leave counts" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span><span data-en>02 / 07 · DASHBOARD</span><span data-ar>٠٢ / ٠٧ · لوحة الملخص</span></span><strong><span data-en>Your month, summed up before the next shift begins.</span><span data-ar>شهرك ملخّصًا قبل أن تبدأ ورديتك التالية.</span></strong></figcaption>
+        <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/02-en-light-dashboard.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/02-en-light-dashboard.jpg" data-ar-src="/sshift/assets/screenshots/5-1/02-ar-dark-dashboard.jpg" data-alt-en="SShift dashboard in English summarizing the active schedule" data-alt-ar="لوحة ملخص SShift بالعربية تلخص الجدول النشط" alt="SShift dashboard in English summarizing the active schedule" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span><span data-en>02 / 04 · DASHBOARD</span><span data-ar>٠٢ / ٠٤ · لوحة الملخص</span></span><strong><span data-en>Your month, summed up before the next shift begins.</span><span data-ar>شهرك ملخّصًا قبل أن تبدأ ورديتك التالية.</span></strong></figcaption>
       </figure>
       <div class="pc-story__copy">
         <p class="pc-story__annotation"><span><span data-en>MONTH TOTALS</span><span data-ar>إجماليات الشهر</span></span><span><span data-en>TYPE BREAKDOWN</span><span data-ar>تفصيل الأنواع</span></span><span><span data-en>NEXT EVENT</span><span data-ar>الحدث التالي</span></span></p>
@@ -177,23 +191,23 @@
     </article>
 
     <article class="pc-story pc-story--edit" data-pc-reveal>
-      <div class="pc-story__index"><span>02</span><small><span data-en>SHAPE A DAY</span><span data-ar>شكّل يومًا</span></small></div>
+      <div class="pc-story__index"><span>02</span><small><span data-en>CHOOSE THE LOOK</span><span data-ar>اختر المظهر</span></small></div>
       <figure>
-        <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/day-detail.jpg" alt="Editing a day in SShift with color-coded shift and leave types" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span><span data-en>03 / 07 · DAY DETAIL</span><span data-ar>٠٣ / ٠٧ · تفاصيل اليوم</span></span><strong><span data-en>Exceptions stay part of the same visual language.</span><span data-ar>الاستثناءات تبقى جزءًا من اللغة البصرية نفسها.</span></strong></figcaption>
+        <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/04-en-light-appearance.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/04-en-light-appearance.jpg" data-ar-src="/sshift/assets/screenshots/5-1/04-ar-dark-appearance.jpg" data-alt-en="SShift appearance controls in English" data-alt-ar="خيارات مظهر SShift بالعربية" alt="SShift appearance controls in English" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span><span data-en>04 / 04 · APPEARANCE</span><span data-ar>٠٤ / ٠٤ · المظهر</span></span><strong><span data-en>The interface follows the way you prefer to work.</span><span data-ar>الواجهة تتبع الطريقة التي تفضّل العمل بها.</span></strong></figcaption>
       </figure>
       <div class="pc-story__copy">
-        <p class="pc-story__annotation"><span><span data-en>TYPE</span><span data-ar>النوع</span></span><span><span data-en>COLOR</span><span data-ar>اللون</span></span><span><span data-en>NOTE</span><span data-ar>ملاحظة</span></span></p>
-        <h3><span data-en>Change the date, not the system.</span><span data-ar>غيّر التاريخ، لا النظام.</span></h3>
-        <p><span data-en>Tap a day, choose the correct shift or leave type, and keep the calendar coherent. The detail view is direct because the schedule is already complex enough.</span><span data-ar>اضغط على يوم، واختر نوع الوردية أو الإجازة الصحيح، وحافظ على تماسك التقويم. عرض التفاصيل مباشر لأن الجدولة معقّدة بما يكفي.</span></p>
+        <p class="pc-story__annotation"><span><span data-en>LIGHT</span><span data-ar>فاتح</span></span><span><span data-en>DARK</span><span data-ar>داكن</span></span><span><span data-en>SYSTEM</span><span data-ar>النظام</span></span></p>
+        <h3><span data-en>Make the schedule comfortable to read.</span><span data-ar>اجعل الجدول مريحًا للقراءة.</span></h3>
+        <p><span data-en>Choose light, dark, or the system appearance. SShift keeps the schedule's colors and meaning clear in every mode.</span><span data-ar>اختر المظهر الفاتح أو الداكن أو مظهر النظام. يحافظ SShift على وضوح ألوان الجدول ومعانيه في كل نمط.</span></p>
       </div>
     </article>
 
     <article class="pc-story pc-story--control" data-pc-reveal>
       <div class="pc-story__index"><span>03</span><small><span data-en>DIRECT THE SYSTEM</span><span data-ar>وجّه النظام</span></small></div>
       <figure>
-        <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/settings.jpg" alt="SShift settings for schedule, reminders, PDF export, backup, language, and about" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span><span data-en>05 / 07 · SETTINGS</span><span data-ar>٠٥ / ٠٧ · الإعدادات</span></span><strong><span data-en>Reminders, export, backup, and language stay within reach.</span><span data-ar>التذكيرات والتصدير والنسخ الاحتياطي واللغة تبقى في المتناول.</span></strong></figcaption>
+        <div class="pc-story__screen pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/03-en-light-settings.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/03-en-light-settings.jpg" data-ar-src="/sshift/assets/screenshots/5-1/03-ar-dark-settings.jpg" data-alt-en="SShift settings in English for schedule, reminders, export, and language" data-alt-ar="إعدادات SShift بالعربية للجدول والتذكيرات والتصدير واللغة" alt="SShift settings in English for schedule, reminders, export, and language" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span><span data-en>03 / 04 · SETTINGS</span><span data-ar>٠٣ / ٠٤ · الإعدادات</span></span><strong><span data-en>Reminders, export, backup, and language stay within reach.</span><span data-ar>التذكيرات والتصدير والنسخ الاحتياطي واللغة تبقى في المتناول.</span></strong></figcaption>
       </figure>
       <div class="pc-story__copy">
         <p class="pc-story__annotation"><span><span data-en>REMINDERS</span><span data-ar>التذكيرات</span></span><span><span data-en>EXPORT</span><span data-ar>التصدير</span></span><span><span data-en>LANGUAGE</span><span data-ar>اللغة</span></span></p>
@@ -207,25 +221,25 @@
     <header class="pc-chapter-heading" data-pc-reveal>
       <p class="pc-kicker"><span data-en>Chapter 04 · The complete cut</span><span data-ar>الفصل ٠٤ · المونتاج الكامل</span></p>
       <h2 id="screens-title"><span data-en class="blk">Four more views.</span><span data-ar class="blk">أربعة مشاهد أخرى.</span><br><span data-en class="blk">No filler.</span><span data-ar class="blk">بلا حشو.</span></h2>
-      <p><span data-en>The remaining screens complete the seven-piece record: light, dark, Arabic, and the calendar after hours.</span><span data-ar>تكمل الشاشات المتبقية السجل السباعي: الفاتح، والداكن، والعربي، والتقويم بعد الدوام.</span></p>
+      <p><span data-en>Four current screens complete the record: calendar, dashboard, settings, and appearance.</span><span data-ar>أربع شاشات حديثة تكمل السجل: التقويم، ولوحة الملخص، والإعدادات، والمظهر.</span></p>
     </header>
 
     <div class="pc-real-screens__grid">
       <figure data-pc-reveal>
-        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/calendar-light.jpg" alt="SShift calendar in light mode showing color-coded shift types" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>01 / 07</span><strong><span data-en>Calendar · Light</span><span data-ar>التقويم · فاتح</span></strong></figcaption>
+        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/01-en-light-calendar.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/01-en-light-calendar.jpg" data-ar-src="/sshift/assets/screenshots/5-1/01-ar-dark-calendar.jpg" data-alt-en="SShift calendar in English" data-alt-ar="تقويم SShift بالعربية" alt="SShift calendar in English" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span>01 / 04</span><strong><span data-en>Calendar</span><span data-ar>التقويم</span></strong></figcaption>
       </figure>
       <figure data-pc-reveal>
-        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/dashboard-dark.jpg" alt="SShift dashboard in dark mode with the monthly summary and type breakdown" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>04 / 07</span><strong><span data-en>Dashboard · Dark</span><span data-ar>لوحة الملخص · داكن</span></strong></figcaption>
+        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/02-en-light-dashboard.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/02-en-light-dashboard.jpg" data-ar-src="/sshift/assets/screenshots/5-1/02-ar-dark-dashboard.jpg" data-alt-en="SShift dashboard in English" data-alt-ar="لوحة ملخص SShift بالعربية" alt="SShift dashboard in English" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span>02 / 04</span><strong><span data-en>Dashboard</span><span data-ar>لوحة الملخص</span></strong></figcaption>
       </figure>
       <figure data-pc-reveal>
-        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/calendar-ar.jpg" alt="SShift calendar in Arabic with a complete right-to-left interface" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>06 / 07</span><strong><span data-en>Calendar · Arabic</span><span data-ar>التقويم · عربي</span></strong></figcaption>
+        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/03-en-light-settings.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/03-en-light-settings.jpg" data-ar-src="/sshift/assets/screenshots/5-1/03-ar-dark-settings.jpg" data-alt-en="SShift settings in English" data-alt-ar="إعدادات SShift بالعربية" alt="SShift settings in English" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span>03 / 04</span><strong><span data-en>Settings</span><span data-ar>الإعدادات</span></strong></figcaption>
       </figure>
       <figure data-pc-reveal>
-        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/calendar-dark.jpg" alt="SShift calendar in dark mode showing the real seven-day shift pattern" width="820" height="1781" loading="lazy" decoding="async"></div>
-        <figcaption><span>07 / 07</span><strong><span data-en>Calendar · Dark</span><span data-ar>التقويم · داكن</span></strong></figcaption>
+        <div class="pc-screen-frame"><img src="/sshift/assets/screenshots/5-1/04-en-light-appearance.jpg" data-pc-lang-image data-en-src="/sshift/assets/screenshots/5-1/04-en-light-appearance.jpg" data-ar-src="/sshift/assets/screenshots/5-1/04-ar-dark-appearance.jpg" data-alt-en="SShift appearance controls in English" data-alt-ar="خيارات مظهر SShift بالعربية" alt="SShift appearance controls in English" width="819" height="1781" loading="lazy" decoding="async"></div>
+        <figcaption><span>04 / 04</span><strong><span data-en>Appearance</span><span data-ar>المظهر</span></strong></figcaption>
       </figure>
     </div>
   </section>
@@ -271,7 +285,7 @@
 </footer>
 
 <script src="/assets/product-cinema.js?v=20260825-bilingual1" defer></script>
-<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
+<script src="/assets/product-cinema-core.js?v=20260826-images1" defer></script>
 <script src="/assets/product-cinema-atmosphere.js?v=atmosphere-1" defer></script>
 <script src="/app-data.js" defer></script>
 <script src="/releases-loader.js" defer></script>

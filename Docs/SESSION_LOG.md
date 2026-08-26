@@ -23,6 +23,27 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-08-26 — Product-page readability and SShift 5.1 screenshots
+- Done: Prepared an isolated candidate that raises meaningful card copy,
+  captions, metadata, and product labels across the four Product Cinema app
+  pages while preserving compact decorative notation. Corrected localized
+  wrapper spans so they inherit the intended component typography. Added the
+  eight current SShift 5.1 iPhone captures as optimized web assets and made the
+  SShift imagery follow the selected English or Arabic site language.
+- Decisions: Readability changes are targeted rather than a global type scale
+  increase. English uses the current light captures and Arabic uses the current
+  dark captures. Release-data hooks and generated release data remain
+  unchanged.
+- Open / next: Obtain owner release approval, then reconcile with current
+  `origin/main`, publish the reviewed candidate, and verify all four live app
+  routes.
+- Deploy state: Not published; candidate remains on an isolated review branch.
+- Live-check: Not applicable. Local English/LTR and Arabic/RTL checks passed at
+  desktop and mobile widths with no horizontal overflow or browser errors.
+- ChatGPT review: Independent read-only review approved the final candidate
+  with no remaining P0-P3 findings after the initial image-load and no-JS
+  fallback findings were resolved.
+
 ## 2026-08-11 — Dufaat 2.2 App Store release confirmed
 - Done: Apple published Dufaat 2.2. The public Saudi App Store lookup returned
   version 2.2 at `2026-08-11T14:00:45Z`; the existing site badge therefore has
