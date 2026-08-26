@@ -34,12 +34,14 @@ Public repo: keep entries free of secrets and private local machine paths.
   of the shared readability cascade; Arabic weight, spacing, transform, and
   line-height remain independently protected. Desktop labels follow the SShift
   scale while route-specific mobile composition stays intact.
-- Open / next: Publish the approved candidate to `main`, verify the Pages
-  deployment, and spot-check the four live app routes.
-- Deploy state: Owner approved immediate publication; candidate validation is
-  complete and publication is pending.
-- Live-check: Pending publication. Local English/light and Arabic/dark checks
-  passed for PhoneSpace, Filed, and Dufaat with no wrapper mismatch, horizontal
+- Open / next: Verify the automated public release metadata after Apple makes
+  each reviewed app update available on the App Store.
+- Deploy state: Published to `main` as `56d1b34`; release sync run
+  `32981323062` succeeded and generated descendant `4d3ba42`. Pages deployment
+  `32981349569` succeeded.
+- Live-check: All four app routes returned HTTP 200 with cache version
+  `20260826-4`, and the live stylesheet matched the reviewed bytes. PhoneSpace,
+  Filed, and Dufaat passed Arabic/Night checks with no size mismatch, horizontal
   overflow, or browser error.
 - ChatGPT review: Independent review initially blocked overly broad wrapper and
   desktop-label rules. Both findings were corrected; the follow-up review

@@ -4,6 +4,18 @@ This document records verified Git lineage and the current safe release
 process. It does not claim App Store or GitHub Pages state unless separately
 verified.
 
+## 2026-08-26 Product typography publication
+
+- Approved commit `56d1b34` corrected bilingual font-size inheritance while
+  preserving Arabic spacing and route-specific mobile typography.
+- Release sync run `32981323062` succeeded and produced expected generated
+  descendant `4d3ba42`; `releases.json` remained workflow-owned.
+- Pages deployment `32981349569` succeeded. The four live app routes served the
+  new stylesheet cache version, and the live stylesheet matched the reviewed
+  bytes.
+- PhoneSpace, Filed, and Dufaat passed live Arabic/Night browser checks with no
+  typography-size mismatch, horizontal overflow, or console error.
+
 ## 2026-08-11 Dufaat 2.2 website publication
 
 - `855e955` prepared the Dufaat 2.2 product page, six approved screenshots,

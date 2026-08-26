@@ -18,6 +18,13 @@ unknowns.
   required for this site change.
 - `VERIFIED`: Release hooks, generated release data, public App Store links,
   legal routes, and app copy are unchanged.
+- `VERIFIED`: Approved commit `56d1b34` was fast-forwarded to `main`. Release
+  sync run `32981323062` succeeded and created generated descendant `4d3ba42`;
+  Pages deployment `32981349569` then succeeded.
+- `VERIFIED`: All four live app routes returned HTTP 200 with the new stylesheet
+  cache version. The live stylesheet matched the reviewed bytes, and Arabic
+  Night-mode browser checks on PhoneSpace, Filed, and Dufaat showed no font-size
+  mismatch, horizontal overflow, or console error.
 
 ## 2026-08-11 PhoneSpace 1.2 release candidate
 

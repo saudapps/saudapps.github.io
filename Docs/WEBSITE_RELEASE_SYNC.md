@@ -41,7 +41,8 @@ Trigger the sync when ANY of these is true for an app:
       preserved; `releases.json` was not edited manually.
 - [x] English/light and Arabic/dark browser checks completed locally with no
       horizontal overflow or console error.
-- [ ] GitHub Pages publication and live route spot-check.
+- [x] GitHub Pages publication and live route spot-check; all four app routes
+      returned HTTP 200 and the live stylesheet matched the reviewed file.
 
 ## 2026-08-11 PhoneSpace 1.2 run
 

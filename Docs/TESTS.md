@@ -22,6 +22,13 @@ matrix for website changes. It does not claim an unexecuted check passed.
   preserved.
 - Current screenshot assets were retained because the app updates did not
   change the visible layouts represented on the website.
+- Release sync run `32981323062` and Pages deployment `32981349569` completed
+  successfully. All four live app routes returned HTTP 200 with cache version
+  `20260826-4`; the live stylesheet matched the reviewed file digest.
+- Live Arabic/Night browser checks on PhoneSpace, Filed, and Dufaat reported
+  zero size mismatches and zero horizontal overflow. Arabic `h2` and `h3`
+  wrappers retained line-height ratios of 1.24 and 1.32 respectively, with no
+  console errors.
 
 ## 2026-08-11 Dufaat 2.2 publication evidence
 
