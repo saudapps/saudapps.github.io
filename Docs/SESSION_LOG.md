@@ -32,6 +32,9 @@ Public repo: keep entries free of secrets and private local machine paths.
   SShift imagery follow the selected English or Arabic site language. Added a
   self-hosted Arabic-only Alexandria variable-font subset for Product Cinema
   headings, with its OFL license preserved in the public font asset directory.
+  Rebuilt the SShift opening headline as a deliberate three-line lockup in both
+  languages, with aligned rows, controlled spacing, and a restrained outlined
+  middle line at desktop and mobile widths.
 - Decisions: Readability changes are targeted rather than a global type scale
   increase. English uses the current light captures and Arabic uses the current
   dark captures. Alexandria is limited to Arabic display headings and selected
