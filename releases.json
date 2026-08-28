@@ -1,9 +1,18 @@
 {
-  "updatedAt": "2026-08-27T13:43:51.295Z",
+  "updatedAt": "2026-08-28T14:51:57.905Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "5.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-26T03:39:36-07:00",
+          "whatsNew": {
+            "en": "Version 5.1\n\n• Enjoy a refreshed adaptive design, refined for clarity in Light and Dark.\n• Choose Automatic, Light, or Dark independently inside SShift.\n• Move faster through Dashboard ranges, day edits, schedule patterns, and reminders.\n• Reliability improvements for backup and restore, PDF export, duplicate-day handling, and notifications.",
+            "ar": "الإصدار 5.1\n\n• تصميم متجدد ومتكيّف، أوضح وأجمل في المظهرين الفاتح والداكن.\n• اختر المظهر التلقائي أو الفاتح أو الداكن من داخل SShift بشكل مستقل عن مظهر الجهاز.\n• استجابة أسرع في نطاقات اللوحة وتعديل الأيام وأنماط الجدول والتنبيهات.\n• تحسينات في موثوقية النسخ الاحتياطي والاستعادة وتصدير PDF ومعالجة الأيام المكررة والتذكيرات."
+          }
+        },
         {
           "version": "5.0",
           "state": "READY_FOR_SALE",
@@ -91,6 +100,15 @@
       "appStoreId": "6765632161",
       "versions": [
         {
+          "version": "1.2.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-26T07:08:16-07:00",
+          "whatsNew": {
+            "en": "PhoneSpace 1.2.1 improves safety and reliability across Convert and Resize.\n\n• Free limits are now enforced per item, while Premium use no longer spends free allowances.\n• Animated GIF inputs are blocked before conversion so motion cannot be lost accidentally.\n• Replace Originals now clearly explains which Photos metadata cannot be preserved.\n• Resize cancellation responds faster, and deletion results report only confirmed removals.\n• Convert Videos now warns that changing file type can sometimes increase size.\n\nThis update also improves StoreKit test consistency and keeps all processing private and on device.",
+            "ar": ""
+          }
+        },
+        {
           "version": "1.2",
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-08-11T03:57:57-07:00",
@@ -122,6 +140,15 @@
     "dufaat": {
       "appStoreId": "6780440703",
       "versions": [
+        {
+          "version": "2.2.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-26T06:49:25-07:00",
+          "whatsNew": {
+            "en": "Dufaat 2.2.1 improves reliability without changing how your data is stored.\n\n• Backup restore is now safer and transactional\n• Cancelled detail edits no longer change paid dates\n• Imported attachments are read more reliably\n• Clearer localized attachment error messages\n• Temporary preview and export files are cleaned up automatically",
+            "ar": "يُحسّن دُفعات 2.2.1 الاعتمادية دون تغيير طريقة حفظ بياناتك:\n\n• استعادة النسخة الاحتياطية أصبحت أكثر أمانًا وتتم كوحدة واحدة\n• إلغاء تعديلات تفاصيل الدفعة لم يعد يغيّر تاريخ السداد\n• قراءة المرفقات المستوردة أصبحت أكثر موثوقية\n• رسائل أوضح ومترجمة عند تعذر إرفاق ملف\n• تنظيف ملفات المعاينة والتصدير المؤقتة تلقائيًا"
+          }
+        },
         {
           "version": "2.2",
           "state": "READY_FOR_SALE",
@@ -163,6 +190,15 @@
     "filed": {
       "appStoreId": "6781196551",
       "versions": [
+        {
+          "version": "1.0.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-08-26T06:38:08-07:00",
+          "whatsNew": {
+            "en": "Filed 1.0.1 improves reliability and protects your documents during import, storage, signing, and export. It also reduces memory use when signing large PDFs, prevents stalled document loading, cleans up temporary files, and provides clearer feedback when a permanent deletion cannot be completed.",
+            "ar": ""
+          }
+        },
         {
           "version": "1.0",
           "state": "READY_FOR_SALE",
