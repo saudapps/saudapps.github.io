@@ -8,7 +8,8 @@ matrix for website changes. It does not claim an unexecuted check passed.
 - Scoped HTML whitespace and bilingual route checks passed.
 - Independent code, bilingual QA and data-safety reviews passed the corrected privacy text.
 - Local English/day and Arabic/night previews at 390 px showed no horizontal overflow; Arabic retained RTL layout and all six paired sections.
-- Live verification is pending publication. No release-pipeline, screenshot or application changes belong to this website slice.
+- GitHub Pages run `37201433175` succeeded. The live privacy route returned HTTP 200 and matched the reviewed HTML SHA-256 `8fe2da5693e5a3407833589b8d688fcd4f4051f8e7edce9268d2649e04bb0a2b`; English/day and Arabic/night browser views showed the corrected copy.
+- No release-pipeline, screenshot or application changes belong to this website slice.
 
 
 ## 2026-08-26 Product typography follow-up evidence
