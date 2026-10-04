@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="SShift privacy policy. We collect nothing. Your data stays on your device.">
+<meta name="description" content="SShift privacy policy: local storage, optional iCloud synchronization and backups, and no advertising or tracking.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#0A0B0F">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -19,14 +19,14 @@
 <meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:url" content="https://saud.im/sshift/privacy/">
 <meta property="og:title" content="SShift — Privacy Policy">
-<meta property="og:description" content="SShift collects nothing. Your data stays on your iPhone — no accounts, no servers, no tracking.">
+<meta property="og:description" content="SShift stores your schedule locally. Optional iCloud features use your Apple account. No advertising or tracking.">
 <meta property="og:image" content="https://saud.im/assets/icon-sshift.png">
 <meta property="og:image:alt" content="SShift app icon">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SShift — Privacy Policy">
-<meta name="twitter:description" content="SShift collects nothing. Your data stays on your iPhone — no accounts, no servers, no tracking.">
+<meta name="twitter:description" content="SShift stores your schedule locally. Optional iCloud features use your Apple account. No advertising or tracking.">
 <meta name="twitter:image" content="https://saud.im/assets/icon-sshift.png">
 <meta name="twitter:image:alt" content="SShift app icon">
 
@@ -93,8 +93,8 @@
         <span data-ar>سياسة الخصوصية</span>
       </h1>
       <p class="doc-meta">
-        <span data-en>Effective May 21, 2026</span>
-        <span data-ar>ساري ابتداءً من 21 مايو 2026</span>
+        <span data-en>Updated October 4, 2026</span>
+        <span data-ar>آخر تحديث: 4 أكتوبر 2026</span>
       </p>
     </div>
   </section>
@@ -103,8 +103,8 @@
   <section class="section--tight sshift-privacy-intro" style="padding-top:0">
     <div class="wrap wrap--narrow">
       <p class="sshift-privacy-intro__sentence">
-        <span data-en>SShift collects <strong>nothing</strong>. Your data stays on your iPhone — no accounts, no servers, no tracking.</span>
-        <span data-ar>تطبيق SShift لا يجمع <strong>أي شيء</strong>. بياناتك تبقى على جهازك — بلا حسابات، بلا خوادم، بلا تتبّع.</span>
+        <span data-en>Your schedule is stored locally. Optional iCloud features are your choice. <strong>No advertising or tracking.</strong></span>
+        <span data-ar>يُحفظ جدولك محلياً. مميزات iCloud اختيارية وبقرارك. <strong>لا إعلانات ولا تتبّع.</strong></span>
       </p>
     </div>
   </section>
@@ -114,25 +114,31 @@
     <div class="wrap wrap--narrow">
       <div class="prose">
 
-        <h2><span data-en>1. What we collect</span><span data-ar>١. ما الذي نجمعه</span></h2>
-        <p data-en>Nothing. SShift does not collect, store, or transmit any personal information. There is no account, no signup, and no email required to use the app.</p>
-        <p data-ar>لا شيء. لا يجمع تطبيق SShift أو يخزّن أو يُرسل أي معلومات شخصية. لا يوجد حساب، ولا تسجيل، ولا بريد إلكتروني مطلوب لاستخدام التطبيق.</p>
+        <h2><span data-en>1. Local use and developer access</span><span data-ar>١. الاستخدام المحلي ووصول المطوّر</span></h2>
+        <p class="blk" data-en>SShift stores your shifts, schedules, notes and settings on your device. You can use the app without creating a SShift account or providing an email address. We do not collect your schedule content for our own use or operate a server to receive it.</p>
+        <p class="blk" data-ar>يحفظ SShift نوباتك وجداولك وملاحظاتك وإعداداتك على جهازك. يمكنك استخدام التطبيق دون إنشاء حساب SShift أو تقديم بريد إلكتروني. لا نجمع محتوى جدولك لاستخدامنا، ولا نشغّل خادماً لاستقباله.</p>
 
-        <h2><span data-en>2. Where your data lives</span><span data-ar>٢. أين تُحفظ بياناتك</span></h2>
-        <p data-en>All your shifts, schedules, notes, and settings are stored on your device only. They never leave your iPhone.</p>
-        <p data-ar>كل بياناتك من نوبات، جداول، ملاحظات، وإعدادات تُخزّن على جهازك فقط. لا تغادر هاتفك أبداً.</p>
+        <h2><span data-en>2. Optional iCloud synchronization</span><span data-ar>٢. المزامنة الاختيارية عبر iCloud</span></h2>
+        <p class="blk" data-en>In supported versions, enabling synchronization sends your shared schedule, notes, patterns and shared settings to Apple's iCloud through CloudKit. It uses the Apple account signed in to iCloud on each phone, and can link phones using different Apple accounts. Sharing is private: only the owner and invited participants can access the shared schedule. Schedule content is stored in encrypted CloudKit fields; record identifiers and revision information support synchronization.</p>
+        <p class="blk" data-ar>في الإصدارات التي تدعم المزامنة، يؤدي تفعيلها إلى إرسال الجدول المشترك والملاحظات والأنماط والإعدادات المشتركة إلى iCloud من أبل عبر CloudKit. تستخدم المزامنة حساب أبل المسجّل في iCloud على كل هاتف، ويمكنها ربط هواتف بحسابات أبل مختلفة. المشاركة خاصة: يستطيع المالك والأشخاص المدعوون فقط الوصول إلى الجدول المشترك. يُحفظ محتوى الجدول في حقول CloudKit مشفّرة، وتُستخدم معرّفات السجلات ومعلومات التعديلات لتشغيل المزامنة.</p>
+        <p class="blk" data-en>You can stop synchronizing a phone in Settings while keeping its local schedule. Stopping synchronization does not automatically delete existing cloud records or backups. Apple's iCloud terms and privacy policy apply to data processed by Apple.</p>
+        <p class="blk" data-ar>يمكنك إيقاف مزامنة الهاتف من الإعدادات مع الاحتفاظ بجدوله المحلي. إيقاف المزامنة لا يحذف تلقائياً السجلات السحابية أو النسخ الاحتياطية الموجودة. تنطبق شروط iCloud وسياسة خصوصية أبل على البيانات التي تعالجها أبل.</p>
 
-        <h2><span data-en>3. Notifications</span><span data-ar>٣. الإشعارات</span></h2>
-        <p data-en>Notifications are scheduled locally on your device by iOS. We do not use push notification servers or any third-party notification services.</p>
-        <p data-ar>تُجدول الإشعارات محلياً على جهازك عبر نظام iOS. لا نستخدم خوادم إشعارات أو أي خدمات إشعارات خارجية.</p>
+        <h2><span data-en>3. Backups and exports</span><span data-ar>٣. النسخ الاحتياطي والتصدير</span></h2>
+        <p class="blk" data-en>Backup &amp; Restore is separate from synchronization. Manual iCloud backups and optional weekly backups store a copy of your app data in your iCloud storage when successfully completed. Before restoring, SShift automatically preserves a safety copy in iCloud when available, or locally when iCloud is unavailable, even if synchronization and weekly backup are off. Joining a shared schedule creates a local safety copy. You can manage saved backups in the app. Exporting a backup or PDF sends a file only to the location or app you choose; anyone you share that file with may read its contents.</p>
+        <p class="blk" data-ar>النسخ الاحتياطي والاسترجاع منفصل عن المزامنة. تُحفظ نسخة من بيانات التطبيق في مساحة iCloud الخاصة بك بعد نجاح النسخ اليدوي أو الأسبوعي الاختياري. قبل الاسترجاع، يحفظ SShift تلقائياً نسخة أمان في iCloud عند توفره، أو محلياً عندما لا يتوفر iCloud، حتى لو كانت المزامنة والنسخ الأسبوعي متوقفين. ويُنشئ الانضمام إلى جدول مشترك نسخة أمان محلية. يمكنك إدارة النسخ المحفوظة داخل التطبيق. يرسل تصدير النسخة الاحتياطية أو PDF الملف إلى المكان أو التطبيق الذي تختاره فقط، ويمكن لمن تشاركه الملف قراءة محتواه.</p>
 
-        <h2><span data-en>4. Analytics &amp; Tracking</span><span data-ar>٤. التحليلات والتتبّع</span></h2>
-        <p data-en>None. We do not use analytics, tracking, advertising, or crash reporting services of any kind.</p>
-        <p data-ar>لا شيء. لا نستخدم أي خدمات تحليلات، تتبّع، إعلانات، أو تقارير أعطال.</p>
+        <h2><span data-en>4. Notifications</span><span data-ar>٤. الإشعارات</span></h2>
+        <p class="blk" data-en>Shift reminders are scheduled locally by iOS, and notification preferences stay independent on each phone. When synchronization is enabled, CloudKit may use Apple's push notification service to notify the app that cloud data has changed. We do not operate a notification server or use a third-party notification service.</p>
+        <p class="blk" data-ar>يُجدول iOS تنبيهات الدوام محلياً، وتبقى إعدادات التنبيهات مستقلة لكل هاتف. عند تفعيل المزامنة، قد يستخدم CloudKit خدمة إشعارات أبل لإبلاغ التطبيق بتغيّر البيانات السحابية. لا نشغّل خادماً للإشعارات، ولا نستخدم خدمة إشعارات من جهة أخرى.</p>
 
-        <h2><span data-en>5. Contact</span><span data-ar>٥. التواصل</span></h2>
-        <p data-en>Questions about privacy? Email <a href="mailto:support@saud.im">support@saud.im</a>.</p>
-        <p data-ar>أسئلة عن الخصوصية؟ راسلنا على <a href="mailto:support@saud.im">support@saud.im</a>.</p>
+        <h2><span data-en>5. Analytics and tracking</span><span data-ar>٥. التحليلات والتتبّع</span></h2>
+        <p class="blk" data-en>We do not add advertising, tracking, analytics or third-party crash-reporting services to SShift. Apple may process service information under its own privacy policies when you use iCloud or other Apple services.</p>
+        <p class="blk" data-ar>لا نضيف إلى SShift خدمات إعلانات أو تتبّع أو تحليلات أو تقارير أعطال من جهات أخرى. قد تعالج أبل معلومات الخدمة وفق سياسات خصوصيتها عند استخدام iCloud أو خدمات أبل الأخرى.</p>
+
+        <h2><span data-en>6. Contact</span><span data-ar>٦. التواصل</span></h2>
+        <p class="blk" data-en>For privacy questions, email <a href="mailto:support@saud.im">support@saud.im</a>. If you contact us, we receive the email address and information you choose to send and use them to respond. The app does not automatically attach your schedule. Please avoid sending personal schedule details unless needed for your request.</p>
+        <p class="blk" data-ar>لأسئلة الخصوصية، راسل <a href="mailto:support@saud.im">support@saud.im</a>. عند التواصل معنا، نستقبل بريدك والمعلومات التي تختار إرسالها ونستخدمها للرد عليك. لا يُرفق التطبيق جدولك تلقائياً. يُفضّل عدم إرسال تفاصيل جدولك الشخصية إلا عند الحاجة لطلبك.</p>
 
       </div>
     </div>

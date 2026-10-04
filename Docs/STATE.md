@@ -4,6 +4,14 @@ This is the first current-state reference for the public Saud Apps website. It
 separates verified repository and network facts from reported state and
 unknowns.
 
+## 2026-10-04 SShift privacy clarification
+
+- `VERIFIED`: The SShift privacy route describes local use, optional private iCloud synchronization in supported versions, separate backups/exports, Apple notification services, and voluntary support email in English and Arabic.
+- `VERIFIED`: Pre-restore safety copies may use iCloud even when synchronization and weekly backups are off; joining a shared schedule preserves a local safety copy.
+- `VERIFIED`: Independent code, bilingual QA and data-safety reviews passed the final policy copy. Existing routes, scripts, styles, screenshots and automated App Store release data are unchanged.
+- `PROPOSED`: Owner-approved privacy-only publication; live verification remains pending. This does not declare a new app version published.
+
+
 ## 2026-08-26 Product-page typography follow-up
 
 - `VERIFIED`: The four primary app pages share the final Product Cinema

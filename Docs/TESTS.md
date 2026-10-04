@@ -3,6 +3,14 @@
 This document records the current validation reality and the minimum review
 matrix for website changes. It does not claim an unexecuted check passed.
 
+## 2026-10-04 SShift privacy-copy validation
+
+- Scoped HTML whitespace and bilingual route checks passed.
+- Independent code, bilingual QA and data-safety reviews passed the corrected privacy text.
+- Local English/day and Arabic/night previews at 390 px showed no horizontal overflow; Arabic retained RTL layout and all six paired sections.
+- Live verification is pending publication. No release-pipeline, screenshot or application changes belong to this website slice.
+
+
 ## 2026-08-26 Product typography follow-up evidence
 
 - `git diff --check` passed.
