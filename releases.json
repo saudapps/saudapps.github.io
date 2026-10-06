@@ -1,9 +1,18 @@
 {
-  "updatedAt": "2026-10-05T09:59:12.854Z",
+  "updatedAt": "2026-10-06T09:45:01.288Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "5.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-10-04T04:47:49-07:00",
+          "whatsNew": {
+            "en": "Plan your shifts and follow your schedule with new tools:\n\n• Optional iCloud sharing keeps your schedule and notes in sync across your iPhones, including devices using different Apple accounts.\n• Backup & Restore adds manual backups, an optional weekly backup and clear restore confirmations.\n• Plan complete rotations by cycle count or through a month or year end.\n• See remaining rotations, workdays and days off in Dashboard.\n• Add optional work hours and view your totals.\n• Refreshed Settings and guided first-time setup.\n• Contact support directly from About.",
+            "ar": "أدوات جديدة لتخطيط دوامك ومتابعة جدولك:\n\n• مزامنة اختيارية عبر iCloud للجدول والملاحظات بين هواتفك، حتى عند اختلاف حسابات أبل.\n• نسخ احتياطي يدوي ونسخ أسبوعي اختياري، مع تأكيدات واضحة عند الاسترجاع.\n• تخطيط بروتيشنات كاملة حسب عددها أو حتى نهاية الشهر أو السنة.\n• متابعة الروتيشنات وأيام العمل والراحة المتبقية في الداشبورد.\n• إضافة ساعات العمل اختيارياً وعرض مجموعها.\n• إعدادات مرتبة وإرشاد للمستخدم الجديد.\n• التواصل مع الدعم مباشرةً من قسم About."
+          }
+        },
         {
           "version": "5.1",
           "state": "READY_FOR_SALE",
