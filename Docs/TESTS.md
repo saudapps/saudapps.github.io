@@ -502,3 +502,5 @@ This evidence is time-bound and must be repeated before a future release.
 ## SShift screenshot candidate — 2026-10-12
 
 Local browser checks: six gallery images loaded at original 1320×2868 dimensions; no horizontal overflow at 1280px desktop or 390px mobile. English and Arabic/RTL keep the approved English gallery images, with matching localized alternatives. Light/dark existing styling preserved. Exact image hashes match approved assets. Diff check passed. No production deployment performed.
+
+Settings-image follow-up: fresh full-frame English capture displays Synchronization and Backup & Restore; only that story image and its localized source/alternative changed. It loads locally with no horizontal overflow at 1280px and 390px. Gallery assets unchanged; publication still pending.
