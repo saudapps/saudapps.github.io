@@ -2,7 +2,7 @@
 
 ## SShift screenshot preview — 2026-10-12
 
-Published with owner approval on 2026-10-12: the SShift gallery uses the six approved English App Store images in their original order and bytes. Repeated calendar/dashboard images are updated; the appearance story image remains, and the settings story uses a fresh English device capture showing synchronization and backups. Gallery counts, captions and image alternatives are aligned. All other page copy, styles, scripts, legal routes and automated release data are unchanged. Owner approved the preview and publication. The approved update was merged in PR #3; GitHub Pages deployment completed successfully. Live HTML and all seven image files match the reviewed bytes.
+Published with owner approval on 2026-10-12: the SShift gallery uses the six approved English App Store images in their original order and bytes. Repeated calendar/dashboard images are updated; the appearance story image remains, and the settings story uses a fresh English device capture showing synchronization and backups. Gallery counts, captions and image alternatives are aligned. All other page copy, styles, scripts, legal routes and release automation are unchanged; the normal release-sync bot refreshed only the generated timestamp. Owner approved the preview and publication. The approved update was merged in PR #3; GitHub Pages deployment completed successfully. Live HTML and all seven image files match the reviewed bytes.
 
 This is the first current-state reference for the public Saud Apps website. It
 separates verified repository and network facts from reported state and
