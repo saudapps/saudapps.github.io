@@ -1,5 +1,9 @@
 # saud.im — Current State
 
+## SShift screenshot preview — 2026-10-12
+
+Local candidate only, not published: the SShift gallery uses the six approved English App Store images in their original order and bytes. Repeated calendar/dashboard images are updated; appearance/settings story images remain. Gallery counts, captions and image alternatives are aligned. All other page copy, styles, scripts, legal routes and automated release data are unchanged. Owner preview and separate publication approval remain pending.
+
 This is the first current-state reference for the public Saud Apps website. It
 separates verified repository and network facts from reported state and
 unknowns.
