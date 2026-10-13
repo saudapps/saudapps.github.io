@@ -1,9 +1,18 @@
 {
-  "updatedAt": "2026-10-12T15:07:03.650Z",
+  "updatedAt": "2026-10-13T10:04:16.941Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "5.2.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-10-12T07:08:30-07:00",
+          "whatsNew": {
+            "en": "Bug fixes and reliability improvements for calendars, synchronization and backups. Improved protection for notes and leave when editing multiple days, and more accurate remaining rotation counts.",
+            "ar": "إصلاحات وتحسينات لموثوقية التقويم والمزامنة والنسخ الاحتياطي. حماية أفضل للملاحظات والإجازات عند تعديل عدة أيام، وتحسين دقة حساب الروتيشنات المتبقية."
+          }
+        },
         {
           "version": "5.2",
           "state": "READY_FOR_SALE",
