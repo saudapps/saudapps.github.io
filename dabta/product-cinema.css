@@ -53,6 +53,8 @@
   --dt-chrome-fill-strong: rgba(118, 87, 80, .2);
   --dt-chrome-bar: rgba(253, 248, 242, .86);
   --dt-chrome-bar-line: rgba(108, 21, 30, .08);
+  --dt-chrome-thumb: #fff;
+  --dt-chrome-thumb-shadow: 0 1px 3px rgba(43, 15, 18, .12);
   --dt-float-shadow: 0 6px 20px -10px rgba(43, 15, 18, .35);
   --dt-device-shadow: 0 46px 90px -46px rgba(66, 11, 18, .5), 0 12px 30px -18px rgba(66, 11, 18, .28);
   --dt-switch-off: rgba(118, 87, 80, .2);
@@ -126,6 +128,8 @@
     --dt-chrome-fill-strong: rgba(245, 218, 191, .18);
     --dt-chrome-bar: rgba(30, 18, 20, .84);
     --dt-chrome-bar-line: rgba(245, 218, 191, .1);
+    --dt-chrome-thumb: rgba(245, 218, 191, .24);
+    --dt-chrome-thumb-shadow: none;
     --dt-float-shadow: 0 6px 20px -10px rgba(0, 0, 0, .6);
     --dt-device-shadow: 0 46px 90px -40px rgba(0, 0, 0, .8), 0 12px 30px -18px rgba(0, 0, 0, .6);
     --dt-switch-off: rgba(245, 218, 191, .18);
@@ -170,6 +174,8 @@
   --dt-chrome-fill-strong: rgba(245, 218, 191, .18);
   --dt-chrome-bar: rgba(30, 18, 20, .84);
   --dt-chrome-bar-line: rgba(245, 218, 191, .1);
+  --dt-chrome-thumb: rgba(245, 218, 191, .24);
+  --dt-chrome-thumb-shadow: none;
   --dt-float-shadow: 0 6px 20px -10px rgba(0, 0, 0, .6);
   --dt-device-shadow: 0 46px 90px -40px rgba(0, 0, 0, .8), 0 12px 30px -18px rgba(0, 0, 0, .6);
   --dt-switch-off: rgba(245, 218, 191, .18);
@@ -328,7 +334,7 @@ body.pc-dabta .pc-site-action--dabta {
 .dt-actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
 .dt-actions .pc-site-action { border-radius: 999px; padding-inline: 22px; }
 
-.dt-opening__evidence { display: grid; justify-items: center; gap: 16px; }
+.dt-opening__evidence { min-width: 0; display: grid; justify-items: center; gap: 16px; }
 .dt-caption {
   color: var(--dt-ink-2);
   font-size: 13px;
@@ -340,6 +346,7 @@ body.pc-dabta .pc-site-action--dabta {
    them is interactive, and each one carries a text description. */
 .dt-device {
   width: min(100%, 384px);
+  min-width: 0;
   padding: 16px 14px 12px;
   display: grid;
   gap: 10px;
@@ -371,7 +378,8 @@ html[dir="rtl"] .dt-shot { background: var(--dt-paint-rtl); }
 }
 
 .dt-screen-top { display: flex; align-items: center; gap: 10px; padding: 4px 4px 2px; }
-.dt-screen-title { flex: 1 1 auto; min-width: 0; font-size: 19px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dt-screen-title { flex: 1 1 auto; min-width: 0; font-size: 19px; font-weight: 600; letter-spacing: -.01em; line-height: 1.3; }
+.dt-nw { white-space: nowrap; }
 html[lang="ar"] .dt-screen-title { font-size: 18px; }
 .dt-screen-tools { display: inline-flex; gap: 8px; color: var(--dt-ink); }
 .dt-screen-tools i {
@@ -594,7 +602,7 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
 /* Segmented control (two options), as in the Analysis tab. */
 .dt-seg { display: flex; gap: 2px; padding: 2px; border-radius: 9px; background: var(--dt-chrome-fill); }
 .dt-seg > span { flex: 1 1 0; padding: 5px 8px; border-radius: 7px; color: var(--dt-ink); font-size: 12px; font-weight: 500; text-align: center; }
-.dt-seg > span.is-on { background: var(--dt-solid); box-shadow: 0 1px 3px rgba(43, 15, 18, .12); font-weight: 600; }
+.dt-seg > span.is-on { background: var(--dt-chrome-thumb); box-shadow: var(--dt-chrome-thumb-shadow); font-weight: 600; }
 
 /* Analysis: an insight note and category tracks. */
 .dt-note { display: grid; gap: 4px; }
@@ -713,6 +721,7 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
 .dt-chapter h2,
 .dt-plus h2,
 .dt-support h2 {
+  text-wrap: balance;
   font-family: var(--dt-display);
   font-size: clamp(32px, 4.2vw, 58px);
   font-weight: 600;
@@ -882,7 +891,7 @@ html[lang="ar"] .pc-dabta :is(.crumb, .eyebrow, .doc-meta) { letter-spacing: 0; 
 
 /* ── Responsive. */
 @media (max-width: 1000px) {
-  .dt-opening__layout { grid-template-columns: 1fr; }
+  .dt-opening__layout { grid-template-columns: minmax(0, 1fr); }
   .dt-opening h1 { max-width: 14ch; }
   .dt-chapter,
   .dt-chapter--flip { grid-template-columns: 1fr; }
