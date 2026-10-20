@@ -447,7 +447,7 @@ html[dir="rtl"] .dt-flip { transform: scaleX(-1); }
 .dt-hero__meta { display: flex; align-items: center; gap: 10px; color: var(--dt-hero-ink-2); font-size: 11px; }
 .dt-hero__meta .sp { flex: 1 1 auto; }
 .dt-hero__link { color: var(--dt-hero-ink); font-size: 11px; font-weight: 500; text-decoration: underline; text-decoration-color: var(--dt-hero-border); text-underline-offset: 3px; }
-.dt-hero__line { color: var(--dt-hero-ink-2); font-size: 11px; line-height: 1.45; }
+.dt-hero__line { color: var(--dt-hero-ink-2); font-size: 11px; line-height: 1.45; text-wrap: pretty; }
 .dt-hero__rows { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid var(--dt-hero-border); }
 .dt-hero__kv { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; color: var(--dt-hero-ink-2); font-size: 11px; }
 .dt-hero__kv b { color: var(--dt-hero-ink); font-size: 13px; font-weight: 600; }
@@ -598,6 +598,15 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
 .dt-close-head strong { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
 .dt-close-head .dt-amt { font-size: 15px; font-weight: 600; }
 .dt-btn--solo { margin: 2px 0 0; }
+.dt-btn--top { margin: 12px 12px 4px; }
+
+/* A line that needs an amount: an empty field and one-tap choices. */
+.dt-row--need { align-items: flex-start; }
+.dt-row--need > .dt-dot { margin-top: 7px; }
+.dt-quick { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+.dt-chip { min-height: 28px; padding: 4px 10px; display: inline-flex; align-items: center; border-radius: 999px; background: var(--dt-chrome-fill); color: var(--dt-brand); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.dt-chip .dt-amt { color: var(--dt-ink); }
+.dt-field { flex: none; min-width: 96px; min-height: 36px; padding: 6px 10px; display: inline-flex; align-items: center; justify-content: flex-end; border-radius: 10px; background: var(--dt-chrome-fill); color: var(--dt-ink-3); font-size: 15px; }
 
 /* Segmented control (two options), as in the Analysis tab. */
 .dt-seg { display: flex; gap: 2px; padding: 2px; border-radius: 9px; background: var(--dt-chrome-fill); }
