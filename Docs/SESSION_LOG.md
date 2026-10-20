@@ -44,20 +44,26 @@ Public repo: keep entries free of secrets and private local machine paths.
   the parts of Reserved, and the Analysis tab layout.
 - Decisions: WEB-013 (hidden pre-launch routes; support as a section, not a
   route) and WEB-014 (one-time Claude Code implementer exception).
-- Open / next: Owner preview and approval of the new interface strings; on
-  publication day, fill in the seller name and effective date, reconcile with
-  `origin/main`, publish only the `dabta/` files after Release approval, and
-  verify the three live routes, `noindex`, and that nothing links to them.
-  These Docs entries stay on the branch until the App Store release, because
-  the `Docs/` folder is served on the live site (owner decision).
-- Deploy state: Not published. Work is on branch
-  `claude/dabta-website-q1dnjd`; `sitemap.xml`, `index.html`, `Docs/APPS.md`,
-  `app-data.js`, release data and shared assets are unchanged.
-- Live-check: Not applicable. Local checks passed: copy matches the source
-  text word for word, `noindex` on all three pages, no other app named or
-  linked, Western digits only, no horizontal overflow from 320 to 1440 px,
-  English and Arabic in both themes, JavaScript disabled and reduced motion.
-  `scripts/check_bilingual.py --git` and `npm test` pass.
+- Open / next: Enter the privacy policy and support URLs in App Store
+  Connect. At the App Store release (phase 2 of `Docs/ADD_NEW_APP.md`):
+  real screenshots, the App Store link and release data, removal of
+  `noindex`, the sitemap, `Docs/APPS.md` and landing-page entries, and these
+  Docs entries, which stay on the branch until then because the `Docs/`
+  folder is served on the live site (owner decision).
+- Deploy state: Published 2026-10-20. Only the `dabta/` files were added to
+  `main` as `aba68d2`; the release sync then added `92a4827`
+  (`releases.json` only). The seller name and the effective date (20 October
+  2026) are filled in on the privacy policy and terms. `sitemap.xml`,
+  `index.html`, `Docs/APPS.md`, `app-data.js`, release data and shared assets
+  are unchanged. These Docs entries remain on branch
+  `claude/dabta-website-q1dnjd`.
+- Live-check: `https://saud.im/dabta/`, `/dabta/privacy/` and `/dabta/terms/`
+  return 200 with `noindex`; `/dabta` redirects to `/dabta/`; every Dabta
+  asset returns 200; `/dabta/#support` lands on the support section. The
+  sitemap, robots, homepage, every sitemap route, 404, Promptbook, the live
+  `Docs/` pages, `app-data.js`, `releases.json` and the shared scripts neither
+  mention nor link Dabta. Live English and Arabic, light and dark, at 1440 and
+  390 px: no console error, failed request or horizontal overflow.
 - ChatGPT review: None. An independent multi-lens review (copy, public
   safety, accessibility and RTL, site contracts, app fidelity), each finding
   checked by a separate verifier, raised drawing inconsistencies, CSS
