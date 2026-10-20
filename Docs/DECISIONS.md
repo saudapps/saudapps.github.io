@@ -20,6 +20,8 @@ not current guidance.
 | WEB-010 | Release-sync bot commits are expected. Fetch and reconcile before push; never force-push over them. | `PROTECTED` | Current workflow and Git history |
 | WEB-011 | Existing milestone and baseline tags are immutable rollback/provenance markers. | `PROTECTED` | Current annotated tags |
 | WEB-012 | Application source code does not belong in this website repository. | `PROTECTED` | Public/private architecture boundary |
+| WEB-013 | Dabta pre-launch pages are hidden: `/dabta/`, `/dabta/privacy/` and `/dabta/terms/` carry `noindex` and stay out of the landing page, navigation, sitemap, `Docs/APPS.md`, `app-data.js` and the release systems until the App Store release. Support is the last section of `/dabta/` (`#support`), not a separate route. | `CURRENT` | Owner decision, 2026-10-20 |
+| WEB-014 | One-time implementer exception: Claude Code implements the Dabta pre-launch pages (WEB-013) for this task only. Codex remains the sole website implementer otherwise; independent review and owner Release approval still apply. | `CURRENT` | Owner decision, 2026-10-20 |
 
 ## WEB-001 — Product Cinema is current
 
@@ -109,6 +111,42 @@ active portfolio product:
 - no active roadmap.
 
 Removal, indexing, launch, or revival are separate owner decisions.
+
+## WEB-013 — Dabta pre-launch pages
+
+Dabta is a new app that is not yet on the App Store. Its pages are public but
+hidden, in the same way as WEB-008:
+
+- three routes only: `/dabta/` (Product Cinema chapter with a `#support`
+  section at the end), `/dabta/privacy/` and `/dabta/terms/`;
+- `noindex` on all three pages;
+- no link from any other page or from the shared navigation; the Dabta pages
+  link only to each other, to the support email and, through the brand mark,
+  to the homepage;
+- no sitemap entry, no `Docs/APPS.md` row, no `app-data.js` or release-data
+  wiring, no App Store link or public app identifier;
+- the pages do not name or link other Saud Apps products;
+- bilingual English/Arabic per WEB-007, light and dark, with route-local
+  `dabta/product-cinema.css` and `dabta/product-cinema.js`; no shared file is
+  changed;
+- Arabic text uses a self-hosted Noto Kufi Arabic subset shipped with its OFL
+  licence in `dabta/assets/fonts/`;
+- app screens are drawn in HTML and CSS with example numbers until real
+  screenshots exist;
+- the seller name and the effective date of the privacy policy and terms are
+  filled in on the day the pages are published.
+
+At the App Store release (phase 2 of `Docs/ADD_NEW_APP.md`): real
+screenshots, the App Store link and release data, removal of `noindex`, and
+the sitemap, `Docs/APPS.md` and landing-page entries, each with owner
+approval.
+
+## WEB-014 — implementer exception for WEB-013
+
+The owner approved Claude Code as the implementer of the Dabta pre-launch
+pages for this task only. The exception does not extend to other routes or
+later tasks. Independent review, owner preview and Release approval remain
+required, and the shared Product Cinema files stay untouched.
 
 ## WEB-010 and WEB-011 — remote history
 

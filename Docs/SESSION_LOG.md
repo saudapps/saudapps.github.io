@@ -23,6 +23,37 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-10-20 — Dabta hidden pre-launch pages
+- Done: Built the hidden `/dabta/` Product Cinema chapter (English and
+  Arabic, light and dark, drawn app screens with example numbers, Dabta Plus,
+  the general-information line and a `#support` section at the end), plus
+  `/dabta/privacy/` and `/dabta/terms/`. Privacy, terms and support copy is
+  the reviewed text supplied for the app, word for word, with one approved
+  change: the purchase sentence in the terms now names the one optional
+  in-app purchase, Dabta Plus, directly. The support email, governing law
+  (the United Arab Emirates) and support-email retention (twelve months,
+  deletion within thirty days) are filled in. Added a self-hosted Noto Kufi
+  Arabic subset (400/500/600) with its OFL licence and the app icon at 256 px.
+- Decisions: WEB-013 (hidden pre-launch routes; support as a section, not a
+  route) and WEB-014 (one-time Claude Code implementer exception).
+- Open / next: Owner preview and approval of the new interface strings; on
+  publication day, fill in the seller name and effective date, reconcile with
+  `origin/main`, merge after Release approval, and verify the three live
+  routes, `noindex`, and that nothing links to them.
+- Deploy state: Not published. Work is on branch
+  `claude/dabta-website-q1dnjd`; `sitemap.xml`, `index.html`, `Docs/APPS.md`,
+  `app-data.js`, release data and shared assets are unchanged.
+- Live-check: Not applicable. Local checks passed: copy matches the source
+  text word for word, `noindex` on all three pages, no other app named or
+  linked, Western digits only, no horizontal overflow from 320 to 1440 px,
+  English and Arabic in both themes, JavaScript disabled and reduced motion.
+  `scripts/check_bilingual.py --git` and `npm test` pass.
+- ChatGPT review: None. An independent multi-lens review (copy, public
+  safety, accessibility and RTL, site contracts, app fidelity), each finding
+  checked by a separate verifier, raised drawing inconsistencies, CSS
+  specificity issues and accessibility details; all confirmed findings were
+  fixed except one copy point left to the owner.
+
 ## 2026-08-26 — Product typography inheritance follow-up
 - Done: Fixed the final cascade issue that allowed bilingual wrapper spans to
   override the intended heading and body-copy sizes on Product Cinema app

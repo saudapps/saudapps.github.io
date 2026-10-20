@@ -29,14 +29,14 @@
 
 <script>
   (function () {
+    var root = document.documentElement;
+    root.classList.add('pc-site-js');
+    function stored(key) { try { return localStorage.getItem(key); } catch (error) { return null; } }
     try {
-      var root = document.documentElement;
-      root.classList.add('pc-site-js');
-      var saved = localStorage.getItem('saudapps-theme');
-      var theme = saved === 'light' || saved === 'dark' ? saved
-        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var theme = stored('saudapps-theme');
+      if (theme !== 'light' && theme !== 'dark') theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       root.setAttribute('data-theme', theme);
-      var lang = localStorage.getItem('saudapps-lang');
+      var lang = stored('saudapps-lang');
       if (lang !== 'en' && lang !== 'ar') lang = (navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en';
       root.setAttribute('lang', lang);
       root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
@@ -174,7 +174,7 @@
       <p>للأسئلة عن هذه الشروط: <bdi><a href="mailto:support@saud.im">support@saud.im</a></bdi>.</p>
       </div>
     </div>
-  <nav class="dt-doc-links" aria-label="Dabta links" data-aria-en="Dabta links" data-aria-ar="روابط ضبطة">
+  <nav class="dt-doc-links" aria-label="Related pages" data-aria-en="Related pages" data-aria-ar="صفحات ذات صلة">
     <a href="/dabta/"><span data-en>Dabta</span><span data-ar>ضبطة</span></a>
     <a href="/dabta/privacy/"><span data-en>Privacy policy</span><span data-ar>سياسة الخصوصية</span></a>
     <a href="/dabta/#support"><span data-en>Support</span><span data-ar>الدعم</span></a>

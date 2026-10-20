@@ -49,11 +49,14 @@
   --dt-ink-3: #765750;
   --dt-brand: #6c151e;
   --dt-on-brand: #f5dabf;
-  --dt-chrome-fill: rgba(108, 21, 30, .07);
+  --dt-chrome-fill: rgba(118, 87, 80, .12);
+  --dt-chrome-fill-strong: rgba(118, 87, 80, .2);
   --dt-chrome-bar: rgba(253, 248, 242, .86);
+  --dt-chrome-bar-line: rgba(108, 21, 30, .08);
   --dt-float-shadow: 0 6px 20px -10px rgba(43, 15, 18, .35);
   --dt-device-shadow: 0 46px 90px -46px rgba(66, 11, 18, .5), 0 12px 30px -18px rgba(66, 11, 18, .28);
-  --dt-switch-off: rgba(108, 21, 30, .16);
+  --dt-switch-off: rgba(118, 87, 80, .2);
+  --dt-switch-knob-on: #fff;
 
   --dt-cat-obligation: #3e62b5;
   --dt-cat-bill: #2d7f6a;
@@ -119,11 +122,14 @@
     --dt-ink-3: #b6a193;
     --dt-brand: #f5dabf;
     --dt-on-brand: #3a0b11;
-    --dt-chrome-fill: rgba(245, 218, 191, .08);
+    --dt-chrome-fill: rgba(245, 218, 191, .1);
+    --dt-chrome-fill-strong: rgba(245, 218, 191, .18);
     --dt-chrome-bar: rgba(30, 18, 20, .84);
+    --dt-chrome-bar-line: rgba(245, 218, 191, .1);
     --dt-float-shadow: 0 6px 20px -10px rgba(0, 0, 0, .6);
     --dt-device-shadow: 0 46px 90px -40px rgba(0, 0, 0, .8), 0 12px 30px -18px rgba(0, 0, 0, .6);
-    --dt-switch-off: rgba(245, 218, 191, .2);
+    --dt-switch-off: rgba(245, 218, 191, .18);
+    --dt-switch-knob-on: #3a0b11;
     --dt-cat-obligation: #86a6e6;
     --dt-cat-bill: #6cc3a8;
     --dt-cat-setaside: #e8a35a;
@@ -160,11 +166,14 @@
   --dt-ink-3: #b6a193;
   --dt-brand: #f5dabf;
   --dt-on-brand: #3a0b11;
-  --dt-chrome-fill: rgba(245, 218, 191, .08);
+  --dt-chrome-fill: rgba(245, 218, 191, .1);
+  --dt-chrome-fill-strong: rgba(245, 218, 191, .18);
   --dt-chrome-bar: rgba(30, 18, 20, .84);
+  --dt-chrome-bar-line: rgba(245, 218, 191, .1);
   --dt-float-shadow: 0 6px 20px -10px rgba(0, 0, 0, .6);
   --dt-device-shadow: 0 46px 90px -40px rgba(0, 0, 0, .8), 0 12px 30px -18px rgba(0, 0, 0, .6);
-  --dt-switch-off: rgba(245, 218, 191, .2);
+  --dt-switch-off: rgba(245, 218, 191, .18);
+  --dt-switch-knob-on: #3a0b11;
   --dt-cat-obligation: #86a6e6;
   --dt-cat-bill: #6cc3a8;
   --dt-cat-setaside: #e8a35a;
@@ -185,7 +194,12 @@
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  :root { --dt-glass: var(--dt-solid); --dt-chrome-bar: var(--dt-solid); }
+  :root[data-theme],
+  :root:not([data-theme]) { --dt-glass: var(--dt-solid); --dt-chrome-bar: var(--dt-solid); }
+  .dt-card,
+  .dt-plus__panel,
+  .dt-tabs,
+  .dt-fab { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
 /* ── Page canvas: the app's vertical gradient and two corner glows. */
@@ -219,10 +233,10 @@ html[lang="ar"] body.pc-dabta { line-height: 1.7; }
 .dt-amt {
   unicode-bidi: isolate;
   white-space: nowrap;
-  font-family: var(--dt-num);
+  font-family: var(--dt-font);
   font-variant-numeric: tabular-nums;
 }
-.dt-amt bdi { font-family: var(--dt-num); }
+.dt-amt bdi { font-family: var(--dt-num); font-variant-numeric: tabular-nums; }
 .dt-num { font-family: var(--dt-num); font-variant-numeric: tabular-nums; }
 
 /* ── Shell additions (header and footer use the shared pc-site classes).
@@ -233,6 +247,12 @@ html[lang="ar"] body.pc-dabta { line-height: 1.7; }
 .pc-dabta .pc-site-footer nav a { font-size: 11px; }
 .pc-dabta .pc-site-footer__base { font-size: 11px; line-height: 1.5; }
 html[lang="ar"] .pc-dabta :is(.pc-site-nav a, .pc-site-footer nav a, .pc-site-menu nav a) { font-size: 13px; }
+.pc-dabta :is(.pc-site-theme button, .pc-site-lang button, .pc-site-menu summary) { font-size: 10px; }
+@media (max-width: 720px) {
+  .pc-dabta :is(.pc-site-theme button, .pc-site-lang button, .pc-site-menu summary) { font-size: 9px; }
+}
+html[lang="ar"] .pc-dabta :is(.pc-site-theme button, .pc-site-lang button, .pc-site-menu summary) { font-size: 12px; }
+html[lang="ar"] .pc-dabta .dt-actions .pc-site-action { font-size: 13px; }
 
 body.pc-dabta .pc-site-action--dabta {
   border-color: var(--dt-brand);
@@ -278,15 +298,6 @@ body.pc-dabta .pc-site-action--dabta {
 .dt-lockup > span { display: grid; gap: 2px; }
 .dt-lockup strong { font-family: var(--dt-display); font-size: 30px; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
 .dt-lockup small { color: var(--dt-ink-2); font-size: 13px; font-weight: 500; }
-
-.dt-eyebrow {
-  margin-bottom: 16px;
-  color: var(--dt-brand);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
 
 .dt-opening h1 {
   max-width: 11ch;
@@ -365,16 +376,17 @@ html[dir="rtl"] .dt-shot { background: var(--dt-paint-rtl); }
 .dt-screen-top { display: flex; align-items: center; gap: 10px; padding: 4px 4px 2px; }
 .dt-screen-title { flex: 1 1 auto; font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
 html[lang="ar"] .dt-screen-title { font-size: 18px; }
-.dt-screen-tools { display: inline-flex; gap: 6px; color: var(--dt-brand); }
+.dt-screen-tools { display: inline-flex; gap: 8px; color: var(--dt-ink); }
 .dt-screen-tools i {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
+  border: 1px solid var(--dt-chrome-bar-line);
   border-radius: 50%;
-  background: var(--dt-chrome-fill);
+  background: var(--dt-chrome-bar);
 }
-.dt-screen-tools svg { width: 16px; height: 16px; }
+.dt-screen-tools svg { width: 17px; height: 17px; }
 
 /* The wine «Remaining» card: the only coloured card, the only shadow. */
 .dt-hero {
@@ -511,6 +523,7 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
   gap: 10px;
 }
 .dt-row.has-dot { --row-inset: 28px; }
+.dt-row.has-check { --row-inset: 44px; }
 .dt-row + .dt-row::before {
   content: "";
   position: absolute;
@@ -532,7 +545,7 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
   flex: none;
   display: grid;
   place-items: center;
-  border: 1.5px solid var(--dt-hairline-strong);
+  border: 1.5px solid var(--dt-ink-3);
   border-radius: 50%;
   color: var(--dt-on-brand);
 }
@@ -540,6 +553,8 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
 .dt-row__check svg { width: 12px; height: 12px; }
 .dt-row__tick { width: 16px; height: 16px; flex: none; color: var(--dt-brand); }
 .dt-row--custom .dt-row__title { color: var(--dt-brand); font-weight: 500; }
+.dt-row__code { flex: none; color: var(--dt-ink-2); font-family: var(--dt-num); font-size: 13px; }
+.dt-row__tick-space { width: 16px; flex: none; }
 
 .dt-sub {
   padding: 10px 12px 2px;
@@ -567,29 +582,18 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
 .dt-screen-head strong { font-size: 17px; font-weight: 600; line-height: 1.35; }
 .dt-screen-head span { color: var(--dt-ink-2); font-size: 12px; }
 
-/* Close the month: five short steps. */
-.dt-steps { display: flex; gap: 4px; padding: 0 2px; }
-.dt-steps i { flex: 1 1 0; height: 4px; border-radius: 3px; background: var(--dt-chrome-fill); }
-.dt-steps i.is-done { background: var(--dt-brand); }
-.dt-steps i.is-now { background: color-mix(in srgb, var(--dt-brand) 45%, transparent); }
-.dt-step-n {
-  width: 22px;
-  height: 22px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  border: 1.5px solid var(--dt-hairline-strong);
-  border-radius: 50%;
-  color: var(--dt-ink-2);
-  font-family: var(--dt-num);
-  font-size: 11px;
-  font-weight: 600;
-}
-.dt-step-n.is-done { border-color: var(--dt-brand); background: var(--dt-brand); color: var(--dt-on-brand); }
-.dt-step-n.is-now { border-color: var(--dt-brand); color: var(--dt-brand); }
-.dt-row.is-now .dt-row__title { font-weight: 600; }
-.dt-row.is-later .dt-row__title { color: var(--dt-ink-2); }
-.dt-link-line { padding: 2px 4px; color: var(--dt-brand); font-size: 13px; font-weight: 500; text-align: center; }
+/* Close the month: one step per screen, with step dots. */
+.dt-close-top { display: flex; justify-content: flex-end; padding: 0 4px; }
+.dt-textbtn { color: var(--dt-brand); font-size: 13px; font-weight: 500; }
+.dt-close-eyebrow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; padding: 0 4px; color: var(--dt-ink-2); font-size: 11px; font-weight: 500; }
+.dt-dots { display: inline-flex; align-items: center; gap: 4px; }
+.dt-dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--dt-chrome-fill-strong); }
+.dt-dots i.is-done { background: var(--dt-ink-2); }
+.dt-dots i.is-now { width: 18px; background: var(--dt-brand); }
+.dt-close-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 0 4px; }
+.dt-close-head strong { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+.dt-close-head .dt-amt { font-size: 15px; font-weight: 600; }
+.dt-btn--solo { margin: 2px 0 0; }
 
 /* Analysis: an insight note and category tracks. */
 .dt-note { display: grid; gap: 4px; }
@@ -599,30 +603,22 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
 .dt-cat { padding: 9px 12px; display: grid; gap: 6px; }
 .dt-cat__line { display: flex; align-items: baseline; gap: 8px; }
 .dt-cat__line .n { flex: 1 1 auto; font-size: 13px; font-weight: 500; }
-.dt-cat__line .p { color: var(--dt-ink-2); font-size: 11px; }
+.dt-cat__bar { display: flex; align-items: center; gap: 8px; }
+.dt-cat__bar .dt-track { flex: 1 1 auto; }
+.dt-cat__bar .p { flex: none; min-width: 2.6em; color: var(--dt-ink-2); font-size: 11px; text-align: end; }
 .dt-track { height: 5px; border-radius: 3px; background: var(--dt-chrome-fill); overflow: hidden; }
 .dt-track > i { display: block; height: 100%; border-radius: 3px; background: var(--dt-cat-spending); }
 .dt-fine { padding-inline: 4px; color: var(--dt-ink-2); font-size: 11px; line-height: 1.5; text-align: center; }
 
-/* Arabic and English, light and dark, any currency. */
-.dt-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+/* Arabic and English, any currency: one wine card per frame. */
+.dt-stack { width: min(100%, 400px); display: grid; gap: 12px; }
+.dt-figure > .dt-stack { justify-self: stretch; margin-inline: auto; }
+.dt-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dt-shot--mini { width: auto; padding: 10px; border-radius: 22px; }
 .dt-pair .dt-hero { padding: 12px; gap: 6px; }
 .dt-pair .dt-hero__amount { font-size: 24px; }
 .dt-pair .dt-hero__label { font-size: 12px; }
 .dt-pair [lang="ar"] { font-family: var(--dt-font); }
-.dt-codes { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px; }
-.dt-codes span {
-  min-width: 46px;
-  padding: 5px 10px;
-  border: 1px solid var(--dt-hairline);
-  border-radius: 999px;
-  background: var(--dt-glass);
-  color: var(--dt-ink);
-  font-family: var(--dt-num);
-  font-size: 12px;
-  font-weight: 600;
-  text-align: center;
-}
 
 /* Privacy: lock and hidden amounts. */
 .dt-switch {
@@ -645,7 +641,7 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
 }
 .dt-switch.is-on { background: var(--dt-brand); }
-.dt-switch.is-on::after { inset-inline-start: auto; inset-inline-end: 3px; background: var(--dt-on-brand); }
+.dt-switch.is-on::after { inset-inline-start: auto; inset-inline-end: 3px; background: var(--dt-switch-knob-on); }
 
 /* Tab bar and the floating "+". */
 .dt-tabbar { display: flex; align-items: center; gap: 10px; padding: 6px 2px 0; }
@@ -725,14 +721,13 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
 .dt-points {
   margin: clamp(22px, 3vw, 30px) 0 0;
   padding: 0;
-  display: grid;
-  gap: 14px;
   list-style: none;
   color: var(--dt-ink-2);
   font-size: clamp(16px, 1.45vw, 18px);
   line-height: 1.62;
 }
 .dt-points li { position: relative; padding-inline-start: 26px; }
+.dt-points li + li { margin-top: 14px; }
 .dt-points li::before {
   content: "";
   position: absolute;
@@ -756,7 +751,7 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
   padding: clamp(26px, 4vw, 52px);
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  gap: clamp(28px, 5vw, 72px);
+  gap: 24px clamp(28px, 5vw, 72px);
   align-items: start;
   border: 1px solid var(--dt-hairline);
   border-radius: 28px;
@@ -790,7 +785,7 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
   color: var(--dt-brand);
 }
 .dt-plus__icon svg { width: 20px; height: 20px; }
-.pc-dabta .dt-plus__note { margin-top: 16px; color: var(--dt-ink); font-size: 16px; font-weight: 500; line-height: 1.6; }
+.pc-dabta .dt-plus__note { grid-column: 1 / -1; margin-top: 0; padding-top: 20px; border-top: 1px solid var(--dt-hairline); color: var(--dt-ink); font-size: 16px; font-weight: 500; line-height: 1.6; }
 
 /* ── General-information line. */
 .dt-disclaimer {
@@ -824,7 +819,6 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
 }
 .dt-support__intro { position: sticky; top: 32px; }
 .pc-dabta .dt-support__intro p { margin-top: 18px; color: var(--dt-ink-2); font-size: clamp(16px, 1.45vw, 18px); line-height: 1.6; }
-.dt-support__list { display: grid; }
 .dt-qa { padding: 26px 0; border-top: 1px solid var(--dt-hairline-strong); color: var(--dt-ink-2); font-size: 16px; line-height: 1.65; }
 .dt-qa:first-child { border-top: 0; padding-top: 0; }
 .pc-dabta .dt-qa h3 { margin: 0 0 12px; color: var(--dt-ink); font-size: clamp(18px, 1.6vw, 21px); font-weight: 600; letter-spacing: -.01em; line-height: 1.35; }
@@ -833,9 +827,8 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
 .pc-dabta .dt-qa > :last-child { margin-bottom: 0; }
 .dt-qa ul { padding-inline-start: 20px; }
 .dt-qa li + li { margin-top: 6px; }
-.dt-qa a,
-.dt-doc .prose a,
-.dt-doc-links a { color: var(--dt-ink); text-decoration-color: var(--dt-brand); text-underline-offset: 4px; overflow-wrap: anywhere; }
+.pc-dabta .dt-qa a,
+.pc-dabta .dt-doc-links a { color: var(--dt-ink); text-decoration-color: var(--dt-brand); text-underline-offset: 4px; overflow-wrap: anywhere; }
 .dt-qa--contact { margin-top: 8px; padding: 24px; border: 1px solid var(--dt-hairline); border-radius: 18px; background: var(--dt-glass); }
 .dt-qa--contact + .dt-qa { border-top: 0; }
 
@@ -855,7 +848,7 @@ body.pc-info.pc-dabta > main::before { display: none; }
 .dt-doc .prose ul { padding-inline-start: 22px; }
 .dt-doc .prose li + li { margin-top: 8px; }
 .dt-doc .doc-meta { font-family: var(--dt-num); }
-.dt-doc .doc-meta [data-ar] { font-family: var(--dt-font); }
+.dt-doc [data-ar] .doc-meta { font-family: var(--dt-font); }
 .dt-fill { padding: 0 4px; border-radius: 4px; background: color-mix(in srgb, var(--dt-cat-setaside) 26%, transparent); color: var(--dt-ink); }
 .dt-doc-links {
   max-width: 720px;
@@ -872,7 +865,7 @@ body.pc-info.pc-dabta > main::before { display: none; }
 .dt-doc .eyebrow { color: var(--dt-brand); }
 
 /* ── Arabic typography: Noto Kufi Arabic, natural spacing, roomier lines. */
-html[lang="ar"] .pc-dabta :is(.dt-edition, .dt-eyebrow, .dt-kicker) { letter-spacing: 0; text-transform: none; }
+html[lang="ar"] .pc-dabta :is(.dt-edition, .dt-kicker) { letter-spacing: 0; text-transform: none; }
 html[lang="ar"] .pc-dabta .dt-opening h1 { max-width: 12ch; font-size: clamp(40px, 5.6vw, 82px); letter-spacing: 0; line-height: 1.3; }
 html[lang="ar"] .pc-dabta :is(.dt-chapter h2, .dt-plus h2, .dt-support h2) { font-size: clamp(28px, 3.6vw, 50px); letter-spacing: 0; line-height: 1.38; }
 html[lang="ar"] .pc-dabta .dt-lockup strong { letter-spacing: 0; line-height: 1.4; }
@@ -901,7 +894,7 @@ html[lang="ar"] .pc-dabta :is(.crumb, .eyebrow, .doc-meta) { letter-spacing: 0; 
 
 @media (max-width: 620px) {
   .dt-opening { width: min(100% - 32px, 1320px); padding-top: calc(68px + 32px); }
-  .dt-edition { font-size: 10px; letter-spacing: .1em; }
+  .pc-dabta .dt-edition { font-size: 10px; letter-spacing: .1em; }
   .dt-lockup img { width: 64px; height: 64px; }
   .dt-lockup strong { font-size: 26px; }
   .dt-opening h1 { font-size: clamp(40px, 12vw, 56px); }
@@ -913,7 +906,6 @@ html[lang="ar"] .pc-dabta :is(.crumb, .eyebrow, .doc-meta) { letter-spacing: 0; 
   .dt-disclaimer { width: min(100% - 32px, 1240px); }
   .dt-device { padding: 14px 10px 10px; border-radius: 34px; }
   .dt-shot { padding: 14px 10px; border-radius: 26px; }
-  .dt-pair { grid-template-columns: 1fr; }
   .dt-plus__features li { grid-template-columns: 1fr; }
   .dt-qa--contact { padding: 18px; }
 }
