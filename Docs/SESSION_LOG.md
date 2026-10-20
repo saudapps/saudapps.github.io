@@ -34,12 +34,22 @@ Public repo: keep entries free of secrets and private local machine paths.
   (the United Arab Emirates) and support-email retention (twelve months,
   deletion within thirty days) are filled in. Added a self-hosted Noto Kufi
   Arabic subset (400/500/600) with its OFL licence and the app icon at 256 px.
+  After the owner compared the pages with the app: the support answer about
+  bank connections now says "personal data"; the terms use the app's
+  "Restore purchases" label; the privacy policy adds that a Dabta Plus PDF
+  report is made on the device and leaves it only when shared or printed;
+  the Arabic close-chapter heading says «تقريباً» like the English. The drawn
+  screens now follow the app: close step five (Summary), amounts with their
+  currency, the carried line before the per-day line, the needs-amount bill,
+  the parts of Reserved, and the Analysis tab layout.
 - Decisions: WEB-013 (hidden pre-launch routes; support as a section, not a
   route) and WEB-014 (one-time Claude Code implementer exception).
 - Open / next: Owner preview and approval of the new interface strings; on
   publication day, fill in the seller name and effective date, reconcile with
-  `origin/main`, merge after Release approval, and verify the three live
-  routes, `noindex`, and that nothing links to them.
+  `origin/main`, publish only the `dabta/` files after Release approval, and
+  verify the three live routes, `noindex`, and that nothing links to them.
+  These Docs entries stay on the branch until the App Store release, because
+  the `Docs/` folder is served on the live site (owner decision).
 - Deploy state: Not published. Work is on branch
   `claude/dabta-website-q1dnjd`; `sitemap.xml`, `index.html`, `Docs/APPS.md`,
   `app-data.js`, release data and shared assets are unchanged.

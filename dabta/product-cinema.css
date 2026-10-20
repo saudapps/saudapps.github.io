@@ -371,7 +371,7 @@ html[dir="rtl"] .dt-shot { background: var(--dt-paint-rtl); }
 }
 
 .dt-screen-top { display: flex; align-items: center; gap: 10px; padding: 4px 4px 2px; }
-.dt-screen-title { flex: 1 1 auto; font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
+.dt-screen-title { flex: 1 1 auto; min-width: 0; font-size: 19px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 html[lang="ar"] .dt-screen-title { font-size: 18px; }
 .dt-screen-tools { display: inline-flex; gap: 8px; color: var(--dt-ink); }
 .dt-screen-tools i {
@@ -534,7 +534,6 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
 .dt-row__title { font-size: 13px; font-weight: 500; }
 .dt-row__sub { color: var(--dt-ink-2); font-size: 11px; }
 .dt-row__amount { flex: none; font-size: 13px; font-weight: 500; }
-.dt-row.is-faint .dt-row__title,
 .dt-row.is-faint .dt-row__amount { color: var(--dt-ink-3); }
 .dt-row__check {
   width: 22px;
@@ -591,6 +590,11 @@ html.pc-site-observe .dt-reveal-bar.is-visible .dt-bar > i:nth-child(6) { transi
 .dt-close-head strong { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
 .dt-close-head .dt-amt { font-size: 15px; font-weight: 600; }
 .dt-btn--solo { margin: 2px 0 0; }
+
+/* Segmented control (two options), as in the Analysis tab. */
+.dt-seg { display: flex; gap: 2px; padding: 2px; border-radius: 9px; background: var(--dt-chrome-fill); }
+.dt-seg > span { flex: 1 1 0; padding: 5px 8px; border-radius: 7px; color: var(--dt-ink); font-size: 12px; font-weight: 500; text-align: center; }
+.dt-seg > span.is-on { background: var(--dt-solid); box-shadow: 0 1px 3px rgba(43, 15, 18, .12); font-weight: 600; }
 
 /* Analysis: an insight note and category tracks. */
 .dt-note { display: grid; gap: 4px; }
@@ -909,6 +913,11 @@ html[lang="ar"] .pc-dabta :is(.crumb, .eyebrow, .doc-meta) { letter-spacing: 0; 
 
 @media (max-width: 500px) {
   .dt-meta > span { border: 0; margin-inline-end: 12px; padding: 0; }
+}
+
+@media (max-width: 420px) {
+  .dt-screen-title,
+  html[lang="ar"] .dt-screen-title { font-size: 16px; }
 }
 
 @media (max-width: 360px) {
