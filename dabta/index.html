@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Set up your income and obligations once. Each month carries over, closes in about two minutes and shows what’s left. Private, on your phone, in Arabic and English.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6E1CC">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/saudapps-favicon.png">
+<title>Dabta — Salary, bills and what’s left</title>
+
+<link rel="canonical" href="https://saud.im/dabta/">
+<meta property="og:site_name" content="Saud Apps">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:url" content="https://saud.im/dabta/">
+<meta property="og:title" content="Dabta — Salary, bills and what’s left">
+<meta property="og:description" content="Set up your income and obligations once. Each month carries over, closes in about two minutes and shows what’s left. Private, on your phone, in Arabic and English.">
+<meta property="og:image" content="https://saud.im/dabta/assets/icon-dabta.png">
+<meta property="og:image:alt" content="Dabta app icon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dabta — Salary, bills and what’s left">
+<meta name="twitter:description" content="Set up your income and obligations once. Each month carries over, closes in about two minutes and shows what’s left.">
+<meta name="twitter:image" content="https://saud.im/dabta/assets/icon-dabta.png">
+<meta name="twitter:image:alt" content="Dabta app icon">
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    root.classList.add('pc-site-js');
+    function stored(key) { try { return localStorage.getItem(key); } catch (error) { return null; } }
+    try {
+      var theme = stored('saudapps-theme');
+      if (theme !== 'light' && theme !== 'dark') theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      var lang = stored('saudapps-lang');
+      if (lang !== 'en' && lang !== 'ar') lang = (navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en';
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    } catch (error) {}
+  })();
+</script>
+<link rel="preload" href="/dabta/assets/fonts/NotoKufiArabic-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/product-cinema-site.css?v=20260825-narrowfix1">
+<link rel="stylesheet" href="/dabta/product-cinema.css?v=dabta-1">
+</head>
+<body class="product-cinema-rollout pc-dabta" data-title-en="Dabta — Salary, bills and what’s left" data-title-ar="ضبطة — راتب وفواتير وكم يتبقى لك">
+<a class="pc-site-skip" href="#main"><span data-en>Skip to content</span><span data-ar>تخطَّ إلى المحتوى</span></a>
+
+<header class="pc-site-header">
+  <a class="pc-site-brand" href="/" aria-label="Saud Apps home" data-aria-en="Saud Apps home" data-aria-ar="الصفحة الرئيسية لتطبيقات سعود">
+    <span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span><strong>Saud Apps</strong><small><span data-en>Independent · iOS</span><span data-ar>مستقل · iOS</span></small></span>
+  </a>
+
+  <nav class="pc-site-nav" aria-label="Dabta" data-aria-en="Dabta" data-aria-ar="ضبطة">
+    <a href="/dabta/" aria-current="page"><span data-en>Dabta</span><span data-ar>ضبطة</span></a>
+    <a href="/dabta/privacy/"><span data-en>Privacy</span><span data-ar>الخصوصية</span></a>
+    <a href="/dabta/terms/"><span data-en>Terms</span><span data-ar>الشروط</span></a>
+    <a href="/dabta/#support"><span data-en>Support</span><span data-ar>الدعم</span></a>
+  </nav>
+
+  <div class="pc-site-tools">
+    <div class="pc-site-theme" role="group" aria-label="Color theme" data-aria-en="Color theme" data-aria-ar="المظهر">
+      <button type="button" data-pc-site-theme="light" aria-pressed="false"><span data-en>Day</span><span data-ar>نهار</span></button>
+      <button type="button" data-pc-site-theme="dark" aria-pressed="false"><span data-en>Night</span><span data-ar>ليل</span></button>
+    </div>
+    <div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+    </div>
+    <details class="pc-site-menu">
+      <summary><span data-en>Menu</span><span data-ar>القائمة</span></summary>
+      <nav aria-label="Dabta" data-aria-en="Dabta" data-aria-ar="ضبطة">
+        <a href="/dabta/" aria-current="page"><span data-en>Dabta</span><span data-ar>ضبطة</span></a>
+        <a href="/dabta/privacy/"><span data-en>Privacy</span><span data-ar>الخصوصية</span></a>
+        <a href="/dabta/terms/"><span data-en>Terms</span><span data-ar>الشروط</span></a>
+        <a href="/dabta/#support"><span data-en>Support</span><span data-ar>الدعم</span></a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="dt-opening" aria-labelledby="dabta-title">
+    <p class="dt-edition" aria-hidden="true"><span><span data-en>Coming soon to iPhone</span><span data-ar>قريباً على iPhone</span></span><span>Dabta · ضبطة</span></p>
+
+    <div class="dt-opening__layout">
+      <div class="dt-opening__copy">
+        <div class="dt-lockup">
+          <img src="/dabta/assets/icon-dabta.png" data-pc-theme-image data-light-src="/dabta/assets/icon-dabta.png" data-dark-src="/dabta/assets/icon-dabta-dark.png" alt="Dabta app icon" data-alt-en="Dabta app icon" data-alt-ar="أيقونة تطبيق ضبطة" width="256" height="256">
+          <span><strong><span data-en>Dabta</span><span data-ar>ضبطة</span></strong><small><span data-en>Monthly Budget</span><span data-ar>ميزانية الشهر</span></small></span>
+        </div>
+
+        <h1 id="dabta-title"><span data-en>Salary, bills and what’s left</span><span data-ar>راتب وفواتير وكم يتبقى لك</span></h1>
+        <p class="dt-lede"><span data-en>Set up your income and obligations once. Each month carries over, closes in about two minutes and shows what’s left. Private, on your phone, in Arabic and English.</span><span data-ar>سجّل دخلك والتزاماتك مرة واحدة، وكل شهر ينتقل معك، وتقفّله في دقيقتين تقريباً وتشوف كم باقي لك. خاص بك وعلى جوالك، بالعربية والإنجليزية.</span></p>
+
+        <p class="dt-meta"><span><span data-en>Coming soon to iPhone</span><span data-ar>قريباً على iPhone</span></span><span><span data-en>Arabic and English</span><span data-ar>بالعربية والإنجليزية</span></span><span><span data-en>Private, on your phone</span><span data-ar>خاص بك وعلى جوالك</span></span></p>
+
+        <div class="dt-actions">
+          <a class="pc-site-action pc-site-action--dabta" href="#dabta-chapters"><span data-en>See how it works </span><span data-ar>شوف كيف يشتغل </span><span aria-hidden="true">↓</span></a>
+          <a class="pc-site-action" href="#support"><span data-en>Support</span><span data-ar>الدعم</span></a>
+        </div>
+      </div>
+
+      <figure class="dt-opening__evidence">
+        <div class="dt-device dt-reveal-bar" data-pc-site-reveal role="img" aria-label="Illustration of the Dabta month screen for April, 28 Mar to 27 Apr, with example numbers: Remaining AED 3,777, estimated, 20% of your income. Carried from 28 Feb to 27 Mar plus AED 640, so AED 4,417 is available now: you can spend AED 368 a day, 12 days to payday. Bills AED 1,202, 3 of 4 confirmed, 1 needs an amount." data-aria-en="Illustration of the Dabta month screen for April, 28 Mar to 27 Apr, with example numbers: Remaining AED 3,777, estimated, 20% of your income. Carried from 28 Feb to 27 Mar plus AED 640, so AED 4,417 is available now: you can spend AED 368 a day, 12 days to payday. Bills AED 1,202, 3 of 4 confirmed, 1 needs an amount." data-aria-ar="رسم توضيحي لشاشة شهر أبريل في ضبطة، من 28 مارس إلى 27 أبريل، بأرقام مثال: باقي لك 3,777 د.إ، تقديري، 20% من دخلك. والمرحّل من 28 فبراير إلى 27 مارس 640 د.إ، فالمتاح الآن 4,417 د.إ: تقدر تصرف 368 د.إ في اليوم، 12 يوماً على الراتب. الفواتير 1,202 د.إ، 3 من 4 مؤكدة، وواحدة تحتاج مبلغاً.">
+          <div class="dt-screen-top">
+            <span class="dt-screen-title"><span data-en>April · <span class="dt-nw">28 Mar</span> – <span class="dt-nw">27 Apr</span></span><span data-ar>أبريل · <span class="dt-nw">28 مارس</span> – <span class="dt-nw">27 أبريل</span></span></span>
+            <span class="dt-screen-tools">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></i>
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 3.4h3.4l.5 2.3 1.7.9 2.2-.8 1.7 2.9-1.7 1.6v2l1.7 1.6-1.7 2.9-2.2-.8-1.7.9-.5 2.3h-3.4l-.5-2.3-1.7-.9-2.2.8-1.7-2.9 1.7-1.6v-2L3.9 8.7l1.7-2.9 2.2.8 1.7-.9Z"/><circle cx="12" cy="12" r="2.8"/></svg></i>
+            </span>
+          </div>
+
+          <div class="dt-hero">
+            <div class="dt-hero__top">
+              <div class="dt-hero__head">
+                <span class="dt-hero__label"><span data-en>Remaining</span><span data-ar>باقي لك</span></span>
+                <div class="dt-hero__amountline">
+                  <span class="dt-hero__amount dt-amt"><span class="c" data-en>AED&nbsp;</span><bdi dir="ltr">3,777</bdi><span class="c" data-ar>&nbsp;د.إ</span></span>
+                  <span class="dt-hero__status"><span data-en>Estimated</span><span data-ar>تقديري</span></span>
+                </div>
+              </div>
+              <span class="dt-hero__analyse"><span data-en>Analyse</span><span data-ar>حلّل</span><svg class="dt-flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></span>
+            </div>
+            <div class="dt-hero__lower">
+              <div class="dt-hero__meta"><span><span data-en><bdi class="dt-num">20%</bdi> of your income</span><span data-ar><bdi class="dt-num">20%</bdi> من دخلك</span></span><span class="sp"></span><span class="dt-hero__link"><span data-en>Explain</span><span data-ar>اشرح لي</span></span></div>
+              <div class="dt-bar"><i data-k="obligation" style="flex-grow:2500"></i><i data-k="bill" style="flex-grow:1202"></i><i data-k="setaside" style="flex-grow:6000"></i><i data-k="spending" style="flex-grow:4021"></i><i data-k="saving" style="flex-grow:1000"></i><i data-k="remaining" style="flex-grow:3777"></i></div>
+              <div class="dt-legend">
+                <span><span class="dots"><i data-k="obligation"></i><i data-k="bill"></i><i data-k="setaside"></i></span><span data-en>Reserved</span><span data-ar>محجوز</span></span>
+                <span><span class="dots"><i data-k="spending"></i></span><span data-en>Spending</span><span data-ar>مصاريف</span></span>
+                <span><span class="dots"><i data-k="saving"></i></span><span data-en>Saving</span><span data-ar>ادخار</span></span>
+                <span><span class="dots"><i data-k="remaining"></i></span><span data-en>Remaining</span><span data-ar>باقي</span></span>
+              </div>
+              <div class="dt-hero__rows">
+                <div class="dt-hero__kv"><span><span data-en>Carried from 28 Feb – 27 Mar:</span><span data-ar>مرحّل من 28 فبراير – 27 مارس:</span></span><b class="dt-amt"><span data-en>+AED&nbsp;<bdi dir="ltr">640</bdi></span><span data-ar><bdi dir="ltr">+640</bdi>&nbsp;د.إ</span></b></div>
+                <div class="dt-hero__kv"><span><span data-en>Available now</span><span data-ar>المتاح الآن</span></span><b class="dt-amt"><span data-en>AED&nbsp;</span><bdi dir="ltr">4,417</bdi><span data-ar>&nbsp;د.إ</span></b></div>
+              </div>
+              <p class="dt-hero__line"><span data-en>You can spend <span class="dt-amt">AED&nbsp;<bdi dir="ltr">368</bdi></span> a day · <span class="dt-nw"><bdi class="dt-num">12</bdi> days to payday</span></span><span data-ar>تقدر تصرف <span class="dt-amt"><bdi dir="ltr">368</bdi>&nbsp;د.إ</span> في اليوم · <span class="dt-nw"><bdi class="dt-num">12</bdi> يوماً على الراتب</span></span></p>
+            </div>
+          </div>
+
+          <div class="dt-group">
+            <div class="dt-sh"><span class="t"><i class="dt-dot" data-k="bill"></i><span data-en>Bills</span><span data-ar>الفواتير</span></span><span class="v dt-amt"><span data-en>AED&nbsp;</span><bdi dir="ltr">1,202</bdi><span data-ar>&nbsp;د.إ</span></span><span class="add">+</span></div>
+            <div class="dt-card dt-card--list">
+              <div class="dt-row has-dot is-faint"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Electricity &amp; water</span><span data-ar>كهرباء وماء</span></span><span class="dt-row__sub"><span data-en>Needs amount · Last month: <span class="dt-amt">AED&nbsp;<bdi dir="ltr">568</bdi></span></span><span data-ar>تحتاج مبلغ · الشهر الماضي: <span class="dt-amt"><bdi dir="ltr">568</bdi>&nbsp;د.إ</span></span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">568</bdi></span><span data-ar><bdi dir="ltr">568</bdi>&nbsp;د.إ</span></span></div>
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Home internet</span><span data-ar>إنترنت البيت</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">389</bdi></span><span data-ar><bdi dir="ltr">389</bdi>&nbsp;د.إ</span></span></div>
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Mobile</span><span data-ar>جوال</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">150</bdi></span><span data-ar><bdi dir="ltr">150</bdi>&nbsp;د.إ</span></span></div>
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Subscriptions</span><span data-ar>اشتراكات</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">95</bdi></span><span data-ar><bdi dir="ltr">95</bdi>&nbsp;د.إ</span></span></div>
+            </div>
+            <p class="dt-foot"><span data-en><bdi class="dt-num">3</bdi> of <bdi class="dt-num">4</bdi> confirmed · Needs amount: <bdi class="dt-num">1</bdi></span><span data-ar><bdi class="dt-num">3</bdi> من <bdi class="dt-num">4</bdi> مؤكدة · تحتاج مبلغ: <bdi class="dt-num">1</bdi></span></p>
+          </div>
+
+          <div class="dt-tabbar">
+            <div class="dt-tabs">
+              <span class="is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span data-en>Month</span><span data-ar>الشهر</span></span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span data-en>Analysis</span><span data-ar>التحليل</span></span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span data-en>History</span><span data-ar>السجل</span></span>
+            </div>
+            <span class="dt-fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></span>
+          </div>
+        </div>
+        <figcaption class="dt-caption"><span data-en>See what’s left this month</span><span data-ar>شوف كم باقي لك هذا الشهر</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="dt-chapters" id="dabta-chapters">
+    <section class="dt-chapter" aria-labelledby="ch-payday">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">01</p>
+        <h2 id="ch-payday"><span data-en>Your month starts on payday</span><span data-ar>شهرك يبدأ من يوم راتبك</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>Choose your payday: a set day, the last day of the month, the last working day, the calendar month if your income varies, or a date that changes every month.</li>
+          <li>Your month runs from one salary to the next, so the numbers match the money you actually have.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>اختر يوم راتبك: يوم محدد، أو آخر يوم بالشهر، أو آخر يوم عمل، أو الشهر الميلادي إذا كان دخلك متغيراً، أو تاريخ يتغير كل شهر.</li>
+          <li>شهرك يمتد من راتب إلى الراتب اللي بعده، فتطابق الأرقام الفلوس اللي معك فعلاً.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of the payday picker: specific day, last day of the month, last working day, no fixed salary, or custom when it changes every month." data-aria-en="Illustration of the payday picker: specific day, last day of the month, last working day, no fixed salary, or custom when it changes every month." data-aria-ar="رسم توضيحي لاختيار يوم الراتب: يوم محدد، أو آخر يوم بالشهر، أو آخر يوم عمل، أو ما عندي راتب ثابت، أو مخصص إذا كان يتغير كل شهر.">
+          <div class="dt-screen-head"><strong><span data-en>When does your salary arrive?</span><span data-ar>متى ينزل راتبك؟</span></strong></div>
+          <div class="dt-group">
+            <div class="dt-sh"><span class="t"><span data-en>Payday</span><span data-ar>يوم الراتب</span></span></div>
+            <div class="dt-card dt-card--list">
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Specific day… (<bdi class="dt-num">1–31</bdi>)</span><span data-ar>يوم محدد… (<bdi class="dt-num">1–31</bdi>)</span></span></span><svg class="dt-row__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Last day of the month</span><span data-ar>آخر يوم بالشهر</span></span></span></div>
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Last working day</span><span data-ar>آخر يوم عمل</span></span></span></div>
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>No fixed salary</span><span data-ar>ما عندي راتب ثابت</span></span></span></div>
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Custom… (changes every month)</span><span data-ar>مخصص… (يتغير كل شهر)</span></span></span></div>
+            </div>
+            <p class="dt-foot"><span data-en>If a month is shorter, payday is its last day.</span><span data-ar>إذا كان الشهر أقصر، يكون الراتب في آخر يوم منه.</span></p>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <section class="dt-chapter dt-chapter--flip" aria-labelledby="ch-setup">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">02</p>
+        <h2 id="ch-setup"><span data-en>Set up once</span><span data-ar>جهّزه مرة واحدة</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>Tick what you have each month, such as salary, rent, bills, instalments, family support and saving, then enter all the amounts on one screen.</li>
+          <li>Need something that isn’t listed? Add your own item with any name.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>أشّر على اللي عندك كل شهر، مثل الراتب والإيجار والفواتير والأقساط ودعم الأهل والادخار، واكتب كل المبالغ في شاشة واحدة.</li>
+          <li>تحتاج بنداً غير موجود؟ أضفه بأي اسم تختاره.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of the first-run checklist: salary, rent, family support and remittances, electricity and water, mobile and monthly saving ticked; school fees not ticked; and a custom item." data-aria-en="Illustration of the first-run checklist: salary, rent, family support and remittances, electricity and water, mobile and monthly saving ticked; school fees not ticked; and a custom item." data-aria-ar="رسم توضيحي لقائمة البداية: الراتب والإيجار ودعم الأهل والتحويلات والكهرباء والماء والجوال والادخار الشهري عليها علامة، ورسوم المدارس بدون علامة، وبند مخصص.">
+          <div class="dt-screen-head"><strong><span data-en>Which of these do you have each month?</span><span data-ar>شو عندك كل شهر؟</span></strong><span><span data-en>Tick what you have; amounts come next.</span><span data-ar>أشّر على اللي عندك، والمبالغ في الخطوة الجاية.</span></span></div>
+          <div class="dt-card dt-card--list">
+            <div class="dt-row has-check"><span class="dt-row__check is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>Salary</span><span data-ar>راتب</span></span></span></div>
+            <div class="dt-row has-check"><span class="dt-row__check is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>Rent</span><span data-ar>إيجار السكن</span></span></span></div>
+            <div class="dt-row has-check"><span class="dt-row__check is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>Family support &amp; remittances</span><span data-ar>دعم الأهل والتحويلات</span></span></span></div>
+            <div class="dt-row has-check"><span class="dt-row__check is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>Electricity &amp; water</span><span data-ar>كهرباء وماء</span></span></span></div>
+            <div class="dt-row has-check"><span class="dt-row__check is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>Mobile</span><span data-ar>جوال</span></span></span></div>
+            <div class="dt-row has-check"><span class="dt-row__check"></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>School fees</span><span data-ar>رسوم المدارس</span></span></span></div>
+            <div class="dt-row has-check"><span class="dt-row__check is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="dt-row__main"><span class="dt-row__title"><span data-en>Monthly saving</span><span data-ar>ادخار شهري</span></span></span></div>
+            <div class="dt-row dt-row--custom"><span class="dt-row__main"><span class="dt-row__title"><span data-en>+ Custom…</span><span data-ar>+ مخصص…</span></span></span></div>
+          </div>
+        </div>
+        <figcaption class="dt-caption"><span data-en>Tick what you have, once</span><span data-ar>أشّر على اللي عندك مرة واحدة</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="dt-chapter" aria-labelledby="ch-carry">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">03</p>
+        <h2 id="ch-carry"><span data-en>Each month carries over</span><span data-ar>كل شهر ينتقل معك</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>A new month opens with your items and last amounts. Confirm the fixed ones in one tap, change what’s different, skip an item for one month or stop it for good.</li>
+          <li>Instalment plans end on their own after the last payment.</li>
+          <li>Rent paid once or a few times a year, school fees and any other payment that isn’t monthly turn into a small set-aside each month, so the month it falls due holds no surprise.</li>
+          <li>Mark amounts taken from your salary before it arrives. They’re shown for information and never counted twice.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>الشهر الجديد يفتح ببنودك وآخر مبالغها. أكّد الثابتة بضغطة، وعدّل اللي تغيّر، وتخطَّ أي بند لهذا الشهر فقط أو أوقفه نهائياً.</li>
+          <li>خطط التقسيط تنتهي وحدها بعد آخر دفعة.</li>
+          <li>الإيجار اللي تدفعه مرة أو كم مرة في السنة، ورسوم المدارس وأي دفعة غير شهرية، تتحول إلى حصة تجنيب صغيرة كل شهر، فلا يفاجئك شهر استحقاقها.</li>
+          <li>علّم المبالغ المخصومة من راتبك قبل نزوله، فتظهر للعلم ولا تُحسب مرتين.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of a new month carried over: a Confirm all button for six fixed items; electricity and water still needs an amount, with an empty amount field, last month’s AED 568, and the choices same as last month or the average of the last 3 months, AED 541; then the six fixed items with last month’s amounts." data-aria-en="Illustration of a new month carried over: a Confirm all button for six fixed items; electricity and water still needs an amount, with an empty amount field, last month’s AED 568, and the choices same as last month or the average of the last 3 months, AED 541; then the six fixed items with last month’s amounts." data-aria-ar="رسم توضيحي لشهر جديد انتقل: زر تأكيد الكل لستة بنود ثابتة، والكهرباء والماء تحتاج مبلغاً، وفيها خانة مبلغ فاضية، ومبلغ الشهر الماضي 568 د.إ، والاختياران مثل الشهر الماضي أو متوسط آخر 3 أشهر 541 د.إ؛ ثم البنود الثابتة الستة بمبالغ الشهر الماضي.">
+          <div class="dt-card dt-card--list">
+            <span class="dt-btn dt-btn--top"><span data-en>Confirm all (<bdi class="dt-num">6</bdi>)</span><span data-ar>تأكيد الكل (<bdi class="dt-num">6</bdi>)</span></span>
+            <p class="dt-sub"><span data-en>Needs amount (<bdi class="dt-num">1</bdi>)</span><span data-ar>تحتاج مبلغ (<bdi class="dt-num">1</bdi>)</span></p>
+            <div class="dt-row has-dot dt-row--need"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Electricity &amp; water</span><span data-ar>كهرباء وماء</span></span><span class="dt-row__sub"><span data-en>Last month: <span class="dt-amt">AED&nbsp;<bdi dir="ltr">568</bdi></span></span><span data-ar>الشهر الماضي: <span class="dt-amt"><bdi dir="ltr">568</bdi>&nbsp;د.إ</span></span></span><span class="dt-quick"><span class="dt-chip"><span data-en>Same as last month</span><span data-ar>مثل الشهر الماضي</span></span><span class="dt-chip"><span data-en>Average of the last <bdi class="dt-num">3</bdi> months: <span class="dt-amt">AED&nbsp;<bdi dir="ltr">541</bdi></span></span><span data-ar>متوسط آخر <bdi class="dt-num">3</bdi> أشهر: <span class="dt-amt"><bdi dir="ltr">541</bdi>&nbsp;د.إ</span></span></span></span></span><span class="dt-field dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">0</bdi></span><span data-ar><bdi dir="ltr">0</bdi>&nbsp;د.إ</span></span></div>
+            <p class="dt-sub"><span data-en>Fixed (<bdi class="dt-num">6</bdi>)</span><span data-ar>ثابتة (<bdi class="dt-num">6</bdi>)</span></p>
+            <div class="dt-row has-dot"><i class="dt-dot" data-k="setaside"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Rent</span><span data-ar>إيجار السكن</span></span><span class="dt-row__sub"><span data-en>Set-aside</span><span data-ar>التجنيب</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">6,000</bdi></span><span data-ar><bdi dir="ltr">6,000</bdi>&nbsp;د.إ</span></span></div>
+            <div class="dt-row has-dot"><i class="dt-dot" data-k="obligation"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Family support &amp; remittances</span><span data-ar>دعم الأهل والتحويلات</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">2,500</bdi></span><span data-ar><bdi dir="ltr">2,500</bdi>&nbsp;د.إ</span></span></div>
+            <div class="dt-row has-dot"><i class="dt-dot" data-k="saving"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Monthly saving</span><span data-ar>ادخار شهري</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">1,000</bdi></span><span data-ar><bdi dir="ltr">1,000</bdi>&nbsp;د.إ</span></span></div>
+            <div class="dt-row has-dot"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Home internet</span><span data-ar>إنترنت البيت</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">389</bdi></span><span data-ar><bdi dir="ltr">389</bdi>&nbsp;د.إ</span></span></div>
+            <div class="dt-row has-dot"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Mobile</span><span data-ar>جوال</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">150</bdi></span><span data-ar><bdi dir="ltr">150</bdi>&nbsp;د.إ</span></span></div>
+            <div class="dt-row has-dot"><i class="dt-dot" data-k="bill"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Subscriptions</span><span data-ar>اشتراكات</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">95</bdi></span><span data-ar><bdi dir="ltr">95</bdi>&nbsp;د.إ</span></span></div>
+          </div>
+        </div>
+        <figcaption class="dt-caption"><span data-en>Each new month, ready in a tap</span><span data-ar>كل شهر جديد جاهز بضغطة</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="dt-chapter dt-chapter--flip" aria-labelledby="ch-close">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">04</p>
+        <h2 id="ch-close"><span data-en>Close in about two minutes</span><span data-ar>قفّل شهرك في دقيقتين تقريباً</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>Confirm your salary, bills and spending in five short steps. Save and finish later if you need to.</li>
+          <li>Whatever you didn’t spend moves to the next month as one clear line.</li>
+          <li>Closed months stay in your history and never change.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>أكّد راتبك وفواتيرك ومصاريفك في خمس خطوات قصيرة، واحفظ وكمّل لاحقاً إذا احتجت.</li>
+          <li>اللي ما صرفته ينتقل للشهر الجاي في سطر واحد واضح.</li>
+          <li>الأشهر المقفلة تبقى في سجلك ولا تتغير.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of closing April, step 5 of 5, the Summary: Remaining AED 3,777, 20% of your income; next cycle 28 Apr to 27 May; and the Close the month button." data-aria-en="Illustration of closing April, step 5 of 5, the Summary: Remaining AED 3,777, 20% of your income; next cycle 28 Apr to 27 May; and the Close the month button." data-aria-ar="رسم توضيحي لتقفيل شهر أبريل، الخطوة 5 من 5، الملخص: باقي 3,777 د.إ، أي 20% من دخلك؛ والدورة الجاية من 28 أبريل إلى 27 مايو؛ وزر قفّل الشهر.">
+          <div class="dt-close-top"><span class="dt-textbtn"><span data-en>Save and finish later</span><span data-ar>احفظ وكمّل لاحقاً</span></span></div>
+          <div class="dt-close-eyebrow"><span><span data-en>Close April · 28 Mar – 27 Apr</span><span data-ar>تقفيل أبريل · 28 مارس – 27 أبريل</span></span><span class="dt-dots"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-now"></i></span></div>
+          <div class="dt-close-head"><strong><span data-en>Summary</span><span data-ar>الملخص</span></strong></div>
+          <div class="dt-hero">
+            <div class="dt-hero__top">
+              <div class="dt-hero__head">
+                <span class="dt-hero__label"><span data-en>Remaining</span><span data-ar>باقي</span></span>
+                <div class="dt-hero__amountline">
+                  <span class="dt-hero__amount dt-amt"><span class="c" data-en>AED&nbsp;</span><bdi dir="ltr">3,777</bdi><span class="c" data-ar>&nbsp;د.إ</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="dt-hero__lower">
+              <div class="dt-hero__meta"><span><span data-en><bdi class="dt-num">20%</bdi> of your income</span><span data-ar><bdi class="dt-num">20%</bdi> من دخلك</span></span></div>
+            </div>
+          </div>
+          <div class="dt-card dt-card--list">
+            <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Next cycle: 28 Apr – 27 May</span><span data-ar>الدورة الجاية: 28 أبريل – 27 مايو</span></span></span></div>
+          </div>
+          <span class="dt-btn dt-btn--solo"><span data-en>Close the month</span><span data-ar>قفّل الشهر</span></span>
+        </div>
+        <figcaption class="dt-caption"><span data-en>Close a month in two minutes</span><span data-ar>قفّل شهرك في دقيقتين</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="dt-chapter" aria-labelledby="ch-left">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">05</p>
+        <h2 id="ch-left"><span data-en>See what’s left</span><span data-ar>شوف كم باقي لك</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>One number, Remaining: your income after what’s reserved, your spending and your saving. Tap Explain to see how it’s worked out.</li>
+          <li>See how much you can spend a day until payday.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>رقم واحد اسمه «باقي»: دخلك بعد المحجوز والمصاريف والادخار. اضغط «اشرح لي» لتشوف طريقة الحساب.</li>
+          <li>واعرف كم تقدر تصرف في اليوم لين راتبك.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure dt-reveal-bar" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of how Remaining is worked out with example numbers: income AED 18,500; reserved AED 9,702, made of obligations AED 2,500, bills AED 1,202 and set-asides AED 6,000; spending AED 4,021; saving AED 1,000; Remaining AED 3,777, 20% of your income. Carried from the last month AED 640, so AED 4,417 is available now: you can spend AED 368 a day, 12 days to payday." data-aria-en="Illustration of how Remaining is worked out with example numbers: income AED 18,500; reserved AED 9,702, made of obligations AED 2,500, bills AED 1,202 and set-asides AED 6,000; spending AED 4,021; saving AED 1,000; Remaining AED 3,777, 20% of your income. Carried from the last month AED 640, so AED 4,417 is available now: you can spend AED 368 a day, 12 days to payday." data-aria-ar="رسم توضيحي لطريقة حساب باقي لك بأرقام مثال: الدخل 18,500 د.إ، والمحجوز 9,702 د.إ، منها الالتزامات 2,500 د.إ والفواتير 1,202 د.إ والتجنيب 6,000 د.إ، والمصاريف 4,021 د.إ، والادخار 1,000 د.إ، وباقي لك 3,777 د.إ، أي 20% من دخلك. والمرحّل من الشهر الماضي 640 د.إ، فالمتاح الآن 4,417 د.إ: تقدر تصرف 368 د.إ في اليوم، 12 يوماً على الراتب.">
+          <div class="dt-group">
+            <div class="dt-sh"><span class="t"><span data-en>Explain</span><span data-ar>اشرح لي</span></span></div>
+            <div class="dt-card dt-card--list">
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="income"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Income</span><span data-ar>الدخل</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">18,500</bdi></span><span data-ar><bdi dir="ltr">18,500</bdi>&nbsp;د.إ</span></span></div>
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="obligation"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Reserved</span><span data-ar>المحجوز</span></span><span class="dt-row__sub"><span data-en><span class="dt-nw">obligations <span class="dt-amt">AED&nbsp;<bdi dir="ltr">2,500</bdi></span></span> + <span class="dt-nw">bills <span class="dt-amt">AED&nbsp;<bdi dir="ltr">1,202</bdi></span></span> + <span class="dt-nw">set‑asides <span class="dt-amt">AED&nbsp;<bdi dir="ltr">6,000</bdi></span></span></span><span data-ar><span class="dt-nw">الالتزامات <span class="dt-amt"><bdi dir="ltr">2,500</bdi>&nbsp;د.إ</span></span> + <span class="dt-nw">الفواتير <span class="dt-amt"><bdi dir="ltr">1,202</bdi>&nbsp;د.إ</span></span> + <span class="dt-nw">التجنيب <span class="dt-amt"><bdi dir="ltr">6,000</bdi>&nbsp;د.إ</span></span></span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">9,702</bdi></span><span data-ar><bdi dir="ltr">9,702</bdi>&nbsp;د.إ</span></span></div>
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="spending"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Spending</span><span data-ar>المصاريف</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">4,021</bdi></span><span data-ar><bdi dir="ltr">4,021</bdi>&nbsp;د.إ</span></span></div>
+              <div class="dt-row has-dot"><i class="dt-dot" data-k="saving"></i><span class="dt-row__main"><span class="dt-row__title"><span data-en>Saving</span><span data-ar>الادخار</span></span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">1,000</bdi></span><span data-ar><bdi dir="ltr">1,000</bdi>&nbsp;د.إ</span></span></div>
+            </div>
+          </div>
+          <div class="dt-hero">
+            <div class="dt-hero__top">
+              <div class="dt-hero__head">
+                <span class="dt-hero__label"><span data-en>Remaining</span><span data-ar>باقي لك</span></span>
+                <div class="dt-hero__amountline">
+                  <span class="dt-hero__amount dt-amt"><span class="c" data-en>AED&nbsp;</span><bdi dir="ltr">3,777</bdi><span class="c" data-ar>&nbsp;د.إ</span></span>
+                  <span class="dt-hero__status"><span data-en>Estimated</span><span data-ar>تقديري</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="dt-hero__lower">
+              <div class="dt-hero__meta"><span><span data-en><bdi class="dt-num">20%</bdi> of your income</span><span data-ar><bdi class="dt-num">20%</bdi> من دخلك</span></span></div>
+              <div class="dt-bar"><i data-k="obligation" style="flex-grow:2500"></i><i data-k="bill" style="flex-grow:1202"></i><i data-k="setaside" style="flex-grow:6000"></i><i data-k="spending" style="flex-grow:4021"></i><i data-k="saving" style="flex-grow:1000"></i><i data-k="remaining" style="flex-grow:3777"></i></div>
+              <div class="dt-hero__rows">
+                <div class="dt-hero__kv"><span><span data-en>Carried from 28 Feb – 27 Mar:</span><span data-ar>مرحّل من 28 فبراير – 27 مارس:</span></span><b class="dt-amt"><span data-en>+AED&nbsp;<bdi dir="ltr">640</bdi></span><span data-ar><bdi dir="ltr">+640</bdi>&nbsp;د.إ</span></b></div>
+                <div class="dt-hero__kv"><span><span data-en>Available now</span><span data-ar>المتاح الآن</span></span><b class="dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">4,417</bdi></span><span data-ar><bdi dir="ltr">4,417</bdi>&nbsp;د.إ</span></b></div>
+              </div>
+              <p class="dt-hero__line"><span data-en>You can spend <span class="dt-amt">AED&nbsp;<bdi dir="ltr">368</bdi></span> a day · <span class="dt-nw"><bdi class="dt-num">12</bdi> days to payday</span></span><span data-ar>تقدر تصرف <span class="dt-amt"><bdi dir="ltr">368</bdi>&nbsp;د.إ</span> في اليوم · <span class="dt-nw"><bdi class="dt-num">12</bdi> يوماً على الراتب</span></span></p>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <section class="dt-chapter dt-chapter--flip" aria-labelledby="ch-analyse">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">06</p>
+        <h2 id="ch-analyse"><span data-en>Analyse any period</span><span data-ar>حلّل أي فترة</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>This month, last month, several months, a year, or any months you pick, even months apart.</li>
+          <li>Insights in plain words about your own numbers: where your money went, what changed most and how much of your income is reserved. Every figure comes from what you entered and is worked out on your phone.</li>
+          <li>At most two ideas for you at a time, never pushy.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>هذا الشهر، أو الشهر الماضي، أو عدة أشهر، أو سنة، أو أي أشهر تختارها حتى لو كانت متفرقة.</li>
+          <li>ملاحظات بكلام واضح عن أرقامك أنت: وين راحت فلوسك، وشو أكثر شيء تغيّر، وكم من دخلك محجوز. كل رقم من اللي سجّلته، ويُحسب على جوالك.</li>
+          <li>فكرتان لك على الأكثر في كل مرة، بدون إلحاح.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of the Analysis tab with example numbers. Where your money went, by category: groceries AED 1,729 (43%), fuel and transport AED 764 (19%), dining and delivery AED 603 (15%), shopping AED 523 (13%) and health AED 402 (10%). Insights: you’ve spent the most on groceries so far, AED 1,729 or 43% of the spending you’ve logged." data-aria-en="Illustration of the Analysis tab with example numbers. Where your money went, by category: groceries AED 1,729 (43%), fuel and transport AED 764 (19%), dining and delivery AED 603 (15%), shopping AED 523 (13%) and health AED 402 (10%). Insights: you’ve spent the most on groceries so far, AED 1,729 or 43% of the spending you’ve logged." data-aria-ar="رسم توضيحي لتبويب التحليل بأرقام مثال. وين راحت فلوسك، حسب الفئة: مقاضي وسوبرماركت 1,729 د.إ (43%)، ووقود ومواصلات 764 د.إ (19%)، ومطاعم وقهوة وتوصيل 603 د.إ (15%)، وتسوق وملابس 523 د.إ (13%)، وصحة وصيدلية 402 د.إ (10%). ملاحظات: أكثر ما صرفت عليه حتى الآن مقاضي وسوبرماركت بـ 1,729 د.إ، أي 43% من مصاريفك المسجلة.">
+          <div class="dt-sh"><span class="t"><span data-en>Where your money went</span><span data-ar>وين راحت فلوسك</span></span></div>
+          <div class="dt-seg"><span class="is-on"><span data-en>By category</span><span data-ar>حسب الفئة</span></span><span><span data-en>By payee</span><span data-ar>حسب الجهة</span></span></div>
+          <div class="dt-card dt-card--list">
+              <div class="dt-row dt-cat"><div class="dt-cat__line"><span class="n"><span data-en>Groceries</span><span data-ar>مقاضي وسوبرماركت</span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">1,729</bdi></span><span data-ar><bdi dir="ltr">1,729</bdi>&nbsp;د.إ</span></span></div><div class="dt-cat__bar"><div class="dt-track"><i style="width:43%"></i></div><span class="p dt-num">43%</span></div></div>
+              <div class="dt-row dt-cat"><div class="dt-cat__line"><span class="n"><span data-en>Fuel &amp; transport</span><span data-ar>وقود ومواصلات</span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">764</bdi></span><span data-ar><bdi dir="ltr">764</bdi>&nbsp;د.إ</span></span></div><div class="dt-cat__bar"><div class="dt-track"><i style="width:19%"></i></div><span class="p dt-num">19%</span></div></div>
+              <div class="dt-row dt-cat"><div class="dt-cat__line"><span class="n"><span data-en>Dining &amp; delivery</span><span data-ar>مطاعم وقهوة وتوصيل</span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">603</bdi></span><span data-ar><bdi dir="ltr">603</bdi>&nbsp;د.إ</span></span></div><div class="dt-cat__bar"><div class="dt-track"><i style="width:15%"></i></div><span class="p dt-num">15%</span></div></div>
+              <div class="dt-row dt-cat"><div class="dt-cat__line"><span class="n"><span data-en>Shopping</span><span data-ar>تسوق وملابس</span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">523</bdi></span><span data-ar><bdi dir="ltr">523</bdi>&nbsp;د.إ</span></span></div><div class="dt-cat__bar"><div class="dt-track"><i style="width:13%"></i></div><span class="p dt-num">13%</span></div></div>
+              <div class="dt-row dt-cat"><div class="dt-cat__line"><span class="n"><span data-en>Health</span><span data-ar>صحة وصيدلية</span></span><span class="dt-row__amount dt-amt"><span data-en>AED&nbsp;<bdi dir="ltr">402</bdi></span><span data-ar><bdi dir="ltr">402</bdi>&nbsp;د.إ</span></span></div><div class="dt-cat__bar"><div class="dt-track"><i style="width:10%"></i></div><span class="p dt-num">10%</span></div></div>
+          </div>
+          <div class="dt-group">
+            <div class="dt-sh"><span class="t"><span data-en>Insights</span><span data-ar>ملاحظات</span></span></div>
+            <div class="dt-card dt-card--pad dt-note">
+              <p class="dt-note__text"><span data-en>You’ve spent the most on Groceries so far: <span class="dt-amt">AED&nbsp;<bdi dir="ltr">1,729</bdi></span>, or <bdi class="dt-num">43%</bdi> of the spending you’ve logged.</span><span data-ar>أكثر ما صرفت عليه حتى الآن: مقاضي وسوبرماركت بـ&nbsp;<span class="dt-amt"><bdi dir="ltr">1,729</bdi>&nbsp;د.إ</span>، أي <bdi class="dt-num">43%</bdi> من مصاريفك المسجلة.</span></p>
+            </div>
+          </div>
+          <p class="dt-fine"><span data-en>General information only, not financial advice.</span><span data-ar>معلومات عامة للتوعية وليست استشارة مالية.</span></p>
+        </div>
+        <figcaption class="dt-caption"><span data-en>Insights in plain words</span><span data-ar>ملاحظات بكلام واضح</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="dt-chapter" aria-labelledby="ch-everyone">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">07</p>
+        <h2 id="ch-everyone"><span data-en>Made for everyone</span><span data-ar>للجميع</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>Works with any currency in the world, one currency for your whole record.</li>
+          <li>Arabic and English, and you can switch between them inside the app at any time.</li>
+          <li>In Arabic, pick the digit style you prefer.</li>
+          <li>Light and dark appearance.</li>
+          <li>Optional Hijri date next to the Gregorian one, marked approximate.</li>
+          <li>Works with VoiceOver and larger text sizes.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>يدعم أي عملة في العالم، بعملة واحدة لسجلك كله.</li>
+          <li>العربية والإنجليزية، وتقدر تبدّل بينهما من داخل التطبيق في أي وقت.</li>
+          <li>في الواجهة العربية تختار شكل الأرقام اللي يناسبك.</li>
+          <li>مظهر فاتح وداكن.</li>
+          <li>التاريخ الهجري اختياري بجانب الميلادي، ومعلَّم «تقريبي».</li>
+          <li>يعمل مع <bdi>VoiceOver</bdi> وأحجام الخط الكبيرة.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-stack" role="img" aria-label="Illustration of the same Remaining figure in the Arabic and English interfaces, 3,777 dirhams in Western digits, and the currency list with UAE Dirham selected, Saudi Riyal, Kuwaiti Dinar and all currencies from A to Z." data-aria-en="Illustration of the same Remaining figure in the Arabic and English interfaces, 3,777 dirhams in Western digits, and the currency list with UAE Dirham selected, Saudi Riyal, Kuwaiti Dinar and all currencies from A to Z." data-aria-ar="رسم توضيحي لنفس رقم باقي لك في الواجهتين العربية والإنجليزية، 3,777 درهماً بالأرقام الغربية، وقائمة العملات وفيها الدرهم الإماراتي مختار، والريال السعودي، والدينار الكويتي، وكل العملات من A إلى Z.">
+          <div class="dt-pair">
+            <div class="dt-shot dt-shot--mini">
+              <div class="dt-hero" dir="rtl" lang="ar">
+                <span class="dt-hero__label">باقي لك</span>
+                <span class="dt-hero__amount dt-amt"><bdi dir="ltr">3,777</bdi><span class="c">&nbsp;د.إ</span></span>
+                <span class="dt-hero__status">تقديري</span>
+              </div>
+            </div>
+            <div class="dt-shot dt-shot--mini">
+              <div class="dt-hero" dir="ltr" lang="en">
+                <span class="dt-hero__label">Remaining</span>
+                <span class="dt-hero__amount dt-amt"><span class="c">AED&nbsp;</span><bdi dir="ltr">3,777</bdi></span>
+                <span class="dt-hero__status">Estimated</span>
+              </div>
+            </div>
+          </div>
+          <div class="dt-shot">
+            <div class="dt-group">
+              <div class="dt-sh"><span class="t"><span data-en>Currency</span><span data-ar>العملة</span></span></div>
+              <div class="dt-card dt-card--list">
+                <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>UAE Dirham</span><span data-ar>درهم إماراتي</span></span></span><span class="dt-row__code">AED</span><svg class="dt-row__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+                <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Saudi Riyal</span><span data-ar>ريال سعودي</span></span></span><span class="dt-row__code">SAR</span><span class="dt-row__tick-space"></span></div>
+                <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Kuwaiti Dinar</span><span data-ar>دينار كويتي</span></span></span><span class="dt-row__code">KWD</span><span class="dt-row__tick-space"></span></div>
+                <div class="dt-row dt-row--custom"><span class="dt-row__main"><span class="dt-row__title"><span data-en>All currencies (A–Z)…</span><span data-ar>كل العملات (<bdi>A–Z</bdi>)…</span></span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="dt-caption"><span data-en>Arabic, English, any currency</span><span data-ar>عربي أو إنجليزي، وأي عملة</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="dt-chapter dt-chapter--flip" aria-labelledby="ch-private">
+      <div class="dt-chapter__copy" data-pc-site-reveal>
+        <p class="dt-kicker" aria-hidden="true">08</p>
+        <h2 id="ch-private"><span data-en>Private by design</span><span data-ar>خصوصيتك أولاً</span></h2>
+        <ul class="dt-points blk" data-en>
+          <li>Your data stays on your phone. No account, no sign-in, no ads, no tracking and no bank connection.</li>
+          <li>Lock the app with Face ID, Touch ID or your passcode, and hide amounts with one tap.</li>
+          <li>Back up to a file you keep wherever you like, and restore it at any time.</li>
+          <li>One quiet reminder the day before your month ends, if you want it.</li>
+        </ul>
+        <ul class="dt-points blk" data-ar>
+          <li>بياناتك تبقى على جوالك. لا حساب، ولا تسجيل دخول، ولا إعلانات، ولا تتبّع، ولا ربط بالبنوك.</li>
+          <li>اقفل التطبيق ببصمة الوجه أو بصمة الإصبع أو رمز الدخول، وأخفِ المبالغ بضغطة.</li>
+          <li>خذ نسخة احتياطية في ملف تحفظه وين ما تحب، واسترجعها في أي وقت.</li>
+          <li>تذكير واحد هادئ قبل نهاية شهرك بيوم، إذا يناسبك.</li>
+        </ul>
+      </div>
+      <figure class="dt-figure" data-pc-site-reveal>
+        <div class="dt-shot" role="img" aria-label="Illustration of privacy settings: lock with Face ID or passcode is on, hide amounts by default is on, and the Remaining card shows its amount hidden." data-aria-en="Illustration of privacy settings: lock with Face ID or passcode is on, hide amounts by default is on, and the Remaining card shows its amount hidden." data-aria-ar="رسم توضيحي لإعدادات الخصوصية: القفل ببصمة الوجه أو رمز الدخول مفعّل، وإخفاء المبالغ افتراضياً مفعّل، وبطاقة باقي لك تعرض المبلغ مخفياً.">
+          <div class="dt-hero">
+            <div class="dt-hero__top">
+              <div class="dt-hero__head">
+                <span class="dt-hero__label"><span data-en>Remaining</span><span data-ar>باقي لك</span></span>
+                <div class="dt-hero__amountline">
+                  <span class="dt-hero__amount dt-amt">••••</span>
+                  <span class="dt-hero__status"><span data-en>Estimated</span><span data-ar>تقديري</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="dt-hero__lower">
+              <div class="dt-hero__meta"><span><span data-en><bdi class="dt-num">20%</bdi> of your income</span><span data-ar><bdi class="dt-num">20%</bdi> من دخلك</span></span></div>
+            </div>
+          </div>
+          <div class="dt-group">
+            <div class="dt-sh"><span class="t"><span data-en>Privacy</span><span data-ar>الخصوصية</span></span></div>
+            <div class="dt-card dt-card--list">
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Lock with Face ID or passcode</span><span data-ar>القفل ببصمة الوجه أو رمز الدخول</span></span></span><span class="dt-switch is-on"></span></div>
+              <div class="dt-row"><span class="dt-row__main"><span class="dt-row__title"><span data-en>Hide amounts by default</span><span data-ar>إخفاء المبالغ افتراضياً</span></span></span><span class="dt-switch is-on"></span></div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="dt-caption"><span data-en>Your data stays on your phone</span><span data-ar>بياناتك تبقى على جوالك</span></figcaption>
+      </figure>
+    </section>
+  </div>
+
+  <section class="dt-plus" aria-labelledby="dabta-plus-title">
+    <div class="dt-plus__panel" data-pc-site-reveal>
+      <div>
+        <p class="dt-kicker" aria-hidden="true">Plus</p>
+        <h2 id="dabta-plus-title"><span data-en>Dabta Plus</span><span data-ar>ضبطة <bdi>Plus</bdi></span></h2>
+        <p class="dt-plus__lede"><span data-en>An optional one-time purchase that adds two features:</span><span data-ar>شراء اختياري لمرة واحدة يضيف ميزتين:</span></p>
+      </div>
+      <ul class="dt-plus__features">
+        <li><span class="dt-plus__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="7" height="14" rx="2"/><rect x="13.5" y="5" width="7" height="14" rx="2"/></svg></span><span><span data-en><strong>Compare:</strong> put up to four periods you choose side by side and see where your spending rose or fell.</span><span data-ar><strong>قارن:</strong> حط لين أربع فترات تختارها جنب بعض، وشوف وين زاد صرفك ووين قلّ.</span></span></li>
+        <li><span class="dt-plus__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10.5A.5.5 0 0 1 6.5 20V4a.5.5 0 0 1 .5-.5Z"/><path d="M14 3.5V8h4M9.5 12.5h5M9.5 16h5"/></svg></span><span><span data-en><strong>PDF report:</strong> a tidy report of the period or comparison you choose, to save, send or print.</span><span data-ar><strong>تقرير <bdi>PDF</bdi>:</strong> تقرير مرتب للفترة أو المقارنة اللي تختارها، تحفظه أو ترسله أو تطبعه.</span></span></li>
+      </ul>
+      <p class="dt-plus__note"><span data-en>It works with Family Sharing, and everything above stays free.</span><span data-ar>يعمل مع المشاركة العائلية، وكل ما سبق يبقى مجانياً.</span></p>
+    </div>
+  </section>
+
+  <aside class="dt-disclaimer" aria-label="General information" data-aria-en="General information" data-aria-ar="معلومات عامة">
+    <blockquote><p><span data-en>General information only, not financial advice.</span><span data-ar>معلومات عامة للتوعية وليست استشارة مالية.</span></p></blockquote>
+  </aside>
+
+  <section class="dt-support" id="support" aria-label="Dabta support" data-aria-en="Dabta support" data-aria-ar="دعم ضبطة">
+    <div class="dt-support__intro blk" data-en>
+      <h2 id="support-title-en">Dabta support</h2>
+      <p>Answers to common questions. Can’t find yours? Our email address is at the end of this page.</p>
+    </div>
+    <div class="dt-support__list blk" data-en>
+      <article class="dt-qa">
+        <h3>How does a new month carry over?</h3>
+        <p>Your month runs from one payday to the next. A new month opens with your items and last month’s amounts, so you don’t type them again.</p>
+        <ul>
+          <li>“Confirm all” confirms the fixed amounts in one tap. Your salary is confirmed on its own, when it arrives.</li>
+          <li>Items under “Needs amount” show last month’s amount faintly. Enter this month’s amount, or tap “Same as last month”.</li>
+          <li>Swipe an item, or touch and hold it, for “Edit amount”, “Skip this month” (it comes back next month) or “Stop permanently” (past months stay as they are, and “Restore” brings it back).</li>
+          <li>What you didn’t spend stays in your account and moves to the next month as one line, “Carried from …”, which adds to “Available now”. If you have a saving item, you can say you moved it to savings instead. Remaining never includes the carried amount.</li>
+          <li>If you spent more than your income, the app asks how you covered it and records your answer for information only. Depending on the answer, the next month may start with a minus line.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>Can I change my payday?</h3>
+        <p>Yes, in Settings › Money › Payday. You can choose “Specific day…”, “Last day of the month”, “Last working day”, “No fixed salary” (calendar months) or “Custom… (changes every month)”. The change applies from next month, and closed months don’t change.</p>
+      </article>
+      <article class="dt-qa">
+        <h3>My salary arrived early. Which month does it count in?</h3>
+        <p>When your salary arrives, confirm the day it arrived. If that’s up to three days before payday, that’s all: your new month starts on that day.</p>
+        <p>If it arrives more than three days early, the app asks once and shows each choice with its dates:</p>
+        <ul>
+          <li>“Start a new cycle from today” (the default): the current cycle ends the day before, and the new one runs to your next planned payday.</li>
+          <li>“No, keep it for the next cycle”: the salary counts in that next cycle as its planned salary, so it’s never counted twice.</li>
+        </ul>
+        <p>If you logged expenses after the day the new cycle starts, the app asks whether to move them to it.</p>
+      </article>
+      <article class="dt-qa">
+        <h3>How do I back up and restore?</h3>
+        <ul>
+          <li>Back up: Settings › Your data › “Export a backup (.dabta)”. Save the file in the Files app, send it with AirDrop, or keep it anywhere you trust. After every close, the app offers to save one.</li>
+          <li>Restore: Settings › Your data › “Restore from a backup”, then choose the file. Restoring replaces all your current data, and the app keeps an automatic copy first.</li>
+          <li>A backup made by a newer version of the app needs the app to be updated first.</li>
+          <li>Backup files aren’t protected by a password, so keep them somewhere safe.</li>
+          <li>New iPhone? Restoring it from an iCloud or computer backup of your old one brings the app’s data along, or you can restore from a backup file.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>How do I change the currency?</h3>
+        <p>Settings › Money › Currency. The app uses one currency for your whole record. Changing it changes only the symbol, and amounts aren’t converted. If the new currency has fewer decimal places, the app tells you how many amounts will be rounded and asks before rounding them.</p>
+      </article>
+      <article class="dt-qa">
+        <h3>How do I change the language, digits or appearance?</h3>
+        <p>All three are in Settings › General and apply right away, with no restart.</p>
+        <ul>
+          <li>Language: “Automatic”, “العربية” or “English”. Automatic follows your iPhone’s language settings.</li>
+          <li>Digits (in the Arabic interface): Western digits, the default, or Arabic-Indic digits. You can type either kind.</li>
+          <li>Appearance: “Automatic”, “Light” or “Dark”.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>How do I lock the app or hide amounts?</h3>
+        <ul>
+          <li>Lock: in Settings › Privacy, turn on the lock with Face ID, Touch ID or your passcode.</li>
+          <li>Hide amounts: “Hide amounts” at the top of the Month tab hides every amount at once. “Hide amounts by default” in Settings › Privacy keeps them hidden each time you open the app.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>How do I delete all my data?</h3>
+        <p>Settings › Your data › “Erase all data”. The app asks twice and offers a backup first. Then it erases every month, your custom items and your settings.</p>
+        <ul>
+          <li>Deleting the app also removes its data from your iPhone.</li>
+          <li>Backup files you saved, and earlier iCloud or computer backups of your iPhone, keep their copy until you delete them.</li>
+          <li>If you made an in-app purchase, erasing doesn’t remove it: it stays with your Apple Account and can be restored.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>Does the app connect to my bank or send my data anywhere?</h3>
+        <p>No. You enter everything yourself, and it stays on your iPhone. There is no account, no sign-in and no tracking. The only personal data we receive from you is an email you choose to send us. The <a href="/dabta/privacy/">privacy policy</a> has the details.</p>
+      </article>
+      <article class="dt-qa dt-qa--contact">
+        <h3>Contact us</h3>
+        <p>Email <a href="mailto:support@saud.im">support@saud.im</a>. It helps if you tell us:</p>
+        <ul>
+          <li>the app version (Settings › About) and your iOS version;</li>
+          <li>the app language you use, and what you expected to happen.</li>
+        </ul>
+        <p>Please don’t attach a backup file or screenshots that show your amounts unless you’re happy to share them; “Hide amounts” helps before a screenshot. We read every message.</p>
+      </article>
+    </div>
+    <div class="dt-support__intro blk" data-ar>
+      <h2 id="support-title-ar">دعم ضبطة</h2>
+      <p>إجابات عن الأسئلة الشائعة. لم تجد سؤالك؟ عنوان بريدنا في آخر هذه الصفحة.</p>
+    </div>
+    <div class="dt-support__list blk" data-ar>
+      <article class="dt-qa">
+        <h3>كيف ينتقل الشهر الجديد؟</h3>
+        <p>شهرك يمتد من راتب إلى الراتب اللي بعده. والشهر الجديد يفتح ببنودك وبمبالغ الشهر الماضي، فما تحتاج تكتبها من جديد.</p>
+        <ul>
+          <li>«تأكيد الكل» يؤكد المبالغ الثابتة بضغطة واحدة. أما راتبك فتؤكده وحده لما ينزل.</li>
+          <li>البنود تحت «تحتاج مبلغ» تعرض مبلغ الشهر الماضي بلون باهت. اكتب مبلغ هذا الشهر، أو اضغط «مثل الشهر الماضي».</li>
+          <li>اسحب أي بند أو اضغط عليه مطولاً لتختار «تعديل المبلغ» أو «تخطّي هذا الشهر» (يرجع الشهر الجاي) أو «إيقاف نهائي» (الأشهر اللي فاتت تبقى مثل ما هي، و«رجّعه» يعيده).</li>
+          <li>اللي ما صرفته يبقى في حسابك وينتقل للشهر الجاي في سطر واحد «مرحّل من …»، ويُضاف إلى «المتاح الآن». وإذا عندك بند ادخار، تقدر تختار أنك حوّلته للادخار بدل ذلك. و«باقي» ما يشمل المبلغ المرحّل أبداً.</li>
+          <li>إذا صرفت أكثر من دخلك، يسألك التطبيق كيف غطيته، ويسجّل إجابتك للعلم فقط. وحسب إجابتك، قد يبدأ الشهر الجاي بسطر بالسالب.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>أقدر أغيّر يوم الراتب؟</h3>
+        <p>نعم، من الإعدادات › المال › يوم الراتب. تقدر تختار «يوم محدد…» أو «آخر يوم بالشهر» أو «آخر يوم عمل» أو «ما عندي راتب ثابت» (الشهر الميلادي) أو «مخصص… (يتغير كل شهر)». والتغيير يسري من الشهر الجاي، والأشهر المقفلة ما تتغير.</p>
+      </article>
+      <article class="dt-qa">
+        <h3>نزل راتبي قبل موعده. في أي شهر يُحسب؟</h3>
+        <p>لما ينزل راتبك، أكّد اليوم اللي نزل فيه. وإذا نزل قبل ثلاثة أيام أو أقل من موعده، فهذا كل شيء: شهرك الجديد يبدأ من ذلك اليوم.</p>
+        <p>وإذا نزل قبل أكثر من ثلاثة أيام من موعده، يسألك التطبيق مرة واحدة، ويعرض كل خيار بتواريخه:</p>
+        <ul>
+          <li>«ابدأ دورة جديدة من اليوم» (الافتراضي): الدورة الحالية تنتهي في اليوم السابق، والجديدة تمتد إلى يوم راتبك المخطط التالي.</li>
+          <li>«لا، خلّه للدورة الجاية»: يُحسب الراتب في تلك الدورة على أنه راتبها المخطط، فما يُحسب مرتين أبداً.</li>
+        </ul>
+        <p>وإذا سجّلت مصاريف بعد اليوم اللي تبدأ فيه الدورة الجديدة، يسألك التطبيق هل تنقلها لها.</p>
+      </article>
+      <article class="dt-qa">
+        <h3>كيف آخذ نسخة احتياطية وأستعيدها؟</h3>
+        <ul>
+          <li>النسخ: الإعدادات › بياناتك › «تصدير نسخة احتياطية (<bdi>.dabta</bdi>)». احفظ الملف في تطبيق الملفات، أو أرسله عبر <bdi>AirDrop</bdi>، أو احتفظ به في أي مكان تثق به. وبعد كل تقفيل يعرض عليك التطبيق حفظ نسخة.</li>
+          <li>الاستعادة: الإعدادات › بياناتك › «استعادة من نسخة»، ثم اختر الملف. الاستعادة تستبدل كل بياناتك الحالية، والتطبيق يحتفظ بنسخة تلقائية قبلها.</li>
+          <li>النسخة المأخوذة من إصدار أحدث من التطبيق تحتاج تحديث التطبيق أولاً.</li>
+          <li>ملفات النسخ الاحتياطي غير محمية بكلمة مرور، فاحفظها في مكان آمن.</li>
+          <li>جوال جديد؟ استعادته من نسخة <bdi>iCloud</bdi> أو من نسخة الكمبيوتر لجوالك القديم تنقل بيانات التطبيق معها، أو تقدر تستعيد من ملف نسخة احتياطية.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>كيف أغيّر العملة؟</h3>
+        <p>من الإعدادات › المال › العملة. التطبيق يستخدم عملة واحدة لسجلك كله، وتغييرها يغيّر الرمز فقط، والمبالغ لن تُحوَّل. وإذا كانت العملة الجديدة منازلها العشرية أقل، يخبرك التطبيق كم مبلغاً سيتم تقريبه، ويسألك قبل التقريب.</p>
+      </article>
+      <article class="dt-qa">
+        <h3>كيف أغيّر اللغة أو شكل الأرقام أو المظهر؟</h3>
+        <p>الثلاثة في الإعدادات › العام، وتُطبَّق فوراً بدون إعادة تشغيل.</p>
+        <ul>
+          <li>اللغة: «حسب الجهاز» أو «العربية» أو «<bdi>English</bdi>». و«حسب الجهاز» يتبع إعدادات اللغة في جوالك.</li>
+          <li>شكل الأرقام (في الواجهة العربية): الأرقام الغربية، وهي الافتراضية، أو الأرقام العربية المشرقية. والإدخال يقبل الشكلين.</li>
+          <li>المظهر: «تلقائي» أو «فاتح» أو «داكن».</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>كيف أقفل التطبيق أو أخفي المبالغ؟</h3>
+        <ul>
+          <li>القفل: من الإعدادات › الخصوصية، فعّل القفل ببصمة الوجه أو بصمة الإصبع أو رمز الدخول.</li>
+          <li>إخفاء المبالغ: «إخفاء المبالغ» أعلى تبويب «الشهر» يخفي كل المبالغ مرة واحدة. و«إخفاء المبالغ افتراضياً» في الإعدادات › الخصوصية يبقيها مخفية كلما فتحت التطبيق.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>كيف أمسح كل بياناتي؟</h3>
+        <p>الإعدادات › بياناتك › «مسح كل البيانات». يسألك التطبيق مرتين، ويعرض عليك أخذ نسخة احتياطية أولاً، ثم يمسح كل الأشهر والبنود المخصصة والإعدادات.</p>
+        <ul>
+          <li>حذف التطبيق يزيل بياناته من جوالك أيضاً.</li>
+          <li>ملفات النسخ الاحتياطي اللي حفظتها، ونسخ جوالك السابقة على <bdi>iCloud</bdi> أو الكمبيوتر، تبقى فيها نسختها حتى تحذفها.</li>
+          <li>وإذا اشتريت من داخل التطبيق، فالمسح لا يلغي الشراء: يبقى مع حساب <bdi>Apple</bdi> الخاص بك وتقدر تستعيده.</li>
+        </ul>
+      </article>
+      <article class="dt-qa">
+        <h3>هل يرتبط التطبيق بحسابي البنكي أو يرسل بياناتي لأي مكان؟</h3>
+        <p>لا. أنت تسجّل كل شيء بنفسك، وكله يبقى على جوالك. لا حساب ولا تسجيل دخول ولا تتبّع. والبيانات الشخصية الوحيدة اللي ممكن توصلنا منك هي رسالة بريد إلكتروني تختار أنت أن ترسلها لنا. التفاصيل في <a href="/dabta/privacy/">سياسة الخصوصية</a>.</p>
+      </article>
+      <article class="dt-qa dt-qa--contact">
+        <h3>تواصل معنا</h3>
+        <p>راسلنا على <bdi><a href="mailto:support@saud.im">support@saud.im</a></bdi>. ويساعدنا لو ذكرت:</p>
+        <ul>
+          <li>إصدار التطبيق (الإعدادات › عن التطبيق) وإصدار <bdi>iOS</bdi>؛</li>
+          <li>لغة التطبيق اللي تستخدمها، وما الذي كنت تتوقع أن يحدث.</li>
+        </ul>
+        <p>نرجو ألا ترفق ملف نسخة احتياطية أو صوراً للشاشة تُظهر مبالغك، إلا إذا كنت لا تمانع مشاركتها، و«إخفاء المبالغ» يساعدك قبل تصوير الشاشة. نقرأ كل رسالة.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="pc-site-footer">
+  <div class="pc-site-footer__identity"><strong>DABTA · SAUD APPS</strong><span><span data-en>Salary, bills and what’s left</span><span data-ar>راتب وفواتير وكم يتبقى لك</span></span></div>
+  <nav aria-label="Dabta links" data-aria-en="Dabta links" data-aria-ar="روابط ضبطة">
+    <a href="/dabta/" aria-current="page"><span data-en>Dabta</span><span data-ar>ضبطة</span></a>
+    <a href="/dabta/privacy/"><span data-en>Privacy policy</span><span data-ar>سياسة الخصوصية</span></a>
+    <a href="/dabta/terms/"><span data-en>Terms of use</span><span data-ar>شروط الاستخدام</span></a>
+    <a href="/dabta/#support"><span data-en>Support</span><span data-ar>الدعم</span></a>
+  </nav>
+  <div class="pc-site-footer__base"><span><span data-en>© 2026 Saud Apps</span><span data-ar>© 2026 تطبيقات سعود</span></span><a href="mailto:support@saud.im">support@saud.im</a></div>
+</footer>
+
+<script src="/assets/product-cinema-core.js?v=20260825-bilingual1" defer></script>
+<script src="/dabta/product-cinema.js?v=dabta-1" defer></script>
+</body>
+</html>
