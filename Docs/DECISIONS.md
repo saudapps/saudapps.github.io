@@ -112,6 +112,20 @@ active portfolio product:
 
 Removal, indexing, launch, or revival are separate owner decisions.
 
+## WEB-010 and WEB-011 — remote history
+
+The release workflow can append `chore: sync releases [skip ci]` commits to
+`main`. Before push:
+
+1. fetch;
+2. inspect remote-only commits;
+3. confirm whether they are expected bot-only release updates;
+4. rebase or merge according to the approved work order;
+5. stop on conflicts or unexpected human changes.
+
+Never force-push. Preserve current annotated baseline and Product Cinema
+milestone tags.
+
 ## WEB-013 — Dabta pre-launch pages
 
 Dabta is a new app that is not yet on the App Store. Its pages are public but
@@ -121,8 +135,8 @@ hidden, in the same way as WEB-008:
   section at the end), `/dabta/privacy/` and `/dabta/terms/`;
 - `noindex` on all three pages;
 - no link from any other page or from the shared navigation; the Dabta pages
-  link only to each other, to the support email and, through the brand mark,
-  to the homepage;
+  link only to each other, to the support email, to Apple's standard licence
+  agreement from the terms and, through the brand mark, to the homepage;
 - no sitemap entry, no `Docs/APPS.md` row, no `app-data.js` or release-data
   wiring, no App Store link or public app identifier;
 - the pages do not name or link other Saud Apps products;
@@ -147,17 +161,3 @@ The owner approved Claude Code as the implementer of the Dabta pre-launch
 pages for this task only. The exception does not extend to other routes or
 later tasks. Independent review, owner preview and Release approval remain
 required, and the shared Product Cinema files stay untouched.
-
-## WEB-010 and WEB-011 — remote history
-
-The release workflow can append `chore: sync releases [skip ci]` commits to
-`main`. Before push:
-
-1. fetch;
-2. inspect remote-only commits;
-3. confirm whether they are expected bot-only release updates;
-4. rebase or merge according to the approved work order;
-5. stop on conflicts or unexpected human changes.
-
-Never force-push. Preserve current annotated baseline and Product Cinema
-milestone tags.
