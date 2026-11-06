@@ -1,9 +1,18 @@
 {
-  "updatedAt": "2026-11-05T10:18:11.714Z",
+  "updatedAt": "2026-11-06T10:21:18.013Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "5.2.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-05T05:49:39-08:00",
+          "whatsNew": {
+            "en": "• Improved app startup and navigation between the calendar and statistics.\n• Fixed the day preview before clearing future shifts.\n• Added clearer guidance when opening a sync invitation on a device that’s already linked, with an option to review the current sync setup.",
+            "ar": "• تحسين فتح التطبيق وسلاسة التنقل بين التقويم ولوحة الإحصاءات.\n• إصلاح عرض قائمة الأيام قبل مسح المناوبات المستقبلية.\n• توضيح حالة المزامنة عند فتح دعوة على جهاز مرتبط مسبقًا، مع خيار لمراجعة المزامنة الحالية."
+          }
+        },
         {
           "version": "5.2.1",
           "state": "READY_FOR_SALE",
