@@ -23,6 +23,15 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-11-06 — Dabta website launch candidate
+- Updated the homepage studio heading and rail to count five products.
+- Keep `codex/dabta-home-card` unmerged until Dabta launches. The candidate
+  displays Coming soon and counts four live products.
+- On launch day, set Dabta to Live, add the App Store link, wire
+  `app-data.js` and the release pipeline and hooks, remove `noindex` from
+  the three Dabta pages, update `sitemap.xml` and `APPS.md`, and change the
+  homepage count to `FIVE LIVE PRODUCTS` and its Arabic equivalent.
+
 ## 2026-08-26 — Product typography inheritance follow-up
 - Done: Fixed the final cascade issue that allowed bilingual wrapper spans to
   override the intended heading and body-copy sizes on Product Cinema app

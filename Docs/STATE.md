@@ -1,5 +1,13 @@
 # saud.im — Current State
 
+## 2026-11-06 Dabta website launch candidate
+
+- `VERIFIED`: The candidate on `codex/dabta-home-card` is unmerged. It
+  presents Dabta as Coming soon and counts five products in the studio
+  section and four live products in the homepage edition line.
+- The branch is held until Dabta launches. See the launch checklist in
+  [SESSION_LOG.md](SESSION_LOG.md#2026-11-06--dabta-website-launch-candidate).
+
 ## SShift screenshot preview — 2026-10-12
 
 Published with owner approval on 2026-10-12: the SShift gallery uses the six approved English App Store images in their original order and bytes. Repeated calendar/dashboard images are updated; the appearance story image remains, and the settings story uses a fresh English device capture showing synchronization and backups. Gallery counts, captions and image alternatives are aligned. All other page copy, styles, scripts, legal routes and release automation are unchanged; the normal release-sync bot refreshed only the generated timestamp. Owner approved the preview and publication. The approved update was merged in PR #3; GitHub Pages deployment completed successfully. Live HTML and all seven image files match the reviewed bytes.

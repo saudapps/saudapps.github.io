@@ -693,11 +693,11 @@ html.pc-reduced .pc-arrival { pointer-events: auto; }
   background: var(--paper);
 }
 
-.pc-studio__rail { position: absolute; top: 42px; left: var(--pad); right: var(--pad); height: 40px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; border-top: 1px solid var(--line-strong); }
+.pc-studio__rail { position: absolute; top: 42px; left: var(--pad); right: var(--pad); height: 40px; display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; border-top: 1px solid var(--line-strong); }
 .pc-studio__rail i { position: relative; height: 1px; background: var(--line); }
-.pc-studio__rail i::before { content: ""; position: absolute; top: 50%; left: 0; width: 8px; height: 8px; transform: translate(-50%,-50%); border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); }
+.pc-studio__rail i::before { content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; transform: translate(-50%,-50%); border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); }
 .pc-studio__rail i:first-child::before { background: var(--signal); border-color: var(--signal); }
-.pc-studio__rail span { position: absolute; top: 14px; right: 0; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .16em; }
+.pc-studio__rail span { position: absolute; bottom: 0; right: 0; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .16em; unicode-bidi: bidi-override; }
 .pc-studio__lead { grid-column: 1 / 8; }
 .pc-studio__lead .pc-kicker { margin-bottom: 22px; color: var(--signal); }
 .pc-studio__lead h2 { font-family: var(--display); font-size: clamp(52px, 6.2vw, 104px); font-weight: 900; letter-spacing: -.06em; line-height: .88; text-transform: uppercase; }
