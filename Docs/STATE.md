@@ -1,16 +1,16 @@
 # saud.im — Current State
 
-## 2026-11-22 Dabta website publication candidate
+## 2026-11-22 Dabta website published
 
 - Dabta 1.0 is available on the App Store. The website candidate adds its
   existing Product Cinema card to the homepage and links the product pages
   from shared navigation. The product page links to the App Store and lists
   iOS 26 as the minimum.
-- Both App Store data systems are configured for Dabta. The first generated
-  history entry is pending the production workflow. Existing Dabta search
-  indexing settings are preserved.
+- The public site and its generated release feed were verified after the Pages
+  deployment. Dabta 1.0 appears with the other four published app versions.
+  Existing Dabta search-index settings remain in effect.
 - Static website versions reflect the App Store. SShift copy describes optional
-  iCloud sync. Production publication of this candidate is pending.
+  iCloud sync.
 
 ## 2026-11-06 Dabta website launch candidate (historical)
 
