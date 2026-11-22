@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T10:40:55.416Z",
+  "updatedAt": "2026-11-22T11:22:36.214Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -230,6 +230,20 @@
           "version": "1.0",
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-06-17T01:44:18-07:00",
+          "whatsNew": {
+            "en": "",
+            "ar": ""
+          }
+        }
+      ]
+    },
+    "dabta": {
+      "appStoreId": "6824462416",
+      "versions": [
+        {
+          "version": "1.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-10-19T03:14:26-07:00",
           "whatsNew": {
             "en": "",
             "ar": ""
