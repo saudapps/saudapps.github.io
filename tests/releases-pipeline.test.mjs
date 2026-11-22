@@ -42,6 +42,7 @@ test('APPS keys stay aligned with the public release hooks', () => {
     'phonespace',
     'dufaat',
     'filed',
+    'dabta',
   ]);
 });
 
@@ -280,7 +281,7 @@ test('failure with no existing releases.json at all is unsafe', async () => {
   assert.equal(result.ok, false);
   assert.deepEqual(
     result.failures.map(f => f.app),
-    ['sshift', 'phonespace', 'dufaat', 'filed']
+    ['sshift', 'phonespace', 'dufaat', 'filed', 'dabta']
   );
   assert.equal(result.json, undefined);
 });
@@ -302,4 +303,48 @@ test('loadKnownGood returns null for missing or invalid files', async () => {
 
   const invalid = await loadKnownGood('releases.json', async () => '{ not json');
   assert.equal(invalid, null);
+});
+
+
+test('identical app data keeps the previous timestamp and skips rewriting', async () => {
+  const app = APPS.find(app => app.key === 'dabta');
+  const versions = [version('1.0', LIVE_STATE, '2026-11-21T00:00:00Z', '')];
+  const knownGood = {
+    updatedAt: '2026-11-21T00:00:00.000Z',
+    apps: { dabta: { appStoreId: app.appStoreId, versions } },
+  };
+  const result = await buildOutput({
+    nowIso: '2026-11-22T00:00:00.000Z',
+    apps: [app],
+    knownGood,
+    fetchApp: async () => structuredClone(versions),
+  });
+  assert.equal(result.ok, true);
+  assert.equal(result.changed, false);
+  assert.deepEqual(result.json, knownGood);
+});
+
+test('keeps existing notes for the same version and locale when Apple returns blanks', async () => {
+  const app = APPS.find(app => app.key === 'sshift');
+  const current = version('5.2.2', LIVE_STATE, '2026-11-05T00:00:00Z', 'Original English');
+  current.whatsNew.ar = 'ملاحظات عربية';
+  const knownGood = {
+    updatedAt: '2026-11-21T00:00:00.000Z',
+    apps: { sshift: { appStoreId: app.appStoreId, versions: [current] } },
+  };
+  const next = version('5.2.3', LIVE_STATE, '2026-11-22T00:00:00Z', '');
+  const result = await buildOutput({
+    nowIso: '2026-11-22T00:00:00.000Z',
+    apps: [app],
+    knownGood,
+    fetchApp: async () => [next, {
+      ...current, whatsNew: { en: 'Updated English', ar: '   ' },
+    }],
+  });
+  assert.equal(result.ok, true);
+  assert.equal(result.changed, true);
+  assert.equal(result.json.updatedAt, '2026-11-22T00:00:00.000Z');
+  assert.deepEqual(result.json.apps.sshift.versions, [next, {
+    ...current, whatsNew: { en: 'Updated English', ar: 'ملاحظات عربية' },
+  }]);
 });

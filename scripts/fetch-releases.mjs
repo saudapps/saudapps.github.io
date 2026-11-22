@@ -22,6 +22,7 @@
 
 import fs from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 // ── Config ───────────────────────────────────────────────────
 export const APPS = [
@@ -29,6 +30,7 @@ export const APPS = [
   { key: 'phonespace', appStoreId: '6765632161' },
   { key: 'dufaat',     appStoreId: '6780440703' },
   { key: 'filed',      appStoreId: '6781196551' },
+  { key: 'dabta',      appStoreId: '6824462416' },
 ];
 
 export const LIVE_STATE = 'READY_FOR_SALE';
@@ -145,21 +147,17 @@ async function fetchAppVersions(internalAppId, token) {
       console.log(`  ◦ v${attr.versionString}: error fetching localizations — ${err.message}`);
     }
 
-    // Choose preferred locales
-    const en = pickLocale(locs, ['en-US', 'en-GB', 'en-AU', 'en-CA']);
-    const ar = pickLocale(locs, ['ar-SA']);
-
-    // Fallback: any non-empty locale if no English variant is available
-    const fallback = (!en?.whatsNew)
-      ? locs.find(l => l.whatsNew && l.whatsNew.trim())
-      : null;
+    // Keep notes tied to their locale. The renderer handles language fallback.
+    const withNotes = locs.filter(l => l.whatsNew.trim());
+    const en = pickLocale(withNotes, ['en-US', 'en-GB', 'en-AU', 'en-CA']);
+    const ar = pickLocale(withNotes, ['ar-SA']);
 
     return {
       version: attr.versionString,
       state: attr.appStoreState,
       releasedAt: attr.earliestReleaseDate || attr.createdDate,
       whatsNew: {
-        en: en?.whatsNew || fallback?.whatsNew || '',
+        en: en?.whatsNew || '',
         ar: ar?.whatsNew || '',
       },
     };
@@ -206,9 +204,21 @@ export async function buildOutput({ nowIso, apps, knownGood, fetchApp }) {
           failures.push({ app: app.key });
         }
       } else {
+        const previousNotes = new Map(
+          (previousVersions ?? []).map(entry => [entry.version, entry.whatsNew])
+        );
         output.apps[app.key] = {
           appStoreId: app.appStoreId,
-          versions,
+          versions: versions.map(entry => {
+            const notes = previousNotes.get(entry.version);
+            return {
+              ...entry,
+              whatsNew: {
+                en: entry.whatsNew?.en?.trim() ? entry.whatsNew.en : notes?.en ?? '',
+                ar: entry.whatsNew?.ar?.trim() ? entry.whatsNew.ar : notes?.ar ?? '',
+              },
+            };
+          }),
         };
         console.log(`  ✓ ${versions.length} version(s) found`);
       }
@@ -231,7 +241,9 @@ export async function buildOutput({ nowIso, apps, knownGood, fetchApp }) {
   if (failures.length > 0) {
     return { ok: false, failures };
   }
-  return { ok: true, json: output };
+  const changed = !isDeepStrictEqual(output.apps, knownGood?.apps);
+  if (!changed) output.updatedAt = knownGood.updatedAt;
+  return { ok: true, changed, json: output };
 }
 
 // ── Main ─────────────────────────────────────────────────────
@@ -253,6 +265,11 @@ async function main() {
     const keys = result.failures.map(f => f.app).join(', ');
     console.error(`Unsafe: no previous known-good release history for ${keys}; releases.json was NOT written.`);
     process.exit(1);
+  }
+
+  if (!result.changed) {
+    console.log('Release data is unchanged.');
+    return;
   }
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(result.json, null, 2) + '\n', 'utf8');

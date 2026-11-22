@@ -3,6 +3,15 @@
 This document records the current validation reality and the minimum review
 matrix for website changes. It does not claim an unexecuted check passed.
 
+## 2026-11-22 Dabta website publication candidate
+
+- The release and lockfile suites pass 21 assertions. Coverage includes
+  unchanged app data and locale-specific preservation of release notes.
+- The bilingual checker passes 16 routes. Chromium checks at desktop and
+  mobile sizes passed for Dabta navigation, English and Arabic, theme switching,
+  App Store links, release data with a local fixture, and no-JavaScript fallbacks.
+- Live Pages and the App Store Connect job for Dabta remain pending.
+
 ## 2026-10-04 SShift privacy-copy validation
 
 - Scoped HTML whitespace and bilingual route checks passed.

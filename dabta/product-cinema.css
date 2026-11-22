@@ -824,6 +824,16 @@ html[lang="ar"] .dt-note__text { line-height: 1.75; }
   line-height: 1.6;
 }
 
+/* ── Release history: shown after the App Store feed has data. */
+.dt-releases {
+  width: min(100% - (var(--pc-pad) * 2), 1240px);
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 68px) 0;
+  border-top: 1px solid var(--dt-hairline-strong);
+}
+.dt-releases:has([data-releases]:empty) { display: none; }
+.dt-releases h2 { margin-bottom: 20px; color: var(--dt-ink); }
+
 /* ── Support: the last section of the page. */
 .dt-support {
   width: min(100% - (var(--pc-pad) * 2), 1240px);
