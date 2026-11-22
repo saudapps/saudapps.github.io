@@ -308,7 +308,7 @@ test('loadKnownGood returns null for missing or invalid files', async () => {
 
 test('identical app data keeps the previous timestamp and skips rewriting', async () => {
   const app = APPS.find(app => app.key === 'dabta');
-  const versions = [version('1.0', LIVE_STATE, '2026-11-21T00:00:00Z', '')];
+  const versions = [version('1.0', LIVE_STATE, '2026-11-21T17:44:00Z', '')];
   const knownGood = {
     updatedAt: '2026-11-21T00:00:00.000Z',
     apps: { dabta: { appStoreId: app.appStoreId, versions } },
@@ -346,5 +346,22 @@ test('keeps existing notes for the same version and locale when Apple returns bl
   assert.equal(result.json.updatedAt, '2026-11-22T00:00:00.000Z');
   assert.deepEqual(result.json.apps.sshift.versions, [next, {
     ...current, whatsNew: { en: 'Updated English', ar: 'ملاحظات عربية' },
+  }]);
+});
+
+
+test('Dabta 1.0 uses its verified public release date, not the creation date', async () => {
+  const app = APPS.find(app => app.key === 'dabta');
+  const initial = version('1.0', LIVE_STATE, '2026-10-19T10:14:26Z', '');
+  const later = version('1.1', LIVE_STATE, '2027-01-02T12:00:00Z', 'Later release');
+  const result = await buildOutput({
+    nowIso: '2027-01-02T15:00:00Z',
+    apps: [app],
+    knownGood: null,
+    fetchApp: async () => [later, initial],
+  });
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.json.apps.dabta.versions, [later, {
+    ...initial, releasedAt: '2026-11-21T17:44:00Z',
   }]);
 });

@@ -30,7 +30,12 @@ export const APPS = [
   { key: 'phonespace', appStoreId: '6765632161' },
   { key: 'dufaat',     appStoreId: '6780440703' },
   { key: 'filed',      appStoreId: '6781196551' },
-  { key: 'dabta',      appStoreId: '6824462416' },
+  {
+    key: 'dabta', appStoreId: '6824462416',
+    // Connect falls back to the preparation date for this manual release.
+    // Apple's public lookup reported this currentVersionReleaseDate for 1.0.
+    verifiedReleaseDates: { '1.0': '2026-11-21T17:44:00Z' },
+  },
 ];
 
 export const LIVE_STATE = 'READY_FOR_SALE';
@@ -213,6 +218,7 @@ export async function buildOutput({ nowIso, apps, knownGood, fetchApp }) {
             const notes = previousNotes.get(entry.version);
             return {
               ...entry,
+              releasedAt: app.verifiedReleaseDates?.[entry.version] ?? entry.releasedAt,
               whatsNew: {
                 en: entry.whatsNew?.en?.trim() ? entry.whatsNew.en : notes?.en ?? '',
                 ar: entry.whatsNew?.ar?.trim() ? entry.whatsNew.ar : notes?.ar ?? '',

@@ -23,6 +23,17 @@ Public repo: keep entries free of secrets and private local machine paths.
 - ChatGPT review:  <what was sent out, if anything>
 -->
 
+## 2026-11-22 — Dabta website publication verified
+
+- Published the homepage update in [PR #4](https://github.com/saudapps/saudapps.github.io/pull/4).
+  Verified the homepage, Dabta product page, download link, and legal routes.
+- [Sync App Releases](https://github.com/saudapps/saudapps.github.io/actions/runs/45017005176)
+  generated all five live entries. [Pages](https://github.com/saudapps/saudapps.github.io/actions/runs/45017023583)
+  successfully served the result.
+- The initial Dabta feed used its October 19 preparation date. The date
+  correction uses Apple’s verified November 21 public release timestamp for
+  version 1.0. Source: [Apple public lookup](https://itunes.apple.com/lookup?id=6824462416&country=us).
+
 ## 2026-11-22 — Dabta website publication candidate
 
 - Added the existing Dabta homepage card and navigation, download links and
