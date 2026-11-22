@@ -11,8 +11,9 @@ no private repository details, private identifiers, or internal product names.
 | PhoneSpace | [saud.im/phonespace](https://saud.im/phonespace/) | [Privacy](https://saud.im/phonespace/privacy.html) | [Terms](https://saud.im/phonespace/terms.html) | Live · App Store ID `6765632161` |
 | Filed | [saud.im/filed](https://saud.im/filed/) | [Privacy](https://saud.im/filed/privacy/) | [Terms](https://saud.im/filed/terms/) | Live · App Store ID `6781196551` |
 | Dufaat | [saud.im/dufaat](https://saud.im/dufaat/) | [Privacy](https://saud.im/dufaat/privacy/) | [Terms](https://saud.im/dufaat/terms/) | Live · App Store ID `6780440703` |
+| Dabta | [saud.im/dabta](https://saud.im/dabta/) | [Privacy](https://saud.im/dabta/privacy/) | [Terms](https://saud.im/dabta/terms/) | Live · App Store ID `6824462416` |
 
-The four active products are present in both public data systems:
+The five active products are wired into both public data systems:
 
 - the public iTunes badge map in `app-data.js`;
 - the App Store Connect release map in
@@ -20,6 +21,9 @@ The four active products are present in both public data systems:
 
 Their primary routes contain the required `data-app`, `data-field`, and
 `data-releases` hooks.
+
+The Dabta landing and shared navigation changes become public after the website
+publication. Its pages retain the existing search-index settings.
 
 ## Promptbook
 

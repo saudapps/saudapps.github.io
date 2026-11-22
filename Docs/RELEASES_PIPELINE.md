@@ -25,14 +25,16 @@ silently frozen.)
    - **`workflow_dispatch`** — manual "Run workflow" button in the Actions tab.
 2. **Fetch** — `node scripts/fetch-releases.mjs` calls the App Store Connect API
    (JWT/ES256) for every app in its `APPS` array (currently `sshift`,
-   `phonespace`, `dufaat`, `filed`) and reads each version's `whatsNew` in en + ar.
+   `phonespace`, `dufaat`, `filed`, `dabta`) and reads each version's `whatsNew` in en + ar.
    Auth = GitHub secrets `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY`.
    Runner: Node 22, `actions/checkout@v6` + `actions/setup-node@v6`. The single
    runtime dependency (`jsonwebtoken`) is pinned exactly in the committed
    `package.json` / `package-lock.json` and installed with `npm ci
    --ignore-scripts`, so builds use only registry-locked versions and never run
    third-party install scripts.
-3. **Commit** — writes `releases.json` (always a fresh `updatedAt`); if changed,
+3. **Commit** — compares app data with the previous file and writes `releases.json`
+   with a new `updatedAt` only when that data changes. It retains notes per
+   version and language when Apple returns an empty note. On a change, the job
    commits `chore: sync releases [skip ci]`, then re-fetches `main`, rebases onto
    it, and pushes explicitly to `main`. The workflow declares a `sync-releases`
    concurrency group with `cancel-in-progress: false`, so overlapping runs queue
@@ -47,9 +49,10 @@ re-triggers the `push` job. The `[skip ci]` in the message is a second
 safeguard. (Verified: a sync run's bot commit does not spawn another run.)
 
 ## Healthy looks like
-- `releases.json` `updatedAt` is recent, and
-- recent `chore: sync releases [skip ci]` commits exist in history, and
-- each Live app's newest App Store version appears under its key.
+- The latest sync run succeeded.
+- Each live app’s newest App Store version appears under its key.
+- `updatedAt` is the time of the last app-data change. A successful unchanged
+  run reports that no changes were committed.
 
 ## Symptom: an app's "What's New" is missing or stale
 What happened ~2026-05-24 → 2026-06-17: `releases.json` froze — Dufaat absent,
@@ -69,8 +72,8 @@ Diagnose in order:
      **Settings → Secrets and variables → Actions**. The owner does this; never
      paste secret values anywhere public.
 2. **Populate now:** click **"Run workflow"** on `main`, or just push any commit.
-   Confirm a green run, then check `releases.json` has a new `updatedAt` and the
-   expected versions.
+   Confirm a green run, then check `releases.json` for the expected versions.
+   `updatedAt` advances when the data changes.
 
 ## A v1.0 with empty notes is normal
 First releases often have no release-notes text on the App Store, so `whatsNew`

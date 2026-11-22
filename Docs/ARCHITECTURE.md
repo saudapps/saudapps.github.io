@@ -72,7 +72,7 @@ recorded public URLs as compatibility contracts.
 `assets/product-cinema.css` and `assets/product-cinema.js` contain the current
 homepage and SShift Product Cinema composition. They include:
 
-- homepage opening, four-product cast, directed sequence, SShift arrival, and
+- homepage opening, product cast, directed sequence, SShift arrival, and
   studio continuity;
 - the SShift chapter system;
 - fine-pointer enhancements;
@@ -210,8 +210,9 @@ Flow:
 2. The workflow provides Node.js 22, installs the single pinned runtime
    dependency from the committed lockfile with `npm ci --ignore-scripts`, runs
    serialized under a non-cancelling concurrency group, and calls the
-   authenticated App Store Connect API for the four live apps.
-3. The fetcher writes a fresh `releases.json`.
+   authenticated App Store Connect API for the live apps.
+3. The fetcher retains existing localized notes for the same version when a
+   response omits them. It writes `releases.json` only when app data changes.
 4. If the generated file changed, the workflow commits only that file with
    `chore: sync releases [skip ci]`, rebases onto a freshly fetched `main`,
    and pushes explicitly to `main` using the workflow token (never forced).

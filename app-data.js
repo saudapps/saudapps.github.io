@@ -12,7 +12,8 @@
     sshift: '6751362215',
     phonespace: '6765632161',
     dufaat: '6780440703',
-    filed: '6781196551'
+    filed: '6781196551',
+    dabta: '6824462416'
   };
 
   const CACHE_TTL = 30 * 60 * 1000;      // 30 minutes

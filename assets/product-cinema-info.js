@@ -14,6 +14,7 @@
       ['/phonespace/', 'PhoneSpace', 'PhoneSpace'],
       ['/filed/', 'Filed', 'Filed'],
       ['/dufaat/', 'Dufaat', 'دُفعات'],
+      ['/dabta/', 'Dabta', 'ضبطة'],
       ['/about/', 'About', 'عن المطوّر'],
       ['/support/', 'Support', 'الدعم'],
       ['/legal/', 'Legal', 'الشؤون القانونية']
@@ -26,7 +27,7 @@
     }
     var mark = '<span class="pc-site-brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
     if (header) header.outerHTML = '<header class="pc-site-header"><a class="pc-site-brand" href="/" aria-label="Saud Apps home" data-aria-en="Saud Apps home" data-aria-ar="الصفحة الرئيسية لتطبيقات سعود">' + mark + '<span><strong>Saud Apps</strong><small>' + pair('Independent · iOS', 'مستقل · iOS') + '</small></span></a><nav class="pc-site-nav" aria-label="Primary navigation" data-aria-en="Primary navigation" data-aria-ar="التنقّل الأساسي">' + links(false) + '</nav><div class="pc-site-tools"><div class="pc-site-theme" role="group" aria-label="Color theme" data-aria-en="Color theme" data-aria-ar="نمط الألوان"><button type="button" data-pc-site-theme="light" data-pc-theme="light" aria-pressed="false">' + pair('Day', 'نهار') + '</button><button type="button" data-pc-site-theme="dark" data-pc-theme="dark" aria-pressed="false">' + pair('Night', 'ليل') + '</button></div><div class="pc-site-lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-ar="اللغة"><button type="button" data-lang-btn="en" aria-pressed="false">EN</button><button type="button" data-lang-btn="ar" aria-pressed="false">ع</button></div><details class="pc-site-menu"><summary>' + pair('Menu', 'القائمة') + '</summary><nav aria-label="Mobile navigation" data-aria-en="Mobile navigation" data-aria-ar="تنقّل الجوال">' + links(true) + '</nav></details></div></header>';
-    if (footer) footer.outerHTML = '<footer class="pc-site-footer"><div class="pc-site-footer__identity"><strong>SAUD APPS</strong><span>' + pair('Four focused apps for iPhone.', 'أربعة تطبيقات آيفون مركّزة.') + '</span></div><nav aria-label="Footer navigation" data-aria-en="Footer navigation" data-aria-ar="تنقّل التذييل">' + links(false) + '</nav><div class="pc-site-footer__base"><span>' + pair('© 2026 Saud Apps · by Saud Ismail', '© 2026 تطبيقات سعود · بقلم سعود إسماعيل') + '</span><a href="mailto:support@saud.im">support@saud.im</a></div></footer>';
+    if (footer) footer.outerHTML = '<footer class="pc-site-footer"><div class="pc-site-footer__identity"><strong>SAUD APPS</strong><span>' + pair('Five focused apps for iPhone.', 'خمسة تطبيقات آيفون مركّزة.') + '</span></div><nav aria-label="Footer navigation" data-aria-en="Footer navigation" data-aria-ar="تنقّل التذييل">' + links(false) + '</nav><div class="pc-site-footer__base"><span>' + pair('© 2026 Saud Apps · by Saud Ismail', '© 2026 تطبيقات سعود · بقلم سعود إسماعيل') + '</span><a href="mailto:support@saud.im">support@saud.im</a></div></footer>';
     document.documentElement.classList.add('pc-info-shell');
     header = document.querySelector('.pc-site-header');
     footer = document.querySelector('.pc-site-footer');

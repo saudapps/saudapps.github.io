@@ -77,7 +77,8 @@
       sshift: sequence.querySelector('[data-force-card="sshift"]'),
       phonespace: sequence.querySelector('[data-force-card="phonespace"]'),
       filed: sequence.querySelector('[data-force-card="filed"]'),
-      dufaat: sequence.querySelector('[data-force-card="dufaat"]')
+      dufaat: sequence.querySelector('[data-force-card="dufaat"]'),
+      dabta: sequence.querySelector('[data-force-card="dabta"]')
     };
     var pending = false;
 
@@ -120,7 +121,8 @@
         sshift: [-.29 * width, -.2 * height],
         phonespace: [.29 * width, -.2 * height],
         filed: [-.29 * width, .21 * height],
-        dufaat: [.29 * width, .21 * height]
+        dufaat: [.29 * width, .21 * height],
+        dabta: [0, .21 * height]
       };
 
       Object.keys(cards).forEach(function (key) {
