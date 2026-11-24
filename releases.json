@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T11:27:00.192Z",
+  "updatedAt": "2026-11-24T13:14:46.216Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
@@ -167,6 +167,15 @@
     "dufaat": {
       "appStoreId": "6780440703",
       "versions": [
+        {
+          "version": "2.3",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-23T06:43:19-08:00",
+          "whatsNew": {
+            "en": "• Export a free PDF statement for unpaid Pay Soon items, with a separate total for each currency.\n• Read Arabic text and large amounts more easily with refreshed typography and clearer thousands separators.\n• Improved reliability when saving edits, adding photo attachments, and refreshing reminders.\n• Discover Dabta, our monthly budgeting app, from inside Dufaat.",
+            "ar": "• صدّر كشف PDF مجاني للالتزامات غير المسددة من قسم «للتسديد»، مع إجمالي مستقل لكل عملة.\n• واجهة عربية بخط أوضح، وفواصل آلاف أسهل للقراءة في المبالغ الكبيرة.\n• تحسينات على حفظ التعديلات وإرفاق الصور وثبات التذكيرات.\n• تعرّف على «ضبطة»، تطبيقنا للميزانية الشهرية، من داخل دُفعات."
+          }
+        },
         {
           "version": "2.2.1",
           "state": "READY_FOR_SALE",
