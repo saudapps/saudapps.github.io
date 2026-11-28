@@ -1,9 +1,18 @@
 {
-  "updatedAt": "2026-11-24T13:14:46.216Z",
+  "updatedAt": "2026-11-28T11:19:26.949Z",
   "apps": {
     "sshift": {
       "appStoreId": "6751362215",
       "versions": [
+        {
+          "version": "5.3.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-27T01:15:11-08:00",
+          "whatsNew": {
+            "en": "• Add your shifts directly to iPhone Calendar or share them as an ICS file. Choose the dates and shift types, then preview the shifts before adding or sharing them.\n• Follow the in-app guide to set up a separate calendar so you can hide or remove your shifts together.\n• Improved shift-reminder reliability and expanded the widget’s schedule coverage.",
+            "ar": "• أضف مناوباتك مباشرة إلى تقويم الآيفون أو شاركها كملف ICS. اختر الفترة وأنواع المناوبات وراجعها قبل الإضافة أو المشاركة.\n• اتبع خطوات إعداد تقويم مستقل للمناوبات عشان تقدر تخفيها أو تزيلها دفعة وحدة.\n• حسّنا موثوقية تذكيرات المناوبات ووسّعنا الفترة اللي يغطيها الويدجت."
+          }
+        },
         {
           "version": "5.2.2",
           "state": "READY_FOR_SALE",
@@ -127,6 +136,15 @@
       "appStoreId": "6765632161",
       "versions": [
         {
+          "version": "1.2.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-26T04:35:54-08:00",
+          "whatsNew": {
+            "en": "Select Copies now uses visual comparisons to identify duplicate photos. Photos that need another look are marked for manual review. The space estimate excludes the photo you keep.",
+            "ar": ""
+          }
+        },
+        {
           "version": "1.2.1",
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-08-26T07:08:16-07:00",
@@ -167,6 +185,15 @@
     "dufaat": {
       "appStoreId": "6780440703",
       "versions": [
+        {
+          "version": "2.3.1",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-26T04:37:41-08:00",
+          "whatsNew": {
+            "en": "Paid installments keep their original currency when you edit a plan. When an amount has ambiguous separators, Dufaat shows how to correct it before saving. You can open Dabta from its icon on Home. Choose Later to defer today’s reminder, or open its App Store page to stop future reminders.",
+            "ar": "تظل عملة الأقساط المسدّدة محفوظة عند تعديل الخطة. وعند إدخال مبلغ بفواصل ملتبسة، يعرض التطبيق طريقة تصحيحه قبل الحفظ. يمكنك فتح ضبطة من أيقونتها في الرئيسية. اختر «لاحقًا» لتأجيل تذكير اليوم، أو افتح صفحة التطبيق في المتجر لإيقاف التذكيرات."
+          }
+        },
         {
           "version": "2.3",
           "state": "READY_FOR_SALE",
@@ -227,6 +254,15 @@
       "appStoreId": "6781196551",
       "versions": [
         {
+          "version": "1.0.2",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-26T04:36:31-08:00",
+          "whatsNew": {
+            "en": "Signing a PDF now saves a separate signed copy in the same folder. Your original document stays intact, and the signed copy opens ready to share.",
+            "ar": ""
+          }
+        },
+        {
           "version": "1.0.1",
           "state": "READY_FOR_SALE",
           "releasedAt": "2026-08-26T06:38:08-07:00",
@@ -249,6 +285,15 @@
     "dabta": {
       "appStoreId": "6824462416",
       "versions": [
+        {
+          "version": "1.1.0",
+          "state": "READY_FOR_SALE",
+          "releasedAt": "2026-11-27T01:48:14-08:00",
+          "whatsNew": {
+            "en": "When your monthly payday falls on a weekend, move the forecast to the previous or next working day. Choose your weekend days and preview the next two dates before saving.\n\nBackup and restore confirmations and amount entry are clearer.",
+            "ar": "إذا صادف موعد راتبك الشهري إجازتك الأسبوعية، تقدر تقدّم الموعد المتوقع إلى يوم العمل السابق أو تؤخّره إلى التالي. اختر أيام إجازتك وراجع الموعدين المقبلين قبل الحفظ.\n\nوضّحنا تأكيدات النسخ الاحتياطي والاستعادة، وحسّنّا إدخال المبالغ."
+          }
+        },
         {
           "version": "1.0",
           "state": "READY_FOR_SALE",
